@@ -1,5 +1,5 @@
 """Generates the 3D crop models, blockstates and textures. Run from the repo root: python3 tools/cropmodels.py"""
-import json, os, random
+import json, math, os, random
 from PIL import Image
 
 A = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common", "src", "main", "resources", "assets")
@@ -89,7 +89,31 @@ def box(f, t, txt, rot=None):
 def cbox(cx, y0, cz, sx, sy, sz, txt, rot=None):
     return box([cx - sx / 2, y0, cz - sz / 2], [cx + sx / 2, y0 + sy, cz + sz / 2], txt, rot)
 
+def corners(e):
+    f, t = e["from"], e["to"]
+    pts = [[x, y, z] for x in (f[0], t[0]) for y in (f[1], t[1]) for z in (f[2], t[2])]
+    r = e.get("rotation")
+    if not r:
+        return pts
+    a = math.radians(r["angle"])
+    c, s = math.cos(a), math.sin(a)
+    o = r["origin"]
+    out = []
+    for p in pts:
+        x, y, z = (p[i] - o[i] for i in range(3))
+        if r["axis"] == "x":
+            y, z = y * c - z * s, y * s + z * c
+        elif r["axis"] == "y":
+            z, x = z * c - x * s, z * s + x * c
+        else:
+            x, y = x * c - y * s, x * s + y * c
+        out.append([x + o[0], y + o[1], z + o[2]])
+    return out
+
 def parent(name, elements, particle="leaf"):
+    for e in elements:
+        for p in corners(e):
+            assert -1e-6 <= p[0] <= 16 + 1e-6 and -1e-6 <= p[2] <= 16 + 1e-6, (name, e["from"], e["to"])
     w(os.path.join(A, "morefood/models/block/crop_shape", name + ".json"),
       {"ambientocclusion": False, "textures": {"particle": "#" + particle}, "elements": elements})
 
@@ -104,15 +128,24 @@ for s in range(8):
     el = [cbox(8, G, 8, hw, hh, hw, "heart")]
     a = 22.5
     h2 = hw / 2
+    # outer leaves stop short of the block edge so they never poke into neighbours
+    L = min(L, math.floor((7.9 - h2) / math.cos(math.radians(a)) * 10) / 10)
     el.append(box([8 - W / 2, G, 8 - h2 - L], [8 + W / 2, G + 1, 8 - h2], "leaf", {"origin": [8, G, 8 - h2], "axis": "x", "angle": a}))
     el.append(box([8 - W / 2, G, 8 + h2], [8 + W / 2, G + 1, 8 + h2 + L], "leaf", {"origin": [8, G, 8 + h2], "axis": "x", "angle": -a}))
     el.append(box([8 - h2 - L, G, 8 - W / 2], [8 - h2, G + 1, 8 + W / 2], "leaf", {"origin": [8 - h2, G, 8], "axis": "z", "angle": -a}))
     el.append(box([8 + h2, G, 8 - W / 2], [8 + h2 + L, G + 1, 8 + W / 2], "leaf", {"origin": [8 + h2, G, 8], "axis": "z", "angle": a}))
     if s >= 5:
         d = L + h2 - 1
+        S = W - 1
+        r2 = math.sqrt(2)
+        # corner leaves run along the diagonal, outer tip unchanged, inner end tucked under the head
+        r_out = d * 0.7 * r2 + S / 2
+        r_in = h2 * r2 - S / 2 - 0.5
+        rc, ln = (r_out + r_in) / 2, round(r_out - r_in, 2)
         for sx, sz in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
-            el.append(cbox(8 + sx * d * 0.7, G, 8 + sz * d * 0.7, W - 1, 1, W - 1, "leaf",
-                           {"origin": [8, G, 8], "axis": "y", "angle": 45}))
+            cx, cz = round(8 + sx * rc / r2, 2), round(8 + sz * rc / r2, 2)
+            lx, lz = (S, ln) if sx == sz else (ln, S)
+            el.append(cbox(cx, G, cz, lx, 1, lz, "leaf", {"origin": [cx, G, cz], "axis": "y", "angle": 45}))
     if s >= 6:
         el.append(cbox(8, G + hh, 8, hw - 2, 1, hw - 2, "heart"))
     parent(f"leafy_s{s}", el)
