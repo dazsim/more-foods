@@ -158,6 +158,10 @@ public class MoreFoodItems {
         food(registry, "item_baked_beans", 5, 0.5F, props().usingConvertsTo(Items.BOWL).craftRemainder(Items.BOWL));
         food(registry, "item_roast_chicken_dinner", 12, 1F, props());
         food(registry, "item_breakfast_full", 14, 1F, props());
+        add(registry, "block_stove", new BlockItem(MoreFoodBlocks.stove, withId("block_stove", props().useBlockDescriptionPrefix())));
+        food(registry, "item_turnip_roast", 4, 0.3F, props());
+        food(registry, "item_roast_vegetables", 7, 0.6F, props());
+        food(registry, "item_kale_crisps", 2, 0.3F, props());
     }
 
     private static Item.Properties props() {

@@ -1,10 +1,11 @@
 {
-  "type": "minecraft:smelting",
+  "type": "morefood:baking",
   "category": "food",
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": "morefood:item_pizza_uncooked",
   "result": {
     "id": "morefood:item_pizza_cooked"
-  }
+  },
+  "keep_components": true
 }

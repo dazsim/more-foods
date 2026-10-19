@@ -3,8 +3,11 @@ package com.workshopcraft.morefood.fabric;
 import com.workshopcraft.morefood.MoreFood;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
+import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -18,6 +21,13 @@ public class MoreFoodFabric implements ModInitializer {
         MoreFoodBlocks.register(direct(BuiltInRegistries.BLOCK));
         MoreFoodItems.register(direct(BuiltInRegistries.ITEM));
         MoreFoodItems.registerTabs(direct(BuiltInRegistries.CREATIVE_MODE_TAB));
+        MoreFoodKitchen.registerBlockEntities(direct(BuiltInRegistries.BLOCK_ENTITY_TYPE));
+        MoreFoodKitchen.registerMenus(direct(BuiltInRegistries.MENU));
+        MoreFoodKitchen.registerRecipeTypes(direct(BuiltInRegistries.RECIPE_TYPE));
+        MoreFoodKitchen.registerRecipeSerializers(direct(BuiltInRegistries.RECIPE_SERIALIZER));
+        MoreFoodKitchen.registerBookCategories(direct(BuiltInRegistries.RECIPE_BOOK_CATEGORY));
+
+        ItemStorage.SIDED.registerForBlockEntity((stove, side) -> ContainerStorage.of(stove, side), MoreFoodKitchen.stoveEntity);
 
         LootTableEvents.MODIFY.register((key, table, source, registries) -> {
             final LootPool.Builder pool = MoreFood.extraLoot(key);

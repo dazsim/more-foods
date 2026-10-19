@@ -147,5 +147,10 @@
   "item.morefood.item_parsnip_roast": "Roast Parsnip",
   "item.morefood.item_baked_beans": "Baked Beans",
   "item.morefood.item_roast_chicken_dinner": "Roast Chicken Dinner",
-  "item.morefood.item_breakfast_full": "Full English Breakfast"
+  "item.morefood.item_breakfast_full": "Full English Breakfast",
+  "item.morefood.item_turnip_roast": "Roast Turnip",
+  "item.morefood.item_roast_vegetables": "Roast Vegetables",
+  "item.morefood.item_kale_crisps": "Kale Crisps",
+  "block.morefood.block_stove": "Stove",
+  "container.morefood.stove": "Stove"
 }

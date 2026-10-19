@@ -1,0 +1,10 @@
+{
+  "parent": "morefood:block/stove",
+  "textures": {
+    "front": "morefood:block/stove_front_on",
+    "back": "morefood:block/stove_back",
+    "side": "morefood:block/stove_side",
+    "top": "morefood:block/stove_top_on",
+    "bottom": "morefood:block/stove_bottom"
+  }
+}

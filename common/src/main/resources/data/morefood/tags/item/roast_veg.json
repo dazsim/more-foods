@@ -2,6 +2,8 @@
   "values": [
     "minecraft:carrot",
     "morefood:item_peas",
-    "morefood:item_parsnip_roast"
+    "morefood:item_parsnip_roast",
+    "morefood:item_turnip_roast",
+    "morefood:item_roast_vegetables"
   ]
 }

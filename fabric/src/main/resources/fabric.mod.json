@@ -19,6 +19,9 @@
     "entrypoints": {
         "main": [
             "com.workshopcraft.morefood.fabric.MoreFoodFabric"
+        ],
+        "client": [
+            "com.workshopcraft.morefood.fabric.MoreFoodFabricClient"
         ]
     },
     "depends": {
