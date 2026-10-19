@@ -1,0 +1,16 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_minced_meat_cooked",
+    "morefood:item_onion_chopped",
+    "minecraft:carrot",
+    "morefood:item_gravy"
+  ],
+  "water": 0,
+  "result": {
+    "id": "morefood:item_filling_cottage"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#7a3a20"
+}

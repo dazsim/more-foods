@@ -10,7 +10,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -28,16 +30,20 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public class StoveBlock extends BaseEntityBlock {
     public static final MapCodec<StoveBlock> CODEC = simpleCodec(StoveBlock::new);
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final EnumProperty<HobTool> LEFT = EnumProperty.create("left", HobTool.class);
+    public static final EnumProperty<HobTool> RIGHT = EnumProperty.create("right", HobTool.class);
 
     public StoveBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false)
+                .setValue(LEFT, HobTool.NONE).setValue(RIGHT, HobTool.NONE));
     }
 
     @Override
@@ -54,7 +60,25 @@ public class StoveBlock extends BaseEntityBlock {
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return level instanceof ServerLevel server
                 ? createTickerHelper(type, MoreFoodKitchen.stoveEntity, (l, pos, s, be) -> be.serverTick(server, pos, s))
-                : null;
+                : createTickerHelper(type, MoreFoodKitchen.stoveEntity, (l, pos, s, be) -> be.clientTick(l, pos, s));
+    }
+
+    /** Which ring a hit on the top face lands on, as seen from the front. */
+    public static int ringAt(BlockState state, BlockPos pos, Vec3 hit) {
+        final Direction left = state.getValue(FACING).getClockWise();
+        final double along = (hit.x - pos.getX() - 0.5) * left.getStepX() + (hit.z - pos.getZ() - 0.5) * left.getStepZ();
+        return along > 0 ? StoveBlockEntity.LEFT : StoveBlockEntity.RIGHT;
+    }
+
+    @Override
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (hit.getDirection() != Direction.UP) return InteractionResult.TRY_WITH_EMPTY_HAND;
+        if (!(level instanceof ServerLevel server) || !(level.getBlockEntity(pos) instanceof StoveBlockEntity stove)) {
+            return InteractionResult.SUCCESS;
+        }
+        return stove.useHob(server, ringAt(state, pos, hit.getLocation()), player, hand, stack)
+                ? InteractionResult.SUCCESS
+                : InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     @Override
@@ -97,7 +121,7 @@ public class StoveBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, LIT);
+        builder.add(FACING, LIT, LEFT, RIGHT);
     }
 
     @Override

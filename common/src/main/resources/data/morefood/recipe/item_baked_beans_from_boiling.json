@@ -1,0 +1,18 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_haricot_beans",
+    "morefood:item_haricot_beans",
+    "morefood:item_haricot_beans",
+    "morefood:item_sauce_tomato",
+    "minecraft:sugar"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_baked_beans"
+  },
+  "portions": 3,
+  "cookingtime": 400,
+  "colour": "#e0782a",
+  "vessel": "minecraft:bowl"
+}

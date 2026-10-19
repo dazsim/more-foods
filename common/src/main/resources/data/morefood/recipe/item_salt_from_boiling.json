@@ -1,0 +1,11 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [],
+  "water": 1000,
+  "result": {
+    "id": "morefood:item_salt"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#e8eef4"
+}

@@ -17,8 +17,8 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 public class StoveMenu extends AbstractContainerMenu {
-    public static final int DATA_COUNT = 4;
-    private static final int INV_START = StoveBlockEntity.SIZE;
+    public static final int DATA_COUNT = 6;
+    private static final int INV_START = StoveBlockEntity.MENU_SIZE;
     private static final int HOTBAR_START = INV_START + 27;
     private static final int INV_END = HOTBAR_START + 9;
 
@@ -27,12 +27,12 @@ public class StoveMenu extends AbstractContainerMenu {
     private final Level level;
 
     public StoveMenu(int id, Inventory inventory) {
-        this(id, inventory, new SimpleContainer(StoveBlockEntity.SIZE), new SimpleContainerData(DATA_COUNT));
+        this(id, inventory, new SimpleContainer(StoveBlockEntity.MENU_SIZE), new SimpleContainerData(DATA_COUNT));
     }
 
     public StoveMenu(int id, Inventory inventory, Container container, ContainerData data) {
         super(MoreFoodKitchen.STOVE_MENU, id);
-        checkContainerSize(container, StoveBlockEntity.SIZE);
+        checkContainerSize(container, StoveBlockEntity.MENU_SIZE);
         checkContainerDataCount(data, DATA_COUNT);
         this.container = container;
         this.data = data;
@@ -107,6 +107,10 @@ public class StoveMenu extends AbstractContainerMenu {
         final int done = data.get(2);
         final int total = data.get(3);
         return total == 0 || done == 0 ? 0 : Mth.clamp((float) done / total, 0, 1);
+    }
+
+    public float ringProgress(int ring) {
+        return Mth.clamp(data.get(4 + ring) / 100F, 0, 1);
     }
 
     private static class OutputSlot extends Slot {

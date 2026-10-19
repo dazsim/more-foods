@@ -1,0 +1,36 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    [
+      "minecraft:bone",
+      "morefood:item_chicken_bone"
+    ],
+    [
+      "minecraft:carrot",
+      "morefood:item_onion",
+      "morefood:item_lettuce",
+      "minecraft:potato"
+    ]
+  ],
+  "water": 500,
+  "result": {
+    "id": "morefood:item_stock"
+  },
+  "portions": 3,
+  "cookingtime": 400,
+  "colour": "#d8a850",
+  "vessel": "minecraft:glass_bottle",
+  "other_vessels": [
+    {
+      "vessel": "minecraft:bowl",
+      "result": {
+        "id": "morefood:item_stock",
+        "components": {
+          "minecraft:use_remainder": {
+            "id": "minecraft:bowl"
+          }
+        }
+      }
+    }
+  ]
+}

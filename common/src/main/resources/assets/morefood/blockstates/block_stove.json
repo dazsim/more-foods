@@ -1,34 +1,238 @@
 {
-  "variants": {
-    "facing=north,lit=false": {
-      "model": "morefood:block/block_stove"
+  "multipart": [
+    {
+      "when": {
+        "facing": "north",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove"
+      }
     },
-    "facing=north,lit=true": {
-      "model": "morefood:block/block_stove_on"
+    {
+      "when": {
+        "facing": "north",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove_on"
+      }
     },
-    "facing=east,lit=false": {
-      "model": "morefood:block/block_stove",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove",
+        "y": 90
+      }
     },
-    "facing=east,lit=true": {
-      "model": "morefood:block/block_stove_on",
-      "y": 90
+    {
+      "when": {
+        "facing": "east",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove_on",
+        "y": 90
+      }
     },
-    "facing=south,lit=false": {
-      "model": "morefood:block/block_stove",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove",
+        "y": 180
+      }
     },
-    "facing=south,lit=true": {
-      "model": "morefood:block/block_stove_on",
-      "y": 180
+    {
+      "when": {
+        "facing": "south",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove_on",
+        "y": 180
+      }
     },
-    "facing=west,lit=false": {
-      "model": "morefood:block/block_stove",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "lit": "false"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove",
+        "y": 270
+      }
     },
-    "facing=west,lit=true": {
-      "model": "morefood:block/block_stove_on",
-      "y": 270
+    {
+      "when": {
+        "facing": "west",
+        "lit": "true"
+      },
+      "apply": {
+        "model": "morefood:block/block_stove_on",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "left": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "left": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_left"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "right": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "right": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_right"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "left": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "left": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_left",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "right": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "right": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_right",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "left": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "left": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_left",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "right": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "right": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_right",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "left": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "left": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_left",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "right": "pan"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pan_right",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "right": "pot"
+      },
+      "apply": {
+        "model": "morefood:block/hob_pot_right",
+        "y": 270
+      }
     }
-  }
+  ]
 }

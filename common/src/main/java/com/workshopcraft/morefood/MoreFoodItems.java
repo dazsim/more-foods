@@ -1,6 +1,7 @@
 package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.items.ItemKitchenTool;
+import com.workshopcraft.morefood.items.ItemStock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 
 public class MoreFoodItems {
@@ -28,6 +31,12 @@ public class MoreFoodItems {
     public static Item seedOnion;
     public static final List<String> NEW_CROPS = List.of("cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede");
     public static final Map<String, Item> SEEDS = new HashMap<>();
+    //made by the stove now, kept so old stacks still finish, gone in 2.1
+    public static final Set<String> RETIRED = Set.of("item_pot_water", "item_pot_salt", "item_pot_water_potato_peeled",
+            "item_pot_water_potato_boiled", "item_stock_mix_uncooked", "item_egg_uncooked_frying_pan", "item_fried_egg_frying_pan",
+            "item_mushroom_uncooked_frying_pan", "item_mushroom_fried_frying_pan", "item_french_toast_cooked_frying_pan",
+            "item_yorkshire_pudding_pot", "item_bucket_cheese");
+    private static final List<Item> HIDDEN = new ArrayList<>();
 
     public static void register(BiConsumer<Identifier, Item> registry) {
         food(registry, "item_fruit_tomato", 1, 0.1F, props());
@@ -67,7 +76,7 @@ public class MoreFoodItems {
         item(registry, "item_potato_peeled", props());
         item(registry, "item_potato_peeled_chipped", props());
         item(registry, "item_hashbrown_uncooked", props());
-        item(registry, "item_stock", props().craftRemainder(pot));
+        add(registry, "item_stock", new ItemStock(withId("item_stock", props())));
         item(registry, "item_chicken_bone", props());
         item(registry, "item_stock_mix_uncooked", props());
         item(registry, "item_batter", props().craftRemainder(pot));
@@ -162,6 +171,38 @@ public class MoreFoodItems {
         food(registry, "item_turnip_roast", 4, 0.3F, props());
         food(registry, "item_roast_vegetables", 7, 0.6F, props());
         food(registry, "item_kale_crisps", 2, 0.3F, props());
+        food(registry, "item_minced_lamb_cooked", 3, 0.3F, props());
+        food(registry, "item_flatbread", 2, 0.2F, props());
+        food(registry, "item_bubble_squeak", 5, 0.5F, props());
+        food(registry, "item_leeks_fried", 2, 0.3F, props());
+        bowl(registry, "item_soup_tomato", 6, 0.6F);
+        bowl(registry, "item_soup_leek_potato", 7, 0.7F);
+        bowl(registry, "item_soup_pea_ham", 7, 0.7F);
+        bowl(registry, "item_soup_parsnip", 6, 0.6F);
+        bowl(registry, "item_soup_kale_potato", 6, 0.6F);
+        bowl(registry, "item_stew_vegetable", 8, 0.8F);
+        bowl(registry, "item_stew_sausage_kale", 10, 1F);
+        bowl(registry, "item_mushy_peas", 4, 0.4F);
+        bowl(registry, "item_neeps", 4, 0.4F);
+        food(registry, "item_spaghetti", 2, 0.2F, props());
+        bowl(registry, "item_spaghetti_tomato", 7, 0.6F);
+        bowl(registry, "item_spaghetti_bolognese", 10, 0.9F);
+        item(registry, "item_filling_cottage", props());
+        item(registry, "item_filling_shepherds", props());
+        item(registry, "item_filling_chicken_leek", props());
+        item(registry, "item_filling_vegetable", props());
+    }
+
+    /** What an ingredient leaves behind when it is used up: the tool, the bucket, the stock's bottle. */
+    public static ItemStack remainder(ItemStack stack) {
+        if (stack.getItem() instanceof ItemKitchenTool) return stack.copyWithCount(1);
+        if (stack.getItem() instanceof ItemStock) return ItemStock.vesselOf(stack).create();
+        final ItemStackTemplate left = stack.getItem().getCraftingRemainder();
+        return left != null ? left.create() : ItemStack.EMPTY;
+    }
+
+    private static Item bowl(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation) {
+        return food(registry, name, amount, saturation, props().usingConvertsTo(Items.BOWL));
     }
 
     private static Item.Properties props() {
@@ -171,6 +212,7 @@ public class MoreFoodItems {
     private static <T extends Item> T add(BiConsumer<Identifier, Item> registry, String name, T item) {
         registry.accept(MoreFood.id(name), item);
         ALL.add(item);
+        if (RETIRED.contains(name)) HIDDEN.add(item);
         return item;
     }
 
@@ -199,7 +241,9 @@ public class MoreFoodItems {
         registry.accept(MoreFood.id("tab"), CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.tabMoreFoods"))
                 .icon(() -> new ItemStack(ALL.getFirst()))
-                .displayItems((parameters, output) -> ALL.forEach(output::accept))
+                .displayItems((parameters, output) -> ALL.forEach(item -> {
+                    if (!HIDDEN.contains(item)) output.accept(item);
+                }))
                 .build());
     }
 }

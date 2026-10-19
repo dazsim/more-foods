@@ -1,0 +1,10 @@
+{
+  "type": "morefood:frying",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": "morefood:item_leek_sliced",
+  "result": {
+    "id": "morefood:item_leeks_fried"
+  }
+}

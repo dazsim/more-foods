@@ -37,5 +37,9 @@ public class StoveScreen extends AbstractContainerScreen<StoveMenu> {
         }
         final int w = Mth.ceil(menu.ovenProgress() * 24);
         graphics.blitSprite(RenderPipelines.GUI_TEXTURED, BURN, 24, 16, 0, 0, x + 80, y + 34, w, 16);
+        for (int ring = 0; ring < 2; ring++) {
+            final int fill = Mth.ceil(menu.ringProgress(ring) * 22);
+            if (fill > 0) graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x + 113 + ring * 28, y + 26, 176, 0, fill, 3, 256, 256);
+        }
     }
 }

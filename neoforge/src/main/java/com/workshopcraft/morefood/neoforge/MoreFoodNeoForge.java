@@ -32,10 +32,12 @@ public class MoreFoodNeoForge {
         e.register(Registries.RECIPE_TYPE, h -> MoreFoodKitchen.registerRecipeTypes(h::register));
         e.register(Registries.RECIPE_SERIALIZER, h -> MoreFoodKitchen.registerRecipeSerializers(h::register));
         e.register(Registries.RECIPE_BOOK_CATEGORY, h -> MoreFoodKitchen.registerBookCategories(h::register));
+        e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
     }
 
     private static void onCapabilities(RegisterCapabilitiesEvent e) {
         e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.stoveEntity, WorldlyContainerWrapper::new);
+        e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.stoveEntity, PotFluidHandler::of);
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {

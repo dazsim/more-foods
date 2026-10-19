@@ -1,0 +1,30 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_cabbage_shredded",
+    "morefood:item_leek_sliced",
+    "minecraft:carrot",
+    "morefood:item_onion_chopped"
+  ],
+  "water": 500,
+  "result": {
+    "id": "morefood:item_stock"
+  },
+  "portions": 3,
+  "cookingtime": 400,
+  "colour": "#c8b058",
+  "vessel": "minecraft:glass_bottle",
+  "other_vessels": [
+    {
+      "vessel": "minecraft:bowl",
+      "result": {
+        "id": "morefood:item_stock",
+        "components": {
+          "minecraft:use_remainder": {
+            "id": "minecraft:bowl"
+          }
+        }
+      }
+    }
+  ]
+}

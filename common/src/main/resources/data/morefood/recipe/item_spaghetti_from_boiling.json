@@ -1,0 +1,13 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_spaghetti_uncooked"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_spaghetti"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#e8dca0"
+}

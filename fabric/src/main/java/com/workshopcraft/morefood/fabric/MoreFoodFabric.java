@@ -6,6 +6,7 @@ import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.core.Registry;
@@ -26,8 +27,10 @@ public class MoreFoodFabric implements ModInitializer {
         MoreFoodKitchen.registerRecipeTypes(direct(BuiltInRegistries.RECIPE_TYPE));
         MoreFoodKitchen.registerRecipeSerializers(direct(BuiltInRegistries.RECIPE_SERIALIZER));
         MoreFoodKitchen.registerBookCategories(direct(BuiltInRegistries.RECIPE_BOOK_CATEGORY));
+        MoreFoodKitchen.registerParticles(direct(BuiltInRegistries.PARTICLE_TYPE));
 
         ItemStorage.SIDED.registerForBlockEntity((stove, side) -> ContainerStorage.of(stove, side), MoreFoodKitchen.stoveEntity);
+        FluidStorage.SIDED.registerForBlockEntity(PotStorage::of, MoreFoodKitchen.stoveEntity);
 
         LootTableEvents.MODIFY.register((key, table, source, registries) -> {
             final LootPool.Builder pool = MoreFood.extraLoot(key);
