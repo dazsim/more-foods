@@ -14,7 +14,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class MoreFoodItems {
@@ -24,6 +26,8 @@ public class MoreFoodItems {
     public static Item seedTomato;
     public static Item seedLettuce;
     public static Item seedOnion;
+    public static final List<String> NEW_CROPS = List.of("cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede");
+    public static final Map<String, Item> SEEDS = new HashMap<>();
 
     public static void register(BiConsumer<Identifier, Item> registry) {
         food(registry, "item_fruit_tomato", 1, 0.1F, props());
@@ -127,6 +131,19 @@ public class MoreFoodItems {
         seedOnion = seed(registry, "item_seed_onion", MoreFoodBlocks.cropOnion);
         item(registry, "item_bucket_cheese", props().craftRemainder(Items.BUCKET));
         food(registry, "item_cheese", 5, 0.4F, props());
+        food(registry, "item_cabbage", 2, 0.3F, props());
+        food(registry, "item_spinach", 1, 0.4F, props());
+        food(registry, "item_kale", 1, 0.4F, props());
+        item(registry, "item_garlic", props());
+        food(registry, "item_leek", 1, 0.2F, props());
+        food(registry, "item_peas", 1, 0.2F, props());
+        item(registry, "item_haricot_beans", props());
+        food(registry, "item_parsnip", 2, 0.2F, props());
+        food(registry, "item_turnip", 2, 0.2F, props());
+        food(registry, "item_swede", 2, 0.2F, props());
+        for (String name : NEW_CROPS) {
+            SEEDS.put(name, seed(registry, "item_seed_" + name, MoreFoodBlocks.CROPS.get(name)));
+        }
     }
 
     private static Item.Properties props() {

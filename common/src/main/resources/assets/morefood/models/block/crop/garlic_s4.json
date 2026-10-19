@@ -1,0 +1,6 @@
+{
+  "parent": "morefood:block/crop_shape/tuft_s4",
+  "textures": {
+    "blade": "morefood:block/crop/garlic_blade"
+  }
+}

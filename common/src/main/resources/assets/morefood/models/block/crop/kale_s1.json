@@ -1,0 +1,6 @@
+{
+  "parent": "morefood:block/crop_shape/leafy_tall_s1",
+  "textures": {
+    "leaf": "morefood:block/crop/kale_leaf"
+  }
+}

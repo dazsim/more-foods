@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/bush_fruit_s4",
+  "textures": {
+    "fruit": "morefood:block/crop/bean_pod",
+    "fruit_top": "morefood:block/crop/stem"
+  }
+}

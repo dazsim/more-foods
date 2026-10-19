@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/bush_s5",
+  "textures": {
+    "stem": "morefood:block/crop/stem",
+    "leaf": "morefood:block/crop/bean_leaf"
+  }
+}

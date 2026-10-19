@@ -1,0 +1,153 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "#blade"
+  },
+  "elements": [
+    {
+      "from": [
+        7.25,
+        -1,
+        7.75
+      ],
+      "to": [
+        8.75,
+        1,
+        8.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            8.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            8.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            7.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            7.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            8.5,
+            7.5
+          ],
+          "texture": "#blade"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            8.5,
+            7.5
+          ],
+          "texture": "#blade"
+        }
+      }
+    },
+    {
+      "from": [
+        7.25,
+        -1,
+        7.75
+      ],
+      "to": [
+        8.75,
+        1,
+        8.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            8.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            8.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            7.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            7.5,
+            9
+          ],
+          "texture": "#blade"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            8.5,
+            7.5
+          ],
+          "texture": "#blade"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            8.5,
+            7.5
+          ],
+          "texture": "#blade"
+        }
+      },
+      "rotation": {
+        "origin": [
+          8,
+          -1,
+          8
+        ],
+        "axis": "z",
+        "angle": -20
+      }
+    }
+  ]
+}

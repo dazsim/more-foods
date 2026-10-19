@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/root_top_wide_s2",
+  "textures": {
+    "stalk": "morefood:block/crop/turnip_stalk",
+    "leaf": "morefood:block/crop/turnip_leaf"
+  }
+}

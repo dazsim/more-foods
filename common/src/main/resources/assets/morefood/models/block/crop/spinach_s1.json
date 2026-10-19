@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/leafy_small_s1",
+  "textures": {
+    "heart": "morefood:block/crop/spinach_heart",
+    "leaf": "morefood:block/crop/spinach_leaf"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/tuft_leek_s5",
+  "textures": {
+    "blade": "morefood:block/crop/leek_blade",
+    "shaft": "morefood:block/crop/leek_shaft"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/root_small_s6",
+  "textures": {
+    "root": "morefood:block/crop/parsnip_root",
+    "root_top": "morefood:block/crop/parsnip_root_top"
+  }
+}

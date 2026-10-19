@@ -11,6 +11,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
@@ -18,11 +20,15 @@ public class MoreFoodBlocks {
     public static Block cropTomato;
     public static Block cropLettuce;
     public static Block cropOnion;
+    public static final Map<String, Block> CROPS = new LinkedHashMap<>();
 
     public static void register(BiConsumer<Identifier, Block> registry) {
         cropTomato = crop(registry, "block_crop_tomato", () -> MoreFoodItems.seedTomato);
         cropLettuce = crop(registry, "block_crop_lettuce", () -> MoreFoodItems.seedLettuce);
         cropOnion = crop(registry, "block_crop_onion", () -> MoreFoodItems.seedOnion);
+        for (String name : MoreFoodItems.NEW_CROPS) {
+            CROPS.put(name, crop(registry, "block_crop_" + name, () -> MoreFoodItems.SEEDS.get(name)));
+        }
     }
 
     private static Block crop(BiConsumer<Identifier, Block> registry, String name, Supplier<Item> seed) {

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "morefood:block_crop_tomato",
+    "morefood:block_crop_lettuce",
+    "morefood:block_crop_onion",
+    "morefood:block_crop_cabbage",
+    "morefood:block_crop_spinach",
+    "morefood:block_crop_kale",
+    "morefood:block_crop_garlic",
+    "morefood:block_crop_leek",
+    "morefood:block_crop_peas",
+    "morefood:block_crop_haricot",
+    "morefood:block_crop_parsnip",
+    "morefood:block_crop_turnip",
+    "morefood:block_crop_swede"
+  ]
+}

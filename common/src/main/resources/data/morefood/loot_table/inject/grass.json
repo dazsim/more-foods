@@ -16,7 +16,7 @@
         },
         {
           "condition": "minecraft:random_chance",
-          "chance": 0.125
+          "chance": 0.25
         }
       ],
       "functions": [
@@ -36,6 +36,46 @@
         {
           "type": "minecraft:item",
           "name": "morefood:item_seed_onion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_cabbage"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_spinach"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_kale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_garlic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_leek"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_peas"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_haricot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_parsnip"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_turnip"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_swede"
         }
       ]
     }

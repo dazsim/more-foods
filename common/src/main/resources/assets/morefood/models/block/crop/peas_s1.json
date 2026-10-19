@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/trellis_s1",
+  "textures": {
+    "stake": "morefood:block/crop/stake",
+    "leaf": "morefood:block/crop/pea_leaf"
+  }
+}

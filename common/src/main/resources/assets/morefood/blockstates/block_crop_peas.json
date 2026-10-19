@@ -1,0 +1,100 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "age": "0"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s0"
+      }
+    },
+    {
+      "when": {
+        "age": "1"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s1"
+      }
+    },
+    {
+      "when": {
+        "age": "2"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s2"
+      }
+    },
+    {
+      "when": {
+        "age": "3"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s3"
+      }
+    },
+    {
+      "when": {
+        "age": "4"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s4"
+      }
+    },
+    {
+      "when": {
+        "age": "4"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_fruit_s4"
+      }
+    },
+    {
+      "when": {
+        "age": "5"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s5"
+      }
+    },
+    {
+      "when": {
+        "age": "5"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_fruit_s5"
+      }
+    },
+    {
+      "when": {
+        "age": "6"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s6"
+      }
+    },
+    {
+      "when": {
+        "age": "6"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_fruit_s6"
+      }
+    },
+    {
+      "when": {
+        "age": "7"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_s7"
+      }
+    },
+    {
+      "when": {
+        "age": "7"
+      },
+      "apply": {
+        "model": "morefood:block/crop/peas_fruit_s7"
+      }
+    }
+  ]
+}

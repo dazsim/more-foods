@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_leek"
+  ],
+  "result": {
+    "id": "morefood:item_seed_leek"
+  }
+}

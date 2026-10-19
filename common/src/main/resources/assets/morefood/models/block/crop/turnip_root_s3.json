@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/root_medium_s3",
+  "textures": {
+    "root": "morefood:block/crop/turnip_root",
+    "root_top": "morefood:block/crop/turnip_root_top"
+  }
+}

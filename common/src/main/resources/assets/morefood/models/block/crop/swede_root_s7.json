@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/root_large_s7",
+  "textures": {
+    "root": "morefood:block/crop/swede_root",
+    "root_top": "morefood:block/crop/swede_root_top"
+  }
+}
