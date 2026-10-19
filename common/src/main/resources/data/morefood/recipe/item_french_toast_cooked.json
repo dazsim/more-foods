@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "morefood:item_cooked_french_toast_frying_pan"
+    "morefood:item_french_toast_cooked_frying_pan"
   ],
   "result": {
     "id": "morefood:item_french_toast_cooked"

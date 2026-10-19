@@ -48,18 +48,6 @@ public class MoreFoodItems {
         item(registry, "item_minced_meat_cooked", props());
         item(registry, "item_beef_patty_uncooked", props());
         item(registry, "item_beef_patty_cooked", props());
-        item(registry, "item_medium_dough", props());
-        item(registry, "item_small_dough", props());
-        item(registry, "item_uncooked_french_toast", props());
-        item(registry, "item_cooked_french_toast_frying_pan", props().craftRemainder(fryingPan));
-        food(registry, "item_cheese_sandwich", 4, 0.4F, props());
-        food(registry, "item_cheese_tomato_sandwich", 5, 0.5F, props());
-        food(registry, "item_ham_sandwich", 4, 0.4F, props());
-        food(registry, "item_beef_sandwich", 4, 0.4F, props());
-        food(registry, "item_chicken_sandwich", 4, 0.4F, props());
-        food(registry, "item_cooked_french_toast", 4, 0.4F, props());
-        item(registry, "item_uncooked_pizza", props());
-        food(registry, "item_cooked_pizza", 6, 0.5F, props());
         item(registry, "item_dough_medium", props());
         item(registry, "item_dough_small", props());
         item(registry, "item_pizza_uncooked", props());

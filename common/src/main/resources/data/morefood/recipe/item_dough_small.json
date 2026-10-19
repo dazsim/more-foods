@@ -7,7 +7,7 @@
   ],
   "key": {
     "A": "morefood:item_knife",
-    "B": "morefood:item_medium_dough"
+    "B": "morefood:item_dough_medium"
   },
   "result": {
     "id": "morefood:item_dough_small",
