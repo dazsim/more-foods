@@ -1,28 +1,100 @@
 {
-  "variants": {
-    "age=0": {
-      "model": "morefood:block/tomato_stage0"
+  "multipart": [
+    {
+      "when": {
+        "age": "0"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s0"
+      }
     },
-    "age=1": {
-      "model": "morefood:block/tomato_stage1"
+    {
+      "when": {
+        "age": "1"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s1"
+      }
     },
-    "age=2": {
-      "model": "morefood:block/tomato_stage2"
+    {
+      "when": {
+        "age": "2"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s2"
+      }
     },
-    "age=3": {
-      "model": "morefood:block/tomato_stage3"
+    {
+      "when": {
+        "age": "3"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s3"
+      }
     },
-    "age=4": {
-      "model": "morefood:block/tomato_stage4"
+    {
+      "when": {
+        "age": "4"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s4"
+      }
     },
-    "age=5": {
-      "model": "morefood:block/tomato_stage5"
+    {
+      "when": {
+        "age": "4"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_fruit_s4"
+      }
     },
-    "age=6": {
-      "model": "morefood:block/tomato_stage6"
+    {
+      "when": {
+        "age": "5"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s5"
+      }
     },
-    "age=7": {
-      "model": "morefood:block/tomato_stage7"
+    {
+      "when": {
+        "age": "5"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_fruit_s5"
+      }
+    },
+    {
+      "when": {
+        "age": "6"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s6"
+      }
+    },
+    {
+      "when": {
+        "age": "6"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_fruit_s6"
+      }
+    },
+    {
+      "when": {
+        "age": "7"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_s7"
+      }
+    },
+    {
+      "when": {
+        "age": "7"
+      },
+      "apply": {
+        "model": "morefood:block/crop/tomato_fruit_s7"
+      }
     }
-  }
+  ]
 }

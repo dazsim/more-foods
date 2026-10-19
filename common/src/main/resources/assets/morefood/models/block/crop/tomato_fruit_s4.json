@@ -1,0 +1,6 @@
+{
+  "parent": "morefood:block/crop_shape/vine_fruit_s4",
+  "textures": {
+    "fruit": "morefood:block/crop/flower"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "morefood:block/crop_shape/tuft_bulb_s5",
+  "textures": {
+    "bulb": "morefood:block/crop/onion_bulb"
+  }
+}

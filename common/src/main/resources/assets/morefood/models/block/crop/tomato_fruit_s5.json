@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/vine_fruit_s5",
+  "textures": {
+    "fruit": "morefood:block/crop/tomato_green",
+    "calyx": "morefood:block/crop/stem"
+  }
+}

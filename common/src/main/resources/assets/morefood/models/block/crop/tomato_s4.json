@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/vine_s4",
+  "textures": {
+    "stake": "morefood:block/crop/stake",
+    "leaf": "morefood:block/crop/tomato_leaf"
+  }
+}

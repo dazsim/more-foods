@@ -1,0 +1,280 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "#fruit"
+  },
+  "elements": [
+    {
+      "from": [
+        11.0,
+        2,
+        8.5
+      ],
+      "to": [
+        13.0,
+        4,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ],
+          "texture": "#fruit"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ],
+          "texture": "#fruit"
+        }
+      }
+    },
+    {
+      "from": [
+        11.5,
+        4,
+        9.0
+      ],
+      "to": [
+        12.5,
+        5,
+        10.0
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            8.0,
+            8.0
+          ],
+          "texture": "#calyx"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            8.0,
+            8.0
+          ],
+          "texture": "#calyx"
+        }
+      }
+    },
+    {
+      "from": [
+        3.5,
+        6,
+        5.5
+      ],
+      "to": [
+        5.5,
+        8,
+        7.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            9.0,
+            9
+          ],
+          "texture": "#fruit"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ],
+          "texture": "#fruit"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ],
+          "texture": "#fruit"
+        }
+      }
+    },
+    {
+      "from": [
+        4.0,
+        8,
+        6.0
+      ],
+      "to": [
+        5.0,
+        9,
+        7.0
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "south": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "east": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "west": {
+          "uv": [
+            7.0,
+            7,
+            8.0,
+            8
+          ],
+          "texture": "#calyx"
+        },
+        "up": {
+          "uv": [
+            7.0,
+            7.0,
+            8.0,
+            8.0
+          ],
+          "texture": "#calyx"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            7.0,
+            8.0,
+            8.0
+          ],
+          "texture": "#calyx"
+        }
+      }
+    }
+  ]
+}
