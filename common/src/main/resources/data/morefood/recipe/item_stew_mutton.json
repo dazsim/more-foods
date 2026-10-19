@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_stock",
+    "morefood:item_potato_boiled",
+    "minecraft:carrot",
+    "minecraft:cooked_mutton",
+    "minecraft:bowl"
+  ],
+  "result": {
+    "id": "morefood:item_stew_mutton"
+  }
+}

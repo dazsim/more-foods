@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "A  ",
+    "BC ",
+    "A  "
+  ],
+  "key": {
+    "A": "morefood:item_bread_slice",
+    "B": "morefood:item_cheese_slice",
+    "C": "morefood:item_fruit_tomato"
+  },
+  "result": {
+    "id": "morefood:item_sandwich_cheese_tomato"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bone",
+    "morefood:item_pot",
+    "minecraft:water_bucket",
+    "minecraft:potato"
+  ],
+  "result": {
+    "id": "morefood:item_stock_mix_uncooked"
+  }
+}

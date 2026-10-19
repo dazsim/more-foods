@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_potato_roast",
+    "minecraft:cooked_porkchop",
+    "minecraft:carrot",
+    "morefood:item_gravy",
+    "morefood:item_sauce_apple"
+  ],
+  "result": {
+    "id": "morefood:item_roast_pork_dinner"
+  }
+}

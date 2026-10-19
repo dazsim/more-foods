@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "AB ",
+    "CDC",
+    " C "
+  ],
+  "key": {
+    "A": "minecraft:lever",
+    "B": "minecraft:piston",
+    "C": "minecraft:iron_ingot",
+    "D": "minecraft:iron_bars"
+  },
+  "result": {
+    "id": "morefood:item_mincer"
+  }
+}

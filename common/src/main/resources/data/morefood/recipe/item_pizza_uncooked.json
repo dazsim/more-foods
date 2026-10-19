@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_dough",
+    "morefood:item_cheese_slice",
+    "morefood:item_fruit_tomato"
+  ],
+  "result": {
+    "id": "morefood:item_pizza_uncooked"
+  }
+}

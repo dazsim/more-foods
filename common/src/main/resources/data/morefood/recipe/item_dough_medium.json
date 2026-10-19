@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": "morefood:item_knife",
+    "B": "morefood:item_dough"
+  },
+  "result": {
+    "id": "morefood:item_dough_medium",
+    "count": 2
+  }
+}

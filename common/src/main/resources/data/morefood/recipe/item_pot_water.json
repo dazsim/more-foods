@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_pot",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "morefood:item_pot_water"
+  }
+}

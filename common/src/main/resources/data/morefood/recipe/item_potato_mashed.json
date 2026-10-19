@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_potato_boiled",
+    "morefood:item_mincer"
+  ],
+  "result": {
+    "id": "morefood:item_potato_mashed"
+  }
+}

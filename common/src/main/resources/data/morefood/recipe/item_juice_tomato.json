@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_fruit_tomato",
+    "morefood:item_juicer",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_juice_tomato"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "morefood:item_uncooked_french_toast",
+  "result": {
+    "id": "morefood:item_french_toast_cooked_frying_pan"
+  }
+}

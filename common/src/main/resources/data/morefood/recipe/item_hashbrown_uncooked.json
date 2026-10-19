@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_potato_mashed",
+    "morefood:item_knife"
+  ],
+  "result": {
+    "id": "morefood:item_hashbrown_uncooked"
+  }
+}

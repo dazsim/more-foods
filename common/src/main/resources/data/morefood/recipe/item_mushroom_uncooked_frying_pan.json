@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_frying_pan",
+    "minecraft:red_mushroom"
+  ],
+  "result": {
+    "id": "morefood:item_mushroom_uncooked_frying_pan"
+  }
+}
