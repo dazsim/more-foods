@@ -133,5 +133,19 @@
   "block.morefood.block_crop_turnip": "Turnips",
   "item.morefood.item_swede": "Swede",
   "item.morefood.item_seed_swede": "Swede Seeds",
-  "block.morefood.block_crop_swede": "Swedes"
+  "block.morefood.block_crop_swede": "Swedes",
+  "item.morefood.item_cabbage_shredded": "Shredded Cabbage",
+  "item.morefood.item_garlic_chopped": "Chopped Garlic",
+  "item.morefood.item_leek_sliced": "Sliced Leek",
+  "item.morefood.item_minced_lamb_uncooked": "Uncooked Minced Lamb",
+  "item.morefood.item_pastry": "Pastry",
+  "item.morefood.item_spaghetti_uncooked": "Uncooked Spaghetti",
+  "item.morefood.item_bubble_squeak_uncooked": "Uncooked Bubble and Squeak",
+  "item.morefood.item_roast_veg_uncooked": "Uncooked Roast Vegetables",
+  "item.morefood.item_coleslaw": "Coleslaw",
+  "item.morefood.item_salad_garden": "Garden Salad",
+  "item.morefood.item_parsnip_roast": "Roast Parsnip",
+  "item.morefood.item_baked_beans": "Baked Beans",
+  "item.morefood.item_roast_chicken_dinner": "Roast Chicken Dinner",
+  "item.morefood.item_breakfast_full": "Full English Breakfast"
 }

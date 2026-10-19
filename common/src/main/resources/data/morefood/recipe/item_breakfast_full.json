@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_breakfast_cooked",
+    "morefood:item_baked_beans"
+  ],
+  "result": {
+    "id": "morefood:item_breakfast_full"
+  }
+}

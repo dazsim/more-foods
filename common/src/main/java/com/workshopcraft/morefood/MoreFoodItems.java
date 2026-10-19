@@ -144,6 +144,20 @@ public class MoreFoodItems {
         for (String name : NEW_CROPS) {
             SEEDS.put(name, seed(registry, "item_seed_" + name, MoreFoodBlocks.CROPS.get(name)));
         }
+        food(registry, "item_cabbage_shredded", 1, 0.2F, props());
+        item(registry, "item_garlic_chopped", props());
+        item(registry, "item_leek_sliced", props());
+        item(registry, "item_minced_lamb_uncooked", props());
+        item(registry, "item_pastry", props());
+        item(registry, "item_spaghetti_uncooked", props());
+        item(registry, "item_bubble_squeak_uncooked", props());
+        item(registry, "item_roast_veg_uncooked", props());
+        food(registry, "item_coleslaw", 3, 0.3F, props().usingConvertsTo(Items.BOWL));
+        food(registry, "item_salad_garden", 4, 0.5F, props().usingConvertsTo(Items.BOWL));
+        food(registry, "item_parsnip_roast", 4, 0.3F, props());
+        food(registry, "item_baked_beans", 5, 0.5F, props().usingConvertsTo(Items.BOWL).craftRemainder(Items.BOWL));
+        food(registry, "item_roast_chicken_dinner", 12, 1F, props());
+        food(registry, "item_breakfast_full", 14, 1F, props());
     }
 
     private static Item.Properties props() {

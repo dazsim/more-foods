@@ -3,13 +3,11 @@
   "category": "misc",
   "pattern": [
     "A",
-    "B",
-    "C"
+    "B"
   ],
   "key": {
     "A": "minecraft:egg",
-    "B": "morefood:item_bread_slice",
-    "C": "morefood:item_frying_pan"
+    "B": "morefood:item_bread_slice"
   },
   "result": {
     "id": "morefood:item_french_toast_uncooked"

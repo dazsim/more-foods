@@ -4,7 +4,7 @@
   "ingredients": [
     "morefood:item_potato_roast",
     "minecraft:cooked_rabbit",
-    "minecraft:carrot",
+    "#morefood:roast_veg",
     "morefood:item_gravy"
   ],
   "result": {
