@@ -19,6 +19,7 @@ import java.util.function.BiConsumer;
 public class MoreFoodFabric implements ModInitializer {
     @Override
     public void onInitialize() {
+        MoreFoodKitchen.registerComponents(direct(BuiltInRegistries.DATA_COMPONENT_TYPE));
         MoreFoodBlocks.register(direct(BuiltInRegistries.BLOCK));
         MoreFoodItems.register(direct(BuiltInRegistries.ITEM));
         MoreFoodItems.registerTabs(direct(BuiltInRegistries.CREATIVE_MODE_TAB));
@@ -33,6 +34,7 @@ public class MoreFoodFabric implements ModInitializer {
         FluidStorage.SIDED.registerForBlockEntity(PotStorage::of, MoreFoodKitchen.stoveEntity);
         ItemStorage.SIDED.registerForBlockEntity((pot, side) -> ContainerStorage.of(pot, side), MoreFoodKitchen.cookingPotEntity);
         FluidStorage.SIDED.registerForBlockEntity(PotStorage::ofCampfire, MoreFoodKitchen.cookingPotEntity);
+        ItemStorage.SIDED.registerForBlockEntity(BoardStorage::of, MoreFoodKitchen.boardEntity);
 
         LootTableEvents.MODIFY.register((key, table, source, registries) -> {
             final LootPool.Builder pool = MoreFood.extraLoot(key);

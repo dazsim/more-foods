@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "P",
+    "P",
+    "S"
+  ],
+  "key": {
+    "P": "#minecraft:planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "morefood:item_baking_peel"
+  }
+}

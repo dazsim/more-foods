@@ -24,6 +24,7 @@ public class MoreFoodNeoForge {
     }
 
     private static void onRegister(RegisterEvent e) {
+        e.register(Registries.DATA_COMPONENT_TYPE, h -> MoreFoodKitchen.registerComponents(h::register));
         e.register(Registries.BLOCK, h -> MoreFoodBlocks.register(h::register));
         e.register(Registries.ITEM, h -> MoreFoodItems.register(h::register));
         e.register(Registries.CREATIVE_MODE_TAB, h -> MoreFoodItems.registerTabs(h::register));
@@ -40,6 +41,7 @@ public class MoreFoodNeoForge {
         e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.stoveEntity, PotFluidHandler::of);
         e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.cookingPotEntity, WorldlyContainerWrapper::new);
         e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.cookingPotEntity, PotFluidHandler::ofCampfire);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.boardEntity, BoardItemHandler::of);
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {

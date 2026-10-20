@@ -2,6 +2,7 @@ package com.workshopcraft.morefood.stove;
 
 import com.mojang.serialization.MapCodec;
 import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.morefood.items.ItemBakingPeel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -72,6 +73,10 @@ public class StoveBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (stack.getItem() instanceof ItemBakingPeel && ItemBakingPeel.isLoaded(stack)) {
+            if (level instanceof ServerLevel server && level.getBlockEntity(pos) instanceof StoveBlockEntity stove) ItemBakingPeel.useOnStove(server, stove, player, stack);
+            return InteractionResult.SUCCESS;
+        }
         if (hit.getDirection() != Direction.UP) return InteractionResult.TRY_WITH_EMPTY_HAND;
         if (!(level instanceof ServerLevel server) || !(level.getBlockEntity(pos) instanceof StoveBlockEntity stove)) {
             return InteractionResult.SUCCESS;

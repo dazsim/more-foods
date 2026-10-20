@@ -173,5 +173,16 @@
   "item.morefood.item_filling_shepherds": "Shepherd's Pie Filling",
   "item.morefood.item_filling_chicken_leek": "Chicken and Leek Filling",
   "item.morefood.item_filling_vegetable": "Vegetable Pie Filling",
-  "block.morefood.block_cooking_pot": "Cooking Pot"
+  "block.morefood.block_cooking_pot": "Cooking Pot",
+  "block.morefood.block_assembly_board": "Assembly Board",
+  "item.morefood.item_baking_peel": "Baking Peel",
+  "message.morefood.board.next": "Next: %s",
+  "message.morefood.board.next_or_take": "Done, or add %s",
+  "message.morefood.board.more": " and %s more",
+  "message.morefood.board.done": "Done: take it off by hand or with a baking peel",
+  "message.morefood.board.nothing": "Nothing goes on this",
+  "message.morefood.peel.full": "The peel is already carrying something",
+  "message.morefood.peel.oven_full": "There is no room in the oven",
+  "message.morefood.peel.not_bakeable": "%s does not go in the oven",
+  "tooltip.morefood.peel": "Carrying: %s"
 }

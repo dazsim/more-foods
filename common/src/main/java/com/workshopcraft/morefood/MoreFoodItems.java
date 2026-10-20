@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood;
 
+import com.workshopcraft.morefood.items.ItemBakingPeel;
 import com.workshopcraft.morefood.items.ItemKitchenTool;
 import com.workshopcraft.morefood.items.ItemPot;
 import com.workshopcraft.morefood.items.ItemStock;
@@ -192,6 +193,8 @@ public class MoreFoodItems {
         item(registry, "item_filling_shepherds", props());
         item(registry, "item_filling_chicken_leek", props());
         item(registry, "item_filling_vegetable", props());
+        add(registry, "block_assembly_board", new BlockItem(MoreFoodBlocks.assemblyBoard, withId("block_assembly_board", props().useBlockDescriptionPrefix())));
+        add(registry, "item_baking_peel", new ItemBakingPeel(withId("item_baking_peel", props().stacksTo(1))));
     }
 
     /** What an ingredient leaves behind when it is used up: the tool, the bucket, the stock's bottle. */

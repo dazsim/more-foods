@@ -398,6 +398,20 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         return level instanceof ServerLevel server && bakingCheck.getRecipeFor(new SingleRecipeInput(stack), server).isPresent();
     }
 
+    /** Room in the oven for one more of this, and the oven can bake it. */
+    public boolean ovenAccepts(ItemStack stack) {
+        if (stack.isEmpty() || !canBake(stack)) return false;
+        final ItemStack in = items.get(OVEN);
+        return in.isEmpty() || ItemStack.isSameItemSameComponents(in, stack) && in.getCount() < Math.min(getMaxStackSize(), in.getMaxStackSize());
+    }
+
+    public void ovenInsert(ItemStack stack) {
+        final ItemStack in = items.get(OVEN);
+        if (in.isEmpty()) setItem(OVEN, stack.copyWithCount(1));
+        else in.grow(1);
+        setChanged();
+    }
+
     public static boolean isVessel(ItemStack stack) {
         return stack.is(MoreFoodKitchen.VESSELS);
     }

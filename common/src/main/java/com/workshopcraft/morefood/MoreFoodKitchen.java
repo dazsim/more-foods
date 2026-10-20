@@ -1,11 +1,15 @@
 package com.workshopcraft.morefood;
 
+import com.workshopcraft.morefood.board.AssemblyBoardBlockEntity;
+import com.workshopcraft.morefood.crafting.AssemblyRecipe;
 import com.workshopcraft.morefood.crafting.BakingRecipe;
 import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.crafting.FryingRecipe;
 import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import com.workshopcraft.morefood.stove.StoveMenu;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -14,12 +18,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.ArrayList;
@@ -36,11 +44,24 @@ public class MoreFoodKitchen {
     public static final RecipeType<BoilingRecipe> BOILING = type("boiling");
     public static final RecipeSerializer<BoilingRecipe> BOILING_SERIALIZER = new RecipeSerializer<>(BoilingRecipe.MAP_CODEC, BoilingRecipe.STREAM_CODEC);
     public static final RecipeBookCategory HOB_BOOK = new RecipeBookCategory();
+    public static final RecipeType<AssemblyRecipe> ASSEMBLY = type("assembly");
+    public static final RecipeSerializer<AssemblyRecipe> ASSEMBLY_SERIALIZER = new RecipeSerializer<>(AssemblyRecipe.MAP_CODEC, AssemblyRecipe.STREAM_CODEC);
+    public static final RecipeBookCategory BOARD_BOOK = new RecipeBookCategory();
+    public static final DataComponentType<List<Holder<Item>>> TOPPINGS = DataComponentType.<List<Holder<Item>>>builder()
+            .persistent(Item.CODEC.listOf(0, AssemblyRecipe.MAX_LAYERS))
+            .networkSynchronized(Item.STREAM_CODEC.apply(ByteBufCodecs.list()))
+            .build();
+    public static final DataComponentType<ItemStackTemplate> PEEL_CONTENTS = DataComponentType.<ItemStackTemplate>builder()
+            .persistent(ItemStackTemplate.CODEC)
+            .networkSynchronized(ItemStackTemplate.STREAM_CODEC)
+            .build();
+    public static final TagKey<Block> BOARD_SUPPORTS = TagKey.create(Registries.BLOCK, MoreFood.id("assembly_board_supports"));
     public static final SimpleParticleType STEAM = new SimpleParticleType(false);
     public static final TagKey<Item> VESSELS = TagKey.create(Registries.ITEM, MoreFood.id("vessels"));
     public static final MenuType<StoveMenu> STOVE_MENU = new MenuType<>(StoveMenu::new, FeatureFlags.VANILLA_SET);
     public static BlockEntityType<StoveBlockEntity> stoveEntity;
     public static BlockEntityType<CookingPotBlockEntity> cookingPotEntity;
+    public static BlockEntityType<AssemblyBoardBlockEntity> boardEntity;
 
     private static <T extends Recipe<?>> RecipeType<T> type(String name) {
         return new RecipeType<>() {
@@ -52,14 +73,26 @@ public class MoreFoodKitchen {
     }
 
     public static List<RecipeHolder<BoilingRecipe>> boiling(ServerLevel level) {
-        final List<RecipeHolder<BoilingRecipe>> out = new ArrayList<>();
+        return all(level, BoilingRecipe.class);
+    }
+
+    public static List<RecipeHolder<AssemblyRecipe>> assembly(ServerLevel level) {
+        return all(level, AssemblyRecipe.class);
+    }
+
+    private static <T extends Recipe<?>> List<RecipeHolder<T>> all(ServerLevel level, Class<T> type) {
+        final List<RecipeHolder<T>> out = new ArrayList<>();
         for (RecipeHolder<?> holder : level.recipeAccess().getRecipes()) {
-            if (holder.value() instanceof BoilingRecipe) {
-                @SuppressWarnings("unchecked") final RecipeHolder<BoilingRecipe> boiling = (RecipeHolder<BoilingRecipe>) holder;
-                out.add(boiling);
+            if (type.isInstance(holder.value())) {
+                @SuppressWarnings("unchecked") final RecipeHolder<T> cast = (RecipeHolder<T>) holder;
+                out.add(cast);
             }
         }
         return out;
+    }
+
+    public static void setToppings(ItemStack stack, List<Holder<Item>> toppings) {
+        stack.set(TOPPINGS, List.copyOf(toppings));
     }
 
     public static void registerBlockEntities(BiConsumer<Identifier, BlockEntityType<?>> registry) {
@@ -67,6 +100,13 @@ public class MoreFoodKitchen {
         registry.accept(MoreFood.id("stove"), stoveEntity);
         cookingPotEntity = new BlockEntityType<>(CookingPotBlockEntity::new, Set.of(MoreFoodBlocks.cookingPot));
         registry.accept(MoreFood.id("cooking_pot"), cookingPotEntity);
+        boardEntity = new BlockEntityType<>(AssemblyBoardBlockEntity::new, Set.of(MoreFoodBlocks.assemblyBoard));
+        registry.accept(MoreFood.id("assembly_board"), boardEntity);
+    }
+
+    public static void registerComponents(BiConsumer<Identifier, DataComponentType<?>> registry) {
+        registry.accept(MoreFood.id("toppings"), TOPPINGS);
+        registry.accept(MoreFood.id("peel_contents"), PEEL_CONTENTS);
     }
 
     public static void registerMenus(BiConsumer<Identifier, MenuType<?>> registry) {
@@ -77,17 +117,20 @@ public class MoreFoodKitchen {
         registry.accept(MoreFood.id("baking"), BAKING);
         registry.accept(MoreFood.id("frying"), FRYING);
         registry.accept(MoreFood.id("boiling"), BOILING);
+        registry.accept(MoreFood.id("assembly"), ASSEMBLY);
     }
 
     public static void registerRecipeSerializers(BiConsumer<Identifier, RecipeSerializer<?>> registry) {
         registry.accept(MoreFood.id("baking"), BAKING_SERIALIZER);
         registry.accept(MoreFood.id("frying"), FRYING_SERIALIZER);
         registry.accept(MoreFood.id("boiling"), BOILING_SERIALIZER);
+        registry.accept(MoreFood.id("assembly"), ASSEMBLY_SERIALIZER);
     }
 
     public static void registerBookCategories(BiConsumer<Identifier, RecipeBookCategory> registry) {
         registry.accept(MoreFood.id("baking"), BAKING_BOOK);
         registry.accept(MoreFood.id("hob"), HOB_BOOK);
+        registry.accept(MoreFood.id("board"), BOARD_BOOK);
     }
 
     public static void registerParticles(BiConsumer<Identifier, ParticleType<?>> registry) {

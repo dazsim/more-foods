@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "morefood:item/item_baking_peel_loaded"
+  }
+}

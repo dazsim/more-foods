@@ -1,6 +1,7 @@
 package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.blocks.BlockCropMoreFood;
+import com.workshopcraft.morefood.board.AssemblyBoardBlock;
 import com.workshopcraft.morefood.stove.CookingPotBlock;
 import com.workshopcraft.morefood.stove.StoveBlock;
 import net.minecraft.core.registries.Registries;
@@ -25,6 +26,7 @@ public class MoreFoodBlocks {
     public static Block cropOnion;
     public static Block stove;
     public static Block cookingPot;
+    public static Block assemblyBoard;
     public static final Map<String, Block> CROPS = new LinkedHashMap<>();
 
     public static void register(BiConsumer<Identifier, Block> registry) {
@@ -51,6 +53,16 @@ public class MoreFoodBlocks {
                 .noOcclusion()
                 .pushReaction(PushReaction.DESTROY));
         registry.accept(MoreFood.id("block_cooking_pot"), cookingPot);
+        assemblyBoard = new AssemblyBoardBlock(BlockBehaviour.Properties.of()
+                .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_assembly_board")))
+                .mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(0.5F)
+                .sound(SoundType.WOOD)
+                .noOcclusion()
+                .forceSolidOff()
+                .pushReaction(PushReaction.DESTROY));
+        registry.accept(MoreFood.id("block_assembly_board"), assemblyBoard);
     }
 
     private static Block crop(BiConsumer<Identifier, Block> registry, String name, Supplier<Item> seed) {
