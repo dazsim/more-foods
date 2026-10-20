@@ -3,6 +3,7 @@ package com.workshopcraft.morefood;
 import com.workshopcraft.morefood.crafting.BakingRecipe;
 import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.crafting.FryingRecipe;
+import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import com.workshopcraft.morefood.stove.StoveMenu;
 import net.minecraft.core.particles.ParticleType;
@@ -39,6 +40,7 @@ public class MoreFoodKitchen {
     public static final TagKey<Item> VESSELS = TagKey.create(Registries.ITEM, MoreFood.id("vessels"));
     public static final MenuType<StoveMenu> STOVE_MENU = new MenuType<>(StoveMenu::new, FeatureFlags.VANILLA_SET);
     public static BlockEntityType<StoveBlockEntity> stoveEntity;
+    public static BlockEntityType<CookingPotBlockEntity> cookingPotEntity;
 
     private static <T extends Recipe<?>> RecipeType<T> type(String name) {
         return new RecipeType<>() {
@@ -63,6 +65,8 @@ public class MoreFoodKitchen {
     public static void registerBlockEntities(BiConsumer<Identifier, BlockEntityType<?>> registry) {
         stoveEntity = new BlockEntityType<>(StoveBlockEntity::new, Set.of(MoreFoodBlocks.stove));
         registry.accept(MoreFood.id("stove"), stoveEntity);
+        cookingPotEntity = new BlockEntityType<>(CookingPotBlockEntity::new, Set.of(MoreFoodBlocks.cookingPot));
+        registry.accept(MoreFood.id("cooking_pot"), cookingPotEntity);
     }
 
     public static void registerMenus(BiConsumer<Identifier, MenuType<?>> registry) {

@@ -1,6 +1,7 @@
 package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.items.ItemKitchenTool;
+import com.workshopcraft.morefood.items.ItemPot;
 import com.workshopcraft.morefood.items.ItemStock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -40,7 +41,7 @@ public class MoreFoodItems {
 
     public static void register(BiConsumer<Identifier, Item> registry) {
         food(registry, "item_fruit_tomato", 1, 0.1F, props());
-        pot = item(registry, "item_pot", props().stacksTo(1));
+        pot = add(registry, "item_pot", new ItemPot(withId("item_pot", props().stacksTo(1))));
         tool(registry, "item_knife");
         tool(registry, "item_mixing_bowl");
         tool(registry, "item_pestle_mortar");

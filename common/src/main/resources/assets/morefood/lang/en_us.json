@@ -172,5 +172,6 @@
   "item.morefood.item_filling_cottage": "Cottage Pie Filling",
   "item.morefood.item_filling_shepherds": "Shepherd's Pie Filling",
   "item.morefood.item_filling_chicken_leek": "Chicken and Leek Filling",
-  "item.morefood.item_filling_vegetable": "Vegetable Pie Filling"
+  "item.morefood.item_filling_vegetable": "Vegetable Pie Filling",
+  "block.morefood.block_cooking_pot": "Cooking Pot"
 }

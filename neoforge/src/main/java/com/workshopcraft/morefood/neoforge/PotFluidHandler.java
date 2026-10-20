@@ -1,5 +1,7 @@
 package com.workshopcraft.morefood.neoforge;
 
+import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
+import com.workshopcraft.morefood.stove.PotHolder;
 import com.workshopcraft.morefood.stove.StoveBlock;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import net.minecraft.core.Direction;
@@ -11,12 +13,12 @@ import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import org.jspecify.annotations.Nullable;
 
-//water into the hob pots, one index per ring, fill only
+//water into the hob pots or a campfire pot, one index per pot, fill only
 public class PotFluidHandler extends SnapshotJournal<int[]> implements ResourceHandler<FluidResource> {
     private static final FluidResource WATER = FluidResource.of(Fluids.WATER);
-    private final StoveBlockEntity stove;
+    private final PotHolder stove;
 
-    public PotFluidHandler(StoveBlockEntity stove) {
+    public PotFluidHandler(PotHolder stove) {
         this.stove = stove;
     }
 
@@ -26,9 +28,13 @@ public class PotFluidHandler extends SnapshotJournal<int[]> implements ResourceH
         return side.getAxis() != Direction.Axis.Y && side.getAxis() != front.getAxis() ? new PotFluidHandler(stove) : null;
     }
 
+    public static @Nullable ResourceHandler<FluidResource> ofCampfire(CookingPotBlockEntity pot, @Nullable Direction side) {
+        return side == Direction.DOWN ? null : new PotFluidHandler(pot);
+    }
+
     @Override
     public int size() {
-        return 2;
+        return stove.potCount();
     }
 
     @Override
@@ -69,16 +75,18 @@ public class PotFluidHandler extends SnapshotJournal<int[]> implements ResourceH
 
     @Override
     protected int[] createSnapshot() {
-        return new int[]{stove.potWater(0), stove.potWater(1)};
+        final int[] water = new int[stove.potCount()];
+        for (int i = 0; i < water.length; i++) water[i] = stove.potWater(i);
+        return water;
     }
 
     @Override
     protected void revertToSnapshot(int[] snapshot) {
-        for (int i = 0; i < 2; i++) stove.setPotWater(i, snapshot[i]);
+        for (int i = 0; i < snapshot.length; i++) stove.setPotWater(i, snapshot[i]);
     }
 
     @Override
     protected void onRootCommit(int[] originalState) {
-        stove.hobChanged();
+        stove.potChanged();
     }
 }

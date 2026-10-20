@@ -1,5 +1,7 @@
 package com.workshopcraft.morefood.fabric;
 
+import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
+import com.workshopcraft.morefood.stove.PotHolder;
 import com.workshopcraft.morefood.stove.StoveBlock;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -13,12 +15,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.material.Fluids;
 import org.jspecify.annotations.Nullable;
 
-//water into the hob pots, left ring first, fill only. 1 mB is 81 droplets
+//water into the hob pots or a campfire pot, left ring first, fill only. 1 mB is 81 droplets
 public class PotStorage extends SnapshotParticipant<int[]> implements InsertionOnlyStorage<FluidVariant> {
     private static final long MB = FluidConstants.BUCKET / 1000;
-    private final StoveBlockEntity stove;
+    private final PotHolder stove;
 
-    public PotStorage(StoveBlockEntity stove) {
+    public PotStorage(PotHolder stove) {
         this.stove = stove;
     }
 
@@ -28,12 +30,16 @@ public class PotStorage extends SnapshotParticipant<int[]> implements InsertionO
         return side.getAxis() != Direction.Axis.Y && side.getAxis() != front.getAxis() ? new PotStorage(stove) : null;
     }
 
+    public static @Nullable Storage<FluidVariant> ofCampfire(CookingPotBlockEntity pot, @Nullable Direction side) {
+        return side == Direction.DOWN ? null : new PotStorage(pot);
+    }
+
     @Override
     public long insert(FluidVariant resource, long maxAmount, TransactionContext transaction) {
         StoragePreconditions.notBlankNotNegative(resource, maxAmount);
         if (!resource.isOf(Fluids.WATER)) return 0;
         long moved = 0;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < stove.potCount(); i++) {
             final long mb = Math.min((maxAmount - moved) / MB, stove.potRoom(i));
             if (mb <= 0) continue;
             updateSnapshots(transaction);
@@ -45,16 +51,18 @@ public class PotStorage extends SnapshotParticipant<int[]> implements InsertionO
 
     @Override
     protected int[] createSnapshot() {
-        return new int[]{stove.potWater(0), stove.potWater(1)};
+        final int[] water = new int[stove.potCount()];
+        for (int i = 0; i < water.length; i++) water[i] = stove.potWater(i);
+        return water;
     }
 
     @Override
     protected void readSnapshot(int[] snapshot) {
-        for (int i = 0; i < 2; i++) stove.setPotWater(i, snapshot[i]);
+        for (int i = 0; i < snapshot.length; i++) stove.setPotWater(i, snapshot[i]);
     }
 
     @Override
     protected void onFinalCommit() {
-        stove.hobChanged();
+        stove.potChanged();
     }
 }

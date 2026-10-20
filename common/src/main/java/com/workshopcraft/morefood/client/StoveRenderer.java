@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
-import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -42,8 +41,8 @@ public class StoveRenderer implements BlockEntityRenderer<StoveBlockEntity, Stov
     private static final float[] RING_X = {11.5F, 4F};
     private static final float RING_Z = 8.5F;
     private static final int MAX_BITS = 10;
-    private static final SpriteId STEW = new SpriteId(TextureAtlas.LOCATION_BLOCKS, MoreFood.id("block/stew"));
-    private static final SpriteId WATER = new SpriteId(TextureAtlas.LOCATION_BLOCKS, MoreFood.id("block/pot_water"));
+    static final SpriteId STEW = new SpriteId(TextureAtlas.LOCATION_BLOCKS, MoreFood.id("block/stew"));
+    static final SpriteId WATER = new SpriteId(TextureAtlas.LOCATION_BLOCKS, MoreFood.id("block/pot_water"));
     private static final Map<String, String> BITS = new HashMap<>();
 
     static {
@@ -105,31 +104,35 @@ public class StoveRenderer implements BlockEntityRenderer<StoveBlockEntity, Stov
                     out.pan.add(item);
                 }
             } else if (ring.tool == HobTool.POT) {
-                final Pot pot = ring.pot;
-                out.liquid = pot.water() > 0 || pot.portions() > 0 || pot.isCooking();
-                out.water = pot.colour() == Pot.WATER_COLOUR;
-                out.colour = pot.colour();
-                out.surface = out.liquid ? pot.surface() : 17.2F;
-                final List<Identifier> ids = pot.bits();
-                final RandomSource random = RandomSource.create(seed * 31L + r);
-                for (int i = 0; i < ids.size() && out.bits.size() < MAX_BITS; i++) {
-                    final int cubes = 1 + random.nextInt(2);
-                    for (int c = 0; c < cubes && out.bits.size() < MAX_BITS; c++) {
-                        final StoveRenderState.Bit bit = bit(ids.get(i), random);
-                        if (bit != null) out.bits.add(bit);
-                    }
-                }
+                extractPot(ring.pot, out, seed * 31L + r, sprites);
             }
         }
     }
 
-    private StoveRenderState.@Nullable Bit bit(Identifier id, RandomSource random) {
+    static void extractPot(Pot pot, StoveRenderState.RingState out, long seed, SpriteGetter sprites) {
+        out.bits.clear();
+        out.liquid = pot.water() > 0 || pot.portions() > 0 || pot.isCooking();
+        out.water = pot.colour() == Pot.WATER_COLOUR;
+        out.colour = pot.colour();
+        out.surface = pot.surface();
+        final List<Identifier> ids = pot.bits();
+        final RandomSource random = RandomSource.create(seed);
+        for (int i = 0; i < ids.size() && out.bits.size() < MAX_BITS; i++) {
+            final int cubes = 1 + random.nextInt(2);
+            for (int c = 0; c < cubes && out.bits.size() < MAX_BITS; c++) {
+                final StoveRenderState.Bit bit = bit(ids.get(i), random, sprites);
+                if (bit != null) out.bits.add(bit);
+            }
+        }
+    }
+
+    private static StoveRenderState.@Nullable Bit bit(Identifier id, RandomSource random, SpriteGetter sprites) {
         final String texture = BITS.get(id.toString());
         if (texture == null) return null;
         final StoveRenderState.Bit bit = new StoveRenderState.Bit();
         bit.sprite = sprites.get(new SpriteId(TextureAtlas.LOCATION_BLOCKS, MoreFood.id("block/bits/" + texture)));
         bit.size = 1.2F + random.nextFloat() * 0.8F;
-        bit.radius = random.nextFloat() * (2.4F - bit.size / 2);
+        bit.radius = random.nextFloat();
         bit.angle = random.nextFloat() * Mth.TWO_PI;
         bit.phase = random.nextFloat() * Mth.TWO_PI;
         return bit;
@@ -144,7 +147,9 @@ public class StoveRenderer implements BlockEntityRenderer<StoveBlockEntity, Stov
         for (int r = 0; r < 2; r++) {
             final StoveRenderState.RingState ring = state.rings[r];
             if (ring.tool == HobTool.PAN) submitPan(state, ring, RING_X[r], pose, collector);
-            else if (ring.tool == HobTool.POT) submitPot(state, ring, RING_X[r], pose, collector);
+            else if (ring.tool == HobTool.POT) {
+                submitPot(state.stew, state.waterSprite, state.time, state.lightCoords, ring, RING_X[r], RING_Z, 2.5F, 3, ring.surface, 17, pose, collector);
+            }
         }
         pose.popPose();
     }
@@ -163,27 +168,26 @@ public class StoveRenderer implements BlockEntityRenderer<StoveBlockEntity, Stov
         }
     }
 
-    private static void submitPot(StoveRenderState state, StoveRenderState.RingState ring, float cx, PoseStack pose, SubmitNodeCollector collector) {
-        final float x0 = (cx - 2.5F) / 16, x1 = (cx + 2.5F) / 16, z0 = (RING_Z - 3) / 16, z1 = (RING_Z + 3) / 16;
-        final float y = ring.surface / 16;
-        final int light = state.lightCoords;
+    /** Liquid and bits for a pot centred on cx, cz (pixels), with the given inside half sizes. */
+    static void submitPot(@Nullable TextureAtlasSprite stew, @Nullable TextureAtlasSprite water, float time, int light, StoveRenderState.RingState ring,
+                          float cx, float cz, float halfX, float halfZ, float surface, float rest, PoseStack pose, SubmitNodeCollector collector) {
         if (ring.liquid) {
-            final TextureAtlasSprite sprite = ring.water ? state.waterSprite : state.stew;
+            final TextureAtlasSprite sprite = ring.water ? water : stew;
             if (sprite != null) {
+                final float x0 = (cx - halfX) / 16, x1 = (cx + halfX) / 16, z0 = (cz - halfZ) / 16, z1 = (cz + halfZ) / 16, y = surface / 16;
                 final int colour = ring.water ? 0xE0FFFFFF : ARGB.opaque(ring.colour);
                 collector.submitCustomGeometry(pose, RenderTypes.entityTranslucent(TextureAtlas.LOCATION_BLOCKS), (p, buffer) ->
                         quad(p, buffer, x0, z0, x1, z1, y, sprite, 0.1F, 0.9F, colour, light));
             }
         }
         for (StoveRenderState.Bit bit : ring.bits) {
-            final float a = bit.angle + (ring.liquid ? state.time * 0.015F : 0);
-            final float bx = cx + Mth.cos(a) * bit.radius;
-            final float bz = RING_Z + Mth.sin(a) * bit.radius * 1.2F;
-            final float bob = ring.liquid ? 0.5F * Mth.sin(state.time * 0.08F + bit.phase) : 0;
-            final float by = (ring.liquid ? ring.surface - bit.size * 0.65F : 17) + bob;
             final float s = bit.size / 2;
-            final RenderType type = RenderTypes.entityCutout(TextureAtlas.LOCATION_BLOCKS);
-            collector.submitCustomGeometry(pose, type, (p, buffer) ->
+            final float a = bit.angle + (ring.liquid ? time * 0.015F : 0);
+            final float bx = cx + Mth.cos(a) * bit.radius * (halfX - s - 0.1F);
+            final float bz = cz + Mth.sin(a) * bit.radius * (halfZ - s - 0.1F);
+            final float bob = ring.liquid ? 0.5F * Mth.sin(time * 0.08F + bit.phase) : 0;
+            final float by = (ring.liquid ? surface - bit.size * 0.65F : rest) + bob;
+            collector.submitCustomGeometry(pose, RenderTypes.entityCutout(TextureAtlas.LOCATION_BLOCKS), (p, buffer) ->
                     cube(p, buffer, (bx - s) / 16, by / 16, (bz - s) / 16, (bx + s) / 16, (by + bit.size) / 16, (bz + s) / 16, bit.sprite, light));
         }
     }

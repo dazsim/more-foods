@@ -38,6 +38,8 @@ public class MoreFoodNeoForge {
     private static void onCapabilities(RegisterCapabilitiesEvent e) {
         e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.stoveEntity, WorldlyContainerWrapper::new);
         e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.stoveEntity, PotFluidHandler::of);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.cookingPotEntity, WorldlyContainerWrapper::new);
+        e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.cookingPotEntity, PotFluidHandler::ofCampfire);
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {

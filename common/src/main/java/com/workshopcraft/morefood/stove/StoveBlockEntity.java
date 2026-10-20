@@ -4,17 +4,13 @@ import com.mojang.serialization.Codec;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.crafting.BakingRecipe;
-import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.Containers;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -55,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class StoveBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, Kitchen {
+public class StoveBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, Kitchen, PotHolder {
     public static class Ring {
         public HobTool tool = HobTool.NONE;
         public final Pan pan = new Pan();
@@ -63,7 +59,7 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         private int progress;
 
         public boolean isEmpty() {
-            return tool == HobTool.PAN ? pan.isEmpty() : tool != HobTool.POT || pot.isEmpty();
+            return tool == HobTool.PAN ? pan.isEmpty() : tool != HobTool.POT || pot.canPickUp();
         }
     }
 
@@ -229,23 +225,7 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
     }
 
     private boolean insert(List<ItemStack> slots, ItemStack stack) {
-        for (int i = 0; i < slots.size() && !stack.isEmpty(); i++) {
-            final ItemStack slot = slots.get(i);
-            if (!slot.isEmpty() && ItemStack.isSameItemSameComponents(slot, stack)) {
-                final int move = Math.min(stack.getCount(), Math.min(getMaxStackSize(), slot.getMaxStackSize()) - slot.getCount());
-                if (move > 0) {
-                    slot.grow(move);
-                    stack.shrink(move);
-                }
-            }
-        }
-        for (int i = 0; i < slots.size() && !stack.isEmpty(); i++) {
-            if (slots.get(i).isEmpty()) {
-                slots.set(i, stack.copy());
-                stack.setCount(0);
-            }
-        }
-        return stack.isEmpty();
+        return Kitchen.insert(slots, stack, getMaxStackSize());
     }
 
     @Override
@@ -290,21 +270,14 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
             return true;
         }
         if (ring.tool == HobTool.POT) {
-            final BoilingRecipe.Serving serving = ring.pot.servingFor(stack);
-            if (serving != null) {
-                player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, ring.pot.serve(serving)));
-                level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
-                hobChanged();
-                return true;
-            }
+            if (!ring.pot.use(level, pos, player, hand, stack)) return false;
+            hobChanged();
+            return true;
         }
-        final boolean water = waterIn(stack) > 0;
-        final boolean bucket = stack.is(Items.WATER_BUCKET);
         final Optional<ItemStack> left = insertInto(level, ring, stack, false);
         if (left.isEmpty()) return false;
         if (left.get().isEmpty()) stack.consume(1, player);
         else player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, left.get()));
-        if (water) level.playSound(null, pos, bucket ? SoundEvents.BUCKET_EMPTY : SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1, 1);
         hobChanged();
         return true;
     }
@@ -328,15 +301,27 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         return rings[index];
     }
 
-    /** Water in a ring's pot in mB, or -1 when the ring has no pot. Used by the loaders' fluid handlers. */
+    @Override
+    public int potCount() {
+        return rings.length;
+    }
+
+    @Override
+    public void potChanged() {
+        hobChanged();
+    }
+
+    @Override
     public int potWater(int index) {
         return rings[index].tool == HobTool.POT ? rings[index].pot.water() : -1;
     }
 
+    @Override
     public int potRoom(int index) {
         return rings[index].tool == HobTool.POT ? rings[index].pot.room() : 0;
     }
 
+    @Override
     public void setPotWater(int index, int mb) {
         if (rings[index].tool == HobTool.POT) rings[index].pot.setWater(mb);
     }
@@ -377,28 +362,12 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
     }
 
     public Optional<ItemStack> insertInto(ServerLevel level, Ring ring, ItemStack stack, boolean simulate) {
-        if (ring.tool == HobTool.POT) {
-            final int water = waterIn(stack);
-            if (water > 0) {
-                if (ring.pot.room() < water) return Optional.empty();
-                if (!simulate) ring.pot.addWater(water);
-                return Optional.of(stack.is(Items.WATER_BUCKET) ? new ItemStack(Items.BUCKET) : new ItemStack(Items.GLASS_BOTTLE));
-            }
-            if (!ring.pot.accepts(level, stack)) return Optional.empty();
-            if (!simulate) ring.pot.add(stack);
-            return Optional.of(remainderOf(stack));
-        }
+        if (ring.tool == HobTool.POT) return ring.pot.insert(level, stack, simulate);
         if (ring.tool == HobTool.PAN && ring.pan.accepts(level, stack)) {
             if (!simulate) ring.pan.add(stack);
             return Optional.of(remainderOf(stack));
         }
         return Optional.empty();
-    }
-
-    public static int waterIn(ItemStack stack) {
-        if (stack.is(Items.WATER_BUCKET)) return Pot.CAPACITY;
-        final PotionContents potion = stack.get(DataComponents.POTION_CONTENTS);
-        return stack.is(Items.POTION) && potion != null && potion.is(Potions.WATER) ? 250 : 0;
     }
 
     private boolean feedHob(ServerLevel level) {

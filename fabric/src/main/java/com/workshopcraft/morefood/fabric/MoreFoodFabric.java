@@ -31,6 +31,8 @@ public class MoreFoodFabric implements ModInitializer {
 
         ItemStorage.SIDED.registerForBlockEntity((stove, side) -> ContainerStorage.of(stove, side), MoreFoodKitchen.stoveEntity);
         FluidStorage.SIDED.registerForBlockEntity(PotStorage::of, MoreFoodKitchen.stoveEntity);
+        ItemStorage.SIDED.registerForBlockEntity((pot, side) -> ContainerStorage.of(pot, side), MoreFoodKitchen.cookingPotEntity);
+        FluidStorage.SIDED.registerForBlockEntity(PotStorage::ofCampfire, MoreFoodKitchen.cookingPotEntity);
 
         LootTableEvents.MODIFY.register((key, table, source, registries) -> {
             final LootPool.Builder pool = MoreFood.extraLoot(key);
