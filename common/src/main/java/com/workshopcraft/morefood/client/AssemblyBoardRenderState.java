@@ -14,6 +14,7 @@ public class AssemblyBoardRenderState extends BlockEntityRenderState {
         public BoardLayers.@Nullable Spec spec;
         public @Nullable TextureAtlasSprite sprite;
         public @Nullable TextureAtlasSprite top;
+        public @Nullable TextureAtlasSprite side;
         public final ItemStackRenderState item = new ItemStackRenderState();
         public long seed;
     }

@@ -2,6 +2,7 @@ package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.items.ItemBakingPeel;
 import com.workshopcraft.morefood.items.ItemKitchenTool;
+import com.workshopcraft.morefood.items.ItemPizza;
 import com.workshopcraft.morefood.items.ItemPot;
 import com.workshopcraft.morefood.items.ItemStock;
 import net.minecraft.core.registries.Registries;
@@ -65,7 +66,7 @@ public class MoreFoodItems {
         item(registry, "item_beef_patty_cooked", props());
         item(registry, "item_dough_medium", props());
         item(registry, "item_dough_small", props());
-        item(registry, "item_pizza_uncooked", props());
+        add(registry, "item_pizza_uncooked", new ItemPizza(withId("item_pizza_uncooked", props().stacksTo(16))));
         item(registry, "item_french_toast_uncooked", props());
         item(registry, "item_french_toast_cooked_frying_pan", props().craftRemainder(fryingPan));
         food(registry, "item_sandwich_cheese", 6, 0.4F, props());
@@ -74,7 +75,7 @@ public class MoreFoodItems {
         food(registry, "item_sandwich_beef", 6, 0.4F, props());
         food(registry, "item_sandwich_chicken", 6, 0.4F, props());
         food(registry, "item_french_toast_cooked", 7, 0.3F, props());
-        food(registry, "item_pizza_cooked", 8, 0.2F, props());
+        add(registry, "item_pizza_cooked", new ItemPizza(withId("item_pizza_cooked", props().stacksTo(16).food(MoreFoodKitchen.pizzaFood(0)))));
         item(registry, "item_potato_peeled", props());
         item(registry, "item_potato_peeled_chipped", props());
         item(registry, "item_hashbrown_uncooked", props());
@@ -195,6 +196,25 @@ public class MoreFoodItems {
         item(registry, "item_filling_vegetable", props());
         add(registry, "block_assembly_board", new BlockItem(MoreFoodBlocks.assemblyBoard, withId("block_assembly_board", props().useBlockDescriptionPrefix())));
         add(registry, "item_baking_peel", new ItemBakingPeel(withId("item_baking_peel", props().stacksTo(1))));
+        item(registry, "item_garlic_bread_uncooked", props());
+        food(registry, "item_garlic_bread", 5, 0.4F, props());
+        food(registry, "item_sandwich_bacon", 6, 0.4F, props());
+        food(registry, "item_sandwich_cheese_coleslaw", 7, 0.5F, props());
+        food(registry, "item_burger_bacon_cheese", 8, 0.7F, props());
+        food(registry, "item_burger_salad", 7, 0.6F, props());
+        food(registry, "item_wrap_chicken", 8, 0.7F, props());
+        food(registry, "item_wrap_spinach_cheese", 6, 0.5F, props());
+        food(registry, "item_beans_toast", 7, 0.6F, props());
+        item(registry, "item_pie_cottage_uncooked", props());
+        item(registry, "item_pie_shepherds_uncooked", props());
+        item(registry, "item_pie_chicken_leek_uncooked", props());
+        item(registry, "item_pie_vegetable_uncooked", props());
+        food(registry, "item_pie_cottage", 10, 0.9F, props());
+        food(registry, "item_pie_shepherds", 10, 0.9F, props());
+        food(registry, "item_pie_chicken_leek", 10, 0.9F, props());
+        food(registry, "item_pie_vegetable", 8, 0.8F, props());
+        item(registry, "item_pasty_uncooked", props());
+        food(registry, "item_pasty", 9, 0.8F, props());
     }
 
     /** What an ingredient leaves behind when it is used up: the tool, the bucket, the stock's bottle. */

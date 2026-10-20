@@ -1,11 +1,13 @@
 package com.workshopcraft.morefood.board;
 
+import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.crafting.AssemblyRecipe;
 import com.workshopcraft.morefood.crafting.BoardInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -18,8 +20,10 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -36,6 +40,7 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
     private static final int HINT_NAMES = 2;
 
     private final List<ItemStack> layers = new ArrayList<>();
+    private final List<ItemStack> leftovers = new ArrayList<>();
     private long lastAdd;
     private boolean complete;
 
@@ -99,12 +104,24 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
         changed();
     }
 
-    public ItemStack take(ServerLevel level) {
+    /** Takes the finished item. Bowls and the like left by the layers go to the player, or pop out on the board. */
+    public ItemStack take(ServerLevel level, @Nullable Player player) {
         final ItemStack out = result(level);
         if (out.isEmpty()) return out;
-        layers.clear();
+        clearRaw();
+        if (player != null) {
+            for (ItemStack left : leftovers) player.getInventory().placeItemBackInInventory(left);
+            leftovers.clear();
+        }
         changed();
         return out;
+    }
+
+    private static ItemStack leftover(ItemStack layer) {
+        final ItemStack left = MoreFoodItems.remainder(layer);
+        if (!left.isEmpty()) return left;
+        final UseRemainder use = layer.get(DataComponents.USE_REMAINDER);
+        return use != null ? use.convertInto().create() : ItemStack.EMPTY;
     }
 
     public List<ItemStack> copyLayers() {
@@ -118,17 +135,27 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
     }
 
     public void clearRaw() {
+        leftovers.clear();
+        for (ItemStack layer : layers) {
+            final ItemStack left = leftover(layer);
+            if (!left.isEmpty()) leftovers.add(left);
+        }
         layers.clear();
     }
 
     public void restore(List<ItemStack> saved, long time) {
+        leftovers.clear();
         layers.clear();
         for (ItemStack layer : saved) layers.add(layer.copy());
         lastAdd = time;
     }
 
     public void changed() {
-        if (level instanceof ServerLevel server) complete = !layers.isEmpty() && finished(server) != null;
+        if (level instanceof ServerLevel server) {
+            complete = !layers.isEmpty() && finished(server) != null;
+            for (ItemStack left : leftovers) Block.popResource(server, worldPosition, left);
+        }
+        leftovers.clear();
         setChanged();
         if (level != null) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
     }
@@ -143,7 +170,7 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
                 level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.6F, 1.2F);
                 return true;
             }
-            final ItemStack out = take(level);
+            final ItemStack out = take(level, player);
             if (!out.isEmpty()) {
                 player.setItemInHand(hand, out);
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.4F, 1.0F);

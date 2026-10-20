@@ -7,3 +7,4 @@ accessible method net/minecraft/world/inventory/MenuType <init> (Lnet/minecraft/
 accessible class net/minecraft/client/gui/screens/MenuScreens$ScreenConstructor
 accessible method net/minecraft/client/gui/screens/MenuScreens register (Lnet/minecraft/world/inventory/MenuType;Lnet/minecraft/client/gui/screens/MenuScreens$ScreenConstructor;)V
 accessible method net/minecraft/core/particles/SimpleParticleType <init> (Z)V
+accessible field net/minecraft/client/renderer/item/properties/conditional/ConditionalItemModelProperties ID_MAPPER Lnet/minecraft/util/ExtraCodecs$LateBoundIdMapper;

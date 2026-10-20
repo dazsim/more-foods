@@ -17,7 +17,7 @@ import java.util.Optional;
 /** How each item looks as a layer on the assembly board, read from assets/NAMESPACE/board_layers/ITEM.json. */
 public class BoardLayers extends SimpleJsonResourceReloadListener<BoardLayers.Spec> {
     public enum Shape implements StringRepresentable {
-        DISC, SQUARE, LEAF, BITS, BUN;
+        DISC, SQUARE, LEAF, BITS, BUN, SHEET, MASH, LOAF, PASTRY, FILL, WRAP;
 
         public static final Codec<Shape> CODEC = StringRepresentable.fromEnum(Shape::values);
 
@@ -27,13 +27,16 @@ public class BoardLayers extends SimpleJsonResourceReloadListener<BoardLayers.Sp
         }
     }
 
-    public record Spec(Shape shape, float size, float thickness, Identifier texture, Optional<Identifier> top, int count) {
+    public record Spec(Shape shape, float size, float thickness, Identifier texture, Optional<Identifier> top, Optional<Identifier> side,
+                       float inset, int count) {
         public static final Codec<Spec> CODEC = RecordCodecBuilder.create(i -> i.group(
                 Shape.CODEC.fieldOf("shape").forGetter(Spec::shape),
                 Codec.floatRange(1, 14).optionalFieldOf("size", 12F).forGetter(Spec::size),
                 Codec.floatRange(0, 4).optionalFieldOf("thickness", 1F).forGetter(Spec::thickness),
                 Identifier.CODEC.fieldOf("texture").forGetter(Spec::texture),
                 Identifier.CODEC.optionalFieldOf("top").forGetter(Spec::top),
+                Identifier.CODEC.optionalFieldOf("side").forGetter(Spec::side),
+                Codec.floatRange(0, 6).optionalFieldOf("inset", 1F).forGetter(Spec::inset),
                 ExtraCodecs.intRange(1, 10).optionalFieldOf("count", 6).forGetter(Spec::count)
         ).apply(i, Spec::new));
     }

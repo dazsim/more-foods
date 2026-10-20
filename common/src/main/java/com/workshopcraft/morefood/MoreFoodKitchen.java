@@ -10,6 +10,7 @@ import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import com.workshopcraft.morefood.stove.StoveMenu;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.Item;
@@ -93,6 +95,17 @@ public class MoreFoodKitchen {
 
     public static void setToppings(ItemStack stack, List<Holder<Item>> toppings) {
         stack.set(TOPPINGS, List.copyOf(toppings));
+    }
+
+    /** A pizza fills 8 and 0.2 saturation, plus 1 and 0.1 for each topping. */
+    public static FoodProperties pizzaFood(int toppings) {
+        return new FoodProperties.Builder().nutrition(8 + toppings).saturationModifier(0.2F + 0.1F * toppings).build();
+    }
+
+    /** Sets the food values of a baked pizza from its toppings. */
+    public static void feedToppings(ItemStack stack) {
+        final List<Holder<Item>> toppings = stack.get(TOPPINGS);
+        if (toppings != null && !toppings.isEmpty() && stack.has(DataComponents.FOOD)) stack.set(DataComponents.FOOD, pizzaFood(toppings.size()));
     }
 
     public static void registerBlockEntities(BiConsumer<Identifier, BlockEntityType<?>> registry) {

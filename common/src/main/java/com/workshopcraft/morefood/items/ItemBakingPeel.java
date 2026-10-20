@@ -59,7 +59,7 @@ public class ItemBakingPeel extends Item {
             return InteractionResult.SUCCESS;
         }
         final StoveBlockEntity stove = stoveFor(level, board.getBlockPos(), result);
-        board.take(level);
+        board.take(level, player);
         if (stove != null) {
             stove.ovenInsert(result);
             level.playSound(null, stove.getBlockPos(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.7F, 1.2F);

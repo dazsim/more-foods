@@ -53,6 +53,7 @@ public class BakingRecipe extends AbstractCookingRecipe {
         final ItemStack out = super.assemble(input);
         if (keepComponents) {
             out.applyComponents(input.item().getComponentsPatch());
+            MoreFoodKitchen.feedToppings(out);
         }
         return out;
     }
