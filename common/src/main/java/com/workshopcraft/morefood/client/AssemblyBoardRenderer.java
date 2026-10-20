@@ -97,7 +97,6 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
         }
         Foot foot = new Foot(true, 12, 12);
         float y = BOARD_TOP, above = 0, tinTop = -1;
-        AssemblyBoardRenderState.Layer bun = null;
         for (int i = 0; i < layers.size(); i++) {
             final AssemblyBoardRenderState.Layer layer = layers.get(i);
             final BoardLayers.Spec spec = layer.spec;
@@ -139,10 +138,17 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
                     y += t;
                 }
                 case BUN -> {
-                    disc(pose, collector, s, y, y + t, sprite, side, light);
-                    if (i == 0) foot = new Foot(true, s, s);
-                    if (bun == null) bun = layer;
-                    y += t;
+                    if (i == 0) {
+                        disc(pose, collector, s, y, y + t, sprite, side, light);
+                        foot = new Foot(true, s, s);
+                        y += t;
+                    } else {
+                        final TextureAtlasSprite crown = layer.top != null ? layer.top : sprite;
+                        final TextureAtlasSprite crust = layer.side != null ? layer.side : crown;
+                        disc(pose, collector, s - 1, y, y + 1.5F, crown, crust, light);
+                        disc(pose, collector, s - 4, y + 1.5F, y + 2.5F, crown, crust, light);
+                        y += 2.5F;
+                    }
                 }
                 case SHEET -> {
                     sheet(pose, collector, foot, spec.inset(), y, y + t, sprite, side, light);
@@ -191,14 +197,6 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
                 }
             }
             if (y > MAX_TOP) break;
-        }
-        y += above;
-        if (state.complete && bun != null && bun.spec != null && bun.sprite != null) {
-            final TextureAtlasSprite top = bun.top != null ? bun.top : bun.sprite;
-            final TextureAtlasSprite side = bun.side != null ? bun.side : top;
-            final float s = bun.spec.size();
-            disc(pose, collector, s - 1, y, y + 1.5F, top, side, light);
-            disc(pose, collector, s - 4, y + 1.5F, y + 2.5F, top, side, light);
         }
         pose.popPose();
     }

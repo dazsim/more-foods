@@ -179,6 +179,8 @@
   "message.morefood.board.next": "Next: %s",
   "message.morefood.board.next_or_take": "Done, or add %s",
   "message.morefood.board.more": " and %s more",
+  "message.morefood.board.finish": "Finish with %s",
+  "message.morefood.board.finish_or_add": "Finish with %s, or add %s",
   "message.morefood.board.done": "Done: take it off by hand or with a baking peel",
   "message.morefood.board.nothing": "Nothing goes on this",
   "message.morefood.peel.full": "The peel is already carrying something",

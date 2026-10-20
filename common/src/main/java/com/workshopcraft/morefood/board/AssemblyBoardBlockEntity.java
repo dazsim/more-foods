@@ -195,19 +195,45 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
     }
 
     public void hint(ServerLevel level, Player player) {
+        final Set<Item> finish = new LinkedHashSet<>();
         final Set<Item> items = new LinkedHashSet<>();
         final Set<Ingredient> next = new LinkedHashSet<>();
         for (RecipeHolder<AssemblyRecipe> holder : recipes(level)) holder.value().next(layers, next);
         for (Ingredient ingredient : next) {
             ingredient.items().map(Holder::value).forEach(item -> {
-                if (!items.contains(item) && canAdd(level, new ItemStack(item))) items.add(item);
+                if (finish.contains(item) || items.contains(item)) return;
+                final ItemStack stack = new ItemStack(item);
+                if (!canAdd(level, stack)) return;
+                if (finishes(level, stack)) finish.add(item);
+                else items.add(item);
             });
         }
-        if (items.isEmpty()) {
-            player.sendOverlayMessage(Component.translatable(finished(level) != null ? "message.morefood.board.done" : "message.morefood.board.nothing"));
+        final boolean done = finished(level) != null;
+        if (finish.isEmpty() && items.isEmpty()) {
+            player.sendOverlayMessage(Component.translatable(done ? "message.morefood.board.done" : "message.morefood.board.nothing"));
             return;
         }
-        MutableComponent names = Component.empty();
+        if (finish.isEmpty()) {
+            player.sendOverlayMessage(Component.translatable(done ? "message.morefood.board.next_or_take" : "message.morefood.board.next", names(items)));
+        } else if (items.isEmpty()) {
+            player.sendOverlayMessage(Component.translatable("message.morefood.board.finish", names(finish)));
+        } else {
+            player.sendOverlayMessage(Component.translatable("message.morefood.board.finish_or_add", names(finish), names(items)));
+        }
+    }
+
+    /** True when this layer would close a recipe, like the top bun on a burger. */
+    private boolean finishes(ServerLevel level, ItemStack stack) {
+        final List<ItemStack> after = new ArrayList<>(layers);
+        after.add(stack);
+        for (RecipeHolder<AssemblyRecipe> holder : recipes(level)) {
+            if (holder.value().isComplete(after) && !holder.value().isComplete(layers)) return true;
+        }
+        return false;
+    }
+
+    private static MutableComponent names(Set<Item> items) {
+        final MutableComponent names = Component.empty();
         int i = 0;
         for (Item item : items) {
             if (i == HINT_NAMES) {
@@ -218,7 +244,7 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
             names.append(Component.translatable(item.getDescriptionId()));
             i++;
         }
-        player.sendOverlayMessage(Component.translatable(finished(level) != null ? "message.morefood.board.next_or_take" : "message.morefood.board.next", names));
+        return names;
     }
 
     public int outputSignal() {

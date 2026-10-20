@@ -5,6 +5,7 @@
     "morefood:item_beef_patty_cooked",
     "morefood:item_cheese_slice"
   ],
+  "lid": "morefood:item_bun",
   "result": {
     "id": "morefood:item_cheese_burger"
   }

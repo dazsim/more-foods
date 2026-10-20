@@ -7,6 +7,7 @@
     "morefood:item_tomato_chopped",
     "morefood:item_onion_chopped"
   ],
+  "lid": "morefood:item_bun",
   "result": {
     "id": "morefood:item_burger_salad"
   }

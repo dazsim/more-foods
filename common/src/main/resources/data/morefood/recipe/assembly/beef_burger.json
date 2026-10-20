@@ -4,6 +4,7 @@
   "fillings": [
     "morefood:item_beef_patty_cooked"
   ],
+  "lid": "morefood:item_bun",
   "result": {
     "id": "morefood:item_beef_burger"
   }

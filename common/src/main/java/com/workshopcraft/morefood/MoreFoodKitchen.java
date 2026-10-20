@@ -50,8 +50,8 @@ public class MoreFoodKitchen {
     public static final RecipeSerializer<AssemblyRecipe> ASSEMBLY_SERIALIZER = new RecipeSerializer<>(AssemblyRecipe.MAP_CODEC, AssemblyRecipe.STREAM_CODEC);
     public static final RecipeBookCategory BOARD_BOOK = new RecipeBookCategory();
     public static final DataComponentType<List<Holder<Item>>> TOPPINGS = DataComponentType.<List<Holder<Item>>>builder()
-            .persistent(Item.CODEC.listOf(0, AssemblyRecipe.MAX_LAYERS))
-            .networkSynchronized(Item.STREAM_CODEC.apply(ByteBufCodecs.list()))
+            .persistent(Item.CODEC.listOf().xmap(MoreFoodKitchen::capToppings, l -> l))
+            .networkSynchronized(Item.STREAM_CODEC.apply(ByteBufCodecs.list()).map(MoreFoodKitchen::capToppings, l -> l))
             .build();
     public static final DataComponentType<ItemStackTemplate> PEEL_CONTENTS = DataComponentType.<ItemStackTemplate>builder()
             .persistent(ItemStackTemplate.CODEC)
@@ -93,12 +93,20 @@ public class MoreFoodKitchen {
         return out;
     }
 
+    public static final int MAX_TOPPINGS = 3;
+
+    // a pizza never carries more than 3 toppings, whatever a command or old save hands it
+    private static List<Holder<Item>> capToppings(List<Holder<Item>> toppings) {
+        return toppings.size() > MAX_TOPPINGS ? List.copyOf(toppings.subList(0, MAX_TOPPINGS)) : toppings;
+    }
+
     public static void setToppings(ItemStack stack, List<Holder<Item>> toppings) {
-        stack.set(TOPPINGS, List.copyOf(toppings));
+        stack.set(TOPPINGS, List.copyOf(capToppings(toppings)));
     }
 
     /** A pizza fills 8 and 0.2 saturation, plus 1 and 0.1 for each topping. */
     public static FoodProperties pizzaFood(int toppings) {
+        toppings = Math.min(toppings, MAX_TOPPINGS);
         return new FoodProperties.Builder().nutrition(8 + toppings).saturationModifier(0.2F + 0.1F * toppings).build();
     }
 

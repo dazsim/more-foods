@@ -6,6 +6,7 @@
     "morefood:item_cheese_slice",
     "morefood:item_bacon"
   ],
+  "lid": "morefood:item_bun",
   "result": {
     "id": "morefood:item_burger_bacon_cheese"
   }
