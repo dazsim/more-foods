@@ -90,7 +90,7 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
                 return;
             }
             if (base.spec.shape() == BoardLayers.Shape.PASTRY && !has(layers, BoardLayers.Shape.FILL)) {
-                pasty(pose, collector, base.sprite, base.top != null ? base.top : base.sprite, light);
+                pasty(pose, collector, base.sprite, base.sprite, light);
                 pose.popPose();
                 return;
             }
@@ -197,8 +197,8 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
             final TextureAtlasSprite top = bun.top != null ? bun.top : bun.sprite;
             final TextureAtlasSprite side = bun.side != null ? bun.side : top;
             final float s = bun.spec.size();
-            disc(pose, collector, s, y, y + 1.5F, top, side, light);
-            disc(pose, collector, s - 3, y + 1.5F, y + 2.5F, top, side, light);
+            disc(pose, collector, s - 1, y, y + 1.5F, top, side, light);
+            disc(pose, collector, s - 4, y + 1.5F, y + 2.5F, top, side, light);
         }
         pose.popPose();
     }
@@ -226,8 +226,14 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
     /** A thin layer that follows the outline of the base, a little inside it. */
     private static void sheet(PoseStack pose, SubmitNodeCollector collector, Foot foot, float inset, float y0, float y1, TextureAtlasSprite sprite,
                               TextureAtlasSprite side, int light) {
-        if (foot.round()) {
+        if (foot.round() && foot.w() >= 12) {
             disc(pose, collector, foot.w() - 2 * inset, y0, y1, sprite, side, light);
+            return;
+        }
+        if (foot.round()) {
+            //a slice on a bun stays square, its corners hanging over the edge
+            final float h = (foot.w() - 2 * inset) / 2 + 0.5F;
+            box(pose, collector, 8 - h, y0, 8 - h, 8 + h, y1, 8 + h, sprite, side, light);
             return;
         }
         final float hw = foot.w() / 2 - inset, hd = foot.d() / 2 - inset;
@@ -281,16 +287,16 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
         }
     }
 
-    /** A finished pasty: the pastry folded over its filling into a half moon, crimped along the join. */
+    /** A finished pasty: the pastry folded up over its filling, a half moon from the side with the crimp along the top. */
     private static void pasty(PoseStack pose, SubmitNodeCollector collector, TextureAtlasSprite pastry, TextureAtlasSprite crimp, int light) {
         final float y = BOARD_TOP;
-        box(pose, collector, 2.5F, y, 8.5F, 13.5F, y + 1.5F, 11, pastry, light);
-        box(pose, collector, 3.5F, y, 6.5F, 12.5F, y + 2.5F, 10.5F, pastry, light);
-        box(pose, collector, 5, y, 5, 11, y + 3.25F, 9.5F, pastry, light);
-        box(pose, collector, 6.5F, y, 4.25F, 9.5F, y + 2.5F, 5, pastry, light);
-        for (int i = 0; i < 6; i++) {
-            final float x = 3 + i * 1.75F;
-            box(pose, collector, x, y, 10.75F, x + 1, y + 1.25F, 11.75F, crimp, light);
+        for (int i = 0; i < 12; i++) {
+            final float x0 = 2 + i, t = (x0 + 0.5F - 8) / 6.5F, f = (float) Math.sqrt(Math.max(0, 1 - t * t));
+            final float h = Math.max(1, 4 * f), w = Math.max(2, 6.5F * f);
+            box(pose, collector, x0, y, 8 - w / 2, x0 + 1, y + h * 0.55F, 8 + w / 2, pastry, light);
+            box(pose, collector, x0, y, 8 - w / 3, x0 + 1, y + h, 8 + w / 3, pastry, light);
+            final float c = i % 2 == 0 ? -0.35F : 0.35F;
+            if (i > 0 && i < 11) box(pose, collector, x0, y + h - 0.2F, 7.6F + c, x0 + 1, y + h + 0.7F, 8.4F + c, crimp, light);
         }
     }
 
