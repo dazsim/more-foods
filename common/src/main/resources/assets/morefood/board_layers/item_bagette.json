@@ -1,0 +1,7 @@
+{
+  "shape": "loaf",
+  "texture": "morefood:block/board/loaf_cut",
+  "side": "morefood:block/board/loaf_crust",
+  "size": 12,
+  "thickness": 2
+}

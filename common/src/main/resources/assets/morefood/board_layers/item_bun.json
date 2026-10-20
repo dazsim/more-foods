@@ -1,0 +1,8 @@
+{
+  "shape": "bun",
+  "texture": "morefood:block/board/bun_cut",
+  "side": "morefood:block/board/bun_crust",
+  "top": "morefood:block/board/bun_top",
+  "size": 10,
+  "thickness": 1.5
+}

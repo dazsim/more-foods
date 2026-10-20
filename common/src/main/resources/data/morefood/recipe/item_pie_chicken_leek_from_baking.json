@@ -1,0 +1,10 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 300,
+  "experience": 0.2,
+  "ingredient": "morefood:item_pie_chicken_leek_uncooked",
+  "result": {
+    "id": "morefood:item_pie_chicken_leek"
+  }
+}

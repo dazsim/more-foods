@@ -1,6 +1,155 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "morefood:item/item_pizza_uncooked"
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:model",
+        "model": "morefood:item/item_pizza_uncooked"
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_tomato_chopped",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_tomato"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_onion_chopped",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_onion"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_garlic_chopped",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_garlic"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "minecraft:red_mushroom",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_red_mushroom"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "minecraft:brown_mushroom",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_brown_mushroom"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_bacon",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_bacon"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_minced_meat_cooked",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_mince"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_sausage",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_sausage"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_spinach",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_spinach"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_kale",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_kale"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_peas",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_peas"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "morefood:has_topping",
+        "topping": "morefood:item_leek_sliced",
+        "on_true": {
+          "type": "minecraft:model",
+          "model": "morefood:item/pizza_topping_leek"
+        },
+        "on_false": {
+          "type": "minecraft:empty"
+        }
+      }
+    ]
   }
 }

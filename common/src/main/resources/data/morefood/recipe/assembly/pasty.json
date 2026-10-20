@@ -1,0 +1,13 @@
+{
+  "type": "morefood:assembly",
+  "base": "morefood:item_pastry",
+  "fillings": [
+    "minecraft:beef",
+    "morefood:item_potato_peeled",
+    "morefood:item_swede",
+    "morefood:item_onion_chopped"
+  ],
+  "result": {
+    "id": "morefood:item_pasty_uncooked"
+  }
+}

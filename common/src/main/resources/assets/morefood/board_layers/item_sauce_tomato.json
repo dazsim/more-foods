@@ -1,6 +1,6 @@
 {
-  "shape": "disc",
+  "shape": "sheet",
   "texture": "morefood:block/board/sauce",
-  "size": 11,
+  "inset": 0.5,
   "thickness": 0.25
 }

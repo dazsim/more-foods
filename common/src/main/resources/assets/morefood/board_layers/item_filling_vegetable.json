@@ -1,0 +1,6 @@
+{
+  "shape": "fill",
+  "texture": "morefood:block/board/filling_vegetable",
+  "side": "morefood:block/board/tin",
+  "thickness": 2
+}

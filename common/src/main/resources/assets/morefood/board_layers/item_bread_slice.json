@@ -1,0 +1,7 @@
+{
+  "shape": "square",
+  "texture": "morefood:block/board/bread",
+  "side": "morefood:block/board/crust",
+  "size": 10,
+  "thickness": 1
+}

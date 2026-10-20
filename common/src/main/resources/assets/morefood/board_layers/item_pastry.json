@@ -1,0 +1,7 @@
+{
+  "shape": "pastry",
+  "texture": "morefood:block/board/pastry",
+  "top": "morefood:block/board/pastry_lid",
+  "side": "morefood:block/board/tin",
+  "thickness": 0.5
+}
