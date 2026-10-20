@@ -12,9 +12,12 @@ import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.crafting.FryingRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IRecipeManager;
 import mezz.jei.api.recipe.types.IRecipeHolderType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -22,10 +25,14 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @JeiPlugin
@@ -77,6 +84,19 @@ public class MoreFoodJei implements IModPlugin {
     @Override
     public void onRuntimeAvailable(IJeiRuntime runtime) {
         final List<ItemStack> retired = MoreFoodItems.hidden().stream().map(ItemStack::new).toList();
-        if (!retired.isEmpty()) runtime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, retired);
+        if (retired.isEmpty()) return;
+        runtime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK, retired);
+        // the old furnace and unpack recipes still work for items in chests, but stay out of the viewer
+        hideRetired(runtime.getRecipeManager(), RecipeTypes.SMELTING);
+        hideRetired(runtime.getRecipeManager(), RecipeTypes.CRAFTING);
+    }
+
+    private static <T extends Recipe<?>> void hideRetired(IRecipeManager manager, IRecipeType<RecipeHolder<T>> type) {
+        final Set<Item> retired = Set.copyOf(MoreFoodItems.hidden());
+        final List<RecipeHolder<T>> old = manager.createRecipeLookup(type).get()
+                .filter(holder -> holder.value().placementInfo().ingredients().stream()
+                        .anyMatch(ingredient -> ingredient.items().anyMatch(item -> retired.contains(item.value()))))
+                .toList();
+        if (!old.isEmpty()) manager.hideRecipes(type, old);
     }
 }
