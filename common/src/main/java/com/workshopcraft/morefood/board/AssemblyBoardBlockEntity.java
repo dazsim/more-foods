@@ -17,13 +17,13 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.UseRemainder;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
@@ -153,7 +153,11 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
     public void changed() {
         if (level instanceof ServerLevel server) {
             complete = !layers.isEmpty() && finished(server) != null;
-            for (ItemStack left : leftovers) Block.popResource(server, worldPosition, left);
+            for (ItemStack left : leftovers) {
+                final ItemEntity entity = new ItemEntity(server, worldPosition.getX() + 0.5, worldPosition.getY() + 0.3, worldPosition.getZ() + 0.5, left, 0, 0.1, 0);
+                entity.setDefaultPickUpDelay();
+                server.addFreshEntity(entity);
+            }
         }
         leftovers.clear();
         setChanged();
