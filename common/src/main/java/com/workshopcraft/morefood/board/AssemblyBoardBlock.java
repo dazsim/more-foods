@@ -27,7 +27,9 @@ import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -80,8 +82,17 @@ public class AssemblyBoardBlock extends BaseEntityBlock {
 
     public static boolean canSitOn(LevelReader level, BlockPos below) {
         final BlockState support = level.getBlockState(below);
-        if (support.is(MoreFoodKitchen.BOARD_SUPPORTS)) return true;
-        return !support.is(MoreFoodBlocks.stove) && support.isFaceSturdy(level, below, Direction.UP, SupportType.FULL);
+        if (support.is(MoreFoodBlocks.stove)) return false;
+        if (support.is(MoreFoodKitchen.BOARD_SUPPORTS)) return !unassembled(support);
+        return support.isFaceSturdy(level, below, Direction.UP, SupportType.FULL);
+    }
+
+    // a Much More Storage carcass has no fixed worktop until it is screwed together
+    private static boolean unassembled(BlockState state) {
+        for (Property<?> property : state.getProperties()) {
+            if (property instanceof BooleanProperty flag && flag.getName().equals("assembled")) return !state.getValue(flag);
+        }
+        return false;
     }
 
     @Override

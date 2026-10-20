@@ -1,6 +1,27 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "morefood:item/item_frying_pan"
+    "type": "minecraft:select",
+    "property": "minecraft:display_context",
+    "cases": [
+      {
+        "when": [
+          "gui"
+        ],
+        "model": {
+          "type": "minecraft:model",
+          "model": "morefood:item/item_frying_pan"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "morefood:item/item_frying_pan_held",
+      "transformation": {
+        "translation": [-0.21875, -0.546875, 0.09375],
+        "left_rotation": [0, 0, 0, 1],
+        "scale": [1, 1, 1],
+        "right_rotation": [0, 0, 0, 1]
+      }
+    }
   }
 }

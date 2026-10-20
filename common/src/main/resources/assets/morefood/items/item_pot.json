@@ -1,6 +1,27 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "morefood:item/item_pot"
+    "type": "minecraft:select",
+    "property": "minecraft:display_context",
+    "cases": [
+      {
+        "when": [
+          "gui"
+        ],
+        "model": {
+          "type": "minecraft:model",
+          "model": "morefood:item/item_pot"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "morefood:item/item_pot_held",
+      "transformation": {
+        "translation": [0, 0.5, 0],
+        "left_rotation": [0, 0, 0, 1],
+        "scale": [1, 1, 1],
+        "right_rotation": [0, 0, 0, 1]
+      }
+    }
   }
 }
