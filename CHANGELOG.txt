@@ -41,6 +41,8 @@ Retired items
 
 Recipe viewers
 - JEI shows the oven, frying pan, cooking pot and assembly board recipes, with cooking times, water and serving vessels. JEI is optional.
+- Click the arrow or the ring bars in the stove screen to see its recipes in JEI.
+- EMI support will follow once EMI is out for Minecraft 26.1.
 
 Other
 - New prep recipes, coleslaw, a garden salad, a roast chicken dinner, a full breakfast and more.

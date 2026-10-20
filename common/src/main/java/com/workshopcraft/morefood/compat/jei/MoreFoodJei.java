@@ -5,6 +5,7 @@ import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.client.ClientRecipes;
+import com.workshopcraft.morefood.client.StoveScreen;
 import com.workshopcraft.morefood.crafting.AssemblyRecipe;
 import com.workshopcraft.morefood.crafting.BakingRecipe;
 import com.workshopcraft.morefood.crafting.BoilingRecipe;
@@ -14,6 +15,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.types.IRecipeHolderType;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -64,6 +66,12 @@ public class MoreFoodJei implements IModPlugin {
         registration.addCraftingStation(FRYING.get(), MoreFoodBlocks.stove, MoreFoodItems.fryingPan);
         registration.addCraftingStation(BOILING.get(), MoreFoodBlocks.stove, MoreFoodItems.pot, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE);
         registration.addCraftingStation(ASSEMBLY.get(), MoreFoodBlocks.assemblyBoard);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(StoveScreen.class, 80, 34, 24, 16, BAKING.get());
+        registration.addRecipeClickArea(StoveScreen.class, 112, 22, 52, 9, FRYING.get(), BOILING.get());
     }
 
     @Override
