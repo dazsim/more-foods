@@ -12,6 +12,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
 
@@ -21,6 +22,8 @@ public class MoreFoodNeoForge {
         modBus.addListener(MoreFoodNeoForge::onRegister);
         modBus.addListener(MoreFoodNeoForge::onCapabilities);
         NeoForge.EVENT_BUS.addListener(MoreFoodNeoForge::onLootTableLoad);
+        NeoForge.EVENT_BUS.addListener((OnDatapackSyncEvent e) -> e.sendRecipes(MoreFoodKitchen.BAKING, MoreFoodKitchen.FRYING,
+                MoreFoodKitchen.BOILING, MoreFoodKitchen.ASSEMBLY));
     }
 
     private static void onRegister(RegisterEvent e) {
@@ -34,6 +37,7 @@ public class MoreFoodNeoForge {
         e.register(Registries.RECIPE_SERIALIZER, h -> MoreFoodKitchen.registerRecipeSerializers(h::register));
         e.register(Registries.RECIPE_BOOK_CATEGORY, h -> MoreFoodKitchen.registerBookCategories(h::register));
         e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
+        e.register(Registries.SOUND_EVENT, h -> MoreFoodKitchen.registerSounds(h::register));
     }
 
     private static void onCapabilities(RegisterCapabilitiesEvent e) {

@@ -68,7 +68,12 @@ public class CookingPotBlockEntity extends BlockEntity implements WorldlyContain
 
     public void clientTick(Level level, BlockPos pos) {
         final RandomSource random = level.getRandom();
-        if (!pot.isCooking() || random.nextInt(6) != 0) return;
+        if (!pot.isCooking()) return;
+        if (random.nextInt(40) == 0) {
+            level.playLocalSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, MoreFoodKitchen.BUBBLE, SoundSource.BLOCKS,
+                    0.4F + random.nextFloat() * 0.2F, 0.85F + random.nextFloat() * 0.15F, false);
+        }
+        if (random.nextInt(6) != 0) return;
         final double x = pos.getX() + 0.5 + (random.nextDouble() - 0.5) * 0.4;
         final double z = pos.getZ() + 0.5 + (random.nextDouble() - 0.5) * 0.4;
         final double y = pos.getY() + liquidHeight(pot.surface()) / 16.0;

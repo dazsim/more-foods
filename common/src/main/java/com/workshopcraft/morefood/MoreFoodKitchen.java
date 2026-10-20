@@ -14,6 +14,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -59,6 +60,8 @@ public class MoreFoodKitchen {
             .build();
     public static final TagKey<Block> BOARD_SUPPORTS = TagKey.create(Registries.BLOCK, MoreFood.id("assembly_board_supports"));
     public static final SimpleParticleType STEAM = new SimpleParticleType(false);
+    public static final SoundEvent SIZZLE = SoundEvent.createVariableRangeEvent(MoreFood.id("block.stove.sizzle"));
+    public static final SoundEvent BUBBLE = SoundEvent.createVariableRangeEvent(MoreFood.id("block.cooking_pot.bubble"));
     public static final TagKey<Item> VESSELS = TagKey.create(Registries.ITEM, MoreFood.id("vessels"));
     public static final MenuType<StoveMenu> STOVE_MENU = new MenuType<>(StoveMenu::new, FeatureFlags.VANILLA_SET);
     public static BlockEntityType<StoveBlockEntity> stoveEntity;
@@ -152,6 +155,11 @@ public class MoreFoodKitchen {
         registry.accept(MoreFood.id("baking"), BAKING_BOOK);
         registry.accept(MoreFood.id("hob"), HOB_BOOK);
         registry.accept(MoreFood.id("board"), BOARD_BOOK);
+    }
+
+    public static void registerSounds(BiConsumer<Identifier, SoundEvent> registry) {
+        registry.accept(SIZZLE.location(), SIZZLE);
+        registry.accept(BUBBLE.location(), BUBBLE);
     }
 
     public static void registerParticles(BiConsumer<Identifier, ParticleType<?>> registry) {

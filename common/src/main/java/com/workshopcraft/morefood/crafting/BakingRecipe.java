@@ -58,6 +58,14 @@ public class BakingRecipe extends AbstractCookingRecipe {
         return out;
     }
 
+    public boolean keepsComponents() {
+        return keepComponents;
+    }
+
+    public ItemStack resultStack() {
+        return result().create();
+    }
+
     @Override
     protected Item furnaceIcon() {
         return MoreFoodBlocks.stove.asItem();

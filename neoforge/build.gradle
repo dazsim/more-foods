@@ -36,6 +36,25 @@ neoForge {
     }
 }
 
+repositories {
+    maven {
+        name = 'BlameJared'
+        url = uri('https://maven.blamejared.com')
+        content {
+            includeGroup('mezz.jei')
+            includeGroup('net.mezzdev.config')
+        }
+    }
+}
+
+// recipe viewers are optional: compile against the API, run the full mod in dev unless -Pno_viewers is set
+dependencies {
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    if (!project.hasProperty('no_viewers')) {
+        runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    }
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)

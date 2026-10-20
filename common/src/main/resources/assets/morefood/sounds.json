@@ -1,0 +1,62 @@
+{
+  "block.stove.sizzle": {
+    "subtitle": "subtitles.morefood.block.stove.sizzle",
+    "sounds": [
+      {
+        "name": "minecraft:random/fizz",
+        "volume": 0.2,
+        "pitch": 1.8
+      },
+      {
+        "name": "minecraft:random/fizz",
+        "volume": 0.15,
+        "pitch": 2.0
+      },
+      {
+        "name": "minecraft:block/campfire/crackle2",
+        "volume": 0.7,
+        "pitch": 1.5
+      },
+      {
+        "name": "minecraft:block/campfire/crackle4",
+        "volume": 0.7,
+        "pitch": 1.6
+      },
+      {
+        "name": "minecraft:block/campfire/crackle6",
+        "volume": 0.7,
+        "pitch": 1.4
+      }
+    ]
+  },
+  "block.cooking_pot.bubble": {
+    "subtitle": "subtitles.morefood.block.cooking_pot.bubble",
+    "sounds": [
+      {
+        "name": "minecraft:block/bubble_column/upwards_ambient1",
+        "volume": 0.6,
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/bubble_column/upwards_ambient2",
+        "volume": 0.6,
+        "pitch": 0.8
+      },
+      {
+        "name": "minecraft:block/bubble_column/upwards_ambient3",
+        "volume": 0.6,
+        "pitch": 0.75
+      },
+      {
+        "name": "minecraft:block/bubble_column/upwards_ambient4",
+        "volume": 0.6,
+        "pitch": 0.85
+      },
+      {
+        "name": "minecraft:block/bubble_column/upwards_ambient5",
+        "volume": 0.6,
+        "pitch": 0.8
+      }
+    ]
+  }
+}

@@ -288,8 +288,18 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         final Direction left = state.getValue(StoveBlock.FACING).getClockWise();
         for (int i = 0; i < rings.length; i++) {
             final Ring ring = rings[i];
-            if (ring.tool != HobTool.POT || !ring.pot.isCooking() || random.nextInt(6) != 0) continue;
             final double side = i == LEFT ? 0.25 : -0.25;
+            final double rx = pos.getX() + 0.5 + left.getStepX() * side, rz = pos.getZ() + 0.5 + left.getStepZ() * side;
+            if (ring.tool == HobTool.PAN && ring.pan.isFrying() && random.nextInt(30) == 0) {
+                level.playLocalSound(rx, pos.getY() + 1.05, rz, MoreFoodKitchen.SIZZLE, SoundSource.BLOCKS,
+                        0.5F + random.nextFloat() * 0.3F, 0.9F + random.nextFloat() * 0.2F, false);
+            }
+            if (ring.tool != HobTool.POT || !ring.pot.isCooking()) continue;
+            if (random.nextInt(40) == 0) {
+                level.playLocalSound(rx, pos.getY() + 1.2, rz, MoreFoodKitchen.BUBBLE, SoundSource.BLOCKS,
+                        0.4F + random.nextFloat() * 0.2F, 0.85F + random.nextFloat() * 0.15F, false);
+            }
+            if (random.nextInt(6) != 0) continue;
             final double x = pos.getX() + 0.5 + left.getStepX() * side + (random.nextDouble() - 0.5) * 0.25;
             final double z = pos.getZ() + 0.5 + left.getStepZ() * side + (random.nextDouble() - 0.5) * 0.25;
             final double y = pos.getY() + ring.pot.surface() / 16.0;

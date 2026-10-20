@@ -6,6 +6,7 @@ import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -21,6 +22,10 @@ public class FryingRecipe extends AbstractCookingRecipe {
     public FryingRecipe(Recipe.CommonInfo commonInfo, CookingBookInfo bookInfo, Ingredient ingredient, ItemStackTemplate result,
                         float experience, int cookingTime) {
         super(commonInfo, bookInfo, ingredient, result, experience, cookingTime);
+    }
+
+    public ItemStack resultStack() {
+        return result().create();
     }
 
     @Override

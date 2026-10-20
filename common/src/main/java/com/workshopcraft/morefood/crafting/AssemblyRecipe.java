@@ -82,6 +82,34 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
         this.keepExtras = keepExtras;
     }
 
+    public Ingredient base() {
+        return base;
+    }
+
+    public List<Ingredient> fillings() {
+        return fillings;
+    }
+
+    public boolean ordered() {
+        return ordered;
+    }
+
+    public Optional<Extras> extras() {
+        return extras;
+    }
+
+    public Optional<Ingredient> lid() {
+        return lid;
+    }
+
+    public ItemStack result() {
+        return result.create();
+    }
+
+    public boolean keepsExtras() {
+        return keepExtras;
+    }
+
     private int all() {
         return (1 << fillings.size()) - 1;
     }

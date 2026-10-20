@@ -41,6 +41,10 @@ public class MoreFoodItems {
             "item_yorkshire_pudding_pot", "item_bucket_cheese");
     private static final List<Item> HIDDEN = new ArrayList<>();
 
+    public static List<Item> hidden() {
+        return HIDDEN;
+    }
+
     public static void register(BiConsumer<Identifier, Item> registry) {
         food(registry, "item_fruit_tomato", 1, 0.1F, props());
         pot = add(registry, "item_pot", new ItemPot(withId("item_pot", props().stacksTo(1))));

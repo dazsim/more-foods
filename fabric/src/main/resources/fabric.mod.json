@@ -22,6 +22,9 @@
         ],
         "client": [
             "com.workshopcraft.morefood.fabric.MoreFoodFabricClient"
+        ],
+        "jei_mod_plugin": [
+            "com.workshopcraft.morefood.compat.jei.MoreFoodJei"
         ]
     },
     "depends": {
@@ -29,5 +32,8 @@
         "fabric-api": "*",
         "minecraft": "${fabric_minecraft_range}",
         "java": ">=${java_version}"
+    },
+    "suggests": {
+        "jei": "*"
     }
 }

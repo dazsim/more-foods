@@ -37,6 +37,14 @@ public class Pan {
         return done[spot];
     }
 
+    /** True while something in the pan is still cooking. */
+    public boolean isFrying() {
+        for (int i = 0; i < SPOTS; i++) {
+            if (!items[i].isEmpty() && !done[i]) return true;
+        }
+        return false;
+    }
+
     public boolean isEmpty() {
         for (ItemStack stack : items) {
             if (!stack.isEmpty()) return false;
