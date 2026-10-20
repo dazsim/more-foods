@@ -1,0 +1,47 @@
+More Foods 2.0: Vegetables I, the kitchen
+
+New crops
+- Cabbage, spinach, kale, garlic, leeks, peas, haricot beans, parsnips, turnips and swedes.
+- Seeds drop from grass. The grass seed chance is now 25%, up from 12.5%, since there are more seeds to find.
+- Haricot beans drop straight from the plant, no shelling.
+
+The stove
+- A new stove with an oven and two hob rings. It burns any furnace fuel.
+- Put a frying pan or a pot on a ring. Pans fry, pots boil soups, stews and fillings with water.
+- Collect food from the pot with bowls, bottles or buckets in the vessel slot.
+- Hoppers work with it: top for the hob, back for the oven, sides for fuel and vessels, bottom for the output. Pots take water from pipes.
+- A cooking pot can also sit on a campfire or soul campfire. It cooks more slowly there and stops if the fire goes out.
+- The pan sizzles and the pot bubbles.
+
+The assembly board
+- Build food on it a layer at a time: pizzas, sandwiches, burgers, wraps, pies and pasties.
+- Burgers need the top bun put on as the last layer, so you can add cheese or bacon first.
+- The board shows a hint of what can go on next. Sneak and use it with an empty hand to take the top layer back.
+- Use the baking peel to send a pizza or pie into a stove next to the board.
+- Hoppers can feed the board and take the finished food off it.
+- With Much More Storage installed, the board also sits on its cupboards and worktops.
+
+Pizza
+- One pizza item that remembers up to 3 toppings. They show in the tooltip and on the pizza, and stay on when it is baked.
+- Each topping adds a bit of food. Pizzas from commands keep only their first 3 toppings.
+- Pizzas now stack to 16.
+
+Recipes that moved
+- Everything the furnace used to cook for this mod is now made on the stove. Bread, buns, pizza, roast potatoes and toast bake in the oven. Bacon, patties, chips, fish, eggs, mushrooms, hash browns, mince and sausages fry in the pan. Cheese, salt, boiled potatoes and stock boil in the pot.
+- The Yorkshire pudding batter now makes 2 puddings straight from the oven.
+- Cheese is made from a milk bucket in the pot and gives the bucket back.
+
+Stock now comes in bottles
+- Stock is collected from the pot in a glass bottle or a bowl and gives that back when used.
+- Old stock already in your chests gives back a glass bottle instead of a pot.
+
+Retired items
+- The old "in a pot" and "in a frying pan" items (pot of water, pot of salt, egg in a frying pan, bucket of cheese and so on) are hidden and can no longer be made.
+- Anything already in a chest still cooks in the furnace or unpacks in the grid as before. They will be removed in 2.1.
+
+Recipe viewers
+- JEI shows the oven, frying pan, cooking pot and assembly board recipes, with cooking times, water and serving vessels. JEI is optional.
+
+Other
+- New prep recipes, coleslaw, a garden salad, a roast chicken dinner, a full breakfast and more.
+- The frying pan and pot look 3D when held or placed in frames.

@@ -5,12 +5,15 @@ import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.widgets.IRecipeExtrasBuilder;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.AbstractRecipeCategory;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -21,6 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoilingCategory extends AbstractRecipeCategory<RecipeHolder<BoilingRecipe>> {
+    private static final IDrawable TANK = new IDrawable() {
+        @Override public int getWidth() { return 14; }
+        @Override public int getHeight() { return 36; }
+        @Override
+        public void draw(GuiGraphicsExtractor g, int x, int y) {
+            g.fill(x, y, x + 14, y + 36, 0xFF373737);
+            g.fill(x + 1, y + 1, x + 14, y + 36, 0xFFFFFFFF);
+            g.fill(x + 1, y + 1, x + 13, y + 35, 0xFF8B8B8B);
+        }
+    };
     private final long bucket;
 
     public BoilingCategory(IGuiHelper gui, long bucket) {
@@ -53,6 +66,11 @@ public class BoilingCategory extends AbstractRecipeCategory<RecipeHolder<Boiling
                     .addRichTooltipCallback((view, tooltip) -> tooltip.add(Component.translatable("jei.morefood.serve_with")));
             builder.createFocusLink(out, vessel);
         }
+    }
+
+    @Override
+    public void draw(RecipeHolder<BoilingRecipe> holder, IRecipeSlotsView slots, GuiGraphicsExtractor g, double mouseX, double mouseY) {
+        if (holder.value().water() > 0) TANK.draw(g, 57, 0);
     }
 
     @Override
