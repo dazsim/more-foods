@@ -1,5 +1,8 @@
 {
   "values": [
+    "#c:seeds/tomato",
+    "#c:seeds/lettuce",
+    "#c:seeds/onion",
     "#c:seeds/cabbage",
     "#c:seeds/spinach",
     "#c:seeds/kale",

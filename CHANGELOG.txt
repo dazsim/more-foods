@@ -47,3 +47,4 @@ Recipe viewers
 Other
 - New prep recipes, coleslaw, a garden salad, a roast chicken dinner, a full breakfast and more.
 - The frying pan and pot look 3D when held or placed in frames.
+- Every More Foods crop is in the minecraft:crops block tag, and all their crops and seeds are in the c:crops and c:seeds item tags, so other mods' harvesters and farmers pick them up.
