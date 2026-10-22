@@ -1,0 +1,32 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "simplebooks"
+      ]
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "simplebooks"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:book",
+    "#morefood:seeds"
+  ],
+  "result": {
+    "id": "simplebooks:guide",
+    "components": {
+      "simplebooks:book": "morefood:cookbook",
+      "minecraft:custom_name": {
+        "text": "More Foods Cookbook",
+        "italic": false
+      }
+    }
+  }
+}
