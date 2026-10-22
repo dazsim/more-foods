@@ -227,5 +227,6 @@
   "jei.morefood.board.any": "Middle layers in any order",
   "jei.morefood.board.ordered": "Layers go on in this order",
   "subtitles.morefood.block.stove.sizzle": "Pan sizzles",
-  "subtitles.morefood.block.cooking_pot.bubble": "Pot bubbles"
+  "subtitles.morefood.block.cooking_pot.bubble": "Pot bubbles",
+  "book.morefood.cookbook.title": "More Foods Cookbook"
 }
