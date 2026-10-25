@@ -15,10 +15,14 @@
       "kind": "craft_shaped",
       "pattern": [
         "A",
+        "A",
         "B"
       ],
       "key": {
-        "A": "minecraft:iron_ingot",
+        "A": {
+          "item": "#c:nuggets/iron",
+          "name": "Iron Nugget"
+        },
         "B": "minecraft:stick"
       },
       "output": "morefood:item_knife"

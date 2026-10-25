@@ -1,0 +1,53 @@
+{
+  "section": "recipes",
+  "template": "simplebooks:recipe",
+  "sort": 1099,
+  "title": "Beef and Pork Joints",
+  "icon": "morefood:item_joint_beef",
+  "subtitle": "Joints drop from cows and pigs.",
+  "ingredients": [
+    "morefood:item_joint_beef",
+    "morefood:item_joint_pork"
+  ],
+  "tools": [
+    "minecraft:crafting_table",
+    "morefood:item_knife"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shaped",
+      "title": "Raw Beef",
+      "note": "knife on top of the joint",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_joint_beef"
+      },
+      "output": {
+        "item": "minecraft:beef",
+        "count": 8
+      }
+    },
+    {
+      "kind": "craft_shaped",
+      "title": "Raw Porkchop",
+      "note": "knife on top of the joint",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_joint_pork"
+      },
+      "output": {
+        "item": "minecraft:porkchop",
+        "count": 8
+      }
+    }
+  ]
+}

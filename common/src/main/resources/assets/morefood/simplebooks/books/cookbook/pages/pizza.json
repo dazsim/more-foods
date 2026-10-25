@@ -99,13 +99,16 @@
       "kind": "page_break"
     },
     {
-      "kind": "craft_shapeless",
+      "kind": "craft_shaped",
       "title": "Cheese Slices",
-      "note": "knife on top of the cheese",
-      "inputs": [
-        "morefood:item_knife",
-        "morefood:item_cheese"
+      "pattern": [
+        "A",
+        "B"
       ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_cheese"
+      },
       "output": {
         "item": "morefood:item_cheese_slice",
         "count": 8
@@ -202,9 +205,6 @@
     {
       "kind": "text",
       "text": "Toppings stay on when it bakes. To undo a layer, sneak and use the board with an empty hand."
-    },
-    {
-      "kind": "arrow"
     },
     {
       "kind": "sequence",

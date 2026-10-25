@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "A",
-    "B"
+    "N",
+    "N",
+    "S"
   ],
   "key": {
-    "A": "minecraft:iron_ingot",
-    "B": "minecraft:stick"
+    "N": "#c:nuggets/iron",
+    "S": "minecraft:stick"
   },
   "result": {
     "id": "morefood:item_knife"

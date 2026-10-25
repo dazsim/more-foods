@@ -23,10 +23,7 @@
     "id": "simplebooks:guide",
     "components": {
       "simplebooks:book": "morefood:cookbook",
-      "minecraft:custom_name": {
-        "text": "More Foods Cookbook",
-        "italic": false
-      }
+      "minecraft:item_model": "morefood:cookbook"
     }
   }
 }

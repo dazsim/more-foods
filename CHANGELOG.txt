@@ -48,3 +48,7 @@ Other
 - New prep recipes, coleslaw, a garden salad, a roast chicken dinner, a full breakfast and more.
 - The frying pan and pot look 3D when held or placed in frames.
 - Every More Foods crop is in the minecraft:crops block tag, and all their crops and seeds are in the c:crops and c:seeds item tags, so other mods' harvesters and farmers pick them up.
+- The knife is now two iron nuggets over a stick, like a small sword. It no longer clashes with the Much More Storage screwdriver.
+- Burgers and sandwiches are only built on the assembly board. The old crafting grid recipes for them are gone.
+- Cookbook: the frying pan page shows its recipe, cheese slices show knife over cheese, and a new page covers cutting beef and pork joints.
+- The cookbook gets its name from Simple Books, has its own item texture and shows in the recipe book once you find seeds or crops.
