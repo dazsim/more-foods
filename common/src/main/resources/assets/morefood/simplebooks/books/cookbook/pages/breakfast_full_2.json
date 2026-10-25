@@ -5,8 +5,20 @@
   "contents": false,
   "title": "Full English Breakfast, continued",
   "icon": "morefood:item_breakfast_full",
-  "first_step": 11,
+  "first_step": 10,
   "steps": [
+    {
+      "kind": "process",
+      "title": "Boiled Potato",
+      "note": "15 seconds,\nor over a\ncampfire, slower",
+      "inputs": [
+        "minecraft:water_bucket",
+        "morefood:item_potato_peeled"
+      ],
+      "appliance": "morefood:item_pot",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_potato_boiled"
+    },
     {
       "kind": "craft_shapeless",
       "inputs": [

@@ -1,0 +1,36 @@
+{
+  "section": "recipes",
+  "template": "simplebooks:steps",
+  "sort": 21,
+  "contents": false,
+  "title": "Pizza, continued",
+  "icon": "morefood:item_pizza_cooked",
+  "first_step": 8,
+  "steps": [
+    {
+      "kind": "text",
+      "text": "Toppings stay on when it bakes. To undo a layer, sneak and use the board with an empty hand."
+    },
+    {
+      "kind": "sequence",
+      "title": "Bake it in the oven",
+      "cells": [
+        {
+          "item": "morefood:item_baking_peel",
+          "note": "use on board"
+        },
+        {
+          "item": "morefood:block_stove",
+          "name": "Stove oven",
+          "note": "10 seconds"
+        },
+        {
+          "item": "morefood:item_pizza_cooked",
+          "note": "take it out"
+        }
+      ],
+      "image": "morefood:textures/simplebooks/cookbook/pizza_in_oven.png",
+      "text": "Use the peel on the finished pizza and it slides into the oven. No stove beside the board? The peel holds it until you use it on one."
+    }
+  ]
+}
