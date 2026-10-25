@@ -14,6 +14,7 @@
         "sources": "https://github.com/dazsim/more-foods"
     },
     "license": "${license}",
+    "icon": "morefood_logo.png",
     "environment": "*",
     "accessWidener": "morefood.accesswidener",
     "entrypoints": {
