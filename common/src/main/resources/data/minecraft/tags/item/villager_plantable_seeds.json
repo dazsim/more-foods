@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "morefood:item_seed_tomato",
+    "morefood:item_seed_lettuce",
+    "morefood:item_seed_onion",
+    "morefood:item_seed_cabbage",
+    "morefood:item_seed_spinach",
+    "morefood:item_seed_kale",
+    "morefood:item_seed_garlic",
+    "morefood:item_seed_leek",
+    "morefood:item_seed_peas",
+    "morefood:item_seed_haricot",
+    "morefood:item_seed_parsnip",
+    "morefood:item_seed_turnip",
+    "morefood:item_seed_swede"
+  ]
+}

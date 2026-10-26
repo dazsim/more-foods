@@ -1,0 +1,103 @@
+{
+  "values": {
+    "morefood:item_seed_tomato": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_lettuce": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_onion": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_cabbage": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_spinach": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_kale": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_garlic": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_leek": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_peas": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_haricot": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_parsnip": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_turnip": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_swede": {
+      "chance": 0.3
+    },
+    "morefood:item_fruit_tomato": {
+      "chance": 0.65
+    },
+    "morefood:item_lettuce": {
+      "chance": 0.65
+    },
+    "morefood:item_onion": {
+      "chance": 0.65
+    },
+    "morefood:item_cabbage": {
+      "chance": 0.65
+    },
+    "morefood:item_spinach": {
+      "chance": 0.65
+    },
+    "morefood:item_kale": {
+      "chance": 0.65
+    },
+    "morefood:item_garlic": {
+      "chance": 0.65
+    },
+    "morefood:item_leek": {
+      "chance": 0.65
+    },
+    "morefood:item_peas": {
+      "chance": 0.65
+    },
+    "morefood:item_haricot_beans": {
+      "chance": 0.65
+    },
+    "morefood:item_parsnip": {
+      "chance": 0.65
+    },
+    "morefood:item_turnip": {
+      "chance": 0.65
+    },
+    "morefood:item_swede": {
+      "chance": 0.65
+    },
+    "morefood:item_potato_peeled": {
+      "chance": 0.65
+    },
+    "morefood:item_onion_chopped": {
+      "chance": 0.5
+    },
+    "morefood:item_tomato_chopped": {
+      "chance": 0.5
+    },
+    "morefood:item_cabbage_shredded": {
+      "chance": 0.5
+    },
+    "morefood:item_garlic_chopped": {
+      "chance": 0.5
+    },
+    "morefood:item_leek_sliced": {
+      "chance": 0.5
+    },
+    "morefood:item_potato_peeled_chipped": {
+      "chance": 0.5
+    }
+  }
+}

@@ -7,6 +7,7 @@ import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.recipe.v1.sync.RecipeSynchronization;
+import net.fabricmc.fabric.api.registry.CompostableRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
@@ -35,6 +36,8 @@ public class MoreFoodFabric implements ModInitializer {
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.FRYING_SERIALIZER);
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.BOILING_SERIALIZER);
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.ASSEMBLY_SERIALIZER);
+
+        MoreFoodItems.COMPOST.forEach((name, chance) -> CompostableRegistry.INSTANCE.add(BuiltInRegistries.ITEM.getValue(MoreFood.id(name)), chance));
 
         ItemStorage.SIDED.registerForBlockEntity((stove, side) -> ContainerStorage.of(stove, side), MoreFoodKitchen.stoveEntity);
         FluidStorage.SIDED.registerForBlockEntity(PotStorage::of, MoreFoodKitchen.stoveEntity);

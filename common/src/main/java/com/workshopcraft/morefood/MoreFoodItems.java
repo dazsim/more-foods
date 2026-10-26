@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -40,6 +41,8 @@ public class MoreFoodItems {
             "item_mushroom_uncooked_frying_pan", "item_mushroom_fried_frying_pan", "item_french_toast_cooked_frying_pan",
             "item_yorkshire_pudding_pot", "item_bucket_cheese");
     private static final List<Item> HIDDEN = new ArrayList<>();
+    //Fabric reads this, NeoForge uses data/neoforge/data_maps/item/compostables.json, keep both in step
+    public static final Map<String, Float> COMPOST = compost();
 
     public static List<Item> hidden() {
         return HIDDEN;
@@ -263,6 +266,22 @@ public class MoreFoodItems {
 
     private static Item seed(BiConsumer<Identifier, Item> registry, String name, Block crop) {
         return add(registry, name, new BlockItem(crop, withId(name, props().useItemDescriptionPrefix())));
+    }
+
+    private static Map<String, Float> compost() {
+        final Map<String, Float> map = new LinkedHashMap<>();
+        for (String name : List.of("tomato", "lettuce", "onion", "cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede")) {
+            map.put("item_seed_" + name, 0.3F);
+        }
+        for (String name : List.of("item_fruit_tomato", "item_lettuce", "item_onion", "item_cabbage", "item_spinach", "item_kale", "item_garlic",
+                "item_leek", "item_peas", "item_haricot_beans", "item_parsnip", "item_turnip", "item_swede", "item_potato_peeled")) {
+            map.put(name, 0.65F);
+        }
+        for (String name : List.of("item_onion_chopped", "item_tomato_chopped", "item_cabbage_shredded", "item_garlic_chopped", "item_leek_sliced",
+                "item_potato_peeled_chipped")) {
+            map.put(name, 0.5F);
+        }
+        return map;
     }
 
     public static void registerTabs(BiConsumer<Identifier, CreativeModeTab> registry) {
