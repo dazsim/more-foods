@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1046,
   "title": "Roast Vegetables",
   "icon": "morefood:item_roast_vegetables",

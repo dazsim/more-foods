@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 101,
   "title": "Chopped Onion",
   "icon": "morefood:item_onion_chopped",

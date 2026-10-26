@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1062,
   "title": "Sausage",
   "icon": "morefood:item_sausage",

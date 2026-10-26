@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1092,
   "title": "Spaghetti Bolognese",
   "icon": "morefood:item_spaghetti_bolognese",
@@ -124,7 +124,7 @@
       "kind": "sequence",
       "title": "Spaghetti Bolognese in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Bowl.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Bowl.",
       "cells": [
         "morefood:item_spaghetti",
         "morefood:item_minced_meat_cooked",

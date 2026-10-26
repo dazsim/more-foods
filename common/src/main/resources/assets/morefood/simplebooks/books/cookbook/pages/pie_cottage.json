@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1004,
   "title": "Cottage Pie",
   "icon": "morefood:item_pie_cottage",
@@ -84,7 +84,7 @@
       "kind": "sequence",
       "title": "Stock in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Glass Bottle.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Glass Bottle.",
       "cells": [
         "minecraft:water_bucket",
         {
@@ -132,7 +132,7 @@
       "kind": "sequence",
       "title": "Cottage Pie Filling in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 15 seconds (or over a campfire, slower).",
+      "text": "Put these in the Pot on the Stove, any order, 15 seconds (slower on a campfire).",
       "cells": [
         "morefood:item_minced_meat_cooked",
         "morefood:item_onion_chopped",
@@ -143,12 +143,67 @@
           "note": "result"
         }
       ]
-    }
-  ],
-  "links": [
+    },
     {
-      "label": "Continued on the next page",
-      "page": "pie_cottage_2"
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_knife",
+        "minecraft:potato"
+      ],
+      "output": "morefood:item_potato_peeled"
+    },
+    {
+      "kind": "process",
+      "title": "Boiled Potato",
+      "note": "15 seconds,\nor over a\ncampfire, slower",
+      "inputs": [
+        "minecraft:water_bucket",
+        "morefood:item_potato_peeled"
+      ],
+      "appliance": "morefood:item_pot",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_potato_boiled"
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_mincer",
+        "morefood:item_potato_boiled"
+      ],
+      "output": "morefood:item_potato_mashed"
+    },
+    {
+      "kind": "assembly",
+      "title": "Build it on the Assembly Board",
+      "text": "Use each item on the Assembly Board in this order, then take it off with an empty hand:",
+      "image": "morefood:textures/simplebooks/cookbook/board.png",
+      "cells": [
+        {
+          "item": "morefood:item_filling_cottage",
+          "note": "first"
+        },
+        {
+          "item": "morefood:item_potato_mashed",
+          "note": "second"
+        },
+        {
+          "item": "morefood:item_pie_cottage_uncooked",
+          "note": "done"
+        }
+      ]
+    },
+    {
+      "kind": "process",
+      "title": "Cottage Pie",
+      "note": "15 seconds\nin the oven",
+      "inputs": [
+        "morefood:item_pie_cottage_uncooked"
+      ],
+      "appliance": {
+        "item": "morefood:block_stove",
+        "name": "Stove oven"
+      },
+      "output": "morefood:item_pie_cottage"
     }
   ]
 }

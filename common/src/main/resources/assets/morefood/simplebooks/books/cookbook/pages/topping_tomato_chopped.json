@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 100,
   "title": "Chopped Tomato",
   "icon": "morefood:item_tomato_chopped",

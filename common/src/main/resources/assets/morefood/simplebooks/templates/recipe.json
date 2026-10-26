@@ -1,0 +1,7 @@
+{
+  "extends": "simplebooks:recipe",
+  "slots": {
+    "left.need": { "type": "need_list", "box": [0, 100, 644, 400], "note": "need_note" },
+    "left.steps": { "type": "step_rows", "box": [0, 402, 644, 470], "bind": "steps", "row_height": 92, "below": "left.need", "gap": 6 }
+  }
+}

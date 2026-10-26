@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 305,
   "title": "Leek",
   "icon": "morefood:item_leek",

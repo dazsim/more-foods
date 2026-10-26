@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1108,
   "title": "Fried Leeks",
   "icon": "morefood:item_leeks_fried",

@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1099,
   "title": "Beef and Pork Joints",
   "icon": "morefood:item_joint_beef",

@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1030,
   "title": "Vegetable Stew",
   "icon": "morefood:item_stew_vegetable",
@@ -65,7 +65,7 @@
       "kind": "sequence",
       "title": "Stock in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Glass Bottle.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Glass Bottle.",
       "cells": [
         "minecraft:water_bucket",
         {
@@ -95,7 +95,7 @@
       "kind": "sequence",
       "title": "Vegetable Stew in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Bowl.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Bowl.",
       "cells": [
         "minecraft:water_bucket",
         "morefood:item_turnip",

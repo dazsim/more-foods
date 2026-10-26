@@ -1,6 +1,6 @@
 {
   "title": "book.morefood.cookbook.title",
-  "default_template": "simplebooks:recipe",
+  "default_template": "morefood:recipe",
   "style": {
     "ink": "#3f2a14",
     "head": "#802c16"
@@ -11,5 +11,6 @@
     "tools",
     "crops",
     "recipes"
-  ]
+  ],
+  "flow": true
 }

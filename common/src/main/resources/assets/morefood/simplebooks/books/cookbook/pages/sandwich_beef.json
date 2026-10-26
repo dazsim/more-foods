@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1070,
   "title": "Beef Sandwich",
   "icon": "morefood:item_sandwich_beef",

@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 302,
   "title": "Garlic",
   "icon": "morefood:item_garlic",

@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 104,
   "title": "Cooked Minced Meat",
   "icon": "morefood:item_minced_meat_cooked",

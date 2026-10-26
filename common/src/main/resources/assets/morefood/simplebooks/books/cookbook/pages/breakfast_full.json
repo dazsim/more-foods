@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "morefood:recipe_long",
+  "template": "morefood:recipe",
   "sort": 1060,
   "title": "Full English Breakfast",
   "icon": "morefood:item_breakfast_full",
@@ -154,12 +154,100 @@
         "minecraft:potato"
       ],
       "output": "morefood:item_potato_peeled"
-    }
-  ],
-  "links": [
+    },
     {
-      "label": "Continued on the next page",
-      "page": "breakfast_full_2"
+      "kind": "process",
+      "title": "Boiled Potato",
+      "note": "15 seconds,\nor over a\ncampfire, slower",
+      "inputs": [
+        "minecraft:water_bucket",
+        "morefood:item_potato_peeled"
+      ],
+      "appliance": "morefood:item_pot",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_potato_boiled"
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_mincer",
+        "morefood:item_potato_boiled"
+      ],
+      "output": "morefood:item_potato_mashed"
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_knife",
+        "morefood:item_potato_mashed"
+      ],
+      "output": "morefood:item_hashbrown_uncooked"
+    },
+    {
+      "kind": "process",
+      "title": "Hashbrown",
+      "note": "5 seconds,\nfrom the stove\noutput",
+      "inputs": [
+        "morefood:item_hashbrown_uncooked"
+      ],
+      "appliance": "morefood:item_frying_pan",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_hashbrown"
+    },
+    {
+      "kind": "sequence",
+      "title": "Cooked Breakfast",
+      "text_first": false,
+      "text": "Crafting Table (shapeless): put these in the grid in any order.",
+      "cells": [
+        "morefood:item_mushroom_fried",
+        "morefood:item_fried_egg",
+        "morefood:item_bacon",
+        "morefood:item_sausage",
+        "morefood:item_toast",
+        "morefood:item_hashbrown",
+        {
+          "item": "morefood:item_breakfast_cooked",
+          "note": "result"
+        }
+      ]
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_mincer",
+        "morefood:item_fruit_tomato",
+        "minecraft:sugar",
+        "minecraft:glass_bottle"
+      ],
+      "output": "morefood:item_sauce_tomato"
+    },
+    {
+      "kind": "sequence",
+      "title": "Baked Beans in the Pot",
+      "text_first": false,
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Bowl.",
+      "cells": [
+        "minecraft:water_bucket",
+        "morefood:item_haricot_beans",
+        "morefood:item_haricot_beans",
+        "morefood:item_haricot_beans",
+        "morefood:item_sauce_tomato",
+        "minecraft:sugar",
+        {
+          "item": "morefood:item_baked_beans",
+          "count": 3,
+          "note": "result"
+        }
+      ]
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_breakfast_cooked",
+        "morefood:item_baked_beans"
+      ],
+      "output": "morefood:item_breakfast_full"
     }
   ]
 }

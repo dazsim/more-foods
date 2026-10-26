@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1126,
   "title": "Yorkshire Pudding",
   "icon": "morefood:item_yorkshire_pudding",

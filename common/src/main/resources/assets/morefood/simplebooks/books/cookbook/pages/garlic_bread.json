@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1112,
   "title": "Garlic Bread",
   "icon": "morefood:item_garlic_bread",

@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1072,
   "title": "Cheese & Tomato Sandwich",
   "icon": "morefood:item_sandwich_cheese_tomato",

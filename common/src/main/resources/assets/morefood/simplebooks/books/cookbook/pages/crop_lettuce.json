@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 306,
   "title": "Lettuce",
   "icon": "morefood:item_lettuce",

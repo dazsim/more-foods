@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 303,
   "title": "Haricot Beans",
   "icon": "morefood:item_haricot_beans",

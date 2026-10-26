@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 311,
   "title": "Swede",
   "icon": "morefood:item_swede",

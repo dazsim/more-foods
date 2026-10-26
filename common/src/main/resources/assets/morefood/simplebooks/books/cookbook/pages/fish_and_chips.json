@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1106,
   "title": "Fish and Chips",
   "icon": "morefood:item_fish_and_chips",

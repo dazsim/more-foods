@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1084,
   "title": "Footlong",
   "icon": "morefood:item_footlong",

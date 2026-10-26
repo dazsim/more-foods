@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1118,
   "title": "Mashed Potato",
   "icon": "morefood:item_potato_mashed",

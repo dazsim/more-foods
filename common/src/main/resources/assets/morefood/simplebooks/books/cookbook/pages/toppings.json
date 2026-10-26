@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:text",
+  "template": "morefood:info",
   "sort": 99,
   "title": "Toppings",
   "icon": "morefood:item_bacon",

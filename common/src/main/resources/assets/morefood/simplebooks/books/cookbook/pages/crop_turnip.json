@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 312,
   "title": "Turnip",
   "icon": "morefood:item_turnip",

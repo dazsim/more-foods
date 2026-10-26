@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 304,
   "title": "Kale",
   "icon": "morefood:item_kale",

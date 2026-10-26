@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 300,
   "title": "Cabbage",
   "icon": "morefood:item_cabbage",

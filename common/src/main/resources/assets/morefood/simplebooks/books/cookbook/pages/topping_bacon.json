@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 103,
   "title": "Bacon",
   "icon": "morefood:item_bacon",

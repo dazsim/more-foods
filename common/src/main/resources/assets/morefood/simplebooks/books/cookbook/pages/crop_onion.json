@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 307,
   "title": "Onion",
   "icon": "morefood:item_onion",

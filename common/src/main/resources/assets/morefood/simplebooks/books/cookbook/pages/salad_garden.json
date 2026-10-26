@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1110,
   "title": "Garden Salad",
   "icon": "morefood:item_salad_garden",

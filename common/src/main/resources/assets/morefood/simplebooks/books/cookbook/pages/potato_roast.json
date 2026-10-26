@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1040,
   "title": "Roast Potato",
   "icon": "morefood:item_potato_roast",

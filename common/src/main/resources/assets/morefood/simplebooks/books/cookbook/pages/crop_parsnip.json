@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 308,
   "title": "Parsnip",
   "icon": "morefood:item_parsnip",

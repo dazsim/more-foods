@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1100,
   "title": "Cheese Slice",
   "icon": "morefood:item_cheese_slice",

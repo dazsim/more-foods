@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1058,
   "title": "Fried Egg",
   "icon": "morefood:item_fried_egg",

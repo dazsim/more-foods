@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1098,
   "title": "Bubble and Squeak",
   "icon": "morefood:item_bubble_squeak",

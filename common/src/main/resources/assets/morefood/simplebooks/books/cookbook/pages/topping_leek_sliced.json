@@ -1,6 +1,6 @@
 {
   "section": "toppings",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 106,
   "title": "Sliced Leek",
   "icon": "morefood:item_leek_sliced",

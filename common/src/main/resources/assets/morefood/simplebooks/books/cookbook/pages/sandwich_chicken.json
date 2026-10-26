@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1080,
   "title": "Chicken Sandwich",
   "icon": "morefood:item_sandwich_chicken",

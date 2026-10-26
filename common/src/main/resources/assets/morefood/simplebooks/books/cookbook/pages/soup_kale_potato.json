@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1014,
   "title": "Kale and Potato Soup",
   "icon": "morefood:item_soup_kale_potato",
@@ -56,7 +56,7 @@
       "kind": "sequence",
       "title": "Stock in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Glass Bottle.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Glass Bottle.",
       "cells": [
         "minecraft:water_bucket",
         {
@@ -94,7 +94,7 @@
       "kind": "sequence",
       "title": "Kale and Potato Soup in the Pot",
       "text_first": false,
-      "text": "Put these in the Pot on the Stove, in any order, 20 seconds (or over a campfire, slower). Scoop out each portion with a Bowl.",
+      "text": "Put these in the Pot on the Stove, any order, 20 seconds (slower on a campfire). Scoop out portions with a Bowl.",
       "cells": [
         "minecraft:water_bucket",
         "morefood:item_kale",

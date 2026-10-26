@@ -1,6 +1,6 @@
 {
   "section": "recipes",
-  "template": "simplebooks:recipe",
+  "template": "morefood:recipe",
   "sort": 1056,
   "title": "Cooked French Toast",
   "icon": "morefood:item_french_toast_cooked",

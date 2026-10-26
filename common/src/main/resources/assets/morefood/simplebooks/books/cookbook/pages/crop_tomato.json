@@ -1,6 +1,6 @@
 {
   "section": "crops",
-  "template": "simplebooks:crop",
+  "template": "morefood:info",
   "sort": 301,
   "title": "Tomato",
   "icon": "morefood:item_fruit_tomato",
