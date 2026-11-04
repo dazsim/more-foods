@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_stock",
+    "morefood:item_suet",
+    "morefood:item_flour",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_gravy"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "simplebooks:text",
+  "slots": {
+    "left.steps": { "type": "step_rows", "box": [0, 100, 644, 772], "bind": "steps", "row_height": 92, "below": "left.body", "gap": 24, "optional": true },
+    "right.steps": { "type": "step_rows", "box": [0, 100, 644, 772], "bind": "steps", "row_height": 92, "optional": true }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "morefood:assembly",
+  "base": "morefood:item_bagette",
+  "fillings": [
+    "morefood:item_butter",
+    "morefood:item_garlic_chopped"
+  ],
+  "ordered": true,
+  "result": {
+    "id": "morefood:item_garlic_bread_uncooked"
+  }
+}

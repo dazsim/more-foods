@@ -1,0 +1,17 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_kale",
+    "morefood:item_garlic_chopped",
+    "morefood:item_stock",
+    "morefood:item_potato_peeled"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_soup_kale_potato"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#5a8a3a",
+  "vessel": "minecraft:bowl"
+}

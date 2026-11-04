@@ -1,0 +1,83 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "condition": {
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:inverted",
+            "term": {
+              "type": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:shears"
+              }
+            }
+          },
+          {
+            "type": "minecraft:random_chance",
+            "chance": 0.25
+          }
+        ]
+      },
+      "modifier": {
+        "type": "minecraft:explosion_decay"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_tomato"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_lettuce"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_onion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_cabbage"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_spinach"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_kale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_garlic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_leek"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_peas"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_haricot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_parsnip"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_turnip"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_swede"
+        }
+      ]
+    }
+  ]
+}

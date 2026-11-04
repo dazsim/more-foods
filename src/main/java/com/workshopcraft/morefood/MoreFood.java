@@ -47,7 +47,14 @@ public class MoreFood {
             mc("entities/chicken"), "inject/chicken",
             mc("entities/sheep"), "inject/sheep");
 
-    //? if >=26.1 {
+    //? if >=26.3 {
+    /*public static LootPool.@Nullable Builder extraLoot(ResourceKey<LootTable> table, net.minecraft.core.HolderGetter.Provider registries) {
+        final String inject = INJECT.get(table.identifier());
+        if (inject == null) return null;
+        return registries.get(ResourceKey.create(Registries.LOOT_TABLE, id(inject)))
+                .map(holder -> LootPool.lootPool().add(NestedLootTable.lootTableReference(holder))).orElse(null);
+    }
+    *///?} else if >=26.1 {
     public static LootPool.@Nullable Builder extraLoot(ResourceKey<LootTable> table) {
         final String inject = INJECT.get(table.identifier());
         if (inject == null) return null;

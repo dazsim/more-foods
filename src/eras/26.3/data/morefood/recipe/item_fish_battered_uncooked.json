@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_batter",
+    "minecraft:cod"
+  ],
+  "result": {
+    "id": "morefood:item_fish_battered_uncooked"
+  }
+}

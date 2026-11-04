@@ -41,7 +41,7 @@ public class MoreFoodItems {
             "item_mushroom_uncooked_frying_pan", "item_mushroom_fried_frying_pan", "item_french_toast_cooked_frying_pan",
             "item_yorkshire_pudding_pot", "item_bucket_cheese");
     private static final List<Item> HIDDEN = new ArrayList<>();
-    //Fabric reads this, NeoForge uses data/neoforge/data_maps/item/compostables.json, keep both in step
+    //Fabric reads this, NeoForge uses data/neoforge/data_maps/item/compostables.json, 26.3 sets it on the item, keep all in step
     public static final Map<String, Float> COMPOST = compost();
 
     public static List<Item> hidden() {
@@ -272,7 +272,12 @@ public class MoreFoodItems {
     }
 
     private static Item.Properties withId(String name, Item.Properties properties) {
-        //? if >=26.1 {
+        //? if >=26.3 {
+        /*final Float compost = COMPOST.get(name);
+        if (compost != null) properties.compostable(compost < 0.4f ? net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.COMPOSTABLE_LOW
+                : compost < 0.6f ? net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.COMPOSTABLE_LOW_MEDIUM : net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.COMPOSTABLE_MEDIUM);
+        return properties.setId(ResourceKey.create(Registries.ITEM, MoreFood.id(name)));
+        *///?} else if >=26.1 {
         return properties.setId(ResourceKey.create(Registries.ITEM, MoreFood.id(name)));
         //?} else {
         /*return properties;

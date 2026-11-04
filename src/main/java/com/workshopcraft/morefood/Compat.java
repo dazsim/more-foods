@@ -38,7 +38,7 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.world.item.crafting.Ingredient;
 *///?}
 
-/** Small bridges for calls that changed between Minecraft versions. Empty on 26.1. */
+/** Small bridges for calls that changed between Minecraft versions. Mostly empty on 26.1. */
 public final class Compat {
     //? if <26.1 {
     /*public static final Codec<Integer> RGB = Codec.STRING.comapFlatMap(s -> {
@@ -163,6 +163,24 @@ public final class Compat {
             return listOf().flatXmap(l -> l.size() < min || l.size() > max
                     ? DataResult.error(() -> "Expected " + min + " to " + max + " ingredients, got " + l.size()) : DataResult.success(l), DataResult::success);
         }
+    }
+    *///?}
+    //? if >=26.3 {
+    /*public static Fuel fuel(net.minecraft.world.level.Level level) {
+        return Fuel.INSTANCE;
+    }
+
+    public static final class Fuel {
+        static final Fuel INSTANCE = new Fuel();
+
+        public boolean isFuel(net.minecraft.world.item.ItemStack stack) {
+            return stack.has(net.minecraft.core.component.DataComponents.COOKING_FUEL);
+        }
+    }
+
+    public static void giveBack(net.minecraft.world.entity.player.Player player, net.minecraft.world.item.ItemStack stack) {
+        final net.minecraft.world.entity.player.Inventory inventory = player.getInventory();
+        inventory.placeItemBackInInventory(stack, net.minecraft.util.Prediction.SERVER_ONLY);
     }
     *///?}
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "morefood:item_egg_uncooked_frying_pan",
+  "result": {
+    "id": "morefood:item_fried_egg_frying_pan"
+  }
+}

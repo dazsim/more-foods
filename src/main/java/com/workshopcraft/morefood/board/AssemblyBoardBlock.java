@@ -39,7 +39,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class AssemblyBoardBlock extends BaseEntityBlock {
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     public static final MapCodec<AssemblyBoardBlock> CODEC = simpleCodec(AssemblyBoardBlock::new);
     //?}
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -60,7 +60,7 @@ public class AssemblyBoardBlock extends BaseEntityBlock {
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     @Override
     protected MapCodec<AssemblyBoardBlock> codec() {
         return CODEC;

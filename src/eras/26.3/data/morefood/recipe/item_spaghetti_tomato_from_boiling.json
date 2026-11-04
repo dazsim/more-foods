@@ -1,0 +1,16 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_spaghetti",
+    "morefood:item_sauce_tomato",
+    "morefood:item_garlic_chopped"
+  ],
+  "water": 0,
+  "result": {
+    "id": "morefood:item_spaghetti_tomato"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#d84a2a",
+  "vessel": "minecraft:bowl"
+}

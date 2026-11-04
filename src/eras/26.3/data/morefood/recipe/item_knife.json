@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "N",
+    "N",
+    "S"
+  ],
+  "key": {
+    "N": "#c:nuggets/iron",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "morefood:item_knife"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_mixing_bowl",
+    "morefood:item_cabbage_shredded",
+    "morefood:item_cabbage_shredded",
+    "minecraft:carrot",
+    "morefood:item_onion_chopped",
+    "minecraft:egg",
+    "minecraft:bowl"
+  ],
+  "result": {
+    "id": "morefood:item_coleslaw"
+  }
+}

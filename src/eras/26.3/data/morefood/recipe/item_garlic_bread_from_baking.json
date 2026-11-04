@@ -1,0 +1,10 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": "morefood:item_garlic_bread_uncooked",
+  "result": {
+    "id": "morefood:item_garlic_bread"
+  }
+}

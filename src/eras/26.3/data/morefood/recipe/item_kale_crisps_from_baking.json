@@ -1,0 +1,10 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "morefood:item_kale",
+  "result": {
+    "id": "morefood:item_kale_crisps"
+  }
+}

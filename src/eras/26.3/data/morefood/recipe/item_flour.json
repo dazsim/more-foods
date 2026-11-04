@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_pestle_mortar",
+    "minecraft:wheat"
+  ],
+  "result": {
+    "id": "morefood:item_flour"
+  }
+}

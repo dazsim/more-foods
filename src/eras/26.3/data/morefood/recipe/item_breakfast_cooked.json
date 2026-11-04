@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_mushroom_fried",
+    "morefood:item_fried_egg",
+    "morefood:item_bacon",
+    "morefood:item_sausage",
+    "morefood:item_toast",
+    "morefood:item_hashbrown"
+  ],
+  "result": {
+    "id": "morefood:item_breakfast_cooked"
+  }
+}

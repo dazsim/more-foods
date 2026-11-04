@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# rebuilds src/eras/1.21.1 and src/eras/1.20.1 from src/eras/26.1, run from repo root
+# rebuilds src/eras/26.3, 1.21.1 and 1.20.1 from src/eras/26.1, run from repo root
 import copy, itertools, json, os, re, shutil
 
 MOD = "morefood"
@@ -270,6 +270,68 @@ def era_build(era):
             w(f"{D}/{name}_book.json", {"values": [{"id": "simplebooks:guide", "required": False}]})
 
 
+def num(v):
+    return int(v) if isinstance(v, float) and v.is_integer() else v
+
+
+def one_or_all(conds):
+    conds = [cond_263(c) for c in conds]
+    return conds[0] if len(conds) == 1 else {"type": "minecraft:all_of", "terms": conds}
+
+
+def cond_263(c):
+    c = {("type" if k == "condition" else k): v for k, v in c.items()}
+    if c["type"] == "minecraft:block_state_property":
+        c = {"type": "minecraft:match_block", "blocks": c["block"], **({"state": c["properties"]} if "properties" in c else {})}
+    if "term" in c:
+        c["term"] = cond_263(c["term"])
+    return c
+
+
+def loot_263(node):
+    # 26.3 loot uses one condition and modifier per node, typed by "type"
+    if isinstance(node, list):
+        return [loot_263(v) for v in node]
+    if not isinstance(node, dict):
+        return node
+    out = {}
+    for k, v in node.items():
+        if k in ("fabric:load_conditions", "neoforge:conditions"):
+            out[k] = v
+        elif k == "conditions":
+            out["condition"] = one_or_all(v)
+        elif k == "functions":
+            mods = [loot_263({("type" if a == "function" else a): b for a, b in f.items()}) for f in v]
+            out["modifier"] = mods[0] if len(mods) == 1 else mods
+        elif k in ("rolls", "count"):
+            out[k] = num(v) if not isinstance(v, dict) else loot_263(v)
+        elif k == "bonus_rolls" and v == 0:
+            continue
+        else:
+            out[k] = loot_263(v)
+    return out
+
+
+def modern_build(era):
+    # same as 26.1 apart from the data formats 26.3 changed
+    out = f"src/eras/{era}"
+    shutil.rmtree(out, ignore_errors=True)
+    shutil.copytree(SRC, out)
+    for root, _, files in os.walk(f"{out}/data"):
+        for fn in files:
+            path = os.path.join(root, fn)
+            parts = os.path.relpath(path, f"{out}/data").split(os.sep)
+            if parts[1] == "loot_table":
+                w(path, loot_263(load(path)))
+            elif parts[1] == "advancement":
+                d = load(path)
+                for c in d.get("criteria", {}).values():
+                    if c["trigger"] == "minecraft:recipe_unlocked" and "recipe" in c.get("conditions", {}):
+                        c["conditions"]["recipes"] = c["conditions"].pop("recipe")
+                w(path, d)
+
+
 read_toppings()
 for era in ERAS:
     era_build(era)
+modern_build("26.3")

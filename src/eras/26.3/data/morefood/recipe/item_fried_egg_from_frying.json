@@ -1,0 +1,10 @@
+{
+  "type": "morefood:frying",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": "minecraft:egg",
+  "result": {
+    "id": "morefood:item_fried_egg"
+  }
+}

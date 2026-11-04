@@ -1,0 +1,17 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_parsnip",
+    "minecraft:carrot",
+    "morefood:item_peas",
+    "morefood:item_spinach",
+    "morefood:item_gravy"
+  ],
+  "water": 0,
+  "result": {
+    "id": "morefood:item_filling_vegetable"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#9a6234"
+}

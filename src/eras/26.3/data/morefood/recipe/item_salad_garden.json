@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:bowl",
+    "morefood:item_lettuce",
+    "morefood:item_spinach",
+    "morefood:item_tomato_chopped",
+    "morefood:item_onion_chopped"
+  ],
+  "result": {
+    "id": "morefood:item_salad_garden"
+  }
+}

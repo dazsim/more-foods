@@ -23,6 +23,7 @@ val jei = prop("deps.jei")
 
 // json whose format changed between versions lives in src/eras, tools/gen_eras.py writes the older eras
 val era = when {
+    sc.current.parsed >= "26.3" -> "26.3"
     sc.current.parsed >= "26.1" -> "26.1"
     sc.current.parsed >= "1.21" -> "1.21.1"
     else -> "1.20.1"

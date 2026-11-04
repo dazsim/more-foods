@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_fish_battered",
+    "morefood:item_chips"
+  ],
+  "result": {
+    "id": "morefood:item_fish_and_chips"
+  }
+}

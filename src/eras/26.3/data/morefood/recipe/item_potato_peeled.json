@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:potato",
+    "morefood:item_knife"
+  ],
+  "result": {
+    "id": "morefood:item_potato_peeled"
+  }
+}

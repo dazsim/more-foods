@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_mixing_bowl",
+    "morefood:item_flour",
+    "morefood:item_flour",
+    "morefood:item_butter",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "morefood:item_pastry",
+    "count": 3
+  }
+}

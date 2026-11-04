@@ -1,0 +1,16 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_swede",
+    "morefood:item_swede",
+    "morefood:item_butter"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_neeps"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#f0b048",
+  "vessel": "minecraft:bowl"
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_mixing_bowl",
+    "minecraft:milk_bucket",
+    "morefood:item_salt"
+  ],
+  "result": {
+    "id": "morefood:item_butter"
+  }
+}

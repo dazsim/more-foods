@@ -35,7 +35,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public class StoveBlock extends BaseEntityBlock {
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     public static final MapCodec<StoveBlock> CODEC = simpleCodec(StoveBlock::new);
     //?}
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
@@ -49,7 +49,7 @@ public class StoveBlock extends BaseEntityBlock {
                 .setValue(LEFT, HobTool.NONE).setValue(RIGHT, HobTool.NONE));
     }
 
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     @Override
     protected MapCodec<StoveBlock> codec() {
         return CODEC;

@@ -162,7 +162,14 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         }
         if ((ovenReady || hobWants) && litTime <= 0) {
             final ItemStack fuel = items.get(FUEL);
+            //? if >=26.3 {
+            /*final int burn = level instanceof net.minecraft.server.level.ServerLevel server
+                    ? net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt.getFromItem(fuel,
+                    net.minecraft.core.component.DataComponents.COOKING_FUEL, net.minecraft.world.item.component.CookingFuel::burnTime, getLootContext(server), 0)
+                    : 0;
+            *///?} else {
             final int burn = level.fuelValues().burnDuration(fuel);
+            //?}
             if (burn > 0) {
                 litTime = litDuration = burn;
                 final Item fuelItem = fuel.getItem();

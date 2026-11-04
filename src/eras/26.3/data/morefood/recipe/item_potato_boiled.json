@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_pot_water_potato_boiled"
+  ],
+  "result": {
+    "id": "morefood:item_potato_boiled"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": "morefood:item_parsnip",
+  "result": {
+    "id": "morefood:item_parsnip_roast"
+  }
+}

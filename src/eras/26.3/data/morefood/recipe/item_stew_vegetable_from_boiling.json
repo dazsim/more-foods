@@ -1,0 +1,18 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_turnip",
+    "minecraft:carrot",
+    "morefood:item_leek_sliced",
+    "morefood:item_potato_peeled",
+    "morefood:item_stock"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_stew_vegetable"
+  },
+  "portions": 3,
+  "cookingtime": 400,
+  "colour": "#b8763c",
+  "vessel": "minecraft:bowl"
+}

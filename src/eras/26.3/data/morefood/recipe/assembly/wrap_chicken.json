@@ -1,0 +1,12 @@
+{
+  "type": "morefood:assembly",
+  "base": "morefood:item_flatbread",
+  "fillings": [
+    "minecraft:cooked_chicken",
+    "morefood:item_lettuce",
+    "morefood:item_tomato_chopped"
+  ],
+  "result": {
+    "id": "morefood:item_wrap_chicken"
+  }
+}

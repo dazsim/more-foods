@@ -61,7 +61,6 @@ stonecutter parameters {
         replace("Recipe.CommonInfo", "CommonInfo")
         replace("player.sendOverlayMessage(", "com.workshopcraft.morefood.Compat.overlay(player, ")
         replace("stack.limitSize(", "com.workshopcraft.morefood.Compat.limit(stack, ")
-        replace("level.fuelValues()", "com.workshopcraft.morefood.Compat.fuel(level)")
         replace("fuelItem.getCraftingRemainder()", "com.workshopcraft.morefood.Compat.remainder(fuelItem)")
         replace("stack.getItem().getCraftingRemainder()", "com.workshopcraft.morefood.Compat.remainder(stack.getItem())")
         replace("level.recipeAccess()", "com.workshopcraft.morefood.legacy.RecipeAccess.of(level)")
@@ -74,6 +73,19 @@ stonecutter parameters {
 
     replacements.string(current.parsed >= "26.2") {
         replace("LevelRenderer.getLightCoords(", "net.minecraft.util.LightCoordsUtil.getLightCoords(")
+    }
+
+    replacements.string(current.parsed >= "26.3") {
+        replace("PushReaction.DESTROY", "PushReaction.POPPED")
+        replace("pose.mulPose(Axis.", "pose.rotate(Axis.")
+        replace("cookingMapCodec(FryingRecipe::new, 100)", "cookingMapCodec(FryingRecipe::new)")
+        replace("player.getInventory().placeItemBackInInventory(", "com.workshopcraft.morefood.Compat.giveBack(player, ")
+        replace("MoreFood.extraLoot(key)", "MoreFood.extraLoot(key, registries)")
+        replace("MoreFood.extraLoot(e.getKey())", "MoreFood.extraLoot(e.getKey(), e.getRegistries())")
+    }
+
+    replacements.string(current.parsed < "26.1" || current.parsed >= "26.3") {
+        replace("level.fuelValues()", "com.workshopcraft.morefood.Compat.fuel(level)")
     }
 
     replacements.string(current.parsed < "1.21") {

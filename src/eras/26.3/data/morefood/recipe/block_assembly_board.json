@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_knife",
+    "#minecraft:wooden_slabs",
+    "#minecraft:wooden_slabs"
+  ],
+  "result": {
+    "id": "morefood:block_assembly_board"
+  }
+}

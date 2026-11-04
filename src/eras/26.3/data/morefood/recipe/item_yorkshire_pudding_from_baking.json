@@ -1,0 +1,11 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "morefood:item_batter",
+  "result": {
+    "id": "morefood:item_yorkshire_pudding",
+    "count": 2
+  }
+}

@@ -23,6 +23,7 @@ val jei = prop("deps.jei")
 
 // json whose format changed between versions lives in src/eras, tools/gen_eras.py writes the older eras
 val era = when {
+    sc.current.parsed >= "26.3" -> "26.3"
     sc.current.parsed >= "26.1" -> "26.1"
     sc.current.parsed >= "1.21" -> "1.21.1"
     else -> "1.20.1"
@@ -99,6 +100,8 @@ tasks {
         filesMatching(listOf("META-INF/neoforge.mods.toml", "pack.mcmeta")) { expand(props) }
         exclude("fabric.mod.json", "META-INF/mods.toml", "data/forge/**")
         if (!modern) exclude("$modId.accesswidener", "META-INF/accesstransformer.cfg")
+        // 26.3 items carry compostable themselves
+        if (sc.current.parsed >= "26.3") exclude("data/neoforge/data_maps/item/compostables.json")
     }
 
     named("createMinecraftArtifacts") {

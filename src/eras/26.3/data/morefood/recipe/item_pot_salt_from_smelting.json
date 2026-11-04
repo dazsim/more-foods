@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "morefood:item_pot_water",
+  "result": {
+    "id": "morefood:item_pot_salt"
+  }
+}

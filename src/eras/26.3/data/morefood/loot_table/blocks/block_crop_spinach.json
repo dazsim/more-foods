@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:block",
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "morefood:item_spinach",
+              "condition": {
+                "type": "minecraft:match_block",
+                "blocks": "morefood:block_crop_spinach",
+                "state": {
+                  "age": "7"
+                }
+              },
+              "modifier": {
+                "type": "minecraft:set_count",
+                "count": 2
+              }
+            },
+            {
+              "type": "minecraft:item",
+              "name": "morefood:item_seed_spinach"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "morefood:block_crop_spinach",
+        "state": {
+          "age": "7"
+        }
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_spinach",
+          "modifier": {
+            "type": "minecraft:apply_bonus",
+            "enchantment": "minecraft:fortune",
+            "formula": "minecraft:binomial_with_bonus_count",
+            "parameters": {
+              "extra": 4,
+              "probability": 0.5333333
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "random_sequence": "morefood:blocks/block_crop_spinach"
+}

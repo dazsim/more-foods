@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
 public class CookingPotBlock extends BaseEntityBlock {
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     public static final MapCodec<CookingPotBlock> CODEC = simpleCodec(CookingPotBlock::new);
     //?}
     private static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 4, 13);
@@ -33,7 +33,7 @@ public class CookingPotBlock extends BaseEntityBlock {
         super(properties);
     }
 
-    //? if >=1.20.5 {
+    //? if >=1.20.5 && <26.3 {
     @Override
     protected MapCodec<CookingPotBlock> codec() {
         return CODEC;

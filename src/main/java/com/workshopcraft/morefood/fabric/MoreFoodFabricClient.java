@@ -21,7 +21,6 @@ import net.fabricmc.fabric.api.client.recipe.v1.sync.ClientRecipeSynchronizedEve
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
-import net.minecraft.world.item.crafting.RecipeMap;
 //?} else {
 /*import com.workshopcraft.morefood.client.LegacyItemProps;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -49,7 +48,7 @@ public class MoreFoodFabricClient implements ClientModInitializer {
         ConditionalItemModelProperties.ID_MAPPER.put(HasTopping.ID, HasTopping.MAP_CODEC);
         // before recipe viewers read them
         ClientRecipeSynchronizedEvent.EVENT.addPhaseOrdering(EARLY, Event.DEFAULT_PHASE);
-        ClientRecipeSynchronizedEvent.EVENT.register(EARLY, (client, recipes) -> ClientRecipes.set(RecipeMap.create(recipes.recipes())));
+        ClientRecipeSynchronizedEvent.EVENT.register(EARLY, (client, recipes) -> ClientRecipes.set(recipes.recipes()));
         //?} else {
         /*ResourceManagerHelper.get(PackType.CLIENT_RESOURCES).registerReloadListener(new Layers());
         LegacyItemProps.register(FabricModelPredicateProviderRegistry::register);

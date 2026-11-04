@@ -1,0 +1,12 @@
+{
+  "type": "morefood:assembly",
+  "base": "morefood:item_flatbread",
+  "fillings": [
+    "morefood:item_spinach",
+    "morefood:item_tomato_chopped",
+    "morefood:item_cheese_slice"
+  ],
+  "result": {
+    "id": "morefood:item_wrap_spinach_cheese"
+  }
+}
