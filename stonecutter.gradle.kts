@@ -72,6 +72,10 @@ stonecutter parameters {
         replace("Item.STREAM_CODEC.apply(", "ByteBufCodecs.holderRegistry(Registries.ITEM).apply(")
     }
 
+    replacements.string(current.parsed >= "26.2") {
+        replace("LevelRenderer.getLightCoords(", "net.minecraft.util.LightCoordsUtil.getLightCoords(")
+    }
+
     replacements.string(current.parsed < "1.21") {
         replace(".getU(", ".getU(16 * ")
         replace(".getV(", ".getV(16 * ")
