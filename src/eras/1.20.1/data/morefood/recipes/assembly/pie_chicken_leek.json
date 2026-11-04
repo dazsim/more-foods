@@ -1,0 +1,17 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_pastry"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_filling_chicken_leek"
+    }
+  ],
+  "lid": {
+    "item": "morefood:item_pastry"
+  },
+  "result": {
+    "item": "morefood:item_pie_chicken_leek_uncooked"
+  }
+}

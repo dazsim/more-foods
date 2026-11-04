@@ -1,0 +1,12 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "morefood:item_turnip"
+  },
+  "result": {
+    "item": "morefood:item_turnip_roast"
+  }
+}

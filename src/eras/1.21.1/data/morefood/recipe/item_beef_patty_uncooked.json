@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_minced_meat_uncooked"
+    },
+    {
+      "item": "morefood:item_knife"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_beef_patty_uncooked",
+    "count": 4
+  }
+}

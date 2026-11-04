@@ -1,0 +1,25 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_butter"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_mushy_peas"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#6aa83a",
+  "vessel": "minecraft:bowl"
+}

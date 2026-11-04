@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:cooked_chicken"
+    },
+    {
+      "item": "morefood:item_potato_roast"
+    },
+    {
+      "item": "morefood:item_parsnip_roast"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_gravy"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_roast_chicken_dinner"
+  }
+}

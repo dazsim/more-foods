@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood.client;
 
+//? if >=26.1 {
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.workshopcraft.morefood.MoreFood;
@@ -38,3 +39,4 @@ public record HasTopping(Holder<Item> topping) implements ConditionalItemModelPr
         return MAP_CODEC;
     }
 }
+//?}

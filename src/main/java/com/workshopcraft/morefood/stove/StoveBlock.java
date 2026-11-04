@@ -35,7 +35,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public class StoveBlock extends BaseEntityBlock {
+    //? if >=1.20.5 {
     public static final MapCodec<StoveBlock> CODEC = simpleCodec(StoveBlock::new);
+    //?}
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final EnumProperty<HobTool> LEFT = EnumProperty.create("left", HobTool.class);
@@ -47,10 +49,12 @@ public class StoveBlock extends BaseEntityBlock {
                 .setValue(LEFT, HobTool.NONE).setValue(RIGHT, HobTool.NONE));
     }
 
+    //? if >=1.20.5 {
     @Override
     protected MapCodec<StoveBlock> codec() {
         return CODEC;
     }
+    //?}
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -71,8 +75,27 @@ public class StoveBlock extends BaseEntityBlock {
         return along > 0 ? StoveBlockEntity.LEFT : StoveBlockEntity.RIGHT;
     }
 
+    //? if >=26.1 {
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return onItem(stack, state, level, pos, player, hand, hit);
+    }
+    //?} else if >=1.20.5 {
+    /*@Override
+    protected net.minecraft.world.ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
+                                                                  InteractionHand hand, BlockHitResult hit) {
+        return onItem(stack, state, level, pos, player, hand, hit) == InteractionResult.PASS
+                ? net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION : net.minecraft.world.ItemInteractionResult.SUCCESS;
+    }
+    *///?} else {
+    /*@Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        final InteractionResult result = onItem(player.getItemInHand(hand), state, level, pos, player, hand, hit);
+        return result == InteractionResult.PASS ? useWithoutItem(state, level, pos, player, hit) : result;
+    }
+    *///?}
+
+    private InteractionResult onItem(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (stack.getItem() instanceof ItemBakingPeel && ItemBakingPeel.isLoaded(stack)) {
             if (level instanceof ServerLevel server && level.getBlockEntity(pos) instanceof StoveBlockEntity stove) ItemBakingPeel.useOnStove(server, stove, player, stack);
             return InteractionResult.SUCCESS;
@@ -86,6 +109,7 @@ public class StoveBlock extends BaseEntityBlock {
                 : InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
+    //? if >=1.20.5
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide() && level.getBlockEntity(pos) instanceof StoveBlockEntity stove) {
@@ -99,28 +123,42 @@ public class StoveBlock extends BaseEntityBlock {
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
+    //? if >=26.1 {
     @Override
     protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel level, BlockPos pos, boolean movedByPiston) {
         Containers.updateNeighboursAfterDestroy(state, level, pos);
     }
+    //?}
+    //? if <26.1 {
+    /*@Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        com.workshopcraft.morefood.Compat.removed(state, level, pos, newState);
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
 
     @Override
-    protected boolean hasAnalogOutputSignal(BlockState state) {
+    public net.minecraft.world.level.block.RenderShape getRenderShape(BlockState state) {
+        return net.minecraft.world.level.block.RenderShape.MODEL;
+    }
+    *///?}
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
         return level.getBlockEntity(pos) instanceof StoveBlockEntity stove ? stove.outputSignal() : 0;
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    public BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

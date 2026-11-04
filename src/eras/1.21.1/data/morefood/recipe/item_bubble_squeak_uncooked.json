@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_potato_mashed"
+    },
+    {
+      "item": "morefood:item_cabbage_shredded"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_bubble_squeak_uncooked",
+    "count": 2
+  }
+}

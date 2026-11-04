@@ -1,0 +1,28 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_leek_sliced"
+    },
+    {
+      "item": "morefood:item_leek_sliced"
+    },
+    {
+      "item": "morefood:item_potato_peeled"
+    },
+    {
+      "item": "morefood:item_stock"
+    },
+    {
+      "item": "morefood:item_butter"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_soup_leek_potato"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#eee8cc",
+  "vessel": "minecraft:bowl"
+}

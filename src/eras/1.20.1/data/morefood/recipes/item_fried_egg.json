@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_fried_egg_frying_pan"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_fried_egg"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "water": 0,
+  "result": {
+    "item": "morefood:item_cheese"
+  },
+  "portions": 1,
+  "cookingtime": 400,
+  "colour": "#f4eedc"
+}

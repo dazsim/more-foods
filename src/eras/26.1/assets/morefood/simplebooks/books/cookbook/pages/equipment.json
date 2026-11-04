@@ -1,0 +1,234 @@
+{
+  "section": "tools",
+  "template": "morefood:info",
+  "sort": 200,
+  "title": "Equipment",
+  "icon": "morefood:block_stove",
+  "subtitle": "The tools and blocks the recipes use.",
+  "text": "What each one does and how to make it. Tools crafted together with food come back each time.",
+  "steps": [
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "III",
+        "BFB",
+        "BBB"
+      ],
+      "key": {
+        "I": "minecraft:iron_ingot",
+        "B": "minecraft:brick",
+        "F": "minecraft:furnace"
+      },
+      "output": "morefood:block_stove",
+      "title": "Stove",
+      "note": "Fuel goes in the bottom slot. Set a Pot or Frying Pan on a ring; sneak with an empty hand to take an empty one back. Oven food goes in the oven slot or in on a Baking Peel.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A A",
+        "A A",
+        " A "
+      ],
+      "key": {
+        "A": "minecraft:iron_ingot"
+      },
+      "output": "morefood:item_pot",
+      "title": "Pot",
+      "note": "Set it on a Stove ring, or on a lit campfire, slower. Add water if the recipe needs it, then each ingredient. Scoop portions out with the right vessel.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "AAB"
+      ],
+      "key": {
+        "A": "minecraft:iron_ingot",
+        "B": "minecraft:stick"
+      },
+      "output": "morefood:item_frying_pan",
+      "title": "Frying Pan",
+      "note": "Set it on a Stove ring and use the food on it. Cooked food goes to the stove output.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A",
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": {
+          "item": "#c:nuggets/iron",
+          "name": "Iron Nugget"
+        },
+        "B": "minecraft:stick"
+      },
+      "output": "morefood:item_knife",
+      "title": "Knife",
+      "note": "Craft it with food to chop or slice it. It comes back each time.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "AB ",
+        "CDC",
+        " C "
+      ],
+      "key": {
+        "A": "minecraft:lever",
+        "B": "minecraft:piston",
+        "C": "minecraft:iron_ingot",
+        "D": "minecraft:iron_bars"
+      },
+      "output": "morefood:item_mincer",
+      "title": "Mincer",
+      "note": "Craft it with meat to mince it, or with tomatoes or apples for sauce. It comes back each time.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "C  ",
+        "ABA",
+        " A "
+      ],
+      "key": {
+        "A": {
+          "items": [
+            "minecraft:stone",
+            "minecraft:granite",
+            "minecraft:polished_granite",
+            "minecraft:diorite",
+            "minecraft:polished_diorite",
+            "minecraft:andesite",
+            "minecraft:polished_andesite"
+          ],
+          "name": "Stone or other"
+        },
+        "B": "minecraft:iron_ingot",
+        "C": "minecraft:stick"
+      },
+      "output": "morefood:item_pestle_mortar",
+      "title": "Pestle & Mortar",
+      "note": "Craft it with Wheat to make Flour. It comes back each time.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "ABA",
+        " A "
+      ],
+      "key": {
+        "A": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        },
+        "B": "minecraft:stick"
+      },
+      "output": "morefood:item_mixing_bowl",
+      "title": "Mixing Bowl",
+      "note": "Craft it with the ingredients for dough, batter and fillings. It comes back each time.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "ABA",
+        "BAB"
+      ],
+      "key": {
+        "A": {
+          "items": [
+            "minecraft:stone",
+            "minecraft:granite",
+            "minecraft:polished_granite",
+            "minecraft:diorite",
+            "minecraft:polished_diorite",
+            "minecraft:andesite",
+            "minecraft:polished_andesite"
+          ],
+          "name": "Stone or other"
+        },
+        "B": {
+          "items": [
+            "minecraft:smooth_stone_slab",
+            "minecraft:sandstone_slab",
+            "minecraft:cobblestone_slab",
+            "minecraft:brick_slab",
+            "minecraft:stone_brick_slab",
+            "minecraft:nether_brick_slab",
+            "minecraft:quartz_slab"
+          ],
+          "name": "Smooth Stone Slab or other"
+        }
+      },
+      "output": "morefood:item_juicer",
+      "title": "Juicer",
+      "note": "Craft it with fruit and a Glass Bottle for juice. It comes back each time.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_knife",
+        {
+          "item": "#minecraft:wooden_slabs",
+          "name": "Wooden Slabs"
+        },
+        {
+          "item": "#minecraft:wooden_slabs",
+          "name": "Wooden Slabs"
+        }
+      ],
+      "output": "morefood:block_assembly_board",
+      "title": "Assembly Board",
+      "note": "Place it next to a Stove and use each layer on it in order. Take the food with an empty hand; sneak to take the last layer back.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "P",
+        "P",
+        "S"
+      ],
+      "key": {
+        "P": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        },
+        "S": "minecraft:stick"
+      },
+      "output": "morefood:item_baking_peel",
+      "title": "Baking Peel",
+      "note": "Use it on a finished pizza or pie on the board, then on a Stove to slide it into the oven.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    }
+  ]
+}

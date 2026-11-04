@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:egg"
+    },
+    "B": {
+      "item": "morefood:item_bread_slice"
+    }
+  },
+  "result": {
+    "id": "morefood:item_french_toast_uncooked"
+  }
+}

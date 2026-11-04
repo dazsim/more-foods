@@ -1,0 +1,25 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_parsnip"
+    },
+    {
+      "item": "morefood:item_parsnip"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_stock"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_soup_parsnip"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#f0dea0",
+  "vessel": "minecraft:bowl"
+}

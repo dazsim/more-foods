@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_stock"
+    },
+    {
+      "item": "morefood:item_potato_boiled"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:cooked_beef"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "morefood:item_dumpling_uncooked"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_stew_beef_dumplings"
+  }
+}

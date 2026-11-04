@@ -80,7 +80,11 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
     private static final int[] SIDES = {FUEL, VESSEL};
     private static final int[] BOTTOM = {3, 4, 5, FUEL};
     private static final Codec<HobTool> TOOL_CODEC = StringRepresentable.fromEnum(HobTool::values);
+    //? if >=26.1 {
     private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
+    //?} else {
+    /*private static final Codec<Map<net.minecraft.resources.Identifier, Integer>> USED_CODEC = Codec.unboundedMap(net.minecraft.resources.Identifier.CODEC, Codec.INT);
+    *///?}
 
     private NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
     private int litTime;
@@ -88,7 +92,11 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
     private int ovenTime;
     private int ovenTotal;
     private final Ring[] rings = {new Ring(), new Ring()};
+    //? if >=26.1 {
     private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> used = new Reference2IntOpenHashMap<>();
+    //?} else {
+    /*private final it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap<net.minecraft.resources.Identifier> used = new it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap<>();
+    *///?}
     private final RecipeManager.CachedCheck<SingleRecipeInput, BakingRecipe> bakingCheck = RecipeManager.createCheck(MoreFoodKitchen.BAKING);
 
     private final ContainerData data = new ContainerData() {
@@ -138,7 +146,11 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
         ItemStack result = ItemStack.EMPTY;
         if (!input.isEmpty()) {
             final SingleRecipeInput in = new SingleRecipeInput(input);
+            //? if >=1.21 {
             recipe = bakingCheck.getRecipeFor(in, level).orElse(null);
+            //?} else {
+            /*recipe = bakingCheck.getRecipeFor(in, level).map(RecipeHolder::of).orElse(null);
+            *///?}
             if (recipe != null) result = recipe.value().assemble(in);
         }
         final boolean ovenReady = recipe != null && !result.isEmpty() && fitsOutputs(result, remainderOf(input));
@@ -428,13 +440,21 @@ public class StoveBlockEntity extends BaseContainerBlockEntity implements Worldl
 
     public void awardExperience(ServerPlayer player) {
         final List<RecipeHolder<?>> recipes = popExperience(player.level(), player.position());
+        //? if >=1.21 {
         player.awardRecipes(recipes);
+        //?} else {
+        /*player.awardRecipes(recipes.stream().<Recipe<?>>map(RecipeHolder::value).toList());
+        *///?}
         used.clear();
     }
 
     private List<RecipeHolder<?>> popExperience(ServerLevel level, Vec3 at) {
         final List<RecipeHolder<?>> recipes = new ArrayList<>();
+        //? if >=26.1 {
         for (var entry : used.reference2IntEntrySet()) {
+        //?} else {
+        /*for (var entry : used.object2IntEntrySet()) {
+        *///?}
             level.recipeAccess().byKey(entry.getKey()).ifPresent(holder -> {
                 recipes.add(holder);
                 if (holder.value() instanceof BakingRecipe baking) {

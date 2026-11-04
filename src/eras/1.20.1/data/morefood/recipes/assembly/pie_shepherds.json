@@ -1,0 +1,13 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_filling_shepherds"
+  },
+  "lid": {
+    "item": "morefood:item_potato_mashed"
+  },
+  "result": {
+    "item": "morefood:item_pie_shepherds_uncooked"
+  },
+  "fillings": []
+}

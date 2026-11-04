@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_mixing_bowl"
+    },
+    {
+      "item": "morefood:item_flour"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_spaghetti_uncooked",
+    "count": 2
+  }
+}

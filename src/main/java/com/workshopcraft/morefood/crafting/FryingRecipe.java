@@ -3,8 +3,6 @@ package com.workshopcraft.morefood.crafting;
 import com.mojang.serialization.MapCodec;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodKitchen;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -14,10 +12,16 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+//? if >=26.1 {
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+//?}
 
 public class FryingRecipe extends AbstractCookingRecipe {
     public static final MapCodec<FryingRecipe> MAP_CODEC = cookingMapCodec(FryingRecipe::new, 100);
+    //? if >=26.1 {
     public static final StreamCodec<RegistryFriendlyByteBuf, FryingRecipe> STREAM_CODEC = cookingStreamCodec(FryingRecipe::new);
+    //?}
 
     public FryingRecipe(Recipe.CommonInfo commonInfo, CookingBookInfo bookInfo, Ingredient ingredient, ItemStackTemplate result,
                         float experience, int cookingTime) {

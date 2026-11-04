@@ -5,14 +5,10 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.minecraft.core.Holder;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -24,6 +20,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+//? if >=26.1 {
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.crafting.PlacementInfo;
+//?}
 
 /** Built layer by layer on the assembly board: a base, the fillings, optional extras, then an optional lid. */
 public class AssemblyRecipe implements Recipe<BoardInput> {
@@ -34,10 +36,12 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
                 Ingredient.CODEC.fieldOf("ingredient").forGetter(Extras::ingredient),
                 Codec.intRange(1, MAX_LAYERS).fieldOf("max").forGetter(Extras::max)
         ).apply(i, Extras::new));
+        //? if >=26.1 {
         public static final StreamCodec<RegistryFriendlyByteBuf, Extras> STREAM_CODEC = StreamCodec.composite(
                 Ingredient.CONTENTS_STREAM_CODEC, Extras::ingredient,
                 ByteBufCodecs.VAR_INT, Extras::max,
                 Extras::new);
+        //?}
     }
 
     public static final MapCodec<AssemblyRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -50,6 +54,7 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
             Codec.BOOL.optionalFieldOf("keep_extras", false).forGetter(o -> o.keepExtras)
     ).apply(i, AssemblyRecipe::new));
 
+    //? if >=26.1 {
     public static final StreamCodec<RegistryFriendlyByteBuf, AssemblyRecipe> STREAM_CODEC = StreamCodec.composite(
             Ingredient.CONTENTS_STREAM_CODEC, o -> o.base,
             Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), o -> o.fillings,
@@ -59,6 +64,7 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
             ItemStackTemplate.STREAM_CODEC, o -> o.result,
             ByteBufCodecs.BOOL, o -> o.keepExtras,
             AssemblyRecipe::new);
+    //?}
 
     /** Where a stack of layers has got to: which fillings are in, how many extras, whether the lid is on. */
     private record State(int fillings, int extras, boolean lid) {}
@@ -116,7 +122,7 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
 
     private Set<State> states(List<ItemStack> layers) {
         Set<State> states = new LinkedHashSet<>();
-        if (layers.isEmpty() || !base.test(layers.getFirst())) return states;
+        if (layers.isEmpty() || !base.test(layers.get(0))) return states;
         states.add(new State(0, 0, false));
         for (int i = 1; i < layers.size() && !states.isEmpty(); i++) {
             final Set<State> next = new LinkedHashSet<>();
@@ -249,10 +255,12 @@ public class AssemblyRecipe implements Recipe<BoardInput> {
         return MoreFoodKitchen.ASSEMBLY;
     }
 
+    //? if >=26.1 {
     @Override
     public PlacementInfo placementInfo() {
         return PlacementInfo.NOT_PLACEABLE;
     }
+    //?}
 
     @Override
     public RecipeBookCategory recipeBookCategory() {

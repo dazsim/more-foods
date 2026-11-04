@@ -53,7 +53,14 @@ public class StoveMenu extends AbstractContainerMenu {
         for (int i = 0; i < StoveBlockEntity.OUT_COUNT; i++) {
             addSlot(new OutputSlot(inventory.player, container, StoveBlockEntity.OUT_FIRST + i, 112 + i * 18, 35));
         }
+        //? if >=26.1 {
         addStandardInventorySlots(inventory, 8, 84);
+        //?} else {
+        /*for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) addSlot(new Slot(inventory, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
+        }
+        for (int col = 0; col < 9; col++) addSlot(new Slot(inventory, col, 8 + col * 18, 142));
+        *///?}
         addDataSlots(data);
     }
 

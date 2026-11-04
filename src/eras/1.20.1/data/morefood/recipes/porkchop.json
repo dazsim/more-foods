@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": {
+      "item": "morefood:item_knife"
+    },
+    "B": {
+      "item": "morefood:item_joint_pork"
+    }
+  },
+  "result": {
+    "item": "minecraft:porkchop",
+    "count": 8
+  }
+}

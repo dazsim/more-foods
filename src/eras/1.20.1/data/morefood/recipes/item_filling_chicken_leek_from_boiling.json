@@ -1,0 +1,27 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:cooked_chicken"
+    },
+    {
+      "item": "morefood:item_leek_sliced"
+    },
+    {
+      "item": "morefood:item_leek_sliced"
+    },
+    {
+      "item": "morefood:item_stock"
+    },
+    {
+      "item": "morefood:item_flour"
+    }
+  ],
+  "water": 0,
+  "result": {
+    "item": "morefood:item_filling_chicken_leek"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#f0e2c0"
+}

@@ -194,7 +194,11 @@ public class StoveRenderer implements BlockEntityRenderer<StoveBlockEntity, Stov
 
     private static void vertex(PoseStack.Pose p, VertexConsumer buffer, float x, float y, float z, float u, float v, int colour, int light,
                                float nx, float ny, float nz) {
+        //? if >=1.21 {
         buffer.addVertex(p, x, y, z).setColor(colour).setUv(u, v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(p, nx, ny, nz);
+        //?} else {
+        /*buffer.vertex(p.pose(), x, y, z).color(colour).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(p.normal(), nx, ny, nz).endVertex();
+        *///?}
     }
 
     private static void quad(PoseStack.Pose p, VertexConsumer buffer, float x0, float z0, float x1, float z1, float y,

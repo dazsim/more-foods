@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood.client;
 
+//? if >=26.1 {
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeMap;
@@ -24,3 +25,4 @@ public final class ClientRecipes {
         return List.copyOf((Collection) recipes.byType((RecipeType) type));
     }
 }
+//?}

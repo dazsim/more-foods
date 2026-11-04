@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_mixing_bowl"
+    },
+    {
+      "item": "morefood:item_flour"
+    },
+    {
+      "item": "morefood:item_salt"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_dough"
+  }
+}

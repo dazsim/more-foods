@@ -2,7 +2,14 @@ package com.workshopcraft.morefood.client;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+//? if >=26.1 {
 import net.minecraft.resources.FileToIdConverter;
+//?} else {
+/*import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.mojang.serialization.JsonOps;
+import java.util.HashMap;
+*///?}
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -15,7 +22,11 @@ import java.util.Map;
 import java.util.Optional;
 
 /** How each item looks as a layer on the assembly board, read from assets/NAMESPACE/board_layers/ITEM.json. */
+//? if >=26.1 {
 public class BoardLayers extends SimpleJsonResourceReloadListener<BoardLayers.Spec> {
+//?} else {
+/*public class BoardLayers extends SimpleJsonResourceReloadListener {
+*///?}
     public enum Shape implements StringRepresentable {
         DISC, SQUARE, LEAF, BITS, BUN, SHEET, MASH, LOAF, PASTRY, FILL, WRAP;
 
@@ -41,19 +52,34 @@ public class BoardLayers extends SimpleJsonResourceReloadListener<BoardLayers.Sp
         ).apply(i, Spec::new));
     }
 
-    public static final Identifier ID = Identifier.fromNamespaceAndPath("morefood", "board_layers");
+    public static final Identifier ID = com.workshopcraft.morefood.MoreFood.id("board_layers");
     private static Map<Identifier, Spec> specs = Map.of();
 
+    //? if >=26.1 {
     public BoardLayers() {
         super(Spec.CODEC, FileToIdConverter.json("board_layers"));
     }
+    //?} else {
+    /*public BoardLayers() {
+        super(new Gson(), "board_layers");
+    }
+    *///?}
 
     public static @Nullable Spec get(Identifier item) {
         return specs.get(item);
     }
 
+    //? if >=26.1 {
     @Override
     protected void apply(Map<Identifier, Spec> loaded, ResourceManager manager, ProfilerFiller profiler) {
         specs = Map.copyOf(loaded);
     }
+    //?} else {
+    /*@Override
+    protected void apply(Map<Identifier, JsonElement> loaded, ResourceManager manager, ProfilerFiller profiler) {
+        final Map<Identifier, Spec> map = new HashMap<>();
+        loaded.forEach((id, json) -> Spec.CODEC.parse(JsonOps.INSTANCE, json).result().ifPresent(spec -> map.put(id, spec)));
+        specs = Map.copyOf(map);
+    }
+    *///?}
 }

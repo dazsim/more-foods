@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_yorkshire_pudding_pot"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_yorkshire_pudding"
+  }
+}

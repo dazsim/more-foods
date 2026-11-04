@@ -17,7 +17,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
+//? if >=26.1 {
 import net.minecraft.world.item.component.TooltipDisplay;
+//?} else {
+/*import net.minecraft.world.InteractionResultHolder;
+import java.util.List;
+*///?}
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
@@ -30,11 +35,11 @@ public class ItemBakingPeel extends Item {
     }
 
     public static boolean isLoaded(ItemStack peel) {
-        return peel.has(MoreFoodKitchen.PEEL_CONTENTS);
+        return MoreFoodKitchen.peelContents(peel) != null;
     }
 
     public static ItemStack contents(ItemStack peel) {
-        final ItemStackTemplate held = peel.get(MoreFoodKitchen.PEEL_CONTENTS);
+        final ItemStackTemplate held = MoreFoodKitchen.peelContents(peel);
         return held == null ? ItemStack.EMPTY : held.create();
     }
 
@@ -64,7 +69,7 @@ public class ItemBakingPeel extends Item {
             stove.ovenInsert(result);
             level.playSound(null, stove.getBlockPos(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.7F, 1.2F);
         } else {
-            peel.set(MoreFoodKitchen.PEEL_CONTENTS, ItemStackTemplate.fromNonEmptyStack(result));
+            MoreFoodKitchen.setPeelContents(peel, ItemStackTemplate.fromNonEmptyStack(result));
             level.playSound(null, board.getBlockPos(), SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.6F, 1.2F);
         }
         return InteractionResult.SUCCESS;
@@ -78,26 +83,55 @@ public class ItemBakingPeel extends Item {
             player.sendOverlayMessage(Component.translatable("message.morefood.peel.oven_full"));
         } else {
             stove.ovenInsert(held);
-            peel.remove(MoreFoodKitchen.PEEL_CONTENTS);
+            MoreFoodKitchen.setPeelContents(peel, null);
             level.playSound(null, stove.getBlockPos(), SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 0.7F, 1.2F);
         }
     }
 
-    @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        final ItemStack peel = player.getItemInHand(hand);
+    private static InteractionResult unload(Level level, Player player, ItemStack peel) {
         if (!player.isSecondaryUseActive() || !isLoaded(peel)) return InteractionResult.PASS;
         if (!level.isClientSide()) {
             player.getInventory().placeItemBackInInventory(contents(peel));
-            peel.remove(MoreFoodKitchen.PEEL_CONTENTS);
+            MoreFoodKitchen.setPeelContents(peel, null);
         }
         return InteractionResult.SUCCESS;
+    }
+
+    private static void tooltip(ItemStack stack, Consumer<Component> builder) {
+        final ItemStack held = contents(stack);
+        if (!held.isEmpty()) builder.accept(Component.translatable("tooltip.morefood.peel", held.getHoverName()).withStyle(ChatFormatting.GRAY));
+    }
+
+    //? if >=26.1 {
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        return unload(level, player, player.getItemInHand(hand));
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
-        final ItemStack held = contents(stack);
-        if (!held.isEmpty()) builder.accept(Component.translatable("tooltip.morefood.peel", held.getHoverName()).withStyle(ChatFormatting.GRAY));
+        tooltip(stack, builder);
     }
+    //?} else {
+    /*@Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        final ItemStack peel = player.getItemInHand(hand);
+        final InteractionResult result = unload(level, player, peel);
+        return result == InteractionResult.PASS ? InteractionResultHolder.pass(peel) : InteractionResultHolder.sidedSuccess(peel, level.isClientSide());
+    }
+    *///?}
+
+    //? if >=26.1 {
+    //?} else if >=1.20.5 {
+    /*@Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag flag) {
+        tooltip(stack, lines::add);
+    }
+    *///?} else {
+    /*@Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> lines, TooltipFlag flag) {
+        tooltip(stack, lines::add);
+    }
+    *///?}
 }

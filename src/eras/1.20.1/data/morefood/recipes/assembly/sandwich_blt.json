@@ -1,0 +1,23 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_bread_slice"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_bacon"
+    },
+    {
+      "item": "morefood:item_lettuce"
+    },
+    {
+      "item": "morefood:item_tomato_chopped"
+    }
+  ],
+  "lid": {
+    "item": "morefood:item_bread_slice"
+  },
+  "result": {
+    "item": "morefood:item_sandwich_blt"
+  }
+}

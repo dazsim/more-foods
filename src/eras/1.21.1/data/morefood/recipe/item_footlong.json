@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_bagette"
+    },
+    {
+      "item": "morefood:item_cheese"
+    },
+    {
+      "item": "morefood:item_fruit_tomato"
+    },
+    {
+      "item": "morefood:item_lettuce"
+    },
+    {
+      "item": "minecraft:cooked_chicken"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_footlong"
+  }
+}

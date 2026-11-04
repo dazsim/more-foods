@@ -1,0 +1,28 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_stock"
+    },
+    {
+      "item": "morefood:item_bacon"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_soup_pea_ham"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#8ab43c",
+  "vessel": "minecraft:bowl"
+}

@@ -1,0 +1,16 @@
+{
+  "values": [
+    "morefood:item_tomato_chopped",
+    "morefood:item_onion_chopped",
+    "morefood:item_garlic_chopped",
+    "minecraft:red_mushroom",
+    "minecraft:brown_mushroom",
+    "morefood:item_bacon",
+    "morefood:item_minced_meat_cooked",
+    "morefood:item_sausage",
+    "morefood:item_spinach",
+    "morefood:item_kale",
+    "morefood:item_peas",
+    "morefood:item_leek_sliced"
+  ]
+}

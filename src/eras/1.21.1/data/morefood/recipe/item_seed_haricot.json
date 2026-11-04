@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_haricot_beans"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_seed_haricot"
+  }
+}

@@ -7,7 +7,6 @@ import com.workshopcraft.morefood.crafting.BoardInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -21,7 +20,11 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
+//? if >=26.1 {
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.component.UseRemainder;
+//?}
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -120,8 +123,13 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
     private static ItemStack leftover(ItemStack layer) {
         final ItemStack left = MoreFoodItems.remainder(layer);
         if (!left.isEmpty()) return left;
+        //? if >=26.1 {
         final UseRemainder use = layer.get(DataComponents.USE_REMAINDER);
         return use != null ? use.convertInto().create() : ItemStack.EMPTY;
+        //?} else {
+        /*final ItemStackTemplate use = com.workshopcraft.morefood.Compat.useRemainder(layer);
+        return use != null ? use.create() : ItemStack.EMPTY;
+        *///?}
     }
 
     public List<ItemStack> copyLayers() {
@@ -169,7 +177,7 @@ public class AssemblyBoardBlockEntity extends BlockEntity {
         if (stack.isEmpty()) {
             if (player.isSecondaryUseActive()) {
                 if (layers.isEmpty()) return false;
-                player.getInventory().placeItemBackInInventory(layers.removeLast());
+                player.getInventory().placeItemBackInInventory(layers.remove(layers.size() - 1));
                 changed();
                 level.playSound(null, pos, SoundEvents.WOOD_HIT, SoundSource.BLOCKS, 0.6F, 1.2F);
                 return true;

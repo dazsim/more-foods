@@ -1,0 +1,12 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "morefood:item_roast_veg_uncooked"
+  },
+  "result": {
+    "item": "morefood:item_roast_vegetables"
+  }
+}

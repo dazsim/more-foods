@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_mincer"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "morefood:item_intestines"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_sausage_uncooked",
+    "count": 4
+  }
+}

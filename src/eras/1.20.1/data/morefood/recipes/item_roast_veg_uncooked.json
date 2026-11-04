@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_parsnip"
+    },
+    [
+      {
+        "item": "morefood:item_turnip"
+      },
+      {
+        "item": "morefood:item_swede"
+      }
+    ],
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_butter"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_roast_veg_uncooked"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_potato_peeled"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_potato_boiled"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#d8e0e8"
+}

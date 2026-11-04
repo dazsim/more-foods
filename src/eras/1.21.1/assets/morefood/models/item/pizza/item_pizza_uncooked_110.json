@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "morefood:item/item_pizza_uncooked",
+    "layer1": "morefood:item/pizza/tomato",
+    "layer2": "morefood:item/pizza/brown_mushroom",
+    "layer3": "morefood:item/pizza/kale"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_potato_roast"
+    },
+    {
+      "item": "minecraft:cooked_beef"
+    },
+    {
+      "tag": "morefood:roast_veg"
+    },
+    {
+      "item": "morefood:item_gravy"
+    },
+    {
+      "item": "morefood:item_yorkshire_pudding"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_roast_beef_dinner"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "morefood:item_mincer"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_minced_lamb_uncooked"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "morefood:frying",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "minecraft:red_mushroom"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_mushroom_fried"
+  }
+}

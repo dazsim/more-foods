@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_potato_roast"
+    },
+    {
+      "item": "minecraft:cooked_rabbit"
+    },
+    {
+      "tag": "morefood:roast_veg"
+    },
+    {
+      "item": "morefood:item_gravy"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_roast_rabbit_dinner"
+  }
+}

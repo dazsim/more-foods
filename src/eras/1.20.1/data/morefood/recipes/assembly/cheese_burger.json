@@ -1,0 +1,20 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_bun"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_beef_patty_cooked"
+    },
+    {
+      "item": "morefood:item_cheese_slice"
+    }
+  ],
+  "lid": {
+    "item": "morefood:item_bun"
+  },
+  "result": {
+    "item": "morefood:item_cheese_burger"
+  }
+}

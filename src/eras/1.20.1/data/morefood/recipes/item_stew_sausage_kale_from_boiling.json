@@ -1,0 +1,28 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_kale"
+    },
+    {
+      "item": "morefood:item_sausage"
+    },
+    {
+      "item": "morefood:item_haricot_beans"
+    },
+    {
+      "item": "morefood:item_haricot_beans"
+    },
+    {
+      "item": "morefood:item_stock"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_stew_sausage_kale"
+  },
+  "portions": 3,
+  "cookingtime": 400,
+  "colour": "#a8582e",
+  "vessel": "minecraft:bowl"
+}

@@ -236,9 +236,33 @@ public class MoreFoodItems {
         return food(registry, name, amount, saturation, props().usingConvertsTo(Items.BOWL));
     }
 
+    //? if >=26.1 {
     private static Item.Properties props() {
         return new Item.Properties();
     }
+    //?} else {
+    /*private static Props props() {
+        return new Props();
+    }
+
+    // the 26.1 property calls this mod uses, kept so the item list reads the same
+    private static final class Props extends Item.Properties {
+        private @org.jspecify.annotations.Nullable Item converts;
+
+        Props usingConvertsTo(Item item) {
+            converts = item;
+            return this;
+        }
+
+        Props useBlockDescriptionPrefix() {
+            return this;
+        }
+
+        Props useItemDescriptionPrefix() {
+            return this;
+        }
+    }
+    *///?}
 
     private static <T extends Item> T add(BiConsumer<Identifier, Item> registry, String name, T item) {
         registry.accept(MoreFood.id(name), item);
@@ -248,7 +272,11 @@ public class MoreFoodItems {
     }
 
     private static Item.Properties withId(String name, Item.Properties properties) {
+        //? if >=26.1 {
         return properties.setId(ResourceKey.create(Registries.ITEM, MoreFood.id(name)));
+        //?} else {
+        /*return properties;
+        *///?}
     }
 
     private static Item item(BiConsumer<Identifier, Item> registry, String name, Item.Properties properties) {
@@ -256,8 +284,21 @@ public class MoreFoodItems {
     }
 
     private static Item food(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation, Item.Properties properties) {
+        //? if >=26.1 {
         final FoodProperties food = new FoodProperties.Builder().nutrition(amount).saturationModifier(saturation).build();
         return add(registry, name, new Item(withId(name, properties.food(food))));
+        //?} else {
+        /*final Item converts = properties instanceof Props p ? p.converts : null;
+        final FoodProperties.Builder builder = new FoodProperties.Builder().nutrition(amount).saturationModifier(saturation);
+        //? if >=1.20.5 {
+        if (converts != null) builder.usingConvertsTo(converts);
+        final Item item = new Item(properties.food(builder.build()));
+        //?} else {
+        /^final Item item = converts == null ? new Item(properties.food(builder.build())) : new com.workshopcraft.morefood.items.ItemConvertingFood(properties.food(builder.build()), converts);
+        ^///?}
+        if (converts != null) Compat.CONVERTS.put(item, converts);
+        return add(registry, name, item);
+        *///?}
     }
 
     private static Item tool(BiConsumer<Identifier, Item> registry, String name) {
@@ -265,7 +306,11 @@ public class MoreFoodItems {
     }
 
     private static Item seed(BiConsumer<Identifier, Item> registry, String name, Block crop) {
+        //? if >=26.1 {
         return add(registry, name, new BlockItem(crop, withId(name, props().useItemDescriptionPrefix())));
+        //?} else {
+        /*return add(registry, name, new net.minecraft.world.item.ItemNameBlockItem(crop, props()));
+        *///?}
     }
 
     private static Map<String, Float> compost() {
@@ -287,7 +332,7 @@ public class MoreFoodItems {
     public static void registerTabs(BiConsumer<Identifier, CreativeModeTab> registry) {
         registry.accept(MoreFood.id("tab"), CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                 .title(Component.translatable("itemGroup.tabMoreFoods"))
-                .icon(() -> new ItemStack(ALL.getFirst()))
+                .icon(() -> new ItemStack(ALL.get(0)))
                 .displayItems((parameters, output) -> ALL.forEach(item -> {
                     if (!HIDDEN.contains(item)) output.accept(item);
                 }))

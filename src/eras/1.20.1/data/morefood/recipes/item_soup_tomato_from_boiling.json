@@ -1,0 +1,28 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_fruit_tomato"
+    },
+    {
+      "item": "morefood:item_fruit_tomato"
+    },
+    {
+      "item": "morefood:item_fruit_tomato"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_stock"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_soup_tomato"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#d8402a",
+  "vessel": "minecraft:bowl"
+}

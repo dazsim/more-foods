@@ -1,0 +1,28 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_spaghetti"
+    },
+    {
+      "item": "morefood:item_minced_meat_cooked"
+    },
+    {
+      "item": "morefood:item_sauce_tomato"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_garlic_chopped"
+    }
+  ],
+  "water": 0,
+  "result": {
+    "item": "morefood:item_spaghetti_bolognese"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#a83a20",
+  "vessel": "minecraft:bowl"
+}

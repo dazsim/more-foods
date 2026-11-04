@@ -5,7 +5,6 @@ import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.crafting.PotInput;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +15,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
+//? if >=1.20.5 {
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.alchemy.PotionContents;
+//?} else {
+/*import net.minecraft.world.item.alchemy.PotionUtils;
+*///?}
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.storage.ValueInput;
@@ -112,8 +116,8 @@ public class Pot {
 
     public ItemStack takeLast() {
         if (portions > 0 || items.isEmpty()) return ItemStack.EMPTY;
-        bits.removeLast();
-        final ItemStack out = items.removeLast();
+        bits.remove(bits.size() - 1);
+        final ItemStack out = items.remove(items.size() - 1);
         changed();
         return out;
     }
@@ -143,8 +147,12 @@ public class Pot {
 
     public static int waterIn(ItemStack stack) {
         if (stack.is(Items.WATER_BUCKET)) return CAPACITY;
+        //? if >=1.20.5 {
         final PotionContents potion = stack.get(DataComponents.POTION_CONTENTS);
         return stack.is(Items.POTION) && potion != null && potion.is(Potions.WATER) ? 250 : 0;
+        //?} else {
+        /*return stack.is(Items.POTION) && PotionUtils.getPotion(stack) == Potions.WATER ? 250 : 0;
+        *///?}
     }
 
     /** What is left of a stack once it goes in, or empty when the pot will not take it. */
@@ -171,7 +179,11 @@ public class Pot {
         final int back = stack.is(Items.BUCKET) ? CAPACITY : stack.is(Items.GLASS_BOTTLE) ? 250 : 0;
         if (back > 0 && canPickUp() && water >= back) {
             drain(back);
+            //? if >=1.20.5 {
             final ItemStack filled = back == CAPACITY ? new ItemStack(Items.WATER_BUCKET) : PotionContents.createItemStack(Items.POTION, Potions.WATER);
+            //?} else {
+            /*final ItemStack filled = back == CAPACITY ? new ItemStack(Items.WATER_BUCKET) : PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER);
+            *///?}
             player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, filled));
             level.playSound(null, pos, back == CAPACITY ? SoundEvents.BUCKET_FILL : SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1, 1);
             return true;

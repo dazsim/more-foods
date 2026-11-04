@@ -1,0 +1,24 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_minced_lamb_cooked"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_peas"
+    },
+    {
+      "item": "morefood:item_gravy"
+    }
+  ],
+  "water": 0,
+  "result": {
+    "item": "morefood:item_filling_shepherds"
+  },
+  "portions": 1,
+  "cookingtime": 300,
+  "colour": "#8a5a3e"
+}

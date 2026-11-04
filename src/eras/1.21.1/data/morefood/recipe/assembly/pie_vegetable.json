@@ -1,0 +1,17 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_pastry"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_filling_vegetable"
+    }
+  ],
+  "lid": {
+    "item": "morefood:item_pastry"
+  },
+  "result": {
+    "id": "morefood:item_pie_vegetable_uncooked"
+  }
+}

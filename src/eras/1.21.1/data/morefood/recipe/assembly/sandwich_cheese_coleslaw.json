@@ -1,0 +1,20 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_bread_slice"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_cheese_slice"
+    },
+    {
+      "item": "morefood:item_coleslaw"
+    }
+  ],
+  "lid": {
+    "item": "morefood:item_bread_slice"
+  },
+  "result": {
+    "id": "morefood:item_sandwich_cheese_coleslaw"
+  }
+}

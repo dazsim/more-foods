@@ -82,7 +82,7 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
         pose.translate(-0.5F, 0, -0.5F);
         final int light = state.lightCoords;
         final List<AssemblyBoardRenderState.Layer> layers = state.layers;
-        final AssemblyBoardRenderState.Layer base = layers.getFirst();
+        final AssemblyBoardRenderState.Layer base = layers.get(0);
         if (state.complete && base.spec != null && base.sprite != null) {
             if (base.spec.shape() == BoardLayers.Shape.WRAP) {
                 wrap(pose, collector, base.sprite, layers, light);
@@ -308,7 +308,7 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
             if (layers.get(i).sprite != null) fill.add(layers.get(i).sprite);
         }
         if (fill.isEmpty()) return;
-        final TextureAtlasSprite a = fill.getFirst(), b = fill.size() > 1 ? fill.get(1) : a, c = fill.getLast();
+        final TextureAtlasSprite a = fill.get(0), b = fill.size() > 1 ? fill.get(1) : a, c = fill.get(fill.size() - 1);
         for (float x : new float[]{2.25F, 13.5F}) {
             box(pose, collector, x, y + 1, 6.5F, x + 0.25F, y + 4, 9.5F, a, light);
             box(pose, collector, x - 0.05F, y + 2.25F, 6.75F, x + 0.3F, y + 3.5F, 8, b, light);
@@ -354,7 +354,11 @@ public class AssemblyBoardRenderer implements BlockEntityRenderer<AssemblyBoardB
 
     private static void vertex(PoseStack.Pose p, VertexConsumer buffer, float x, float y, float z, float u, float v, int colour, int light,
                                float nx, float ny, float nz) {
+        //? if >=1.21 {
         buffer.addVertex(p, x / 16, y / 16, z / 16).setColor(colour).setUv(u, v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(p, nx, ny, nz);
+        //?} else {
+        /*buffer.vertex(p.pose(), x / 16, y / 16, z / 16).color(colour).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(light).normal(p.normal(), nx, ny, nz).endVertex();
+        *///?}
     }
 
     private static void cube(PoseStack.Pose p, VertexConsumer b, float x0, float y0, float z0, float x1, float y1, float z1,

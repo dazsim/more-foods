@@ -1,0 +1,25 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_dough"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_sauce_tomato"
+    },
+    {
+      "item": "morefood:item_cheese_slice"
+    }
+  ],
+  "ordered": true,
+  "extras": {
+    "ingredient": {
+      "tag": "morefood:pizza_toppings"
+    },
+    "max": 3
+  },
+  "result": {
+    "item": "morefood:item_pizza_uncooked"
+  },
+  "keep_extras": true
+}

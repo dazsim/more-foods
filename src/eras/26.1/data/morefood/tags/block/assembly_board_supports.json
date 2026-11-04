@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:hopper",
+    {
+      "id": "muchmorestorage:cupboard",
+      "required": false
+    }
+  ]
+}

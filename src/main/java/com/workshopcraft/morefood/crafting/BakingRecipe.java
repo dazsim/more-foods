@@ -5,9 +5,6 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodKitchen;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -18,6 +15,11 @@ import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
+//? if >=26.1 {
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+//?}
 
 public class BakingRecipe extends AbstractCookingRecipe {
     public static final MapCodec<BakingRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -30,6 +32,7 @@ public class BakingRecipe extends AbstractCookingRecipe {
             Codec.BOOL.fieldOf("keep_components").orElse(false).forGetter(o -> o.keepComponents)
     ).apply(i, BakingRecipe::new));
 
+    //? if >=26.1 {
     public static final StreamCodec<RegistryFriendlyByteBuf, BakingRecipe> STREAM_CODEC = StreamCodec.composite(
             Recipe.CommonInfo.STREAM_CODEC, o -> o.commonInfo,
             CookingBookInfo.STREAM_CODEC, o -> o.bookInfo,
@@ -39,6 +42,7 @@ public class BakingRecipe extends AbstractCookingRecipe {
             ByteBufCodecs.INT, BakingRecipe::cookingTime,
             ByteBufCodecs.BOOL, o -> o.keepComponents,
             BakingRecipe::new);
+    //?}
 
     private final boolean keepComponents;
 
@@ -52,7 +56,11 @@ public class BakingRecipe extends AbstractCookingRecipe {
     public ItemStack assemble(SingleRecipeInput input) {
         final ItemStack out = super.assemble(input);
         if (keepComponents) {
+            //? if >=1.20.5 {
             out.applyComponents(input.item().getComponentsPatch());
+            //?} else {
+            /*if (input.item().getTag() != null) out.getOrCreateTag().merge(input.item().getTag().copy());
+            *///?}
             MoreFoodKitchen.feedToppings(out);
         }
         return out;

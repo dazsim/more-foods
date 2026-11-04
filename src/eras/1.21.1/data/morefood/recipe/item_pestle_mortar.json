@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "C  ",
+    "ABA",
+    " A "
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "minecraft:granite"
+      },
+      {
+        "item": "minecraft:polished_granite"
+      },
+      {
+        "item": "minecraft:diorite"
+      },
+      {
+        "item": "minecraft:polished_diorite"
+      },
+      {
+        "item": "minecraft:andesite"
+      },
+      {
+        "item": "minecraft:polished_andesite"
+      }
+    ],
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "morefood:item_pestle_mortar"
+  }
+}

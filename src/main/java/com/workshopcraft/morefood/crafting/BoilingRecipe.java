@@ -6,15 +6,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -24,6 +20,12 @@ import net.minecraft.world.level.Level;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+//? if >=26.1 {
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.crafting.PlacementInfo;
+//?}
 
 public class BoilingRecipe implements Recipe<PotInput> {
     public static final int MAX_INGREDIENTS = 6;
@@ -33,10 +35,12 @@ public class BoilingRecipe implements Recipe<PotInput> {
                 BuiltInRegistries.ITEM.byNameCodec().optionalFieldOf("vessel").forGetter(Serving::vessel),
                 ItemStackTemplate.CODEC.fieldOf("result").forGetter(Serving::result)
         ).apply(i, Serving::new));
+        //? if >=26.1 {
         public static final StreamCodec<RegistryFriendlyByteBuf, Serving> STREAM_CODEC = StreamCodec.composite(
                 ByteBufCodecs.optional(ByteBufCodecs.registry(Registries.ITEM)), Serving::vessel,
                 ItemStackTemplate.STREAM_CODEC, Serving::result,
                 Serving::new);
+        //?}
 
         public boolean accepts(ItemStack stack) {
             return vessel.isPresent() && stack.is(vessel.get());
@@ -54,6 +58,7 @@ public class BoilingRecipe implements Recipe<PotInput> {
             ExtraCodecs.STRING_RGB_COLOR.optionalFieldOf("colour", 0xFFC08040).forGetter(o -> o.colour)
     ).apply(i, BoilingRecipe::new));
 
+    //? if >=26.1 {
     public static final StreamCodec<RegistryFriendlyByteBuf, BoilingRecipe> STREAM_CODEC = StreamCodec.composite(
             Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), o -> o.ingredients,
             ByteBufCodecs.VAR_INT, o -> o.water,
@@ -64,6 +69,7 @@ public class BoilingRecipe implements Recipe<PotInput> {
             ByteBufCodecs.VAR_INT, o -> o.cookingTime,
             ByteBufCodecs.INT, o -> o.colour,
             BoilingRecipe::new);
+    //?}
 
     private final List<Ingredient> ingredients;
     private final int water;
@@ -174,10 +180,12 @@ public class BoilingRecipe implements Recipe<PotInput> {
         return MoreFoodKitchen.BOILING;
     }
 
+    //? if >=26.1 {
     @Override
     public PlacementInfo placementInfo() {
         return PlacementInfo.NOT_PLACEABLE;
     }
+    //?}
 
     @Override
     public RecipeBookCategory recipeBookCategory() {

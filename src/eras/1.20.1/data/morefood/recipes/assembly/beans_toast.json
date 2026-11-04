@@ -1,0 +1,14 @@
+{
+  "type": "morefood:assembly",
+  "base": {
+    "item": "morefood:item_toast"
+  },
+  "fillings": [
+    {
+      "item": "morefood:item_baked_beans"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_beans_toast"
+  }
+}

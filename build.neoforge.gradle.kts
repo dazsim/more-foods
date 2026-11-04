@@ -21,6 +21,14 @@ val modern = sc.current.parsed >= "26.1"
 fun prop(key: String) = runCatching { sc.properties.get<String>(key) }.getOrDefault("")
 val jei = prop("deps.jei")
 
+// json whose format changed between versions lives in src/eras, tools/gen_eras.py writes the older eras
+val era = when {
+    sc.current.parsed >= "26.1" -> "26.1"
+    sc.current.parsed >= "1.21" -> "1.21.1"
+    else -> "1.20.1"
+}
+sourceSets.main { resources.srcDir(rootProject.file("src/eras/$era")) }
+
 repositories {
     maven("https://maven.blamejared.com") {
         name = "BlameJared"

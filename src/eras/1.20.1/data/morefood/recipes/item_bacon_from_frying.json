@@ -1,0 +1,12 @@
+{
+  "type": "morefood:frying",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "morefood:item_bacon_uncooked"
+  },
+  "result": {
+    "item": "morefood:item_bacon"
+  }
+}
