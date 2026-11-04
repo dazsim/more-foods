@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood.neoforge;
 
+//? if >=26.1 {
 import com.workshopcraft.morefood.MoreFood;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
@@ -55,3 +56,59 @@ public class MoreFoodNeoForge {
         }
     }
 }
+//?} else {
+/*import com.workshopcraft.morefood.MoreFood;
+import com.workshopcraft.morefood.MoreFoodBlocks;
+import com.workshopcraft.morefood.MoreFoodItems;
+import com.workshopcraft.morefood.MoreFoodKitchen;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.resources.ResourceKey;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.registries.RegisterEvent;
+
+@Mod(MoreFood.MODID)
+public class MoreFoodNeoForge {
+    public MoreFoodNeoForge(IEventBus modBus) {
+        modBus.addListener(MoreFoodNeoForge::onRegister);
+        modBus.addListener(MoreFoodNeoForge::onCapabilities);
+        NeoForge.EVENT_BUS.addListener(MoreFoodNeoForge::onLootTableLoad);
+    }
+
+    private static void onRegister(RegisterEvent e) {
+        e.register(Registries.DATA_COMPONENT_TYPE, h -> MoreFoodKitchen.registerComponents(h::register));
+        e.register(Registries.BLOCK, h -> MoreFoodBlocks.register(h::register));
+        e.register(Registries.ITEM, h -> MoreFoodItems.register(h::register));
+        e.register(Registries.CREATIVE_MODE_TAB, h -> MoreFoodItems.registerTabs(h::register));
+        e.register(Registries.BLOCK_ENTITY_TYPE, h -> MoreFoodKitchen.registerBlockEntities(h::register));
+        e.register(Registries.MENU, h -> MoreFoodKitchen.registerMenus(h::register));
+        e.register(Registries.RECIPE_TYPE, h -> MoreFoodKitchen.registerRecipeTypes(h::register));
+        e.register(Registries.RECIPE_SERIALIZER, h -> MoreFoodKitchen.registerRecipeSerializers(h::register));
+        e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
+        e.register(Registries.SOUND_EVENT, h -> MoreFoodKitchen.registerSounds(h::register));
+    }
+
+    private static void onCapabilities(RegisterCapabilitiesEvent e) {
+        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MoreFoodKitchen.stoveEntity, (be, side) -> side == null ? new InvWrapper(be) : new SidedInvWrapper(be, side));
+        e.registerBlockEntity(Capabilities.FluidHandler.BLOCK, MoreFoodKitchen.stoveEntity, PotFluidHandler::of);
+        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MoreFoodKitchen.cookingPotEntity, (be, side) -> side == null ? new InvWrapper(be) : new SidedInvWrapper(be, side));
+        e.registerBlockEntity(Capabilities.FluidHandler.BLOCK, MoreFoodKitchen.cookingPotEntity, PotFluidHandler::ofCampfire);
+        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MoreFoodKitchen.boardEntity, BoardItemHandler::of);
+    }
+
+    private static void onLootTableLoad(LootTableLoadEvent e) {
+        final LootPool.Builder pool = MoreFood.extraLoot(ResourceKey.create(net.minecraft.core.registries.Registries.LOOT_TABLE, e.getName()));
+        if (pool != null) {
+            e.getTable().addPool(pool.build());
+        }
+    }
+}
+*///?}

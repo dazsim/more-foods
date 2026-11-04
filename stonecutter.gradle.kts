@@ -68,6 +68,8 @@ stonecutter parameters {
         replace("server.recipeAccess()", "com.workshopcraft.morefood.legacy.RecipeAccess.of(server)")
         replace("LevelRenderer.getLightCoords(", "LevelRenderer.getLightColor(")
         replace("ExtraCodecs.STRING_RGB_COLOR", "com.workshopcraft.morefood.Compat.RGB")
+        replace("Item.CODEC.listOf()", "net.minecraft.core.registries.BuiltInRegistries.ITEM.holderByNameCodec().listOf()")
+        replace("Item.STREAM_CODEC.apply(", "ByteBufCodecs.holderRegistry(Registries.ITEM).apply(")
     }
 
     replacements.string(current.parsed < "1.21") {
