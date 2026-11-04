@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "${fml}"
+license = "${license}"
+issueTrackerURL = "https://github.com/dazsim/more-foods/issues"
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+displayURL = "https://github.com/dazsim/more-foods"
+credits = "${credits}"
+authors = "${author}"
+description = '''${description}'''
+${logo_key} = "morefood_logo.png"
+[[dependencies.${id}]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neoforge}"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.${id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft}"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.${id}]]
+modId = "jei"
+type = "optional"
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"

@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "More Foods resources",
+    "min_format": ${pack_min},
+    "max_format": ${pack_max}
+  }
+}

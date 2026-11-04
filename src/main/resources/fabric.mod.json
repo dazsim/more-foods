@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "description": "${description}",
+    "authors": [
+        "${author}"
+    ],
+    "contributors": [
+        "${credits}"
+    ],
+    "contact": {
+        "sources": "https://github.com/dazsim/more-foods"
+    },
+    "license": "${license}",
+    "icon": "morefood_logo.png",
+    "environment": "*",
+    "accessWidener": "morefood.accesswidener",
+    "entrypoints": {
+        "main": [
+            "com.workshopcraft.morefood.fabric.MoreFoodFabric"
+        ],
+        "client": [
+            "com.workshopcraft.morefood.fabric.MoreFoodFabricClient"
+        ],
+        "jei_mod_plugin": [
+            "com.workshopcraft.morefood.compat.jei.MoreFoodJei"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${loader}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft}",
+        "java": ">=${java}"
+    },
+    "suggests": {
+        "jei": "*"
+    }
+}
