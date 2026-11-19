@@ -225,10 +225,14 @@ def coconut_tex(age):
 
 def olive_tex(age):
     im = blank()
-    if age < 2:
+    if age == 0:
         body, light, dark, out, stem, stem_d = "6a8a38", "8aaa50", "3e5e1c", "2a3e10", "4a6a28", "2e4a14"
+    elif age == 1:
+        # blushing toward purple
+        body, light, dark, out, stem, stem_d = "4a4a30", "6a5a40", "2e2030", "1c141c", "4a6a28", "2e4a14"
     else:
-        body, light, dark, out, stem, stem_d = "5a7a30", "7a9a44", "3a5020", "243818", "4a6a28", "2e4a14"
+        # ripe: dark purple to black
+        body, light, dark, out, stem, stem_d = "2a1a28", "4a2a3c", "140c18", "0a060c", "3a4a20", "243014"
     def top(x, y, *a):
         if x in (0, 7) or y in (0, 7):
             return out
@@ -254,9 +258,10 @@ def avocado_tex(age):
     if age == 0:
         body, light, dark, out = "5a8a38", "7aaa50", "3e6a20", "2a4a14"
     elif age == 1:
-        body, light, dark, out = "4e8230", "6a9a38", "3e6a20", "2a4a18"
+        body, light, dark, out = "2e5a20", "3e7228", "1e3e14", "14280c"
     else:
-        body, light, dark, out = "4e8230", "6a9a38", "3e6a20", "2a4a18"
+        # ripe: dark green to near black, still a little highlight so the shape reads
+        body, light, dark, out = "14240e", "1e3a16", "0a1408", "060a04"
     def top(x, y, *a):
         if x in (0, 7) or y in (0, 7):
             return out

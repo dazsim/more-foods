@@ -56,8 +56,21 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         final Direction facing = state.getValue(FACING);
-        if (facing == Direction.DOWN) return false;
+        if (!hangsFromLeaf(level, pos, facing)) return false;
         return level.getBlockState(pos.relative(facing)).is(MoreFoodBlocks.LEAVES.get(type));
+    }
+
+    /** Pods hang under a leaf, or off a side face that has air below, never sitting on the canopy. */
+    public static boolean hangsFromLeaf(LevelReader level, BlockPos pos, Direction facing) {
+        if (facing == Direction.DOWN) return false;
+        if (facing == Direction.UP) return true;
+        return level.getBlockState(pos.below()).canBeReplaced();
+    }
+
+    private static boolean shouldDrop(BlockState state, Direction directionToNeighbour) {
+        final Direction facing = state.getValue(FACING);
+        if (directionToNeighbour == facing) return true;
+        return facing != Direction.UP && directionToNeighbour == Direction.DOWN;
     }
 
     @Override
@@ -77,7 +90,7 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
                                      BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
-        return directionToNeighbour == state.getValue(FACING) && !state.canSurvive(level, pos)
+        return shouldDrop(state, directionToNeighbour) && !state.canSurvive(level, pos)
                 ? Blocks.AIR.defaultBlockState()
                 : super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
@@ -85,7 +98,7 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
     /*@Override
     public BlockState updateShape(BlockState state, Direction directionToNeighbour, BlockState neighbourState, LevelAccessor level, BlockPos pos,
                                   BlockPos neighbourPos) {
-        return directionToNeighbour == state.getValue(FACING) && !state.canSurvive(level, pos)
+        return shouldDrop(state, directionToNeighbour) && !state.canSurvive(level, pos)
                 ? Blocks.AIR.defaultBlockState()
                 : super.updateShape(state, directionToNeighbour, neighbourState, level, pos, neighbourPos);
     }
@@ -164,25 +177,20 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
         final FruitPodBlock pod = MoreFoodBlocks.PODS.get(type);
         if (pod == null) return false;
         if (hasPod(level, leaf, pod)) return false;
-        final Direction[] order = order(type, random);
-        for (Direction outward : order) {
-            final BlockPos at = leaf.relative(outward);
-            final BlockState want = pod.defaultBlockState().setValue(FACING, outward.getOpposite()).setValue(AGE, 0);
-            if (level.getBlockState(at).canBeReplaced() && want.canSurvive(level, at)) {
-                level.setBlock(at, want, 2);
-                return true;
-            }
-        }
-        return false;
+        return place(pod, level, leaf, 0, type, random);
     }
 
     public static boolean placeOnTree(FruitTreeFeature.Type type, net.minecraft.world.level.WorldGenLevel level, BlockPos leaf, RandomSource random) {
         final FruitPodBlock pod = MoreFoodBlocks.PODS.get(type);
         if (pod == null) return false;
-        final Direction[] order = order(type, random);
-        for (Direction outward : order) {
+        return place(pod, level, leaf, random.nextInt(MAX_AGE + 1), type, random);
+    }
+
+    private static boolean place(FruitPodBlock pod, net.minecraft.world.level.LevelAccessor level, BlockPos leaf, int age,
+                                 FruitTreeFeature.Type type, RandomSource random) {
+        for (Direction outward : hangOrder(type, level, leaf, random)) {
             final BlockPos at = leaf.relative(outward);
-            final BlockState want = pod.defaultBlockState().setValue(FACING, outward.getOpposite()).setValue(AGE, random.nextInt(MAX_AGE + 1));
+            final BlockState want = pod.defaultBlockState().setValue(FACING, outward.getOpposite()).setValue(AGE, age);
             if (level.getBlockState(at).canBeReplaced() && want.canSurvive(level, at)) {
                 level.setBlock(at, want, 2);
                 return true;
@@ -200,18 +208,26 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
         return false;
     }
 
-    private static Direction[] order(FruitTreeFeature.Type type, RandomSource random) {
-        if (type == FruitTreeFeature.Type.JACKFRUIT || type == FruitTreeFeature.Type.COCONUT) {
-            return new Direction[]{Direction.DOWN, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
-        }
-        final Direction[] dirs = {Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST, Direction.DOWN};
-        for (int i = dirs.length - 1; i > 0; i--) {
+    private static Direction[] hangOrder(FruitTreeFeature.Type type, net.minecraft.world.level.BlockGetter level, BlockPos leaf, RandomSource random) {
+        final Direction[] sides = {Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
+        for (int i = sides.length - 1; i > 0; i--) {
             final int j = random.nextInt(i + 1);
-            final Direction tmp = dirs[i];
-            dirs[i] = dirs[j];
-            dirs[j] = tmp;
+            final Direction tmp = sides[i];
+            sides[i] = sides[j];
+            sides[j] = tmp;
         }
-        return dirs;
+        final java.util.List<Direction> out = new java.util.ArrayList<>();
+        // avocados hang off the outer sides first so they can be seen from outside the canopy
+        if (type == FruitTreeFeature.Type.AVOCADO) {
+            for (Direction side : sides) {
+                if (level.getBlockState(leaf.relative(side)).canBeReplaced()) out.add(side);
+            }
+            out.add(Direction.DOWN);
+        } else {
+            out.add(Direction.DOWN);
+            for (Direction side : sides) out.add(side);
+        }
+        return out.toArray(new Direction[0]);
     }
 
     private static VoxelShape shape(FruitTreeFeature.Type type, int age, Direction facing) {
