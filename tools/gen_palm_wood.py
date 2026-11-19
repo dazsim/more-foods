@@ -88,300 +88,167 @@ def jitter(rng: random.Random, color, amt=8):
     return tuple(max(0, min(255, c + rng.randint(-amt, amt))) for c in color[:3]) + (255,)
 
 
-def make_bark(seed=46) -> Image.Image:
-    """Stringy, hairy husk. Vertical coir fibres, no rings."""
-    rng = random.Random(seed)
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
-    dark = (58, 34, 18)
-    mid = (92, 58, 30)
-    light = (138, 92, 48)
-    hair = (196, 158, 98)
-    # base vertical fibre bundles of uneven width
-    x = 0
-    while x < 16:
-        width = rng.choice([1, 1, 2, 2, 3])
-        base = rng.choice([dark, mid, mid, light])
-        wave = rng.uniform(-0.6, 0.6)
-        for dx in range(width):
-            for y in range(16):
-                shift = int(round((y / 5.0) * wave))
-                tone = lerp(base, light if (dx == 0 or dx == width - 1) else dark, 0.15 if dx else 0.0)
-                # slight vertical grit
-                tone = jitter(rng, tone, 10)
-                px(im, x + dx, (y + shift) % 16, tone)
-        x += width
-    # crossing coir threads (hairy)
-    for _ in range(14):
-        x0 = rng.randint(0, 15)
-        y0 = rng.randint(0, 15)
-        length = rng.randint(3, 8)
-        color = hair if rng.random() < 0.45 else light
-        slant = rng.choice([-1, 0, 0, 1, 1])
-        for i in range(length):
-            px(im, x0 + (i * slant) // 3, (y0 + i) % 16, jitter(rng, color, 12))
-    # stray 1px hairs sticking out of the "surface"
-    for _ in range(18):
-        x = rng.randint(0, 15)
-        y = rng.randint(0, 15)
-        color = hair if rng.random() < 0.5 else light
-        px(im, x, y, jitter(rng, color, 8))
-        if rng.random() < 0.5:
-            px(im, (x + rng.choice([-1, 1])) % 16, y, jitter(rng, mid, 6))
-    return im
+
+# 5 warm red-brown shades, low contrast. Recolour vanilla layouts so planks
+# and doors read like oak, without the busy checkered grain.
+PALETTE = [
+    (198, 120, 74),  # highlight
+    (182, 106, 64),  # main
+    (166,  94, 56),  # mid
+    (132,  72, 44),  # dark fibre / seam mid
+    (102,  54, 34),  # seam dark
+]
+STRIPPED_PALETTE = [
+    (202, 128, 80),
+    (190, 116, 72),
+    (178, 104, 64),
+    (166,  94, 56),
+    (150,  82, 48),
+]
+MC_TEX = Path("/workspace/mods/mc261src/assets/minecraft/textures")
+
+# Oak plank colours, light to dark, merged onto the 5-shade palm palette.
+OAK_PLANK_MAP = {
+    (194, 157, 98): PALETTE[0],
+    (184, 148, 95): PALETTE[1],
+    (175, 143, 85): PALETTE[2],
+    (159, 132, 77): PALETTE[2],
+    (150, 116, 65): PALETTE[3],
+    (126,  98, 55): PALETTE[3],
+    (103,  80, 44): PALETTE[4],
+}
 
 
-def make_bark_top(seed=47) -> Image.Image:
-    """Cut end of fibre bundles: speckled dots, fibrous rim, no growth rings."""
-    rng = random.Random(seed)
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
-    pith = (168, 118, 70)
-    mid = (122, 74, 38)
-    dark = (72, 42, 22)
-    bark = (90, 56, 30)
-    hair = (186, 146, 90)
-    # fill with packed fibre-end dots
-    for y in range(16):
-        for x in range(16):
-            # slightly denser toward the middle
-            cx, cy = x - 7.5, y - 7.5
-            r = (cx * cx + cy * cy) ** 0.5
-            base = lerp(pith, mid, min(1.0, r / 9.0))
-            if rng.random() < 0.35:
-                base = dark if rng.random() < 0.4 else pith
-            px(im, x, y, jitter(rng, base, 14))
-    # fibre-end clusters (2x2 ovals)
-    for _ in range(22):
-        x, y = rng.randint(1, 14), rng.randint(1, 14)
-        color = rng.choice([pith, mid, dark, hair])
-        for dx, dy in ((0, 0), (1, 0), (0, 1), (1, 1)):
-            if rng.random() < 0.8:
-                px(im, x + dx, y + dy, jitter(rng, color, 10))
-    # hairy bark rim, irregular, not a clean ring
-    for i in range(16):
-        for edge, j in (("x0", i), ("x15", i), ("y0", i), ("y15", i)):
-            if edge.startswith("x"):
-                x = 0 if edge == "x0" else 15
-                y = j
-            else:
-                y = 0 if edge == "y0" else 15
-                x = j
-            px(im, x, y, jitter(rng, bark if rng.random() < 0.7 else hair, 12))
-            # second pixel inward, broken
-            if rng.random() < 0.65:
-                if edge == "x0":
-                    px(im, 1, y, jitter(rng, dark, 10))
-                elif edge == "x15":
-                    px(im, 14, y, jitter(rng, dark, 10))
-                elif edge == "y0":
-                    px(im, x, 1, jitter(rng, dark, 10))
+def _lum(c):
+    return 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]
+
+
+def _is_hardware(c):
+    r, g, b = c[:3]
+    mx, mn = max(r, g, b), min(r, g, b)
+    return mx <= 160 and (mx - mn) <= 24 and not (r == 0 and g == 0 and b == 0)
+
+
+def _is_black(c):
+    return c[0] <= 8 and c[1] <= 8 and c[2] <= 8
+
+
+def _map_by_luminance(src_colors, palette):
+    woods = [c for c in src_colors if not _is_black(c) and not _is_hardware(c)]
+    mapping = {}
+    if not woods:
+        return mapping
+    lo, hi = min(_lum(c) for c in woods), max(_lum(c) for c in woods)
+    for c in src_colors:
+        if _is_black(c):
+            mapping[c] = (0, 0, 0)
+        elif _is_hardware(c):
+            mapping[c] = c[:3]
+        else:
+            t = 0.5 if hi == lo else (_lum(c) - lo) / (hi - lo)
+            idx = max(0, min(len(palette) - 1, int(round((1.0 - t) * (len(palette) - 1)))))
+            mapping[c] = palette[idx]
+    return mapping
+
+
+def recolor(im: Image.Image, mapping=None, palette=None) -> Image.Image:
+    im = im.convert("RGBA")
+    palette = palette or PALETTE
+    out = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    colors = {im.getpixel((x, y))[:3] for y in range(im.size[1]) for x in range(im.size[0])}
+    if mapping is None:
+        mapping = _map_by_luminance(colors, palette)
+    for y in range(im.size[1]):
+        for x in range(im.size[0]):
+            px = im.getpixel((x, y))
+            rgb, a = px[:3], px[3] if len(px) == 4 else 255
+            if a == 0:
+                out.putpixel((x, y), (0, 0, 0, 0))
+                continue
+            m = mapping.get(rgb)
+            if m is None:
+                if _is_black(rgb):
+                    m = (0, 0, 0)
+                elif _is_hardware(rgb):
+                    m = rgb
                 else:
-                    px(im, x, 14, jitter(rng, dark, 10))
-    return im
-
-
-def make_stripped_side(seed=48) -> Image.Image:
-    """Cleaner interior: vertical fibre bundles, warm red-brown, speckled."""
-    rng = random.Random(seed)
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
-    deep = (90, 36, 20)
-    mid = (154, 74, 40)
-    light = (204, 130, 72)
-    speck = (232, 196, 140)
-    x = 0
-    while x < 16:
-        width = rng.choice([1, 2, 2, 3])
-        bundle = rng.choice([deep, mid, mid, light])
-        for dx in range(width):
-            for y in range(16):
-                # faint wave so bundles aren't dead-straight
-                yoff = int(round(0.4 * (1 if (y // 4 + x) % 2 == 0 else -1)))
-                tone = bundle
-                if dx == 0:
-                    tone = lerp(bundle, deep, 0.35)
-                elif dx == width - 1:
-                    tone = lerp(bundle, light, 0.25)
-                if rng.random() < 0.08:
-                    tone = speck
-                px(im, x + dx, (y + yoff) % 16, jitter(rng, tone, 8))
-        x += width
-    # occasional darker fibre flecks
-    for _ in range(16):
-        px(im, rng.randint(0, 15), rng.randint(0, 15), jitter(rng, deep, 6))
-    return im
-
-
-def make_stripped_top(seed=49) -> Image.Image:
-    """Stripped end: same fibre-bundle dots, no bark rim, no rings."""
-    rng = random.Random(seed)
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
-    pith = (210, 150, 90)
-    mid = (154, 74, 40)
-    deep = (90, 36, 20)
-    for y in range(16):
-        for x in range(16):
-            # packed ends, slightly warmer in the middle
-            cx, cy = x - 7.5, y - 7.5
-            r = (cx * cx + cy * cy) ** 0.5
-            base = lerp(pith, mid, min(1.0, r / 10.0))
-            if rng.random() < 0.3:
-                base = deep if rng.random() < 0.35 else pith
-            px(im, x, y, jitter(rng, base, 12))
-    for _ in range(20):
-        x, y = rng.randint(0, 14), rng.randint(0, 14)
-        color = rng.choice([pith, mid, deep])
-        for dx, dy in ((0, 0), (1, 0), (0, 1)):
-            if rng.random() < 0.85:
-                px(im, x + dx, y + dy, jitter(rng, color, 8))
-    return im
+                    m = palette[2]
+            out.putpixel((x, y), tuple(m) + (a,))
+    return out
 
 
 def make_planks(seed=50) -> Image.Image:
-    """Warm red-brown boards with stripey fibre grain and speckles."""
+    # exact vanilla oak board layout and seams, in the calmer palm palette
+    return recolor(Image.open(MC_TEX / "block/oak_planks.png"), OAK_PLANK_MAP, PALETTE)
+
+
+def make_stripped_side(seed=48) -> Image.Image:
+    # jungle's calm vertical fibre bands, shifted to warm red-brown
+    return recolor(Image.open(MC_TEX / "block/stripped_jungle_log.png"), palette=STRIPPED_PALETTE)
+
+
+def make_stripped_top(seed=49) -> Image.Image:
+    """Cut fibre-bundle end: low-contrast clusters, no growth rings."""
     rng = random.Random(seed)
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 255))
-    deep = (86, 32, 18)
-    mid = (166, 78, 42)
-    light = (210, 132, 74)
-    pale = (232, 192, 132)
-    # four boards like vanilla planks, but grain is vertical fibre, no rings
-    # vanilla oak planks: roughly 3-4 horizontal boards. Keep that board layout
-    # so it reads as planks, with stripey grain inside each board.
-    seams = [0, 4, 8, 12]
-    for i, y0 in enumerate(seams):
-        y1 = seams[i + 1] if i + 1 < len(seams) else 16
-        # seam line
-        for x in range(16):
-            px(im, x, y0, jitter(rng, deep, 6))
-        for y in range(y0 + 1, y1):
-            # vertical fibre in this board, slightly offset per board
-            off = rng.randint(0, 2)
-            for x in range(16):
-                stripe = (x + off + i) % 3
-                if stripe == 0:
-                    tone = deep
-                elif stripe == 1:
-                    tone = mid
-                else:
-                    tone = light
-                if rng.random() < 0.07:
-                    tone = pale
-                px(im, x, y, jitter(rng, tone, 7))
+    sp = STRIPPED_PALETTE
+    im = Image.new("RGBA", (16, 16), sp[2] + (255,))
+    for cy in range(0, 16, 2):
+        for cx in range(0, 16, 2):
+            shade = sp[rng.choice([1, 2, 2, 2, 3])]
+            idx = sp.index(shade)
+            for dy in range(2):
+                for dx in range(2):
+                    x, y = cx + dx, cy + dy
+                    if x < 16 and y < 16:
+                        c = shade if rng.random() > 0.18 else sp[max(0, min(4, idx + rng.choice([-1, 0, 0, 1])))]
+                        im.putpixel((x, y), c + (255,))
+    for i in range(16):
+        for x, y in ((0, i), (15, i), (i, 0), (i, 15)):
+            im.putpixel((x, y), sp[4] + (255,))
+        if rng.random() < 0.4:
+            im.putpixel((1, i), sp[3] + (255,))
+        if rng.random() < 0.4:
+            im.putpixel((14, i), sp[3] + (255,))
+        if rng.random() < 0.4:
+            im.putpixel((i, 1), sp[3] + (255,))
+        if rng.random() < 0.4:
+            im.putpixel((i, 14), sp[3] + (255,))
     return im
 
 
 def make_door_bottom(planks: Image.Image, seed=51) -> Image.Image:
-    """Plank door bottom with a simple frame and handle, matching vanilla doors."""
-    rng = random.Random(seed)
-    im = planks.copy()
-    frame = (86, 32, 18, 255)
-    mid = (166, 78, 42, 255)
-    pale = (232, 192, 132, 255)
-    # frame
-    for i in range(16):
-        px(im, 0, i, frame)
-        px(im, 15, i, frame)
-        px(im, i, 15, frame)
-        px(im, i, 0, mid)  # joins the top half
-    # inner panel inset
-    for y in range(2, 15):
-        px(im, 1, y, frame)
-        px(im, 14, y, frame)
-    for x in range(1, 15):
-        px(im, x, 14, frame)
-        px(im, x, 1, mid)
-    # handle on the right, mid-height (continues to top half)
-    px(im, 12, 2, pale)
-    px(im, 13, 2, pale)
-    px(im, 12, 3, frame)
-    return im
+    return recolor(Image.open(MC_TEX / "block/oak_door_bottom.png"), palette=PALETTE)
 
 
 def make_door_top(planks: Image.Image, seed=52) -> Image.Image:
-    rng = random.Random(seed)
-    im = planks.copy()
-    frame = (86, 32, 18, 255)
-    mid = (166, 78, 42, 255)
-    pale = (232, 192, 132, 255)
-    dark = (54, 22, 12, 255)
-    for i in range(16):
-        px(im, 0, i, frame)
-        px(im, 15, i, frame)
-        px(im, i, 0, frame)
-        px(im, i, 15, mid)
-    for y in range(1, 15):
-        px(im, 1, y, frame)
-        px(im, 14, y, frame)
-    for x in range(1, 15):
-        px(im, x, 1, frame)
-        px(im, x, 14, mid)
-    # small window (4x5) like many vanilla wooden doors
-    for y in range(4, 9):
-        for x in range(6, 10):
-            px(im, x, y, dark if (x in (6, 9) or y in (4, 8)) else (40, 16, 10, 255))
-    # handle continuation
-    px(im, 12, 14, pale)
-    px(im, 13, 14, pale)
-    px(im, 12, 13, frame)
-    return im
+    return recolor(Image.open(MC_TEX / "block/oak_door_top.png"), palette=PALETTE)
 
 
 def make_trapdoor(planks: Image.Image, seed=53) -> Image.Image:
-    im = planks.copy()
-    frame = (86, 32, 18, 255)
-    pale = (232, 192, 132, 255)
-    for i in range(16):
-        px(im, 0, i, frame)
-        px(im, 15, i, frame)
-        px(im, i, 0, frame)
-        px(im, i, 15, frame)
-    for i in range(1, 15):
-        px(im, 1, i, frame)
-        px(im, 14, i, frame)
-        px(im, i, 1, frame)
-        px(im, i, 14, frame)
-    # cross brace
-    for i in range(3, 13):
-        px(im, i, i, frame)
-        px(im, i, 15 - i, frame)
-    px(im, 8, 8, pale)
-    return im
+    return recolor(Image.open(MC_TEX / "block/oak_trapdoor.png"), palette=PALETTE)
 
 
 def make_door_item(top: Image.Image, bottom: Image.Image) -> Image.Image:
-    """16x16 item icon: shrink the two halves into a door silhouette."""
-    im = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-    # vanilla door items are a 6-8px wide door standing in the sprite
-    top_s = top.resize((10, 8), Image.Resampling.NEAREST)
-    bot_s = bottom.resize((10, 8), Image.Resampling.NEAREST)
-    im.paste(top_s, (3, 0))
-    im.paste(bot_s, (3, 8))
-    # clear a little margin already present
-    return im
+    return recolor(Image.open(MC_TEX / "item/oak_door.png"), palette=PALETTE)
 
 
 def write_textures():
     tex = MAIN / "textures/block"
     item = MAIN / "textures/item"
     item.mkdir(parents=True, exist_ok=True)
-    bark = make_bark()
-    bark_top = make_bark_top()
-    stripped = make_stripped_side()
-    stripped_top = make_stripped_top()
+    # Hairy bark is left alone. Darren liked it, and the generator's older bark
+    # pass is not a match for the committed fibres.
+    make_stripped_side().save(tex / "log_palm_stripped.png")
+    make_stripped_top().save(tex / "log_palm_stripped_top.png")
     planks = make_planks()
+    planks.save(tex / "planks_palm.png")
     door_bottom = make_door_bottom(planks)
     door_top = make_door_top(planks)
-    trap = make_trapdoor(planks)
-    door_item = make_door_item(door_top, door_bottom)
-    bark.save(tex / "log_palm.png")
-    bark_top.save(tex / "log_palm_top.png")
-    stripped.save(tex / "log_palm_stripped.png")
-    stripped_top.save(tex / "log_palm_stripped_top.png")
-    planks.save(tex / "planks_palm.png")
     door_bottom.save(tex / "door_palm_bottom.png")
     door_top.save(tex / "door_palm_top.png")
-    trap.save(tex / "trapdoor_palm.png")
-    door_item.save(item / "door_palm.png")
-    print("wrote textures")
+    make_trapdoor(planks).save(tex / "trapdoor_palm.png")
+    make_door_item(door_top, door_bottom).save(item / "door_palm.png")
+    print("wrote calmer plank, stripped, door and trapdoor textures")
 
 
 # ---------------------------------------------------------------------------
