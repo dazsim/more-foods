@@ -71,6 +71,9 @@ public class MoreFoodFabricClient implements ClientModInitializer {
         for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) {
             net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(sapling, cutout);
         }
+        for (net.minecraft.world.level.block.Block pod : com.workshopcraft.morefood.MoreFoodBlocks.PODS.values()) {
+            net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(pod, cutout);
+        }
         for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) {
             net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(leaves, net.minecraft.client.renderer.RenderType.cutoutMipped());
         }

@@ -1,7 +1,7 @@
 package com.workshopcraft.morefood.worldgen;
 
 import com.workshopcraft.morefood.MoreFoodBlocks;
-import com.workshopcraft.morefood.blocks.FruitLeavesBlock;
+import com.workshopcraft.morefood.blocks.FruitPodBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -124,12 +124,11 @@ public class FruitTreeFeature extends Feature<NoneFeatureConfiguration> {
                     final BlockPos pos = new BlockPos(tip.getX() + dx, crown + dy, tip.getZ() + dz);
                     if (logs.contains(pos)) continue;
                     if (!replaceable(level, pos)) continue;
-                    final boolean fruit = dist >= 1 && random.nextInt(type == Type.JACKFRUIT ? 3 : 4) == 0;
-                    leaves.add(new Leaf(pos, fruit));
+                    leaves.add(new Leaf(pos, dist >= 1 && random.nextInt(type == Type.JACKFRUIT ? 3 : 4) == 0));
                 }
             }
         }
-        placeLeaves(level, logs, leaves);
+        placeLeaves(level, logs, leaves, random);
         return true;
     }
 
@@ -161,7 +160,7 @@ public class FruitTreeFeature extends Feature<NoneFeatureConfiguration> {
                 for (int dy = 0; dy <= 1; dy++) {
                     if (dx == 0 && dz == 0 && dy == 0) continue;
                     final BlockPos pos = tip.offset(dx, dy, dz);
-                    if (replaceable(level, pos)) leaves.add(new Leaf(pos, dy == 0 && (dx == 0 || dz == 0) && random.nextBoolean()));
+                    if (replaceable(level, pos)) leaves.add(new Leaf(pos, dy == 0 && (dx == 0 || dz == 0)));
                 }
             }
         }
@@ -170,14 +169,14 @@ public class FruitTreeFeature extends Feature<NoneFeatureConfiguration> {
             final int length = 2 + random.nextInt(2);
             for (int i = 1; i <= length; i++) {
                 final BlockPos pos = tip.relative(dir, i).above(i == length ? 0 : (i == 1 ? 1 : 0));
-                if (replaceable(level, pos)) leaves.add(new Leaf(pos, i == 1 && random.nextInt(3) == 0));
+                if (replaceable(level, pos)) leaves.add(new Leaf(pos, i == 1));
                 if (i > 1) {
                     final BlockPos drop = pos.below();
-                    if (replaceable(level, drop)) leaves.add(new Leaf(drop, random.nextInt(2) == 0));
+                    if (replaceable(level, drop)) leaves.add(new Leaf(drop, true));
                 }
             }
         }
-        placeLeaves(level, logs, leaves);
+        placeLeaves(level, logs, leaves, random);
         return true;
     }
 
@@ -199,7 +198,7 @@ public class FruitTreeFeature extends Feature<NoneFeatureConfiguration> {
         level.setBlock(pos, log, 2);
     }
 
-    private void placeLeaves(WorldGenLevel level, List<BlockPos> logs, List<Leaf> leaves) {
+    private void placeLeaves(WorldGenLevel level, List<BlockPos> logs, List<Leaf> leaves, RandomSource random) {
         final BlockState base = leaves();
         for (Leaf leaf : leaves) {
             int dist = 7;
@@ -207,7 +206,10 @@ public class FruitTreeFeature extends Feature<NoneFeatureConfiguration> {
                 dist = Math.min(dist, Math.abs(log.getX() - leaf.pos.getX()) + Math.abs(log.getY() - leaf.pos.getY()) + Math.abs(log.getZ() - leaf.pos.getZ()));
             }
             dist = Math.max(1, Math.min(7, dist));
-            level.setBlock(leaf.pos, base.setValue(LeavesBlock.DISTANCE, dist).setValue(FruitLeavesBlock.FRUIT, leaf.fruit), 2);
+            level.setBlock(leaf.pos, base.setValue(LeavesBlock.DISTANCE, dist), 2);
+        }
+        for (Leaf leaf : leaves) {
+            if (leaf.fruit) FruitPodBlock.placeOnTree(type, level, leaf.pos, random);
         }
     }
 

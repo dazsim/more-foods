@@ -31,6 +31,9 @@ public final class MoreFoodForgeClient {
         for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) {
             net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(sapling, layer);
         }
+        for (net.minecraft.world.level.block.Block pod : com.workshopcraft.morefood.MoreFoodBlocks.PODS.values()) {
+            net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(pod, layer);
+        }
         for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) {
             net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(leaves, net.minecraft.client.renderer.RenderType.cutoutMipped());
         }

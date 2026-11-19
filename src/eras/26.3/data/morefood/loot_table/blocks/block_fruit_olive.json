@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "add": false,
+              "condition": {
+                "type": "minecraft:match_block",
+                "blocks": "morefood:block_fruit_olive",
+                "state": {
+                  "age": "2"
+                }
+              },
+              "count": 3,
+              "type": "minecraft:set_count"
+            },
+            {
+              "type": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "morefood:item_olive"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "morefood:blocks/block_fruit_olive"
+}

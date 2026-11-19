@@ -265,5 +265,9 @@
   "item.morefood.item_beansprouts_fried": "Fried Beansprouts",
   "item.morefood.item_porridge": "Porridge",
   "item.morefood.item_soup_lentil": "Lentil Soup",
-  "item.morefood.item_jackfruit_cooked": "Cooked Jackfruit"
+  "item.morefood.item_jackfruit_cooked": "Cooked Jackfruit",
+  "block.morefood.block_fruit_jackfruit": "Jackfruit",
+  "block.morefood.block_fruit_coconut": "Coconut",
+  "block.morefood.block_fruit_olive": "Olives",
+  "block.morefood.block_fruit_avocado": "Avocado"
 }

@@ -2,6 +2,7 @@ package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.blocks.BlockCropMoreFood;
 import com.workshopcraft.morefood.blocks.FruitLeavesBlock;
+import com.workshopcraft.morefood.blocks.FruitPodBlock;
 import com.workshopcraft.morefood.blocks.FruitSaplingBlock;
 import com.workshopcraft.morefood.board.AssemblyBoardBlock;
 import com.workshopcraft.morefood.stove.CookingPotBlock;
@@ -34,6 +35,7 @@ public class MoreFoodBlocks {
     public static final Map<String, Block> CROPS = new LinkedHashMap<>();
     public static final Map<FruitTreeFeature.Type, FruitSaplingBlock> SAPLINGS = new LinkedHashMap<>();
     public static final Map<FruitTreeFeature.Type, FruitLeavesBlock> LEAVES = new LinkedHashMap<>();
+    public static final Map<FruitTreeFeature.Type, FruitPodBlock> PODS = new LinkedHashMap<>();
     public static Block logPalm;
 
     public static void register(BiConsumer<Identifier, Block> registry) {
@@ -64,9 +66,20 @@ public class MoreFoodBlocks {
                     .noOcclusion()
                     .isSuffocating((state, level, pos) -> false)
                     .pushReaction(PushReaction.DESTROY),
-                    () -> MoreFoodItems.FRUIT.get(id));
+                    type);
             registry.accept(MoreFood.id("block_leaves_" + id), leaves);
             LEAVES.put(type, leaves);
+            final FruitPodBlock pod = new FruitPodBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_fruit_" + id)))
+                    .mapColor(MapColor.PLANT)
+                    .randomTicks()
+                    .strength(0.2F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()
+                    .pushReaction(PushReaction.DESTROY),
+                    type);
+            registry.accept(MoreFood.id("block_fruit_" + id), pod);
+            PODS.put(type, pod);
             final boolean sand = type == FruitTreeFeature.Type.COCONUT;
             final FruitSaplingBlock sapling = new FruitSaplingBlock(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_sapling_" + id)))

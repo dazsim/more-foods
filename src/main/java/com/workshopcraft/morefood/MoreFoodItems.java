@@ -174,10 +174,10 @@ public class MoreFoodItems {
         for (String name : VEGAN_CROPS) {
             SEEDS.put(name, seed(registry, "item_seed_" + name, MoreFoodBlocks.CROPS.get(name)));
         }
-        FRUIT.put("jackfruit", food(registry, "item_jackfruit", 3, 0.3F, props()));
-        FRUIT.put("coconut", food(registry, "item_coconut", 2, 0.2F, props()));
-        FRUIT.put("olive", food(registry, "item_olive", 1, 0.1F, props()));
-        FRUIT.put("avocado", food(registry, "item_avocado", 2, 0.3F, props()));
+        FRUIT.put("jackfruit", foodBlock(registry, "item_jackfruit", MoreFoodBlocks.PODS.get(com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.JACKFRUIT), 3, 0.3F));
+        FRUIT.put("coconut", foodBlock(registry, "item_coconut", MoreFoodBlocks.PODS.get(com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.COCONUT), 2, 0.2F));
+        FRUIT.put("olive", foodBlock(registry, "item_olive", MoreFoodBlocks.PODS.get(com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.OLIVE), 1, 0.1F));
+        FRUIT.put("avocado", foodBlock(registry, "item_avocado", MoreFoodBlocks.PODS.get(com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.AVOCADO), 2, 0.3F));
         for (com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type type : com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.values()) {
             final String id = type.name().toLowerCase();
             add(registry, "block_sapling_" + id, new BlockItem(MoreFoodBlocks.SAPLINGS.get(type), withId("block_sapling_" + id, props().useBlockDescriptionPrefix())));
@@ -333,7 +333,17 @@ public class MoreFoodItems {
         *///?}
     }
 
-    private static Item tool(BiConsumer<Identifier, Item> registry, String name) {
+    private static Item foodBlock(BiConsumer<Identifier, Item> registry, String name, Block block, int amount, float saturation) {
+        //? if >=26.1 {
+        final FoodProperties food = new FoodProperties.Builder().nutrition(amount).saturationModifier(saturation).build();
+        return add(registry, name, new BlockItem(block, withId(name, props().food(food).useItemDescriptionPrefix())));
+        //?} else {
+        /*final FoodProperties.Builder builder = new FoodProperties.Builder().nutrition(amount).saturationModifier(saturation);
+        return add(registry, name, new net.minecraft.world.item.ItemNameBlockItem(block, props().food(builder.build())));
+        *///?}
+    }
+
+        private static Item tool(BiConsumer<Identifier, Item> registry, String name) {
         return add(registry, name, new ItemKitchenTool(withId(name, props())));
     }
 
