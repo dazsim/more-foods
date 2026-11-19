@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "id": "morefood:block_stairs_palm",
+    "count": 4
+  },
+  "group": "wooden_stairs"
+}

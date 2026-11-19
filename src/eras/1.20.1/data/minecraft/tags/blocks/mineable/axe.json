@@ -4,6 +4,18 @@
     "morefood:block_log_palm",
     "morefood:block_kitchen_chassis",
     "morefood:block_grinder",
-    "morefood:block_press"
+    "morefood:block_press",
+    "morefood:block_stripped_log_palm",
+    "morefood:block_wood_palm",
+    "morefood:block_stripped_wood_palm",
+    "morefood:block_planks_palm",
+    "morefood:block_stairs_palm",
+    "morefood:block_slab_palm",
+    "morefood:block_fence_palm",
+    "morefood:block_fence_gate_palm",
+    "morefood:block_door_palm",
+    "morefood:block_trapdoor_palm",
+    "morefood:block_button_palm",
+    "morefood:block_pressure_plate_palm"
   ]
 }

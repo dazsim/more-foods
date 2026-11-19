@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "morefood:block/log_palm",
+    "side": "morefood:block/log_palm"
+  }
+}

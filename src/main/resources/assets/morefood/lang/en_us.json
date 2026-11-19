@@ -305,5 +305,17 @@
   "block.morefood.block_fruit_jackfruit": "Jackfruit",
   "block.morefood.block_fruit_coconut": "Coconut",
   "block.morefood.block_fruit_olive": "Olives",
-  "block.morefood.block_fruit_avocado": "Avocado"
+  "block.morefood.block_fruit_avocado": "Avocado",
+  "block.morefood.block_stripped_log_palm": "Stripped Palm Log",
+  "block.morefood.block_wood_palm": "Palm Wood",
+  "block.morefood.block_stripped_wood_palm": "Stripped Palm Wood",
+  "block.morefood.block_planks_palm": "Palm Planks",
+  "block.morefood.block_stairs_palm": "Palm Stairs",
+  "block.morefood.block_slab_palm": "Palm Slab",
+  "block.morefood.block_fence_palm": "Palm Fence",
+  "block.morefood.block_fence_gate_palm": "Palm Fence Gate",
+  "block.morefood.block_door_palm": "Palm Door",
+  "block.morefood.block_trapdoor_palm": "Palm Trapdoor",
+  "block.morefood.block_button_palm": "Palm Button",
+  "block.morefood.block_pressure_plate_palm": "Palm Pressure Plate"
 }

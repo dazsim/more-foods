@@ -43,9 +43,13 @@ public class MoreFoodForge {
     public MoreFoodForge(FMLJavaModLoadingContext context) {
         final IEventBus modBus = context.getModEventBus();
         modBus.addListener(MoreFoodForge::onRegister);
-        modBus.addListener((FMLCommonSetupEvent e) -> e.enqueueWork(() -> MoreFoodItems.COMPOST.forEach((name, chance) ->
-                ComposterBlock.COMPOSTABLES.put(BuiltInRegistries.ITEM.get(MoreFood.id(name)), (float) chance))));
+        modBus.addListener((FMLCommonSetupEvent e) -> e.enqueueWork(() -> {
+            MoreFoodItems.COMPOST.forEach((name, chance) ->
+                    ComposterBlock.COMPOSTABLES.put(BuiltInRegistries.ITEM.get(MoreFood.id(name)), (float) chance));
+            MoreFoodBlocks.applyForgeFlammability();
+        }));
         MinecraftForge.EVENT_BUS.addListener(MoreFoodForge::onLootTableLoad);
+        MinecraftForge.EVENT_BUS.addListener(MoreFoodForge::onRightClick);
         MinecraftForge.EVENT_BUS.addGenericListener(BlockEntity.class, MoreFoodForge::onAttach);
         if (FMLEnvironment.dist == Dist.CLIENT) MoreFoodForgeClient.init(modBus);
     }
@@ -81,6 +85,19 @@ public class MoreFoodForge {
             e.addCapability(MoreFood.id("sink_items"), new Provider<>(ForgeCapabilities.ITEM_HANDLER,
                     side -> side == null ? new net.minecraftforge.items.wrapper.InvWrapper(sink) : new net.minecraftforge.items.wrapper.SidedInvWrapper(sink, side)));
         }
+    }
+
+
+    private static void onRightClick(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock e) {
+        if (e.getLevel().isClientSide()) return;
+        if (!e.getItemStack().is(net.minecraft.tags.ItemTags.AXES)) return;
+        final net.minecraft.world.level.block.state.BlockState stripped = MoreFoodBlocks.stripped(e.getLevel().getBlockState(e.getPos()));
+        if (stripped == null) return;
+        e.getLevel().setBlock(e.getPos(), stripped, 11);
+        e.getLevel().playSound(null, e.getPos(), net.minecraft.sounds.SoundEvents.AXE_STRIP, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+        e.getItemStack().hurtAndBreak(1, e.getEntity(), player -> player.broadcastBreakEvent(e.getHand()));
+        e.setCancellationResult(net.minecraft.world.InteractionResult.SUCCESS);
+        e.setCanceled(true);
     }
 
     private static final class Provider<H> implements ICapabilityProvider {

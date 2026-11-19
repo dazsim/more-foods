@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "morefood:block/block_slab_palm"
+    },
+    "type=double": {
+      "model": "morefood:block/block_planks_palm"
+    },
+    "type=top": {
+      "model": "morefood:block/block_slab_palm_top"
+    }
+  }
+}

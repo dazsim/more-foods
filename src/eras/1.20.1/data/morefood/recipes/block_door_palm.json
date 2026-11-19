@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "item": "morefood:block_door_palm",
+    "count": 3
+  },
+  "group": "wooden_door"
+}

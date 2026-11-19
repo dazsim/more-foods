@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "morefood:block_door_palm",
+            "state": {
+              "half": "lower"
+            }
+          },
+          "name": "morefood:block_door_palm"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "morefood:blocks/block_door_palm"
+}

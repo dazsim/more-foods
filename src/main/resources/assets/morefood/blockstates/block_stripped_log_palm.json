@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "morefood:block/block_stripped_log_palm"
+    },
+    "axis=z": {
+      "model": "morefood:block/block_stripped_log_palm_horizontal"
+    },
+    "axis=x": {
+      "model": "morefood:block/block_stripped_log_palm_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

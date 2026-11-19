@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "morefood:palm_logs"
+    }
+  ],
+  "result": {
+    "id": "morefood:block_planks_palm",
+    "count": 4
+  },
+  "group": "planks"
+}

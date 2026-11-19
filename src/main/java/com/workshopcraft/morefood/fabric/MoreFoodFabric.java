@@ -108,9 +108,26 @@ public class MoreFoodFabric implements ModInitializer {
                 net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION,
                 MoreFoodWorldGen.AVOCADO);
         final net.fabricmc.fabric.api.registry.FlammableBlockRegistry fire = net.fabricmc.fabric.api.registry.FlammableBlockRegistry.getDefaultInstance();
-        fire.add(com.workshopcraft.morefood.MoreFoodBlocks.logPalm, 5, 5);
+        MoreFoodBlocks.flammable((block, ignite, burn) -> fire.add(block, ignite, burn));
         for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) fire.add(leaves, 30, 60);
         for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) fire.add(sapling, 20, 60);
+        //? if <26.3 {
+        net.fabricmc.fabric.api.registry.StrippableBlockRegistry.register(MoreFoodBlocks.logPalm, MoreFoodBlocks.strippedLogPalm);
+        net.fabricmc.fabric.api.registry.StrippableBlockRegistry.register(MoreFoodBlocks.woodPalm, MoreFoodBlocks.strippedWoodPalm);
+        //?} else {
+        /*net.fabricmc.fabric.api.event.player.UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
+            final net.minecraft.world.item.ItemStack stack = player.getItemInHand(hand);
+            if (!stack.is(net.minecraft.tags.ItemTags.AXES)) return net.minecraft.world.InteractionResult.PASS;
+            final net.minecraft.world.level.block.state.BlockState stripped = MoreFoodBlocks.stripped(world.getBlockState(hit.getBlockPos()));
+            if (stripped == null) return net.minecraft.world.InteractionResult.PASS;
+            if (!world.isClientSide()) {
+                world.setBlock(hit.getBlockPos(), stripped, 11);
+                world.playSound(null, hit.getBlockPos(), net.minecraft.sounds.SoundEvents.AXE_STRIP.value(), net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+                stack.hurtAndBreak(1, player, hand);
+            }
+            return net.minecraft.world.InteractionResult.SUCCESS;
+        });
+        *///?}
     }
 
     private static <T> BiConsumer<Identifier, T> direct(Registry<T> registry) {

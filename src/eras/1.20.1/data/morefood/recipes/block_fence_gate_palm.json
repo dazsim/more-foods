@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "item": "morefood:block_fence_gate_palm"
+  },
+  "group": "wooden_fence_gate"
+}

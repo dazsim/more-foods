@@ -23,9 +23,13 @@ public class MoreFoodNeoForge {
     public MoreFoodNeoForge(IEventBus modBus) {
         modBus.addListener(MoreFoodNeoForge::onRegister);
         modBus.addListener(MoreFoodNeoForge::onCapabilities);
+        modBus.addListener(MoreFoodNeoForge::onCommonSetup);
         NeoForge.EVENT_BUS.addListener(MoreFoodNeoForge::onLootTableLoad);
         NeoForge.EVENT_BUS.addListener((OnDatapackSyncEvent e) -> e.sendRecipes(MoreFoodKitchen.BAKING, MoreFoodKitchen.FRYING,
                 MoreFoodKitchen.BOILING, MoreFoodKitchen.ASSEMBLY));
+        //? if >=26.3 {
+        /*NeoForge.EVENT_BUS.addListener(MoreFoodNeoForge::onUseItem);
+        *///?}
     }
 
     private static void onRegister(RegisterEvent e) {
@@ -63,6 +67,25 @@ public class MoreFoodNeoForge {
             e.getTable().addPool(pool.build());
         }
     }
+
+    private static void onCommonSetup(net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent e) {
+        e.enqueueWork(() -> {
+            MoreFoodBlocks.applyForgeFlammability();
+        });
+    }
+
+    //? if >=26.3 {
+    /*private static void onUseItem(net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock e) {
+        if (e.getLevel().isClientSide()) return;
+        if (!e.getItemStack().is(net.minecraft.tags.ItemTags.AXES)) return;
+        final net.minecraft.world.level.block.state.BlockState stripped = MoreFoodBlocks.stripped(e.getLevel().getBlockState(e.getPos()));
+        if (stripped == null) return;
+        e.getLevel().setBlock(e.getPos(), stripped, 11);
+        e.getLevel().playSound(null, e.getPos(), net.minecraft.sounds.SoundEvents.AXE_STRIP.value(), net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+        e.getItemStack().hurtAndBreak(1, e.getEntity(), e.getHand());
+        e.setCanceled(true);
+    }
+    *///?}
 }
 //?} else {
 /*import com.workshopcraft.morefood.MoreFood;
@@ -89,6 +112,7 @@ public class MoreFoodNeoForge {
     public MoreFoodNeoForge(IEventBus modBus) {
         modBus.addListener(MoreFoodNeoForge::onRegister);
         modBus.addListener(MoreFoodNeoForge::onCapabilities);
+        modBus.addListener(MoreFoodNeoForge::onCommonSetup);
         NeoForge.EVENT_BUS.addListener(MoreFoodNeoForge::onLootTableLoad);
     }
 
@@ -121,6 +145,12 @@ public class MoreFoodNeoForge {
         if (pool != null) {
             e.getTable().addPool(pool.build());
         }
+    }
+
+    private static void onCommonSetup(net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent e) {
+        e.enqueueWork(() -> {
+            MoreFoodBlocks.applyForgeFlammability();
+        });
     }
 }
 *///?}

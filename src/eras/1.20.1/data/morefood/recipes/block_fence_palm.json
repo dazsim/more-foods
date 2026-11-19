@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "item": "morefood:block_fence_palm",
+    "count": 3
+  },
+  "group": "wooden_fence"
+}

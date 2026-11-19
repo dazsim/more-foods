@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "id": "morefood:block_slab_palm",
+    "count": 6
+  },
+  "group": "wooden_slab"
+}

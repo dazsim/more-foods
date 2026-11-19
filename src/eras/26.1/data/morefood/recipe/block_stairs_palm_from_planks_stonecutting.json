@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "morefood:block_planks_palm",
+  "result": {
+    "count": 1,
+    "id": "morefood:block_stairs_palm"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "morefood:block_planks_palm"
+    }
+  },
+  "result": {
+    "id": "morefood:block_pressure_plate_palm"
+  },
+  "group": "wooden_pressure_plate"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "morefood:block_planks_palm"
+  ],
+  "result": {
+    "id": "morefood:block_button_palm"
+  },
+  "group": "wooden_button"
+}

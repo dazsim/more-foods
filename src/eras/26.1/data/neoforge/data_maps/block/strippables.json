@@ -1,0 +1,10 @@
+{
+  "values": {
+    "morefood:block_log_palm": {
+      "stripped_block": "morefood:block_stripped_log_palm"
+    },
+    "morefood:block_wood_palm": {
+      "stripped_block": "morefood:block_stripped_wood_palm"
+    }
+  }
+}

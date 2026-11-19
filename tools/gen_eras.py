@@ -101,7 +101,7 @@ def recipe(era, d):
         d["key"] = {k: ing(era, v) for k, v in d["key"].items()}
     elif t == "minecraft:crafting_shapeless":
         d["ingredients"] = [ing(era, i) for i in d["ingredients"]]
-    elif t in ("minecraft:smelting", f"{MOD}:baking", f"{MOD}:frying"):
+    elif t in ("minecraft:smelting", "minecraft:stonecutting", f"{MOD}:baking", f"{MOD}:frying"):
         d["ingredient"] = ing(era, d["ingredient"])
     elif t == f"{MOD}:boiling":
         d["ingredients"] = [ing(era, i) for i in d["ingredients"]]

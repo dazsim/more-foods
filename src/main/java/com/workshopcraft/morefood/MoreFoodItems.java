@@ -184,6 +184,18 @@ public class MoreFoodItems {
             add(registry, "block_leaves_" + id, new BlockItem(MoreFoodBlocks.LEAVES.get(type), withId("block_leaves_" + id, props().useBlockDescriptionPrefix())));
         }
         add(registry, "block_log_palm", new BlockItem(MoreFoodBlocks.logPalm, withId("block_log_palm", props().useBlockDescriptionPrefix())));
+        addPalm(registry, "block_stripped_log_palm", MoreFoodBlocks.strippedLogPalm);
+        addPalm(registry, "block_wood_palm", MoreFoodBlocks.woodPalm);
+        addPalm(registry, "block_stripped_wood_palm", MoreFoodBlocks.strippedWoodPalm);
+        addPalm(registry, "block_planks_palm", MoreFoodBlocks.planksPalm);
+        addPalm(registry, "block_stairs_palm", MoreFoodBlocks.stairsPalm);
+        addPalm(registry, "block_slab_palm", MoreFoodBlocks.slabPalm);
+        addPalm(registry, "block_fence_palm", MoreFoodBlocks.fencePalm);
+        addPalm(registry, "block_fence_gate_palm", MoreFoodBlocks.fenceGatePalm);
+        addPalm(registry, "block_door_palm", MoreFoodBlocks.doorPalm);
+        addPalm(registry, "block_trapdoor_palm", MoreFoodBlocks.trapdoorPalm);
+        addPalm(registry, "block_button_palm", MoreFoodBlocks.buttonPalm);
+        addPalm(registry, "block_pressure_plate_palm", MoreFoodBlocks.pressurePlatePalm);
         food(registry, "item_peanuts_roasted", 3, 0.3F, props());
         food(registry, "item_chickpeas_roasted", 3, 0.3F, props());
         food(registry, "item_beansprouts_fried", 2, 0.3F, props());
@@ -297,6 +309,11 @@ public class MoreFoodItems {
         ALL.add(item);
         if (RETIRED.contains(name)) HIDDEN.add(item);
         return item;
+    }
+
+
+    private static void addPalm(BiConsumer<Identifier, Item> registry, String name, Block block) {
+        add(registry, name, new BlockItem(block, withId(name, props().useBlockDescriptionPrefix())));
     }
 
     static Item.Properties withId(String name, Item.Properties properties) {

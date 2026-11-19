@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": "morefood:block_log_palm"
+  },
+  "result": {
+    "id": "morefood:block_wood_palm",
+    "count": 3
+  },
+  "group": "bark"
+}
