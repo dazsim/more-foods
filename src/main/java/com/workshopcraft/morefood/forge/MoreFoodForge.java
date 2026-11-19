@@ -5,6 +5,7 @@ package com.workshopcraft.morefood.forge;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.morefood.worldgen.MoreFoodWorldGen;
 import com.workshopcraft.morefood.board.AssemblyBoardBlockEntity;
 import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
@@ -59,6 +60,7 @@ public class MoreFoodForge {
         e.register(Registries.RECIPE_SERIALIZER, h -> MoreFoodKitchen.registerRecipeSerializers(h::register));
         e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
         e.register(Registries.SOUND_EVENT, h -> MoreFoodKitchen.registerSounds(h::register));
+        e.register(Registries.FEATURE, h -> MoreFoodWorldGen.register(h::register));
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {

@@ -78,6 +78,30 @@
         {
           "type": "minecraft:item",
           "name": "morefood:item_seed_swede"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_soy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_lentil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_chickpea"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_peanut"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_oats"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "morefood:item_seed_beansprouts"
         }
       ]
     }

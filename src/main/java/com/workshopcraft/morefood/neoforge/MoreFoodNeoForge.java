@@ -5,6 +5,7 @@ import com.workshopcraft.morefood.MoreFood;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.morefood.worldgen.MoreFoodWorldGen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.neoforged.bus.api.IEventBus;
@@ -39,6 +40,11 @@ public class MoreFoodNeoForge {
         e.register(Registries.RECIPE_BOOK_CATEGORY, h -> MoreFoodKitchen.registerBookCategories(h::register));
         e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
         e.register(Registries.SOUND_EVENT, h -> MoreFoodKitchen.registerSounds(h::register));
+        //? if >=26.3 {
+        /*e.register(Registries.FEATURE_TYPE, h -> MoreFoodWorldGen.register(h::register));
+        *///?} else {
+        e.register(Registries.FEATURE, h -> MoreFoodWorldGen.register(h::register));
+        //?}
     }
 
     private static void onCapabilities(RegisterCapabilitiesEvent e) {
@@ -61,6 +67,7 @@ public class MoreFoodNeoForge {
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.morefood.worldgen.MoreFoodWorldGen;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -94,6 +101,7 @@ public class MoreFoodNeoForge {
         e.register(Registries.RECIPE_SERIALIZER, h -> MoreFoodKitchen.registerRecipeSerializers(h::register));
         e.register(Registries.PARTICLE_TYPE, h -> MoreFoodKitchen.registerParticles(h::register));
         e.register(Registries.SOUND_EVENT, h -> MoreFoodKitchen.registerSounds(h::register));
+        e.register(Registries.FEATURE, h -> MoreFoodWorldGen.register(h::register));
     }
 
     private static void onCapabilities(RegisterCapabilitiesEvent e) {

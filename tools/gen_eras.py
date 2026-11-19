@@ -134,6 +134,16 @@ def loot_fix(era, node):
     if isinstance(node, dict):
         if node.get("condition") == "minecraft:match_tool" and "predicate" in node:
             node["predicate"] = item_pred(era, node["predicate"])
+            if ERAS[era].get("plural") and "predicates" in node["predicate"]:
+                preds = node["predicate"].pop("predicates")
+                if "minecraft:enchantments" in preds:
+                    enchants = []
+                    for e in preds["minecraft:enchantments"]:
+                        ee = dict(e)
+                        if "enchantments" in ee:
+                            ee["enchantment"] = ee.pop("enchantments")
+                        enchants.append(ee)
+                    node["predicate"]["enchantments"] = enchants
         if node.get("function") == "minecraft:set_components":
             comps = nbt_of(era, node["components"])
             if ERAS[era].get("plural"):
@@ -268,6 +278,16 @@ def era_build(era):
             {"id": "#forge:nuggets/iron", "required": False}, {"id": "#c:iron_nuggets", "required": False}]})
         for name in ("cookbook",):
             w(f"{D}/{name}_book.json", {"values": [{"id": "simplebooks:guide", "required": False}]})
+        # Forge 1.20.1 biome modifiers, from the NeoForge copies in 26.1
+        src_mod = f"{SRC}/data/{MOD}/neoforge/biome_modifier"
+        if os.path.isdir(src_mod):
+            for fn in os.listdir(src_mod):
+                if not fn.endswith(".json"):
+                    continue
+                d = load(os.path.join(src_mod, fn))
+                if d.get("type") == "neoforge:add_features":
+                    d["type"] = "forge:add_features"
+                w(f"{out}/data/{MOD}/forge/biome_modifier/{fn}", d)
 
 
 def num(v):
@@ -312,11 +332,33 @@ def loot_263(node):
     return out
 
 
+def flatten_state(node):
+    # 26.3 block predicates take a block id string
+    if isinstance(node, dict):
+        if node.get("type") == "minecraft:would_survive" and isinstance(node.get("state"), dict) and "Name" in node["state"]:
+            node["state"] = node["state"]["Name"]
+        for v in node.values():
+            flatten_state(v)
+    elif isinstance(node, list):
+        for v in node:
+            flatten_state(v)
+
+
 def modern_build(era):
     # same as 26.1 apart from the data formats 26.3 changed
     out = f"src/eras/{era}"
     shutil.rmtree(out, ignore_errors=True)
     shutil.copytree(SRC, out)
+    cfg = f"{out}/data/{MOD}/worldgen/configured_feature"
+    feat = f"{out}/data/{MOD}/worldgen/feature"
+    if os.path.isdir(cfg):
+        os.makedirs(feat, exist_ok=True)
+        for fn in os.listdir(cfg):
+            d = load(os.path.join(cfg, fn))
+            if d.get("config") == {}:
+                d.pop("config")
+            w(os.path.join(feat, fn), d)
+        shutil.rmtree(cfg)
     for root, _, files in os.walk(f"{out}/data"):
         for fn in files:
             path = os.path.join(root, fn)
@@ -328,6 +370,10 @@ def modern_build(era):
                 for c in d.get("criteria", {}).values():
                     if c["trigger"] == "minecraft:recipe_unlocked" and "recipe" in c.get("conditions", {}):
                         c["conditions"]["recipes"] = c["conditions"].pop("recipe")
+                w(path, d)
+            elif "worldgen" in parts:
+                d = load(path)
+                flatten_state(d)
                 w(path, d)
 
 

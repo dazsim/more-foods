@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "fruit=false": {
+      "model": "morefood:block/leaves_coconut"
+    },
+    "fruit=true": {
+      "model": "morefood:block/leaves_coconut_fruit"
+    }
+  }
+}

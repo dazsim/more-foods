@@ -20,10 +20,27 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public final class MoreFoodForgeClient {
     private MoreFoodForgeClient() {}
 
+    private static void cutout() {
+        final net.minecraft.client.renderer.RenderType layer = net.minecraft.client.renderer.RenderType.cutout();
+        net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(com.workshopcraft.morefood.MoreFoodBlocks.cropTomato, layer);
+        net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(com.workshopcraft.morefood.MoreFoodBlocks.cropLettuce, layer);
+        net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(com.workshopcraft.morefood.MoreFoodBlocks.cropOnion, layer);
+        for (net.minecraft.world.level.block.Block crop : com.workshopcraft.morefood.MoreFoodBlocks.CROPS.values()) {
+            net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(crop, layer);
+        }
+        for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) {
+            net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(sapling, layer);
+        }
+        for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) {
+            net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(leaves, net.minecraft.client.renderer.RenderType.cutoutMipped());
+        }
+    }
+
     static void init(IEventBus modBus) {
         modBus.addListener((FMLClientSetupEvent e) -> e.enqueueWork(() -> {
             MenuScreens.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new);
             LegacyItemProps.register(ItemProperties::register);
+            cutout();
         }));
         modBus.addListener((EntityRenderersEvent.RegisterRenderers e) -> {
             e.registerBlockEntityRenderer(MoreFoodKitchen.stoveEntity, StoveRenderer::new);

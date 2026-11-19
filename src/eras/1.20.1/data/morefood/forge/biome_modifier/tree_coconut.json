@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_beach",
+  "features": "morefood:tree_coconut",
+  "step": "vegetal_decoration"
+}

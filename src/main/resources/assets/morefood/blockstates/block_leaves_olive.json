@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "fruit=false": {
+      "model": "morefood:block/leaves_olive"
+    },
+    "fruit=true": {
+      "model": "morefood:block/leaves_olive_fruit"
+    }
+  }
+}

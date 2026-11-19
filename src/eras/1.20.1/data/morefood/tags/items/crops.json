@@ -12,6 +12,16 @@
     "morefood:item_spinach",
     "morefood:item_swede",
     "morefood:item_fruit_tomato",
-    "morefood:item_turnip"
+    "morefood:item_turnip",
+    "morefood:item_soybeans",
+    "morefood:item_lentils",
+    "morefood:item_chickpeas",
+    "morefood:item_peanuts",
+    "morefood:item_oats",
+    "morefood:item_beansprouts",
+    "morefood:item_jackfruit",
+    "morefood:item_coconut",
+    "morefood:item_olive",
+    "morefood:item_avocado"
   ]
 }

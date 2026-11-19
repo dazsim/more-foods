@@ -4,6 +4,7 @@ import com.workshopcraft.morefood.MoreFood;
 import com.workshopcraft.morefood.MoreFoodBlocks;
 import com.workshopcraft.morefood.MoreFoodItems;
 import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.morefood.worldgen.MoreFoodWorldGen;
 import net.fabricmc.api.ModInitializer;
 //? if >=1.21 {
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -44,6 +45,12 @@ public class MoreFoodFabric implements ModInitializer {
         //?}
         MoreFoodKitchen.registerParticles(direct(BuiltInRegistries.PARTICLE_TYPE));
         MoreFoodKitchen.registerSounds(direct(BuiltInRegistries.SOUND_EVENT));
+        //? if >=26.3 {
+        /*MoreFoodWorldGen.register(direct(BuiltInRegistries.FEATURE_TYPE));
+        *///?} else {
+        MoreFoodWorldGen.register(direct(BuiltInRegistries.FEATURE));
+        //?}
+        addTrees();
         //? if >=26.1 {
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.BAKING_SERIALIZER);
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.FRYING_SERIALIZER);
@@ -79,6 +86,29 @@ public class MoreFoodFabric implements ModInitializer {
             }
         });
         *///?}
+    }
+
+    private static void addTrees() {
+        net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
+                net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_JUNGLE),
+                net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION,
+                MoreFoodWorldGen.JACKFRUIT);
+        net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
+                net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_BEACH),
+                net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION,
+                MoreFoodWorldGen.COCONUT);
+        net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
+                net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_SAVANNA),
+                net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION,
+                MoreFoodWorldGen.OLIVE);
+        net.fabricmc.fabric.api.biome.v1.BiomeModifications.addFeature(
+                net.fabricmc.fabric.api.biome.v1.BiomeSelectors.tag(net.minecraft.tags.BiomeTags.IS_JUNGLE),
+                net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION,
+                MoreFoodWorldGen.AVOCADO);
+        final net.fabricmc.fabric.api.registry.FlammableBlockRegistry fire = net.fabricmc.fabric.api.registry.FlammableBlockRegistry.getDefaultInstance();
+        fire.add(com.workshopcraft.morefood.MoreFoodBlocks.logPalm, 5, 5);
+        for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) fire.add(leaves, 30, 60);
+        for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) fire.add(sapling, 20, 60);
     }
 
     private static <T> BiConsumer<Identifier, T> direct(Registry<T> registry) {

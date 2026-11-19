@@ -12,6 +12,16 @@
     "#c:crops/haricot",
     "#c:crops/parsnip",
     "#c:crops/turnip",
-    "#c:crops/swede"
+    "#c:crops/swede",
+    "#c:crops/soy",
+    "#c:crops/lentil",
+    "#c:crops/chickpea",
+    "#c:crops/peanut",
+    "#c:crops/oats",
+    "#c:crops/beansprouts",
+    "#c:crops/jackfruit",
+    "#c:crops/coconut",
+    "#c:crops/olive",
+    "#c:crops/avocado"
   ]
 }

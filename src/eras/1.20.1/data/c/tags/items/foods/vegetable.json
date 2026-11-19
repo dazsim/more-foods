@@ -8,6 +8,9 @@
     "morefood:item_peas",
     "morefood:item_parsnip",
     "morefood:item_turnip",
-    "morefood:item_swede"
+    "morefood:item_swede",
+    "morefood:item_beansprouts",
+    "morefood:item_lentils",
+    "morefood:item_chickpeas"
   ]
 }

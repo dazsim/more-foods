@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_beansprouts"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_seed_beansprouts"
+  }
+}

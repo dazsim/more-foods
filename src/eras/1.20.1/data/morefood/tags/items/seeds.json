@@ -12,6 +12,12 @@
     "morefood:item_seed_spinach",
     "morefood:item_seed_swede",
     "morefood:item_seed_tomato",
-    "morefood:item_seed_turnip"
+    "morefood:item_seed_turnip",
+    "morefood:item_seed_soy",
+    "morefood:item_seed_lentil",
+    "morefood:item_seed_chickpea",
+    "morefood:item_seed_peanut",
+    "morefood:item_seed_oats",
+    "morefood:item_seed_beansprouts"
   ]
 }

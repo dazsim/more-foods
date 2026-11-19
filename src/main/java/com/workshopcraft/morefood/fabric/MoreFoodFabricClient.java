@@ -43,6 +43,9 @@ public class MoreFoodFabricClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(MoreFoodKitchen.cookingPotEntity, CookingPotRenderer::new);
         BlockEntityRendererRegistry.register(MoreFoodKitchen.boardEntity, AssemblyBoardRenderer::new);
         ParticleProviderRegistry.getInstance().register(MoreFoodKitchen.STEAM, SteamParticle.Provider::new);
+        //? if <26.1 {
+        /*cutout();
+        *///?}
         //? if >=26.1 {
         ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(BoardLayers.ID, new BoardLayers());
         ConditionalItemModelProperties.ID_MAPPER.put(HasTopping.ID, HasTopping.MAP_CODEC);
@@ -54,6 +57,25 @@ public class MoreFoodFabricClient implements ClientModInitializer {
         LegacyItemProps.register(FabricModelPredicateProviderRegistry::register);
         *///?}
     }
+
+
+    //? if <26.1 {
+    /*private static void cutout() {
+        final net.minecraft.client.renderer.RenderType cutout = net.minecraft.client.renderer.RenderType.cutout();
+        net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(com.workshopcraft.morefood.MoreFoodBlocks.cropTomato, cutout);
+        net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(com.workshopcraft.morefood.MoreFoodBlocks.cropLettuce, cutout);
+        net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(com.workshopcraft.morefood.MoreFoodBlocks.cropOnion, cutout);
+        for (net.minecraft.world.level.block.Block crop : com.workshopcraft.morefood.MoreFoodBlocks.CROPS.values()) {
+            net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(crop, cutout);
+        }
+        for (net.minecraft.world.level.block.Block sapling : com.workshopcraft.morefood.MoreFoodBlocks.SAPLINGS.values()) {
+            net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(sapling, cutout);
+        }
+        for (net.minecraft.world.level.block.Block leaves : com.workshopcraft.morefood.MoreFoodBlocks.LEAVES.values()) {
+            net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap.INSTANCE.putBlock(leaves, net.minecraft.client.renderer.RenderType.cutoutMipped());
+        }
+    }
+    *///?}
 
     //? if <26.1 {
     /*private static final class Layers implements IdentifiableResourceReloadListener {

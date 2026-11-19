@@ -1,0 +1,25 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_lentils"
+    },
+    {
+      "item": "morefood:item_lentils"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "morefood:item_stock"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_soup_lentil"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#c86a28",
+  "vessel": "minecraft:bowl"
+}

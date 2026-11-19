@@ -1,14 +1,18 @@
 package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.blocks.BlockCropMoreFood;
+import com.workshopcraft.morefood.blocks.FruitLeavesBlock;
+import com.workshopcraft.morefood.blocks.FruitSaplingBlock;
 import com.workshopcraft.morefood.board.AssemblyBoardBlock;
 import com.workshopcraft.morefood.stove.CookingPotBlock;
 import com.workshopcraft.morefood.stove.StoveBlock;
+import com.workshopcraft.morefood.worldgen.FruitTreeFeature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -28,6 +32,9 @@ public class MoreFoodBlocks {
     public static Block cookingPot;
     public static Block assemblyBoard;
     public static final Map<String, Block> CROPS = new LinkedHashMap<>();
+    public static final Map<FruitTreeFeature.Type, FruitSaplingBlock> SAPLINGS = new LinkedHashMap<>();
+    public static final Map<FruitTreeFeature.Type, FruitLeavesBlock> LEAVES = new LinkedHashMap<>();
+    public static Block logPalm;
 
     public static void register(BiConsumer<Identifier, Block> registry) {
         cropTomato = crop(registry, "block_crop_tomato", () -> MoreFoodItems.seedTomato);
@@ -35,6 +42,42 @@ public class MoreFoodBlocks {
         cropOnion = crop(registry, "block_crop_onion", () -> MoreFoodItems.seedOnion);
         for (String name : MoreFoodItems.NEW_CROPS) {
             CROPS.put(name, crop(registry, "block_crop_" + name, () -> MoreFoodItems.SEEDS.get(name)));
+        }
+        for (String name : MoreFoodItems.VEGAN_CROPS) {
+            CROPS.put(name, crop(registry, "block_crop_" + name, () -> MoreFoodItems.SEEDS.get(name)));
+        }
+        logPalm = new RotatedPillarBlock(BlockBehaviour.Properties.of()
+                .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_log_palm")))
+                .mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F)
+                .sound(SoundType.WOOD));
+        registry.accept(MoreFood.id("block_log_palm"), logPalm);
+        for (FruitTreeFeature.Type type : FruitTreeFeature.Type.values()) {
+            final String id = type.name().toLowerCase();
+            final FruitLeavesBlock leaves = new FruitLeavesBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_leaves_" + id)))
+                    .mapColor(MapColor.PLANT)
+                    .strength(0.2F)
+                    .randomTicks()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .isSuffocating((state, level, pos) -> false)
+                    .pushReaction(PushReaction.DESTROY),
+                    () -> MoreFoodItems.FRUIT.get(id));
+            registry.accept(MoreFood.id("block_leaves_" + id), leaves);
+            LEAVES.put(type, leaves);
+            final boolean sand = type == FruitTreeFeature.Type.COCONUT;
+            final FruitSaplingBlock sapling = new FruitSaplingBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_sapling_" + id)))
+                    .mapColor(MapColor.PLANT)
+                    .noCollision()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY), type, sand);
+            registry.accept(MoreFood.id("block_sapling_" + id), sapling);
+            SAPLINGS.put(type, sapling);
         }
         stove = new StoveBlock(BlockBehaviour.Properties.of()
                 .setId(ResourceKey.create(Registries.BLOCK, MoreFood.id("block_stove")))

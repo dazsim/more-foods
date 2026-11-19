@@ -34,7 +34,9 @@ public class MoreFoodItems {
     public static Item seedLettuce;
     public static Item seedOnion;
     public static final List<String> NEW_CROPS = List.of("cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede");
+    public static final List<String> VEGAN_CROPS = List.of("soy", "lentil", "chickpea", "peanut", "oats", "beansprouts");
     public static final Map<String, Item> SEEDS = new HashMap<>();
+    public static final Map<String, Item> FRUIT = new HashMap<>();
     //made by the stove now, kept so old stacks still finish, gone in 2.1
     public static final Set<String> RETIRED = Set.of("item_pot_water", "item_pot_salt", "item_pot_water_potato_peeled",
             "item_pot_water_potato_boiled", "item_stock_mix_uncooked", "item_egg_uncooked_frying_pan", "item_fried_egg_frying_pan",
@@ -163,6 +165,31 @@ public class MoreFoodItems {
         for (String name : NEW_CROPS) {
             SEEDS.put(name, seed(registry, "item_seed_" + name, MoreFoodBlocks.CROPS.get(name)));
         }
+        item(registry, "item_soybeans", props());
+        item(registry, "item_lentils", props());
+        item(registry, "item_chickpeas", props());
+        food(registry, "item_peanuts", 1, 0.1F, props());
+        item(registry, "item_oats", props());
+        food(registry, "item_beansprouts", 1, 0.2F, props());
+        for (String name : VEGAN_CROPS) {
+            SEEDS.put(name, seed(registry, "item_seed_" + name, MoreFoodBlocks.CROPS.get(name)));
+        }
+        FRUIT.put("jackfruit", food(registry, "item_jackfruit", 3, 0.3F, props()));
+        FRUIT.put("coconut", food(registry, "item_coconut", 2, 0.2F, props()));
+        FRUIT.put("olive", food(registry, "item_olive", 1, 0.1F, props()));
+        FRUIT.put("avocado", food(registry, "item_avocado", 2, 0.3F, props()));
+        for (com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type type : com.workshopcraft.morefood.worldgen.FruitTreeFeature.Type.values()) {
+            final String id = type.name().toLowerCase();
+            add(registry, "block_sapling_" + id, new BlockItem(MoreFoodBlocks.SAPLINGS.get(type), withId("block_sapling_" + id, props().useBlockDescriptionPrefix())));
+            add(registry, "block_leaves_" + id, new BlockItem(MoreFoodBlocks.LEAVES.get(type), withId("block_leaves_" + id, props().useBlockDescriptionPrefix())));
+        }
+        add(registry, "block_log_palm", new BlockItem(MoreFoodBlocks.logPalm, withId("block_log_palm", props().useBlockDescriptionPrefix())));
+        food(registry, "item_peanuts_roasted", 3, 0.3F, props());
+        food(registry, "item_chickpeas_roasted", 3, 0.3F, props());
+        food(registry, "item_beansprouts_fried", 2, 0.3F, props());
+        bowl(registry, "item_porridge", 6, 0.6F);
+        bowl(registry, "item_soup_lentil", 7, 0.7F);
+        food(registry, "item_jackfruit_cooked", 5, 0.5F, props());
         food(registry, "item_cabbage_shredded", 1, 0.2F, props());
         item(registry, "item_garlic_chopped", props());
         item(registry, "item_leek_sliced", props());
@@ -320,11 +347,17 @@ public class MoreFoodItems {
 
     private static Map<String, Float> compost() {
         final Map<String, Float> map = new LinkedHashMap<>();
-        for (String name : List.of("tomato", "lettuce", "onion", "cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede")) {
+        for (String name : List.of("tomato", "lettuce", "onion", "cabbage", "spinach", "kale", "garlic", "leek", "peas", "haricot", "parsnip", "turnip", "swede", "soy", "lentil", "chickpea", "peanut", "oats", "beansprouts")) {
             map.put("item_seed_" + name, 0.3F);
         }
+        for (String name : List.of("block_sapling_jackfruit", "block_sapling_coconut", "block_sapling_olive", "block_sapling_avocado")) {
+            map.put(name, 0.3F);
+        }
+        for (String name : List.of("block_leaves_jackfruit", "block_leaves_coconut", "block_leaves_olive", "block_leaves_avocado")) {
+            map.put(name, 0.3F);
+        }
         for (String name : List.of("item_fruit_tomato", "item_lettuce", "item_onion", "item_cabbage", "item_spinach", "item_kale", "item_garlic",
-                "item_leek", "item_peas", "item_haricot_beans", "item_parsnip", "item_turnip", "item_swede", "item_potato_peeled")) {
+                "item_leek", "item_peas", "item_haricot_beans", "item_parsnip", "item_turnip", "item_swede", "item_potato_peeled", "item_soybeans", "item_lentils", "item_chickpeas", "item_peanuts", "item_oats", "item_beansprouts", "item_jackfruit", "item_coconut", "item_olive", "item_avocado")) {
             map.put(name, 0.65F);
         }
         for (String name : List.of("item_onion_chopped", "item_tomato_chopped", "item_cabbage_shredded", "item_garlic_chopped", "item_leek_sliced",

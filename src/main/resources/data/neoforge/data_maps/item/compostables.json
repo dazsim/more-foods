@@ -98,6 +98,78 @@
     },
     "morefood:item_potato_peeled_chipped": {
       "chance": 0.5
+    },
+    "morefood:item_seed_soy": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_lentil": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_chickpea": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_peanut": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_oats": {
+      "chance": 0.3
+    },
+    "morefood:item_seed_beansprouts": {
+      "chance": 0.3
+    },
+    "morefood:block_sapling_jackfruit": {
+      "chance": 0.3
+    },
+    "morefood:block_leaves_jackfruit": {
+      "chance": 0.3
+    },
+    "morefood:block_sapling_coconut": {
+      "chance": 0.3
+    },
+    "morefood:block_leaves_coconut": {
+      "chance": 0.3
+    },
+    "morefood:block_sapling_olive": {
+      "chance": 0.3
+    },
+    "morefood:block_leaves_olive": {
+      "chance": 0.3
+    },
+    "morefood:block_sapling_avocado": {
+      "chance": 0.3
+    },
+    "morefood:block_leaves_avocado": {
+      "chance": 0.3
+    },
+    "morefood:item_soybeans": {
+      "chance": 0.65
+    },
+    "morefood:item_lentils": {
+      "chance": 0.65
+    },
+    "morefood:item_chickpeas": {
+      "chance": 0.65
+    },
+    "morefood:item_peanuts": {
+      "chance": 0.65
+    },
+    "morefood:item_oats": {
+      "chance": 0.65
+    },
+    "morefood:item_beansprouts": {
+      "chance": 0.65
+    },
+    "morefood:item_jackfruit": {
+      "chance": 0.65
+    },
+    "morefood:item_coconut": {
+      "chance": 0.65
+    },
+    "morefood:item_olive": {
+      "chance": 0.65
+    },
+    "morefood:item_avocado": {
+      "chance": 0.65
     }
   }
 }

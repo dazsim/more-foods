@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": "morefood:tree_avocado",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "morefood:block/crop_shape/tuft_s6",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "blade": "morefood:block/crop/sprout_blade"
+  }
+}

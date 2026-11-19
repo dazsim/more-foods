@@ -12,6 +12,12 @@
     "#c:seeds/haricot",
     "#c:seeds/parsnip",
     "#c:seeds/turnip",
-    "#c:seeds/swede"
+    "#c:seeds/swede",
+    "#c:seeds/soy",
+    "#c:seeds/lentil",
+    "#c:seeds/chickpea",
+    "#c:seeds/peanut",
+    "#c:seeds/oats",
+    "#c:seeds/beansprouts"
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_oats",
+    "minecraft:milk_bucket"
+  ],
+  "water": 0,
+  "result": {
+    "id": "morefood:item_porridge"
+  },
+  "portions": 2,
+  "cookingtime": 300,
+  "colour": "#e8d49a",
+  "vessel": "minecraft:bowl"
+}

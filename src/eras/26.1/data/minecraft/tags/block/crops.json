@@ -13,6 +13,12 @@
     "morefood:block_crop_haricot",
     "morefood:block_crop_parsnip",
     "morefood:block_crop_turnip",
-    "morefood:block_crop_swede"
+    "morefood:block_crop_swede",
+    "morefood:block_crop_soy",
+    "morefood:block_crop_lentil",
+    "morefood:block_crop_chickpea",
+    "morefood:block_crop_peanut",
+    "morefood:block_crop_oats",
+    "morefood:block_crop_beansprouts"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "morefood:block/crop_shape/bush_fruit_s4",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fruit": "morefood:block/crop/peanut_pod",
+    "fruit_top": "morefood:block/crop/stem"
+  }
+}
