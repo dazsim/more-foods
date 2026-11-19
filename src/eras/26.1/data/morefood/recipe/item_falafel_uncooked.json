@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_chickpea_paste",
+    "morefood:item_onion_chopped",
+    "morefood:item_garlic_chopped"
+  ],
+  "result": {
+    "id": "morefood:item_falafel_uncooked",
+    "count": 2
+  }
+}

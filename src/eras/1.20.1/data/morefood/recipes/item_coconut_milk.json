@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_juicer"
+    },
+    {
+      "item": "morefood:item_coconut"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_coconut_milk"
+  }
+}

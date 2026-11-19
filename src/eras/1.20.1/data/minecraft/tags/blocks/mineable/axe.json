@@ -1,6 +1,9 @@
 {
   "values": [
     "morefood:block_assembly_board",
-    "morefood:block_log_palm"
+    "morefood:block_log_palm",
+    "morefood:block_kitchen_chassis",
+    "morefood:block_grinder",
+    "morefood:block_press"
   ]
 }

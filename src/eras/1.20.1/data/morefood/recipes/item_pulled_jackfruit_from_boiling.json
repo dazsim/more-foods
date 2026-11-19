@@ -1,0 +1,25 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    {
+      "item": "morefood:item_jackfruit"
+    },
+    {
+      "item": "morefood:item_jackfruit"
+    },
+    {
+      "item": "morefood:item_sauce_tomato"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    }
+  ],
+  "water": 250,
+  "result": {
+    "item": "morefood:item_pulled_jackfruit"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#a65a30",
+  "vessel": "minecraft:bowl"
+}

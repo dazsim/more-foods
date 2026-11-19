@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " F ",
+    "SMS",
+    " S "
+  ],
+  "key": {
+    "F": "minecraft:flint",
+    "S": "minecraft:cobblestone",
+    "M": "morefood:item_pestle_mortar"
+  },
+  "result": {
+    "id": "morefood:item_grinder_core"
+  }
+}

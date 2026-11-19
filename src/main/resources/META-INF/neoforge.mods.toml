@@ -24,6 +24,12 @@ versionRange = "${minecraft}"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.${id}]]
+modId = "workshopcore"
+type = "required"
+versionRange = "[0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.${id}]]
 modId = "jei"
 type = "optional"
 versionRange = "*"

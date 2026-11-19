@@ -42,6 +42,8 @@ public final class MoreFoodForgeClient {
     static void init(IEventBus modBus) {
         modBus.addListener((FMLClientSetupEvent e) -> e.enqueueWork(() -> {
             MenuScreens.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new);
+            MenuScreens.register(com.workshopcraft.morefood.MoreFoodMachines.GRINDER_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+            MenuScreens.register(com.workshopcraft.morefood.MoreFoodMachines.PRESS_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
             LegacyItemProps.register(ItemProperties::register);
             cutout();
         }));

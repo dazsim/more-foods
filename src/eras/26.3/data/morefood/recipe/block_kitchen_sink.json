@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "I I",
+    "PIP"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "P": "#minecraft:planks"
+  },
+  "result": {
+    "id": "morefood:block_kitchen_sink"
+  }
+}

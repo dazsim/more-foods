@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_knife"
+    },
+    {
+      "item": "morefood:item_avocado"
+    },
+    {
+      "item": "morefood:item_tomato_chopped"
+    },
+    {
+      "item": "morefood:item_onion_chopped"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_guacamole"
+  }
+}

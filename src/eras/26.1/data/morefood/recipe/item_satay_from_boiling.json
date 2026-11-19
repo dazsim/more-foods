@@ -1,0 +1,17 @@
+{
+  "type": "morefood:boiling",
+  "ingredients": [
+    "morefood:item_tofu",
+    "morefood:item_tofu",
+    "morefood:item_peanut_butter",
+    "morefood:item_coconut_milk"
+  ],
+  "water": 250,
+  "result": {
+    "id": "morefood:item_satay"
+  },
+  "portions": 2,
+  "cookingtime": 400,
+  "colour": "#d79a52",
+  "vessel": "minecraft:bowl"
+}

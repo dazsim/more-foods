@@ -53,6 +53,8 @@ public class MoreFoodNeoForge {
         e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.cookingPotEntity, WorldlyContainerWrapper::new);
         e.registerBlockEntity(Capabilities.Fluid.BLOCK, MoreFoodKitchen.cookingPotEntity, PotFluidHandler::ofCampfire);
         e.registerBlockEntity(Capabilities.Item.BLOCK, MoreFoodKitchen.boardEntity, BoardItemHandler::of);
+        e.registerBlockEntity(Capabilities.Item.BLOCK, com.workshopcraft.morefood.MoreFoodMachines.sinkEntity, WorldlyContainerWrapper::new);
+        e.registerBlockEntity(Capabilities.Fluid.BLOCK, com.workshopcraft.morefood.MoreFoodMachines.sinkEntity, (sink, side) -> SinkFluidHandler.INSTANCE);
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {
@@ -110,6 +112,8 @@ public class MoreFoodNeoForge {
         e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MoreFoodKitchen.cookingPotEntity, (be, side) -> side == null ? new InvWrapper(be) : new SidedInvWrapper(be, side));
         e.registerBlockEntity(Capabilities.FluidHandler.BLOCK, MoreFoodKitchen.cookingPotEntity, PotFluidHandler::ofCampfire);
         e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MoreFoodKitchen.boardEntity, BoardItemHandler::of);
+        e.registerBlockEntity(Capabilities.ItemHandler.BLOCK, com.workshopcraft.morefood.MoreFoodMachines.sinkEntity, (be, side) -> side == null ? new InvWrapper(be) : new SidedInvWrapper(be, side));
+        e.registerBlockEntity(Capabilities.FluidHandler.BLOCK, com.workshopcraft.morefood.MoreFoodMachines.sinkEntity, (sink, side) -> SinkFluidHandler.INSTANCE);
     }
 
     private static void onLootTableLoad(LootTableLoadEvent e) {

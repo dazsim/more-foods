@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_juicer",
+    "morefood:item_olive",
+    "morefood:item_olive",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_olive_oil"
+  }
+}

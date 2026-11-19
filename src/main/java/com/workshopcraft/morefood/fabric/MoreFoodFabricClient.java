@@ -39,6 +39,8 @@ public class MoreFoodFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MenuScreens.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new);
+        MenuScreens.register(com.workshopcraft.morefood.MoreFoodMachines.GRINDER_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+        MenuScreens.register(com.workshopcraft.morefood.MoreFoodMachines.PRESS_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
         BlockEntityRendererRegistry.register(MoreFoodKitchen.stoveEntity, StoveRenderer::new);
         BlockEntityRendererRegistry.register(MoreFoodKitchen.cookingPotEntity, CookingPotRenderer::new);
         BlockEntityRendererRegistry.register(MoreFoodKitchen.boardEntity, AssemblyBoardRenderer::new);

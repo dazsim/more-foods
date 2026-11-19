@@ -26,7 +26,11 @@ import net.neoforged.neoforge.common.NeoForge;
 @Mod(value = MoreFood.MODID, dist = Dist.CLIENT)
 public class MoreFoodNeoForgeClient {
     public MoreFoodNeoForgeClient(IEventBus modBus) {
-        modBus.addListener((RegisterMenuScreensEvent e) -> e.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new));
+        modBus.addListener((RegisterMenuScreensEvent e) -> {
+            e.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new);
+            e.register(com.workshopcraft.morefood.MoreFoodMachines.GRINDER_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+            e.register(com.workshopcraft.morefood.MoreFoodMachines.PRESS_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+        });
         modBus.addListener((EntityRenderersEvent.RegisterRenderers e) -> {
             e.registerBlockEntityRenderer(MoreFoodKitchen.stoveEntity, StoveRenderer::new);
             e.registerBlockEntityRenderer(MoreFoodKitchen.cookingPotEntity, CookingPotRenderer::new);
@@ -61,7 +65,11 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 @Mod(value = MoreFood.MODID, dist = Dist.CLIENT)
 public class MoreFoodNeoForgeClient {
     public MoreFoodNeoForgeClient(IEventBus modBus) {
-        modBus.addListener((RegisterMenuScreensEvent e) -> e.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new));
+        modBus.addListener((RegisterMenuScreensEvent e) -> {
+            e.register(MoreFoodKitchen.STOVE_MENU, StoveScreen::new);
+            e.register(com.workshopcraft.morefood.MoreFoodMachines.GRINDER_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+            e.register(com.workshopcraft.morefood.MoreFoodMachines.PRESS_MENU, com.workshopcraft.morefood.client.KitchenMachineScreen::new);
+        });
         modBus.addListener((FMLClientSetupEvent e) -> e.enqueueWork(() -> LegacyItemProps.register(ItemProperties::register)));
         modBus.addListener((EntityRenderersEvent.RegisterRenderers e) -> {
             e.registerBlockEntityRenderer(MoreFoodKitchen.stoveEntity, StoveRenderer::new);

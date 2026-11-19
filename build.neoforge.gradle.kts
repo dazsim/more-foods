@@ -35,6 +35,10 @@ repositories {
         name = "BlameJared"
         content { includeGroup("mezz.jei") }
     }
+    maven(rootProject.file("../workshopcore-maven")) {
+        name = "WorkshopCore"
+        content { includeGroup("com.workshopcraft.workshopcore") }
+    }
 }
 
 neoForge {
@@ -59,6 +63,12 @@ neoForge {
 
 dependencies {
     compileOnly("org.jspecify:jspecify:1.0.0")
+    jarJar(implementation("com.workshopcraft.workshopcore:workshopcore-neoforge-$mc") {
+        version {
+            strictly("[0.8,1.0)")
+            prefer(sc.properties.get<String>("deps.workshopcore"))
+        }
+    })
     if (jei.isNotEmpty()) {
         compileOnly("mezz.jei:jei-$mc-common-api:$jei")
         compileOnly("mezz.jei:jei-$mc-neoforge-api:$jei")

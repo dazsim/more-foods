@@ -35,6 +35,10 @@ repositories {
         name = "BlameJared"
         content { includeGroup("mezz.jei") }
     }
+    maven(rootProject.file("../workshopcore-maven")) {
+        name = "WorkshopCore"
+        content { includeGroup("com.workshopcraft.workshopcore") }
+    }
 }
 
 dependencies {
@@ -43,6 +47,9 @@ dependencies {
     loomx.applyMojangMappings()
     modImplementation("net.fabricmc:fabric-loader:${sc.properties.get<String>("deps.fabric_loader")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${sc.properties.get<String>("deps.fabric_api")}")
+    val core = "com.workshopcraft.workshopcore:workshopcore-fabric-$mc:${sc.properties.get<String>("deps.workshopcore")}"
+    modImplementation(core)
+    include(core)
     if (jei.isNotEmpty()) {
         modCompileOnly("mezz.jei:jei-$mc-common-api:$jei")
         modCompileOnly("mezz.jei:jei-$mc-fabric-api:$jei")

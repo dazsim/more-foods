@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_pestle_mortar"
+    },
+    {
+      "item": "morefood:item_peanuts"
+    },
+    {
+      "item": "morefood:item_peanuts"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_peanut_butter"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "morefood:block/machine/kitchen_worktop",
+    "t": "morefood:block/machine/kitchen_worktop",
+    "s": "morefood:block/machine/kitchen_worktop_side"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        16.5,
+        0
+      ],
+      "to": [
+        16,
+        18.5,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#s",
+          "uv": [
+            0,
+            0,
+            16,
+            1
+          ]
+        },
+        "south": {
+          "texture": "#s",
+          "uv": [
+            0,
+            0,
+            16,
+            1
+          ]
+        },
+        "east": {
+          "texture": "#s",
+          "uv": [
+            0,
+            0,
+            16,
+            1
+          ]
+        },
+        "west": {
+          "texture": "#s",
+          "uv": [
+            0,
+            0,
+            16,
+            1
+          ]
+        },
+        "up": {
+          "texture": "#t",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

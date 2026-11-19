@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "morefood:item_mixing_bowl",
+    "morefood:item_vegetable_oil",
+    "morefood:item_coconut_milk"
+  ],
+  "result": {
+    "id": "morefood:item_butter_vegan"
+  }
+}

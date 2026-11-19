@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "key": {
+    "S": "minecraft:stick",
+    "P": "#minecraft:planks"
+  },
+  "result": {
+    "id": "morefood:item_kitchen_gearbox"
+  }
+}

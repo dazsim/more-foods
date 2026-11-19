@@ -24,6 +24,10 @@ repositories {
         name = "BlameJared"
         content { includeGroup("mezz.jei") }
     }
+    maven(rootProject.file("../workshopcore-maven")) {
+        name = "WorkshopCore"
+        content { includeGroup("com.workshopcraft.workshopcore") }
+    }
 }
 
 legacyForge {
@@ -47,6 +51,12 @@ legacyForge {
 
 dependencies {
     compileOnly("org.jspecify:jspecify:1.0.0")
+    jarJar(modImplementation("com.workshopcraft.workshopcore:workshopcore-forge-$mc") {
+        version {
+            strictly("[0.8,1.0)")
+            prefer(sc.properties.get<String>("deps.workshopcore"))
+        }
+    })
     if (jei.isNotEmpty()) {
         compileOnly("mezz.jei:jei-$mc-common-api:$jei")
         compileOnly("mezz.jei:jei-$mc-forge-api:$jei")

@@ -57,6 +57,7 @@ public class MoreFoodJei implements IModPlugin {
         final IGuiHelper gui = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(new BakingCategory(gui), new FryingCategory(gui),
                 new BoilingCategory(gui, registration.getJeiHelpers().getPlatformFluidHelper().bucketVolume()), new AssemblyCategory(gui));
+        MachineCategory.registerCategories(registration);
     }
 
     @Override
@@ -65,6 +66,7 @@ public class MoreFoodJei implements IModPlugin {
         registration.addRecipes(FRYING.get(), ClientRecipes.of(MoreFoodKitchen.FRYING));
         registration.addRecipes(BOILING.get(), ClientRecipes.of(MoreFoodKitchen.BOILING));
         registration.addRecipes(ASSEMBLY.get(), ClientRecipes.of(MoreFoodKitchen.ASSEMBLY));
+        MachineCategory.registerRecipes(registration);
     }
 
     @Override
@@ -73,6 +75,7 @@ public class MoreFoodJei implements IModPlugin {
         registration.addCraftingStation(FRYING.get(), MoreFoodBlocks.stove, MoreFoodItems.fryingPan);
         registration.addCraftingStation(BOILING.get(), MoreFoodBlocks.stove, MoreFoodItems.pot, Blocks.CAMPFIRE, Blocks.SOUL_CAMPFIRE);
         registration.addCraftingStation(ASSEMBLY.get(), MoreFoodBlocks.assemblyBoard);
+        MachineCategory.registerCatalysts(registration);
     }
 
     @Override

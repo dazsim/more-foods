@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_chickpea_paste"
+    },
+    {
+      "item": "morefood:item_olive_oil"
+    },
+    {
+      "item": "morefood:item_garlic_chopped"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_hummus"
+  }
+}

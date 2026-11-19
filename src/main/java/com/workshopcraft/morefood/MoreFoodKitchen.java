@@ -222,6 +222,7 @@ public class MoreFoodKitchen {
         boardEntity = BlockEntityType.Builder.of(AssemblyBoardBlockEntity::new, MoreFoodBlocks.assemblyBoard).build(null);
         *///?}
         registry.accept(MoreFood.id("assembly_board"), boardEntity);
+        MoreFoodMachines.registerBlockEntities(registry);
     }
 
     //? if >=26.1 {
@@ -239,6 +240,7 @@ public class MoreFoodKitchen {
 
     public static void registerMenus(BiConsumer<Identifier, MenuType<?>> registry) {
         registry.accept(MoreFood.id("stove"), STOVE_MENU);
+        MoreFoodMachines.registerMenus(registry);
     }
 
     public static void registerRecipeTypes(BiConsumer<Identifier, RecipeType<?>> registry) {

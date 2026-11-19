@@ -1,0 +1,77 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "morefood:block/machine/kitchen_gearbox",
+    "g": "morefood:block/machine/kitchen_gearbox"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        4.5,
+        12
+      ],
+      "to": [
+        13,
+        14.5,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#g",
+          "uv": [
+            3,
+            1.5,
+            13,
+            11.5
+          ]
+        },
+        "south": {
+          "texture": "#g",
+          "uv": [
+            3,
+            1.5,
+            13,
+            11.5
+          ]
+        },
+        "east": {
+          "texture": "#g",
+          "uv": [
+            12,
+            1.5,
+            14,
+            11.5
+          ]
+        },
+        "west": {
+          "texture": "#g",
+          "uv": [
+            12,
+            1.5,
+            14,
+            11.5
+          ]
+        },
+        "up": {
+          "texture": "#g",
+          "uv": [
+            3,
+            12,
+            13,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#g",
+          "uv": [
+            3,
+            12,
+            13,
+            14
+          ]
+        }
+      }
+    }
+  ]
+}

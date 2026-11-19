@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "S S",
+    "PPP"
+  ],
+  "key": {
+    "P": "#minecraft:planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "morefood:block_kitchen_chassis"
+  }
+}

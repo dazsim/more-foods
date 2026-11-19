@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "morefood:item_soybeans"
+    },
+    {
+      "item": "morefood:item_soybeans"
+    },
+    {
+      "item": "morefood:item_soybeans"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_tempeh"
+  }
+}

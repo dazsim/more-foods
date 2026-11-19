@@ -31,6 +31,7 @@
     "depends": {
         "fabricloader": ">=${loader}",
         "fabric-api": "*",
+        "workshopcore": ">=0.8.0",
         "minecraft": "${minecraft}",
         "java": ">=${java}"
     },

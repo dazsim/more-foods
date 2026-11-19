@@ -249,6 +249,7 @@ public class MoreFoodItems {
         food(registry, "item_pie_vegetable", 8, 0.8F, props());
         item(registry, "item_pasty_uncooked", props());
         food(registry, "item_pasty", 9, 0.8F, props());
+        MoreFoodMachines.registerItems(registry);
     }
 
     /** What an ingredient leaves behind when it is used up: the tool, the bucket, the stock's bottle. */
@@ -259,21 +260,21 @@ public class MoreFoodItems {
         return left != null ? left.create() : ItemStack.EMPTY;
     }
 
-    private static Item bowl(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation) {
+    static Item bowl(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation) {
         return food(registry, name, amount, saturation, props().usingConvertsTo(Items.BOWL));
     }
 
     //? if >=26.1 {
-    private static Item.Properties props() {
+    static Item.Properties props() {
         return new Item.Properties();
     }
     //?} else {
-    /*private static Props props() {
+    /*static Props props() {
         return new Props();
     }
 
     // the 26.1 property calls this mod uses, kept so the item list reads the same
-    private static final class Props extends Item.Properties {
+    static final class Props extends Item.Properties {
         private @org.jspecify.annotations.Nullable Item converts;
 
         Props usingConvertsTo(Item item) {
@@ -291,14 +292,14 @@ public class MoreFoodItems {
     }
     *///?}
 
-    private static <T extends Item> T add(BiConsumer<Identifier, Item> registry, String name, T item) {
+    static <T extends Item> T add(BiConsumer<Identifier, Item> registry, String name, T item) {
         registry.accept(MoreFood.id(name), item);
         ALL.add(item);
         if (RETIRED.contains(name)) HIDDEN.add(item);
         return item;
     }
 
-    private static Item.Properties withId(String name, Item.Properties properties) {
+    static Item.Properties withId(String name, Item.Properties properties) {
         //? if >=26.3 {
         /*final Float compost = COMPOST.get(name);
         if (compost != null) properties.compostable(compost < 0.4f ? net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders.COMPOSTABLE_LOW
@@ -311,11 +312,11 @@ public class MoreFoodItems {
         *///?}
     }
 
-    private static Item item(BiConsumer<Identifier, Item> registry, String name, Item.Properties properties) {
+    static Item item(BiConsumer<Identifier, Item> registry, String name, Item.Properties properties) {
         return add(registry, name, new Item(withId(name, properties)));
     }
 
-    private static Item food(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation, Item.Properties properties) {
+    static Item food(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation, Item.Properties properties) {
         //? if >=26.1 {
         final FoodProperties food = new FoodProperties.Builder().nutrition(amount).saturationModifier(saturation).build();
         return add(registry, name, new Item(withId(name, properties.food(food))));

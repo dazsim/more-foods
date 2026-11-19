@@ -119,6 +119,7 @@ public class MoreFoodBlocks {
                 .forceSolidOff()
                 .pushReaction(PushReaction.DESTROY));
         registry.accept(MoreFood.id("block_assembly_board"), assemblyBoard);
+        MoreFoodMachines.registerBlocks(registry);
     }
 
     private static Block crop(BiConsumer<Identifier, Block> registry, String name, Supplier<Item> seed) {

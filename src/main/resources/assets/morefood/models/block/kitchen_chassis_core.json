@@ -1,0 +1,77 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "morefood:block/machine/kitchen_core",
+    "c": "morefood:block/machine/kitchen_core"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        2,
+        4
+      ],
+      "to": [
+        12,
+        9,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#c",
+          "uv": [
+            4,
+            7,
+            12,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#c",
+          "uv": [
+            4,
+            7,
+            12,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#c",
+          "uv": [
+            4,
+            7,
+            12,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#c",
+          "uv": [
+            4,
+            7,
+            12,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#c",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#c",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        }
+      }
+    }
+  ]
+}

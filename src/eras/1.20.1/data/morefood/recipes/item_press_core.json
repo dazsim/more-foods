@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "PJP",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "J": {
+      "item": "morefood:item_juicer"
+    }
+  },
+  "result": {
+    "item": "morefood:item_press_core"
+  }
+}

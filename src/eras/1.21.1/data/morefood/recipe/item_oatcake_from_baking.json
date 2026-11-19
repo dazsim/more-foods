@@ -1,0 +1,12 @@
+{
+  "type": "morefood:baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "morefood:item_oat_flour"
+  },
+  "result": {
+    "id": "morefood:item_oatcake"
+  }
+}

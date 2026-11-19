@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "morefood:block/block_kitchen_sink"
+    },
+    "facing=east": {
+      "model": "morefood:block/block_kitchen_sink",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "morefood:block/block_kitchen_sink",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "morefood:block/block_kitchen_sink",
+      "y": 270
+    }
+  }
+}
