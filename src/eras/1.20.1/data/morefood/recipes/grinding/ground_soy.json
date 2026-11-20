@@ -1,0 +1,11 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    {
+      "item": "morefood:item_soybeans"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_ground_soy"
+  }
+}

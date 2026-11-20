@@ -1,0 +1,15 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    {
+      "item": "morefood:item_soy_milk"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_tofu"
+  },
+  "byproduct": {
+    "id": "minecraft:glass_bottle"
+  },
+  "cookingtime": 100
+}

@@ -1,0 +1,9 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "minecraft:beef"
+  ],
+  "result": {
+    "id": "morefood:item_minced_meat_uncooked"
+  }
+}

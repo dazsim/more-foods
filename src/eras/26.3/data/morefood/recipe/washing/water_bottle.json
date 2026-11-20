@@ -1,0 +1,15 @@
+{
+  "type": "morefood:washing",
+  "ingredients": [
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "minecraft:potion",
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:water"
+      }
+    }
+  },
+  "cookingtime": 10
+}

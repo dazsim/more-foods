@@ -1,0 +1,13 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    "morefood:item_oats",
+    {
+      "water_bottle": true
+    }
+  ],
+  "result": {
+    "id": "morefood:item_oat_milk"
+  },
+  "cookingtime": 80
+}

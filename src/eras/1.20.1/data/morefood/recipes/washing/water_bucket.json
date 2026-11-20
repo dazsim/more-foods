@@ -1,0 +1,12 @@
+{
+  "type": "morefood:washing",
+  "ingredients": [
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "result": {
+    "item": "minecraft:water_bucket"
+  },
+  "cookingtime": 10
+}

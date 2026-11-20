@@ -1,0 +1,21 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    {
+      "item": "morefood:item_ground_soy"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_soy_milk"
+  },
+  "byproduct": {
+    "id": "minecraft:bucket"
+  },
+  "cookingtime": 80
+}

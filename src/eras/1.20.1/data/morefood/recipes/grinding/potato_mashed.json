@@ -1,0 +1,11 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    {
+      "item": "morefood:item_potato_boiled"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_potato_mashed"
+  }
+}

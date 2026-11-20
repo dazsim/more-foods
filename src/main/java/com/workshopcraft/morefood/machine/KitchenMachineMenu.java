@@ -44,7 +44,7 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
             addSlot(new Slot(container, IN_FIRST + i, 26 + i * 18, 17) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return kind.isIngredient(stack);
+                    return kind.isIngredient(level, stack);
                 }
             });
         }
@@ -98,7 +98,7 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
         final ItemStack copy = stack.copy();
         if (index < INV_START) {
             if (!moveItemStackTo(stack, INV_START, INV_END, true)) return ItemStack.EMPTY;
-        } else if (kind.isIngredient(stack)) {
+        } else if (kind.isIngredient(level, stack)) {
             if (!moveItemStackTo(stack, IN_FIRST, IN_FIRST + IN_COUNT, false)) return ItemStack.EMPTY;
         } else if (Fuels.isFuel(level, stack)) {
             if (!moveItemStackTo(stack, FUEL, FUEL + 1, false)) return ItemStack.EMPTY;

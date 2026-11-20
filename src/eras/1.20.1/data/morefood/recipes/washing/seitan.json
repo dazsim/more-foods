@@ -1,0 +1,12 @@
+{
+  "type": "morefood:washing",
+  "ingredients": [
+    {
+      "item": "morefood:item_dough"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_seitan"
+  },
+  "cookingtime": 20
+}

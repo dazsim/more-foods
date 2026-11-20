@@ -1,0 +1,14 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    {
+      "ingredient": "morefood:item_peanuts",
+      "count": 2
+    },
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_vegetable_oil"
+  },
+  "cookingtime": 80
+}

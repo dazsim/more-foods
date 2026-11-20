@@ -1,0 +1,13 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    "morefood:item_ground_soy",
+    {
+      "water_bottle": true
+    }
+  ],
+  "result": {
+    "id": "morefood:item_soy_milk"
+  },
+  "cookingtime": 80
+}

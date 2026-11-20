@@ -1,0 +1,21 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    {
+      "item": "morefood:item_oats"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_oat_milk"
+  },
+  "byproduct": {
+    "item": "minecraft:bucket"
+  },
+  "cookingtime": 80
+}

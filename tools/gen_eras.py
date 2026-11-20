@@ -41,6 +41,16 @@ def ing(era, x):
     return {"tag": tagname(era, x[1:])} if x.startswith("#") else {"item": x}
 
 
+def process_ing(era, x):
+    if isinstance(x, dict) and x.get("water_bottle"):
+        return x
+    if isinstance(x, dict) and "ingredient" in x:
+        out = dict(x)
+        out["ingredient"] = ing(era, out["ingredient"])
+        return out
+    return ing(era, x)
+
+
 def item_pred(era, p):
     p = dict(p)
     items = p.pop("items", None)
@@ -61,6 +71,8 @@ def nbt_of(era, components):
             continue
         if k == "minecraft:use_remainder":
             out[f"{MOD}:vessel"] = v["id"]
+        elif k == "minecraft:potion_contents" and ERAS[era].get("plural"):
+            out["Potion"] = v["potion"]
         else:
             out[k] = v
     return out
@@ -112,6 +124,10 @@ def recipe(era, d):
             if k in d: d[k] = ing(era, d[k])
         d["fillings"] = [ing(era, i) for i in d.get("fillings", [])]
         if "extras" in d: d["extras"]["ingredient"] = ing(era, d["extras"]["ingredient"])
+    elif t in (f"{MOD}:grinding", f"{MOD}:pressing", f"{MOD}:washing"):
+        d["ingredients"] = [process_ing(era, i) for i in d.get("ingredients", [])]
+        if "byproduct" in d:
+            d["byproduct"] = result(era, d["byproduct"])
     if "result" in d:
         d["result"] = result(era, d["result"], smelting=t == "minecraft:smelting")
     if ERAS[era].get("plural") and t == "minecraft:crafting_shapeless" and d["result"].get("item") == "simplebooks:guide":
@@ -151,6 +167,16 @@ def loot_fix(era, node):
                 node.update({"function": "minecraft:set_nbt", "tag": json.dumps(comps, separators=(",", ":"))})
             else:
                 node["components"] = comps
+        if node.get("function") == "minecraft:copy_components" and ERAS[era].get("plural"):
+            includes = node.get("include", [])
+            if f"{MOD}:machine_parts" in includes:
+                node.clear()
+                node.update({
+                    "function": "minecraft:copy_nbt",
+                    "source": "block_entity",
+                    "ops": [{"source": k, "target": f"BlockEntityTag.{k}", "op": "replace"}
+                            for k in ("parts_chassis", "parts_core", "parts_board", "parts_panels", "parts_worktop", "parts_upgrades")]
+                })
         for v in node.values():
             loot_fix(era, v)
     elif isinstance(node, list):

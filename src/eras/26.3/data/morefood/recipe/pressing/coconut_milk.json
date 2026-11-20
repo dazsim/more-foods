@@ -1,0 +1,11 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    "morefood:item_coconut",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_coconut_milk"
+  },
+  "cookingtime": 80
+}

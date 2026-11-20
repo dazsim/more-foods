@@ -1,0 +1,9 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "minecraft:wheat"
+  ],
+  "result": {
+    "id": "morefood:item_flour"
+  }
+}

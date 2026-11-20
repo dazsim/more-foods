@@ -1,0 +1,11 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    "morefood:item_avocado",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_vegetable_oil"
+  },
+  "cookingtime": 80
+}

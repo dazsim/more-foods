@@ -1,0 +1,12 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "morefood:item_fruit_tomato",
+    "minecraft:sugar",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_sauce_tomato"
+  },
+  "cookingtime": 80
+}

@@ -1,0 +1,9 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "morefood:item_peanuts"
+  ],
+  "result": {
+    "id": "morefood:item_peanut_butter"
+  }
+}

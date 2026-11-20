@@ -1,5 +1,25 @@
 {
   "type": "minecraft:block",
-  "pools": [],
+  "pools": [
+    {
+      "rolls": 1,
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "morefood:block_press",
+          "modifier": {
+            "type": "minecraft:copy_components",
+            "source": "block_entity",
+            "include": [
+              "morefood:machine_parts"
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "random_sequence": "morefood:blocks/block_press"
 }

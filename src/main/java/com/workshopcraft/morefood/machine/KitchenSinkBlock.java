@@ -89,7 +89,7 @@ public class KitchenSinkBlock extends BaseEntityBlock {
     *///?}
 
     private InteractionResult onItem(ItemStack stack, Level level, BlockPos pos, Player player, InteractionHand hand) {
-        final MachineRecipe recipe = stack.isEmpty() ? null : MachineRecipes.sinkRecipe(stack);
+        final ProcessRecipe recipe = stack.isEmpty() ? null : MachineRecipes.sinkRecipe(level, stack);
         if (recipe == null) return InteractionResult.PASS;
         if (level.isClientSide()) return InteractionResult.SUCCESS;
         player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, recipe.result().copy()));

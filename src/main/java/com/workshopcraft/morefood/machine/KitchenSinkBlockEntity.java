@@ -35,7 +35,7 @@ public class KitchenSinkBlockEntity extends BlockEntity implements WorldlyContai
             timer = 0;
             return;
         }
-        final MachineRecipe recipe = MachineRecipes.sinkRecipe(in);
+        final ProcessRecipe recipe = MachineRecipes.sinkRecipe(level, in);
         if (recipe == null || ++timer < recipe.time()) return;
         timer = 0;
         final ItemStack out = items.get(OUT);
@@ -114,7 +114,7 @@ public class KitchenSinkBlockEntity extends BlockEntity implements WorldlyContai
 
     @Override
     public boolean canPlaceItem(int slot, ItemStack stack) {
-        return slot == IN && MachineRecipes.sinkRecipe(stack.copyWithCount(64)) != null;
+        return slot == IN && MachineRecipes.sinkRecipe(level, stack.copyWithCount(64)) != null;
     }
 
     @Override

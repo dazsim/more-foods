@@ -1,0 +1,9 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "minecraft:mutton"
+  ],
+  "result": {
+    "id": "morefood:item_minced_lamb_uncooked"
+  }
+}

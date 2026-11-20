@@ -1,0 +1,11 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    {
+      "item": "morefood:item_chickpeas"
+    }
+  ],
+  "result": {
+    "id": "morefood:item_chickpea_paste"
+  }
+}

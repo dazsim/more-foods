@@ -1,0 +1,16 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "morefood:item_intestines"
+    }
+  ],
+  "result": {
+    "item": "morefood:item_sausage_uncooked",
+    "count": 4
+  },
+  "cookingtime": 80
+}

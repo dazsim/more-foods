@@ -56,6 +56,9 @@ public class MoreFoodFabric implements ModInitializer {
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.FRYING_SERIALIZER);
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.BOILING_SERIALIZER);
         RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.ASSEMBLY_SERIALIZER);
+        RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.GRINDING_SERIALIZER);
+        RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.PRESSING_SERIALIZER);
+        RecipeSynchronization.synchronizeRecipeSerializer(MoreFoodKitchen.WASHING_SERIALIZER);
         //?}
 
         // 26.3 items carry compostable themselves

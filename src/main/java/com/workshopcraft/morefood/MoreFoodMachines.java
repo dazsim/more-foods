@@ -1,6 +1,7 @@
 package com.workshopcraft.morefood;
 
 import com.workshopcraft.morefood.machine.KitchenMachineBlockEntity;
+import com.workshopcraft.morefood.machine.KitchenMachineItem;
 import com.workshopcraft.morefood.machine.KitchenMachineMenu;
 import com.workshopcraft.morefood.machine.KitchenSinkBlock;
 import com.workshopcraft.morefood.machine.KitchenSinkBlockEntity;
@@ -80,8 +81,8 @@ public final class MoreFoodMachines {
         part(registry, "item_kitchen_worktop");
         part(registry, "item_firebox");
         // finished machines only come from a chassis, so they stay out of the tab
-        registry.accept(MoreFood.id("block_grinder"), new BlockItem(grinder, MoreFoodItems.withId("block_grinder", MoreFoodItems.props().useBlockDescriptionPrefix())));
-        registry.accept(MoreFood.id("block_press"), new BlockItem(press, MoreFoodItems.withId("block_press", MoreFoodItems.props().useBlockDescriptionPrefix())));
+        registry.accept(MoreFood.id("block_grinder"), new KitchenMachineItem(grinder, MoreFoodItems.withId("block_grinder", MoreFoodItems.props().useBlockDescriptionPrefix())));
+        registry.accept(MoreFood.id("block_press"), new KitchenMachineItem(press, MoreFoodItems.withId("block_press", MoreFoodItems.props().useBlockDescriptionPrefix())));
 
         put("item_ground_soy", MoreFoodItems.item(registry, "item_ground_soy", MoreFoodItems.props()));
         put("item_chickpea_paste", MoreFoodItems.item(registry, "item_chickpea_paste", MoreFoodItems.props()));

@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood.machine;
 
+import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.MoreFoodMachines;
 import com.workshopcraft.workshopcore.machine.WorkBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -9,40 +10,47 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
-import java.util.function.Supplier;
-
+//? if >=26.1 {
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
+//?} else if >=1.21 {
+/*import com.workshopcraft.workshopcore.compat.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
+*///?}
 /** The grinder and the press: three inputs, a result, a byproduct slot and a fuel slot for the firebox. */
 public class KitchenMachineBlockEntity extends WorkBlockEntity {
     public static final int IN_FIRST = 0, IN_COUNT = 3, OUT = 3, BYPRODUCT = 4, FUEL = 5, SIZE = 6;
 
     public enum Kind {
-        GRINDER("block.morefood.block_grinder", MachineRecipes::grinder, () -> MoreFoodMachines.GRINDER_MENU),
-        PRESS("block.morefood.block_press", MachineRecipes::press, () -> MoreFoodMachines.PRESS_MENU);
+        GRINDER("block.morefood.block_grinder", MoreFoodKitchen.GRINDING, () -> MoreFoodMachines.GRINDER_MENU),
+        PRESS("block.morefood.block_press", MoreFoodKitchen.PRESSING, () -> MoreFoodMachines.PRESS_MENU);
 
         private final String name;
-        private final Supplier<List<MachineRecipe>> recipes;
-        private final Supplier<MenuType<KitchenMachineMenu>> menu;
+        private final RecipeType<ProcessRecipe> recipes;
+        private final java.util.function.Supplier<MenuType<KitchenMachineMenu>> menu;
 
-        Kind(String name, Supplier<List<MachineRecipe>> recipes, Supplier<MenuType<KitchenMachineMenu>> menu) {
+        Kind(String name, RecipeType<ProcessRecipe> recipes, java.util.function.Supplier<MenuType<KitchenMachineMenu>> menu) {
             this.name = name;
             this.recipes = recipes;
             this.menu = menu;
         }
 
-        public List<MachineRecipe> recipes() {
-            return recipes.get();
+        public List<ProcessRecipe> recipes(Level level) {
+            return MachineRecipes.of(level, recipes);
         }
 
         public MenuType<KitchenMachineMenu> menu() {
             return menu.get();
         }
 
-        public boolean isIngredient(ItemStack stack) {
-            for (MachineRecipe recipe : recipes()) {
+        public boolean isIngredient(Level level, ItemStack stack) {
+            for (ProcessRecipe recipe : recipes(level)) {
                 if (recipe.uses(stack)) return true;
             }
             return false;
@@ -78,15 +86,15 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
     // one kind of item per input slot, so a hopper cannot fill every slot with apples
     @Override
     protected boolean accepts(int slot, ItemStack stack) {
-        if (!kind.isIngredient(stack)) return false;
+        if (!kind.isIngredient(level, stack)) return false;
         for (int s = IN_FIRST; s < IN_FIRST + IN_COUNT; s++) {
             if (s != slot && !getItem(s).isEmpty() && getItem(s).is(stack.getItem())) return false;
         }
         return true;
     }
 
-    private MachineRecipe current() {
-        for (MachineRecipe recipe : kind.recipes()) {
+    private ProcessRecipe current() {
+        for (ProcessRecipe recipe : kind.recipes(level)) {
             if (recipe.match(this, IN_FIRST, IN_COUNT) != null) return recipe;
         }
         return null;
@@ -94,7 +102,7 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
 
     @Override
     protected int workTime(ServerLevel level) {
-        final MachineRecipe recipe = current();
+        final ProcessRecipe recipe = current();
         if (recipe == null || !fits(OUT, recipe.result())) return 0;
         if (!recipe.byproduct().isEmpty() && !fits(BYPRODUCT, recipe.byproduct())) return 0;
         return recipe.time();
@@ -102,13 +110,47 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
 
     @Override
     protected void finishWork(ServerLevel level) {
-        final MachineRecipe recipe = current();
+        final ProcessRecipe recipe = current();
         if (recipe == null) return;
         final int[] slots = recipe.match(this, IN_FIRST, IN_COUNT);
         for (int i = 0; i < slots.length; i++) getItem(slots[i]).shrink(recipe.inputs().get(i).count());
         store(OUT, recipe.result().copy());
         if (!recipe.byproduct().isEmpty()) store(BYPRODUCT, recipe.byproduct().copy());
     }
+
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        // loot drops the assembled machine; only the inventory spills
+        dropContents();
+    }
+
+    //? if >=26.1 {
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        if (!parts().isEmpty()) components.set(MoreFoodKitchen.MACHINE_PARTS, MachinePartsData.of(parts()));
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentGetter components) {
+        super.applyImplicitComponents(components);
+        final MachinePartsData data = components.get(MoreFoodKitchen.MACHINE_PARTS);
+        if (data != null && !data.isEmpty()) install(data.parts());
+    }
+    //?} else if >=1.21 {
+    /*@Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        if (!parts().isEmpty()) components.set(MoreFoodKitchen.MACHINE_PARTS, MachinePartsData.of(parts()));
+    }
+
+    @Override
+    protected void applyImplicitComponents(DataComponentGetter components) {
+        final MachinePartsData data = components.get(MoreFoodKitchen.MACHINE_PARTS);
+        if (data != null && !data.isEmpty()) install(data.parts());
+    }
+    *///?}
+
 
     @Override
     protected Component getDefaultName() {

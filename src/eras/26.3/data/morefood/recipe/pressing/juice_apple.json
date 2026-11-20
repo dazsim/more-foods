@@ -1,0 +1,10 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    "minecraft:apple",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_juice_apple"
+  }
+}

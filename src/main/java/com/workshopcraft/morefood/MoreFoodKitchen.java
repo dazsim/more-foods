@@ -5,6 +5,13 @@ import com.workshopcraft.morefood.crafting.AssemblyRecipe;
 import com.workshopcraft.morefood.crafting.BakingRecipe;
 import com.workshopcraft.morefood.crafting.BoilingRecipe;
 import com.workshopcraft.morefood.crafting.FryingRecipe;
+//? if >=1.20.5 {
+import com.workshopcraft.morefood.machine.MachinePartsData;
+//?}
+import com.workshopcraft.morefood.machine.ProcessRecipe;
+//? if >=26.1 {
+import com.workshopcraft.morefood.client.ClientRecipes;
+//?}
 import com.workshopcraft.morefood.stove.CookingPotBlockEntity;
 import com.workshopcraft.morefood.stove.StoveBlockEntity;
 import com.workshopcraft.morefood.stove.StoveMenu;
@@ -74,6 +81,13 @@ public class MoreFoodKitchen {
     /*public static final RecipeSerializer<AssemblyRecipe> ASSEMBLY_SERIALIZER = new com.workshopcraft.morefood.legacy.CodecSerializer<>(AssemblyRecipe.MAP_CODEC);
     *///?}
     public static final RecipeBookCategory BOARD_BOOK = new RecipeBookCategory();
+    public static final RecipeType<ProcessRecipe> GRINDING = type("grinding");
+    public static final RecipeSerializer<ProcessRecipe> GRINDING_SERIALIZER = ProcessRecipe.serializer(GRINDING);
+    public static final RecipeType<ProcessRecipe> PRESSING = type("pressing");
+    public static final RecipeSerializer<ProcessRecipe> PRESSING_SERIALIZER = ProcessRecipe.serializer(PRESSING);
+    public static final RecipeType<ProcessRecipe> WASHING = type("washing");
+    public static final RecipeSerializer<ProcessRecipe> WASHING_SERIALIZER = ProcessRecipe.serializer(WASHING);
+    public static final RecipeBookCategory MACHINE_BOOK = new RecipeBookCategory();
     //? if >=1.20.5 {
     public static final DataComponentType<List<Holder<Item>>> TOPPINGS = DataComponentType.<List<Holder<Item>>>builder()
             .persistent(Item.CODEC.listOf().xmap(MoreFoodKitchen::capToppings, l -> l))
@@ -82,6 +96,10 @@ public class MoreFoodKitchen {
     public static final DataComponentType<ItemStackTemplate> PEEL_CONTENTS = DataComponentType.<ItemStackTemplate>builder()
             .persistent(ItemStackTemplate.CODEC)
             .networkSynchronized(ItemStackTemplate.STREAM_CODEC)
+            .build();
+    public static final DataComponentType<MachinePartsData> MACHINE_PARTS = DataComponentType.<MachinePartsData>builder()
+            .persistent(MachinePartsData.CODEC)
+            .networkSynchronized(MachinePartsData.STREAM_CODEC)
             .build();
     //?}
     //? if >=1.20.5 && <26.1 {
@@ -123,6 +141,25 @@ public class MoreFoodKitchen {
 
     public static List<RecipeHolder<AssemblyRecipe>> assembly(ServerLevel level) {
         return all(level, AssemblyRecipe.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Recipe<?>> List<RecipeHolder<T>> of(net.minecraft.world.level.Level level, RecipeType<T> type) {
+        final List<RecipeHolder<T>> out = new ArrayList<>();
+        if (level instanceof ServerLevel server) {
+            for (RecipeHolder<?> holder : server.recipeAccess().getRecipes()) {
+                if (holder.value().getType() == type) out.add((RecipeHolder<T>) holder);
+            }
+            return out;
+        }
+        //? if >=26.1 {
+        return ClientRecipes.of(type);
+        //?} else {
+        /*for (RecipeHolder<?> holder : com.workshopcraft.morefood.legacy.RecipeAccess.of(level).getRecipes()) {
+            if (holder.value().getType() == type) out.add((RecipeHolder<T>) holder);
+        }
+        return out;
+        *///?}
     }
 
     private static <T extends Recipe<?>> List<RecipeHolder<T>> all(ServerLevel level, Class<T> type) {
@@ -229,11 +266,13 @@ public class MoreFoodKitchen {
     public static void registerComponents(BiConsumer<Identifier, DataComponentType<?>> registry) {
         registry.accept(MoreFood.id("toppings"), TOPPINGS);
         registry.accept(MoreFood.id("peel_contents"), PEEL_CONTENTS);
+        registry.accept(MoreFood.id("machine_parts"), MACHINE_PARTS);
     }
     //?} else if >=1.20.5 {
     /*public static void registerComponents(BiConsumer<Identifier, DataComponentType<?>> registry) {
         registry.accept(MoreFood.id("toppings"), TOPPINGS);
         registry.accept(MoreFood.id("peel_contents"), PEEL_CONTENTS);
+        registry.accept(MoreFood.id("machine_parts"), MACHINE_PARTS);
         registry.accept(MoreFood.id("vessel"), VESSEL);
     }
     *///?}
@@ -248,6 +287,9 @@ public class MoreFoodKitchen {
         registry.accept(MoreFood.id("frying"), FRYING);
         registry.accept(MoreFood.id("boiling"), BOILING);
         registry.accept(MoreFood.id("assembly"), ASSEMBLY);
+        registry.accept(MoreFood.id("grinding"), GRINDING);
+        registry.accept(MoreFood.id("pressing"), PRESSING);
+        registry.accept(MoreFood.id("washing"), WASHING);
     }
 
     public static void registerRecipeSerializers(BiConsumer<Identifier, RecipeSerializer<?>> registry) {
@@ -255,12 +297,16 @@ public class MoreFoodKitchen {
         registry.accept(MoreFood.id("frying"), FRYING_SERIALIZER);
         registry.accept(MoreFood.id("boiling"), BOILING_SERIALIZER);
         registry.accept(MoreFood.id("assembly"), ASSEMBLY_SERIALIZER);
+        registry.accept(MoreFood.id("grinding"), GRINDING_SERIALIZER);
+        registry.accept(MoreFood.id("pressing"), PRESSING_SERIALIZER);
+        registry.accept(MoreFood.id("washing"), WASHING_SERIALIZER);
     }
 
     public static void registerBookCategories(BiConsumer<Identifier, RecipeBookCategory> registry) {
         registry.accept(MoreFood.id("baking"), BAKING_BOOK);
         registry.accept(MoreFood.id("hob"), HOB_BOOK);
         registry.accept(MoreFood.id("board"), BOARD_BOOK);
+        registry.accept(MoreFood.id("machine"), MACHINE_BOOK);
     }
 
     public static void registerSounds(BiConsumer<Identifier, SoundEvent> registry) {

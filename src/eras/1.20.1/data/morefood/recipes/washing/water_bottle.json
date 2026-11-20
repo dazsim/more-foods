@@ -1,0 +1,15 @@
+{
+  "type": "morefood:washing",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "minecraft:potion",
+    "nbt": {
+      "Potion": "minecraft:water"
+    }
+  },
+  "cookingtime": 10
+}

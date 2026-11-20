@@ -1,0 +1,14 @@
+{
+  "type": "morefood:pressing",
+  "ingredients": [
+    {
+      "ingredient": "morefood:item_olive",
+      "count": 2
+    },
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_olive_oil"
+  },
+  "cookingtime": 80
+}

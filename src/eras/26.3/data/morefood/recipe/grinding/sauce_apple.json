@@ -1,0 +1,12 @@
+{
+  "type": "morefood:grinding",
+  "ingredients": [
+    "minecraft:apple",
+    "minecraft:sugar",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "morefood:item_sauce_apple"
+  },
+  "cookingtime": 80
+}
