@@ -99,6 +99,11 @@ public class MoreFoodBlocks {
                     .sound(SoundType.GRASS)
                     .noOcclusion()
                     .isSuffocating((state, level, pos) -> false)
+                    //? if <26.3 {
+                    .isViewBlocking((state, level, pos) -> false)
+                    //?}
+                    .isRedstoneConductor((state, level, pos) -> false)
+                    .ignitedByLava()
                     .pushReaction(PushReaction.DESTROY),
                     type);
             registry.accept(MoreFood.id("block_leaves_" + id), leaves);
