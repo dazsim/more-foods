@@ -4,7 +4,11 @@
     {
       "rolls": 1,
       "condition": {
-        "type": "minecraft:survives_explosion"
+        "type": "minecraft:match_block",
+        "blocks": "morefood:block_press",
+        "state": {
+          "half": "lower"
+        }
       },
       "entries": [
         {

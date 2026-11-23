@@ -2,7 +2,7 @@ package com.workshopcraft.morefood.machine;
 
 import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.MoreFoodMachines;
-import com.workshopcraft.workshopcore.machine.WorkBlockEntity;
+import com.workshopcraft.workshopcore.machine.ProcessMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -15,10 +15,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** The grinder and the press: three inputs, a result, a byproduct slot and a fuel slot for the firebox. */
-public class KitchenMachineBlockEntity extends WorkBlockEntity {
+public class KitchenMachineBlockEntity extends ProcessMachine<ProcessRecipe> {
     public static final int IN_FIRST = 0, IN_COUNT = 3, OUT = 3, BYPRODUCT = 4, FUEL = 5, SIZE = 6;
 
     public enum Kind {
@@ -87,7 +88,8 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
         return true;
     }
 
-    private ProcessRecipe current() {
+    @Override
+    protected ProcessRecipe findRecipe(ServerLevel level) {
         for (ProcessRecipe recipe : kind.recipes(level)) {
             if (recipe.match(this, IN_FIRST, IN_COUNT) != null) return recipe;
         }
@@ -95,21 +97,44 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
     }
 
     @Override
-    protected int workTime(ServerLevel level) {
-        final ProcessRecipe recipe = current();
-        if (recipe == null || !fits(OUT, recipe.result())) return 0;
-        if (!recipe.byproduct().isEmpty() && !fits(BYPRODUCT, recipe.byproduct())) return 0;
+    protected boolean matches(ProcessRecipe recipe, ServerLevel level) {
+        return recipe.match(this, IN_FIRST, IN_COUNT) != null;
+    }
+
+    @Override
+    protected int recipeTime(ProcessRecipe recipe) {
         return recipe.time();
     }
 
     @Override
-    protected void finishWork(ServerLevel level) {
-        final ProcessRecipe recipe = current();
-        if (recipe == null) return;
+    protected List<ItemStack> outputs(ProcessRecipe recipe) {
+        return recipe.byproduct().isEmpty() ? List.of(recipe.result()) : List.of(recipe.result(), recipe.byproduct());
+    }
+
+    @Override
+    protected void consume(ProcessRecipe recipe) {
         final int[] slots = recipe.match(this, IN_FIRST, IN_COUNT);
-        for (int i = 0; i < slots.length; i++) getItem(slots[i]).shrink(recipe.inputs().get(i).count());
-        store(OUT, recipe.result().copy());
-        if (!recipe.byproduct().isEmpty()) store(BYPRODUCT, recipe.byproduct().copy());
+        if (slots == null) return;
+        for (int i = 0; i < slots.length; i++) removeItem(slots[i], recipe.inputs().get(i).count());
+    }
+
+    // the result goes in the result slot and the byproduct in its own slot, never mixed
+    @Override
+    public boolean outputsFit(List<ItemStack> stacks) {
+        return fits(OUT, stacks.get(0)) && (stacks.size() < 2 || fits(BYPRODUCT, stacks.get(1)));
+    }
+
+    @Override
+    protected List<ItemStack> results(ProcessRecipe recipe, ServerLevel level) {
+        final List<ItemStack> left = new ArrayList<>();
+        place(OUT, recipe.result(), left);
+        if (!recipe.byproduct().isEmpty()) place(BYPRODUCT, recipe.byproduct(), left);
+        return left;
+    }
+
+    private void place(int slot, ItemStack stack, List<ItemStack> left) {
+        if (fits(slot, stack)) store(slot, stack.copy());
+        else left.add(stack.copy());
     }
 
     @Override
@@ -119,6 +144,6 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
 
     @Override
     protected AbstractContainerMenu createMenu(int id, Inventory inventory) {
-        return new KitchenMachineMenu(kind, id, inventory, this, data);
+        return new KitchenMachineMenu(kind, id, inventory, this, menuData());
     }
 }

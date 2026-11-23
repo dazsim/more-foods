@@ -1,7 +1,7 @@
 package com.workshopcraft.morefood.machine;
 
 import com.workshopcraft.workshopcore.machine.Fuels;
-import com.workshopcraft.workshopcore.machine.WorkBlockEntity;
+import com.workshopcraft.workshopcore.machine.MachineMenuData;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,17 +25,17 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
     private final Level level;
 
     public static KitchenMachineMenu grinder(int id, Inventory inventory) {
-        return new KitchenMachineMenu(Kind.GRINDER, id, inventory, new SimpleContainer(SIZE), new SimpleContainerData(WorkBlockEntity.DATA_COUNT));
+        return new KitchenMachineMenu(Kind.GRINDER, id, inventory, new SimpleContainer(SIZE), new SimpleContainerData(MachineMenuData.COUNT));
     }
 
     public static KitchenMachineMenu press(int id, Inventory inventory) {
-        return new KitchenMachineMenu(Kind.PRESS, id, inventory, new SimpleContainer(SIZE), new SimpleContainerData(WorkBlockEntity.DATA_COUNT));
+        return new KitchenMachineMenu(Kind.PRESS, id, inventory, new SimpleContainer(SIZE), new SimpleContainerData(MachineMenuData.COUNT));
     }
 
     public KitchenMachineMenu(Kind kind, int id, Inventory inventory, Container container, ContainerData data) {
         super(kind.menu(), id);
         checkContainerSize(container, SIZE);
-        checkContainerDataCount(data, WorkBlockEntity.DATA_COUNT);
+        checkContainerDataCount(data, MachineMenuData.COUNT);
         this.kind = kind;
         this.container = container;
         this.data = data;
@@ -78,11 +78,11 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
     }
 
     public float progress() {
-        return data.get(WorkBlockEntity.DATA_PROGRESS) / 1000F;
+        return MachineMenuData.progress(data);
     }
 
     public float drive() {
-        return data.get(WorkBlockEntity.DATA_DRIVE) / 1000F;
+        return MachineMenuData.gauge(data);
     }
 
     @Override
