@@ -1,6 +1,5 @@
 package com.workshopcraft.morefood;
 
-import com.workshopcraft.morefood.machine.KitchenChassisBlock;
 import com.workshopcraft.morefood.machine.KitchenMachineBlockEntity;
 import com.workshopcraft.morefood.machine.KitchenMachineItem;
 import com.workshopcraft.morefood.machine.KitchenMachineMenu;
@@ -63,7 +62,7 @@ public final class MoreFoodMachines {
 
     public static void registerBlocks(BiConsumer<Identifier, Block> registry) {
         Finishes.register(FINISH, MoreFood.id("item_kitchen_panel"));
-        chassis = ChassisBlock.builder(KITCHEN, () -> chassisEntity).finishes(FINISH).build(KitchenChassisBlock::new, props("block_kitchen_chassis")
+        chassis = ChassisBlock.builder(KITCHEN, () -> chassisEntity).finishes(FINISH).build(props("block_kitchen_chassis")
                 .mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_kitchen_chassis"), chassis);
         grinder = MachineBlock.builder(() -> grinderEntity).tiers(KITCHEN).finishes(FINISH).defaultWorktop(MoreFood.id("item_kitchen_worktop")).light(0)
