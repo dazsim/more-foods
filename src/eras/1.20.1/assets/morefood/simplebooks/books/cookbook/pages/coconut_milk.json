@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/coconut"
   },
-  "unlock_hint": "Find Coconut or a Coconut Sapling to unlock",
   "ingredients": [
     "morefood:item_coconut",
     "minecraft:glass_bottle"

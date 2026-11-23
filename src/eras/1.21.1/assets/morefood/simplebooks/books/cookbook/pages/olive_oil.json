@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/olive"
   },
-  "unlock_hint": "Find Olives or an Olive Sapling to unlock",
   "ingredients": [
     {
       "item": "morefood:item_olive",

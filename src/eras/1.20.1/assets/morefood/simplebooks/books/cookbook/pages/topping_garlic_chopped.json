@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/garlic"
   },
-  "unlock_hint": "Find Garlic or Garlic Clove to unlock",
   "ingredients": [
     "morefood:item_garlic"
   ],

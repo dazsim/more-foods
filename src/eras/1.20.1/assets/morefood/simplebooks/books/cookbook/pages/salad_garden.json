@@ -6,9 +6,21 @@
   "icon": "morefood:item_salad_garden",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/lettuce"
+    "all": [
+      {
+        "tag": "morefood:unlocks/lettuce"
+      },
+      {
+        "tag": "morefood:unlocks/onion"
+      },
+      {
+        "tag": "morefood:unlocks/spinach"
+      },
+      {
+        "tag": "morefood:unlocks/tomato"
+      }
+    ]
   },
-  "unlock_hint": "Find Lettuce or Lettuce Seed to unlock",
   "ingredients": [
     "minecraft:bowl",
     "morefood:item_lettuce",

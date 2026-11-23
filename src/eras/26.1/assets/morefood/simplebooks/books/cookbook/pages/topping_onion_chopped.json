@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/onion"
   },
-  "unlock_hint": "Find Onion or Onion Seed to unlock",
   "ingredients": [
     "morefood:item_onion"
   ],

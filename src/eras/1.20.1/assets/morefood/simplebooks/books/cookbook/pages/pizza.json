@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/tomato"
   },
-  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "right_title": "Build and Bake",
   "right_icon": "morefood:item_pizza_uncooked",
   "right_subtitle": "Layer it on the board, then into the oven.",

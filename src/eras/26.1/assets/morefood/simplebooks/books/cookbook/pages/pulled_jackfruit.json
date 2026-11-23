@@ -6,9 +6,18 @@
   "icon": "morefood:item_pulled_jackfruit",
   "subtitle": "Cooked in the pot on the stove.",
   "unlock_on": {
-    "tag": "morefood:unlocks/jackfruit"
+    "all": [
+      {
+        "tag": "morefood:unlocks/onion"
+      },
+      {
+        "tag": "morefood:unlocks/tomato"
+      },
+      {
+        "tag": "morefood:unlocks/jackfruit"
+      }
+    ]
   },
-  "unlock_hint": "Find Jackfruit or a Jackfruit Sapling to unlock",
   "ingredients": [
     {
       "item": "morefood:item_jackfruit",

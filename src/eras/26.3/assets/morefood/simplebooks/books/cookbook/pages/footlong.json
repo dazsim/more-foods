@@ -6,9 +6,15 @@
   "icon": "morefood:item_footlong",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/tomato"
+    "all": [
+      {
+        "tag": "morefood:unlocks/lettuce"
+      },
+      {
+        "tag": "morefood:unlocks/tomato"
+      }
+    ]
   },
-  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:water_bucket",

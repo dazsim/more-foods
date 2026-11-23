@@ -360,7 +360,8 @@ pages["machines"] = {
 for pid, j in pages.items():
     w(f"{PAGES}/{pid}.json", j)
 
-# used-in links on the crop pages
+# used-in links on the crop pages, 3 columns
+USED_IN_MAX = 30
 allpages = {os.path.basename(f)[:-5]: load(f) for f in glob.glob(f"{PAGES}/*.json")}
 
 
@@ -389,69 +390,128 @@ for c, (produce, entry, kind) in CROPS.items():
     if links is not None:
         have = {l["page"] for l in links["links"]}
         links["links"] += [{"item": allpages[k]["icon"], "page": k} for k in users if k not in have]
-        links["links"] = links["links"][:18]
+        links["links"] = links["links"][:USED_IN_MAX]
 
 
-def main_crops(i, stack=()):
-    # the crop of the first input that needs one, followed down to a raw crop
-    if isinstance(i, list) or not isinstance(i, str) or i in TOOLS:
-        return set()
-    if i in PRODUCE or i not in recipes or i in stack:
-        return crops_of(i)
-    out = set()
-    for r in recipes[i]:
-        for x in inputs(r):
-            if crops_of(x):
-                out |= main_crops(x, stack + (i,)) if not isinstance(x, list) else crops_of(x)
-                break
+ORDER = list(CROPS)
+
+
+def simplify(kind, parts):
+    # parts are rules: a crop name, ("all", ...) or ("any", ...); None means no crop needed
+    if kind == "any" and any(p is None for p in parts):
+        return None
+    flat = []
+    for p in parts:
+        if p is None:
+            continue
+        sub = p[1] if isinstance(p, tuple) and p[0] == kind else [p]
+        for q in sub:
+            if q not in flat:
+                flat.append(q)
+    if kind == "all":
+        # a crop already required makes any group holding it redundant
+        flat = [q for q in flat if not (isinstance(q, tuple) and any(x in flat for x in q[1] if not isinstance(x, tuple)))]
+    if not flat:
+        return None
+    if len(flat) == 1:
+        return flat[0]
+    key = lambda q: (isinstance(q, tuple), ORDER.index(q) if not isinstance(q, tuple) else 0)
+    return (kind, tuple(sorted(flat, key=key)))
+
+
+_rule = {}
+
+
+def rule_of(i, stack=()):
+    # what a player must have found to make i, from every recipe that makes it
+    if isinstance(i, list):
+        return simplify("any", [rule_of(x, stack) for x in i])
+    if not isinstance(i, str) or i.startswith("#") or i in TOOLS:
+        return None
+    if i in PRODUCE:
+        return PRODUCE[i]
+    for k, (_, entry, _) in CROPS.items():
+        if i in entry:
+            return k
+    if i in _rule:
+        return _rule[i]
+    if i not in recipes or i in stack:
+        return None
+    out = simplify("any", [simplify("all", [rule_of(x, stack + (i,)) for x in inputs(r)]) for r in recipes[i]])
+    _rule[i] = out
     return out
 
 
-# judgement calls where the first crop is not the one the dish is about
-MAIN = {"butter_vegan": ["coconut"]}
+def page_rule(j):
+    icon = j.get("icon")
+    if icon in recipes:
+        return rule_of(icon)
+    parts = []
+    for x in j.get("ingredients", []):
+        if isinstance(x, dict):
+            x = x.get("items") or x.get("item")
+        parts.append(rule_of(x))
+    return simplify("all", parts)
 
 
-def hint(cs):
-    if len(cs) == 1:
-        produce, entry, kind = CROPS[cs[0]]
-        other = name(entry[1]) if kind == "tree" else name(entry[0])
-        return f"Find {name(produce)} or {'an ' if other[0] in 'AEIOU' else 'a '}{other} to unlock" if kind == "tree" \
-            else f"Find {name(produce)} or {other} to unlock"
-    ns = [name(CROPS[c][0]) for c in cs]
-    if len(ns) > 3:
-        return "Find " + ", ".join(ns[:3]) + " or another crop it uses to unlock"
-    return "Find " + ", ".join(ns[:-1]) + " or " + ns[-1] + " to unlock"
+def has_any(r):
+    return isinstance(r, tuple) and (r[0] == "any" or any(has_any(q) for q in r[1]))
 
 
-# gate: a crop or tree page on itself, a recipe on any crop it needs
+def to_json(r):
+    if not isinstance(r, tuple):
+        return {"tag": f"{MOD}:unlocks/{r}"}
+    return {r[0]: [to_json(q) for q in r[1]]}
+
+
+def words(r):
+    if not isinstance(r, tuple):
+        return name(CROPS[r][0])
+    ps = [words(q) for q in r[1]]
+    return " or ".join(ps) if r[0] == "any" else ", ".join(ps[:-1]) + " and " + ps[-1]
+
+
+def show(r):
+    if not isinstance(r, tuple):
+        return r
+    return r[0] + "(" + ", ".join(show(q) for q in r[1]) + ")"
+
+
+# gate: a crop or tree page on itself, a recipe on the crops it needs
 gated = {}
 for pid, j in allpages.items():
     j.pop("unlock_on", None)
     j.pop("unlock_hint", None)
-    cs = []
+    r, hint = None, None
     if j.get("section") == "crops":
         c = next((k for k, v in CROPS.items() if v[0] == j.get("icon")), None)
         if c:
-            cs = [c]
+            r = c
             produce, entry, kind = CROPS[c]
-            j["unlock_hint"] = (f"Break grass to find {name(entry[0])}" if kind == "crop"
-                                else f"Find {name(produce)} trees {TREES[c]}")
+            hint = (f"Break grass to find {name(entry[0])}" if kind == "crop"
+                    else f"Find {name(produce)} trees {TREES[c]}")
     elif j.get("section") in ("recipes", "toppings"):
         base = pid[:-2] if pid.endswith("_2") else pid
-        src = allpages.get(base, j)
-        icon = src.get("icon")
-        cs = MAIN.get(base) or sorted(main_crops(icon) if icon in recipes else needs(src), key=lambda c: list(CROPS).index(c))
-        if cs:
-            j["unlock_hint"] = hint(cs)
-    if cs:
-        j["unlock_on"] = [{"tag": f"{MOD}:unlocks/{c}"} for c in cs] if len(cs) > 1 else {"tag": f"{MOD}:unlocks/{cs[0]}"}
-        hint_val = j.pop("unlock_hint")
+        r = page_rule(allpages.get(base, j))
+        # Simple Books names the missing tags itself, but cannot word an "or" inside a group
+        if has_any(r):
+            hint = f"Find {words(r)} to unlock"
+    if r is not None:
         keys = list(j.keys())
         at = keys.index("subtitle") + 1 if "subtitle" in keys else len(keys)
-        j = {**{k: j[k] for k in keys[:at]}, "unlock_on": j["unlock_on"], "unlock_hint": hint_val,
-             **{k: j[k] for k in keys[at:] if k != "unlock_on"}}
-        gated[pid] = cs
+        extra = {"unlock_on": to_json(r)}
+        if hint:
+            extra["unlock_hint"] = hint
+        j = {**{k: j[k] for k in keys[:at]}, **extra, **{k: j[k] for k in keys[at:]}}
+        gated[pid] = r
     w(f"{PAGES}/{pid}.json", j)
+
+# tag names for the hints Simple Books builds, and for recipe viewers
+LANG = f"src/main/resources/assets/{MOD}/lang/en_us.json"
+lang_file = load(LANG)
+for c, (produce, _, _) in CROPS.items():
+    lang_file[f"tag.item.{MOD}.unlocks.{c}"] = name(produce)
+w(LANG, lang_file)
 
 for c, (_, entry, _) in CROPS.items():
     w(f"{TAGS}/{c}.json", {"values": entry})
@@ -461,5 +521,5 @@ book["locked"] = book.get("locked", "show")
 w(BOOK, book)
 
 for pid in sorted(gated):
-    print(pid, "->", ", ".join(gated[pid]))
+    print(pid, "->", show(gated[pid]))
 print(len(gated), "gated of", len(allpages))

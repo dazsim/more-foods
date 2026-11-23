@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/peas"
   },
-  "unlock_hint": "Find Peas or Pea Seeds to unlock",
   "ingredients": [
     {
       "item": "morefood:item_peas",

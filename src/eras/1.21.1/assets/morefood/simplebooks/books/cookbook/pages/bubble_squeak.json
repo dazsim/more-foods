@@ -6,9 +6,15 @@
   "icon": "morefood:item_bubble_squeak",
   "subtitle": "Fried in the pan on the stove.",
   "unlock_on": {
-    "tag": "morefood:unlocks/cabbage"
+    "all": [
+      {
+        "tag": "morefood:unlocks/cabbage"
+      },
+      {
+        "tag": "morefood:unlocks/onion"
+      }
+    ]
   },
-  "unlock_hint": "Find Cabbage or Cabbage Seeds to unlock",
   "ingredients": [
     "minecraft:potato",
     "minecraft:water_bucket",

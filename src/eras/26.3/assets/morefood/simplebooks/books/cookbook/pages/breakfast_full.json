@@ -6,9 +6,15 @@
   "icon": "morefood:item_breakfast_full",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/haricot"
+    "all": [
+      {
+        "tag": "morefood:unlocks/haricot"
+      },
+      {
+        "tag": "morefood:unlocks/tomato"
+      }
+    ]
   },
-  "unlock_hint": "Find Haricot Beans or Haricot Bean Seeds to unlock",
   "ingredients": [
     {
       "items": [

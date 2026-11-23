@@ -6,9 +6,18 @@
   "icon": "morefood:item_hummus",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/chickpea"
+    "all": [
+      {
+        "tag": "morefood:unlocks/chickpea"
+      },
+      {
+        "tag": "morefood:unlocks/garlic"
+      },
+      {
+        "tag": "morefood:unlocks/olive"
+      }
+    ]
   },
-  "unlock_hint": "Find Chickpeas or Chickpea Seeds to unlock",
   "ingredients": [
     "morefood:item_chickpeas",
     {

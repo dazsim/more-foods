@@ -6,9 +6,18 @@
   "icon": "morefood:item_guacamole",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/avocado"
+    "all": [
+      {
+        "tag": "morefood:unlocks/onion"
+      },
+      {
+        "tag": "morefood:unlocks/tomato"
+      },
+      {
+        "tag": "morefood:unlocks/avocado"
+      }
+    ]
   },
-  "unlock_hint": "Find Avocado or an Avocado Sapling to unlock",
   "ingredients": [
     "morefood:item_avocado",
     "morefood:item_fruit_tomato",

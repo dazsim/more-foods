@@ -6,9 +6,23 @@
   "icon": "morefood:item_butter_vegan",
   "subtitle": "Put together at the crafting table.",
   "unlock_on": {
-    "tag": "morefood:unlocks/coconut"
+    "all": [
+      {
+        "tag": "morefood:unlocks/coconut"
+      },
+      {
+        "any": [
+          {
+            "tag": "morefood:unlocks/peanut"
+          },
+          {
+            "tag": "morefood:unlocks/avocado"
+          }
+        ]
+      }
+    ]
   },
-  "unlock_hint": "Find Coconut or a Coconut Sapling to unlock",
+  "unlock_hint": "Find Coconut and Peanuts or Avocado to unlock",
   "ingredients": [
     "morefood:item_vegetable_oil",
     "morefood:item_coconut",

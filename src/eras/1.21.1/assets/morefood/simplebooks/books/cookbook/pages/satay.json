@@ -6,9 +6,18 @@
   "icon": "morefood:item_satay",
   "subtitle": "Cooked in the pot on the stove.",
   "unlock_on": {
-    "tag": "morefood:unlocks/soy"
+    "all": [
+      {
+        "tag": "morefood:unlocks/peanut"
+      },
+      {
+        "tag": "morefood:unlocks/soy"
+      },
+      {
+        "tag": "morefood:unlocks/coconut"
+      }
+    ]
   },
-  "unlock_hint": "Find Soybeans or Soybean Seeds to unlock",
   "ingredients": [
     {
       "item": "morefood:item_soybeans",

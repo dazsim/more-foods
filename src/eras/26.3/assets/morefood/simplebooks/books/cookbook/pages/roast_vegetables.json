@@ -6,9 +6,26 @@
   "icon": "morefood:item_roast_vegetables",
   "subtitle": "Baked in the stove oven.",
   "unlock_on": {
-    "tag": "morefood:unlocks/parsnip"
+    "all": [
+      {
+        "tag": "morefood:unlocks/onion"
+      },
+      {
+        "tag": "morefood:unlocks/parsnip"
+      },
+      {
+        "any": [
+          {
+            "tag": "morefood:unlocks/swede"
+          },
+          {
+            "tag": "morefood:unlocks/turnip"
+          }
+        ]
+      }
+    ]
   },
-  "unlock_hint": "Find Parsnip or Parsnip Seeds to unlock",
+  "unlock_hint": "Find Onion, Parsnip and Swede or Turnip to unlock",
   "ingredients": [
     "morefood:item_parsnip",
     {

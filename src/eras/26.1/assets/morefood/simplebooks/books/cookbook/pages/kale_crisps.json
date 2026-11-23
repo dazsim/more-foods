@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/kale"
   },
-  "unlock_hint": "Find Kale or Kale Seeds to unlock",
   "ingredients": [
     "morefood:item_kale"
   ],

@@ -6,9 +6,15 @@
   "icon": "morefood:item_soup_kale_potato",
   "subtitle": "Cooked in the pot on the stove.",
   "unlock_on": {
-    "tag": "morefood:unlocks/kale"
+    "all": [
+      {
+        "tag": "morefood:unlocks/garlic"
+      },
+      {
+        "tag": "morefood:unlocks/kale"
+      }
+    ]
   },
-  "unlock_hint": "Find Kale or Kale Seeds to unlock",
   "ingredients": [
     "morefood:item_kale",
     "morefood:item_garlic",

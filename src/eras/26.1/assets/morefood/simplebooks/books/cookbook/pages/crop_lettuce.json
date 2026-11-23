@@ -94,6 +94,10 @@
         {
           "item": "morefood:item_roast_mutton_dinner",
           "page": "roast_mutton_dinner"
+        },
+        {
+          "item": "morefood:item_burger_salad",
+          "page": "burger_salad"
         }
       ]
     }

@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/leek"
   },
-  "unlock_hint": "Find Leek or Leek Seeds to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:milk_bucket",

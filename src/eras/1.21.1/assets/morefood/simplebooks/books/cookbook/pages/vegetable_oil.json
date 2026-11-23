@@ -5,14 +5,16 @@
   "title": "Vegetable Oil",
   "icon": "morefood:item_vegetable_oil",
   "subtitle": "From peanuts or an avocado. The press works too.",
-  "unlock_on": [
-    {
-      "tag": "morefood:unlocks/peanut"
-    },
-    {
-      "tag": "morefood:unlocks/avocado"
-    }
-  ],
+  "unlock_on": {
+    "any": [
+      {
+        "tag": "morefood:unlocks/peanut"
+      },
+      {
+        "tag": "morefood:unlocks/avocado"
+      }
+    ]
+  },
   "unlock_hint": "Find Peanuts or Avocado to unlock",
   "ingredients": [
     {

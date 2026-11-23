@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/jackfruit"
   },
-  "unlock_hint": "Find Jackfruit or a Jackfruit Sapling to unlock",
   "ingredients": [
     "morefood:item_jackfruit"
   ],

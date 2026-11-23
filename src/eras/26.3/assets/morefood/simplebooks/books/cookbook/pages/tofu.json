@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/soy"
   },
-  "unlock_hint": "Find Soybeans or Soybean Seeds to unlock",
   "ingredients": [
     "morefood:item_soybeans",
     "minecraft:water_bucket",

@@ -94,6 +94,42 @@
         {
           "item": "morefood:item_roast_chicken_dinner",
           "page": "roast_chicken_dinner"
+        },
+        {
+          "item": "morefood:item_falafel",
+          "page": "falafel"
+        },
+        {
+          "item": "morefood:item_guacamole",
+          "page": "guacamole"
+        },
+        {
+          "item": "morefood:item_soup_lentil",
+          "page": "soup_lentil"
+        },
+        {
+          "item": "morefood:item_pulled_jackfruit",
+          "page": "pulled_jackfruit"
+        },
+        {
+          "item": "morefood:item_roast_vegetables",
+          "page": "roast_vegetables"
+        },
+        {
+          "item": "morefood:item_burger_salad",
+          "page": "burger_salad"
+        },
+        {
+          "item": "morefood:item_pie_shepherds",
+          "page": "pie_shepherds"
+        },
+        {
+          "item": "morefood:item_spaghetti_bolognese",
+          "page": "spaghetti_bolognese"
+        },
+        {
+          "item": "morefood:item_soup_tomato",
+          "page": "soup_tomato"
         }
       ]
     }

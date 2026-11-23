@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/chickpea"
   },
-  "unlock_hint": "Find Chickpeas or Chickpea Seeds to unlock",
   "ingredients": [
     "morefood:item_chickpeas"
   ],

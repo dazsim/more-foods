@@ -8,7 +8,6 @@
   "unlock_on": {
     "tag": "morefood:unlocks/peanut"
   },
-  "unlock_hint": "Find Peanuts or Peanut Seeds to unlock",
   "ingredients": [
     "morefood:item_peanuts"
   ],
