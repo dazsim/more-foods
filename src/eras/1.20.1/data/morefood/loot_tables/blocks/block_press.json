@@ -5,6 +5,9 @@
       "rolls": 1,
       "conditions": [
         {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
           "condition": "minecraft:block_state_property",
           "block": "morefood:block_press",
           "properties": {

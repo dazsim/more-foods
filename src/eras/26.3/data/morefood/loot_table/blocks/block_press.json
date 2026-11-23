@@ -4,11 +4,19 @@
     {
       "rolls": 1,
       "condition": {
-        "type": "minecraft:match_block",
-        "blocks": "morefood:block_press",
-        "state": {
-          "half": "lower"
-        }
+        "type": "minecraft:all_of",
+        "terms": [
+          {
+            "type": "minecraft:survives_explosion"
+          },
+          {
+            "type": "minecraft:match_block",
+            "blocks": "morefood:block_press",
+            "state": {
+              "half": "lower"
+            }
+          }
+        ]
       },
       "entries": [
         {
@@ -22,7 +30,8 @@
               "workshopcore:worktop",
               "workshopcore:upgrades",
               "workshopcore:drive",
-              "workshopcore:board"
+              "workshopcore:board",
+              "workshopcore:panels"
             ]
           }
         }

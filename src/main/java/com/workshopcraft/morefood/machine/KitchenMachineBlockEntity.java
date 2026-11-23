@@ -15,7 +15,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /** The grinder and the press: three inputs, a result, a byproduct slot and a fuel slot for the firebox. */
@@ -96,21 +95,6 @@ public class KitchenMachineBlockEntity extends ProcessMachine<ProcessRecipe> {
         return null;
     }
 
-    // Core only searches again when setItem changes the item, but hoppers and the menu grow
-    // stacks in place, so a counted recipe would stay "no recipe" after a second olive arrives
-    private int inputCounts = -1;
-
-    @Override
-    protected boolean work(ServerLevel level) {
-        int counts = 0;
-        for (int s = IN_FIRST; s < IN_FIRST + IN_COUNT; s++) counts = counts * 65 + getItem(s).getCount();
-        if (counts != inputCounts) {
-            inputCounts = counts;
-            invalidateRecipe();
-        }
-        return super.work(level);
-    }
-
     @Override
     protected boolean matches(ProcessRecipe recipe, ServerLevel level) {
         return recipe.match(this, IN_FIRST, IN_COUNT) != null;
@@ -133,23 +117,10 @@ public class KitchenMachineBlockEntity extends ProcessMachine<ProcessRecipe> {
         for (int i = 0; i < slots.length; i++) removeItem(slots[i], recipe.inputs().get(i).count());
     }
 
-    // the result goes in the result slot and the byproduct in its own slot, never mixed
+    // the result and the byproduct never share a slot
     @Override
-    public boolean outputsFit(List<ItemStack> stacks) {
-        return fits(OUT, stacks.get(0)) && (stacks.size() < 2 || fits(BYPRODUCT, stacks.get(1)));
-    }
-
-    @Override
-    protected List<ItemStack> results(ProcessRecipe recipe, ServerLevel level) {
-        final List<ItemStack> left = new ArrayList<>();
-        place(OUT, recipe.result(), left);
-        if (!recipe.byproduct().isEmpty()) place(BYPRODUCT, recipe.byproduct(), left);
-        return left;
-    }
-
-    private void place(int slot, ItemStack stack, List<ItemStack> left) {
-        if (fits(slot, stack)) store(slot, stack.copy());
-        else left.add(stack.copy());
+    protected int resultSlot(ProcessRecipe recipe, int index) {
+        return index == 0 ? OUT : BYPRODUCT;
     }
 
     @Override

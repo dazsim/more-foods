@@ -3,6 +3,9 @@
   "pools": [
     {
       "rolls": 1,
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -15,7 +18,8 @@
               "workshopcore:worktop",
               "workshopcore:upgrades",
               "workshopcore:drive",
-              "workshopcore:board"
+              "workshopcore:board",
+              "workshopcore:panels"
             ]
           }
         }

@@ -53,7 +53,7 @@ dependencies {
     compileOnly("org.jspecify:jspecify:1.0.0")
     jarJar(modImplementation("com.workshopcraft.workshopcore:workshopcore-forge-$mc") {
         version {
-            strictly("[1.0.0-alpha.2,2.0)")
+            strictly("[1.0.0-alpha.3,2.0)")
             prefer(sc.properties.get<String>("deps.workshopcore"))
         }
     })
