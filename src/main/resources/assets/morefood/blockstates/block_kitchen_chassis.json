@@ -17,7 +17,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "2|3|4|5|6|7"
+        "step": "2|3|4|5|6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_core"
@@ -26,7 +26,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "3"
+        "step": "5"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox_loose"
@@ -35,7 +35,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "4|5|6|7"
+        "step": "6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox"
@@ -44,7 +44,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "5"
+        "step": "7"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels_loose"
@@ -53,7 +53,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "6|7"
+        "step": "8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels"
@@ -62,7 +62,7 @@
     {
       "when": {
         "facing": "north",
-        "step": "7"
+        "step": "9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_worktop_loose"
@@ -81,7 +81,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "2|3|4|5|6|7"
+        "step": "2|3|4|5|6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_core",
@@ -91,7 +91,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "3"
+        "step": "5"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox_loose",
@@ -101,7 +101,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "4|5|6|7"
+        "step": "6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox",
@@ -111,7 +111,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "5"
+        "step": "7"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels_loose",
@@ -121,7 +121,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "6|7"
+        "step": "8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels",
@@ -131,7 +131,7 @@
     {
       "when": {
         "facing": "east",
-        "step": "7"
+        "step": "9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_worktop_loose",
@@ -151,7 +151,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "2|3|4|5|6|7"
+        "step": "2|3|4|5|6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_core",
@@ -161,7 +161,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "3"
+        "step": "5"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox_loose",
@@ -171,7 +171,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "4|5|6|7"
+        "step": "6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox",
@@ -181,7 +181,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "5"
+        "step": "7"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels_loose",
@@ -191,7 +191,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "6|7"
+        "step": "8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels",
@@ -201,7 +201,7 @@
     {
       "when": {
         "facing": "south",
-        "step": "7"
+        "step": "9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_worktop_loose",
@@ -221,7 +221,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "2|3|4|5|6|7"
+        "step": "2|3|4|5|6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_core",
@@ -231,7 +231,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "3"
+        "step": "5"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox_loose",
@@ -241,7 +241,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "4|5|6|7"
+        "step": "6|7|8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_gearbox",
@@ -251,7 +251,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "5"
+        "step": "7"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels_loose",
@@ -261,7 +261,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "6|7"
+        "step": "8|9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_panels",
@@ -271,7 +271,7 @@
     {
       "when": {
         "facing": "west",
-        "step": "7"
+        "step": "9"
       },
       "apply": {
         "model": "morefood:block/kitchen_chassis_worktop_loose",

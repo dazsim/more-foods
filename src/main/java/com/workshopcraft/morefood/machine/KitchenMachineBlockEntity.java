@@ -16,13 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
-//? if >=26.1 {
-import net.minecraft.core.component.DataComponentGetter;
-import net.minecraft.core.component.DataComponentMap;
-//?} else if >=1.21 {
-/*import com.workshopcraft.workshopcore.compat.DataComponentGetter;
-import net.minecraft.core.component.DataComponentMap;
-*///?}
+
 /** The grinder and the press: three inputs, a result, a byproduct slot and a fuel slot for the firebox. */
 public class KitchenMachineBlockEntity extends WorkBlockEntity {
     public static final int IN_FIRST = 0, IN_COUNT = 3, OUT = 3, BYPRODUCT = 4, FUEL = 5, SIZE = 6;
@@ -117,40 +111,6 @@ public class KitchenMachineBlockEntity extends WorkBlockEntity {
         store(OUT, recipe.result().copy());
         if (!recipe.byproduct().isEmpty()) store(BYPRODUCT, recipe.byproduct().copy());
     }
-
-    @Override
-    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
-        // loot drops the assembled machine; only the inventory spills
-        dropContents();
-    }
-
-    //? if >=26.1 {
-    @Override
-    protected void collectImplicitComponents(DataComponentMap.Builder components) {
-        super.collectImplicitComponents(components);
-        if (!parts().isEmpty()) components.set(MoreFoodKitchen.MACHINE_PARTS, MachinePartsData.of(parts()));
-    }
-
-    @Override
-    protected void applyImplicitComponents(DataComponentGetter components) {
-        super.applyImplicitComponents(components);
-        final MachinePartsData data = components.get(MoreFoodKitchen.MACHINE_PARTS);
-        if (data != null && !data.isEmpty()) install(data.parts());
-    }
-    //?} else if >=1.21 {
-    /*@Override
-    protected void collectImplicitComponents(DataComponentMap.Builder components) {
-        super.collectImplicitComponents(components);
-        if (!parts().isEmpty()) components.set(MoreFoodKitchen.MACHINE_PARTS, MachinePartsData.of(parts()));
-    }
-
-    @Override
-    protected void applyImplicitComponents(DataComponentGetter components) {
-        final MachinePartsData data = components.get(MoreFoodKitchen.MACHINE_PARTS);
-        if (data != null && !data.isEmpty()) install(data.parts());
-    }
-    *///?}
-
 
     @Override
     protected Component getDefaultName() {

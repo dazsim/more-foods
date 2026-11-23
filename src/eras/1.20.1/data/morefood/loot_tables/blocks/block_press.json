@@ -19,33 +19,8 @@
               "source": "block_entity",
               "ops": [
                 {
-                  "source": "parts_chassis",
-                  "target": "BlockEntityTag.parts_chassis",
-                  "op": "replace"
-                },
-                {
-                  "source": "parts_core",
-                  "target": "BlockEntityTag.parts_core",
-                  "op": "replace"
-                },
-                {
-                  "source": "parts_board",
-                  "target": "BlockEntityTag.parts_board",
-                  "op": "replace"
-                },
-                {
-                  "source": "parts_panels",
-                  "target": "BlockEntityTag.parts_panels",
-                  "op": "replace"
-                },
-                {
-                  "source": "parts_worktop",
-                  "target": "BlockEntityTag.parts_worktop",
-                  "op": "replace"
-                },
-                {
-                  "source": "parts_upgrades",
-                  "target": "BlockEntityTag.parts_upgrades",
+                  "source": "WorkshopCore",
+                  "target": "WorkshopCore",
                   "op": "replace"
                 }
               ]

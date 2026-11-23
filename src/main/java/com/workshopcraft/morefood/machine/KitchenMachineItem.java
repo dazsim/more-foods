@@ -1,8 +1,10 @@
 package com.workshopcraft.morefood.machine;
 
-import com.workshopcraft.morefood.MoreFoodKitchen;
+import com.workshopcraft.workshopcore.machine.MachineComponents;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -17,37 +19,37 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.jspecify.annotations.Nullable;
 
-/** A finished grinder or press, carrying the parts it was assembled from. */
+/** A finished grinder or press. Lists its power part and upgrades, which it keeps when mined. */
 public class KitchenMachineItem extends BlockItem {
     public KitchenMachineItem(Block block, Properties properties) {
         super(block, properties);
     }
 
     private static void tooltip(ItemStack stack, Consumer<Component> out) {
+        final MachineComponents c = MachineComponents.CORE;
         //? if >=1.20.5 {
-        final MachinePartsData data = stack.get(MoreFoodKitchen.MACHINE_PARTS);
-        if (data == null || data.isEmpty()) return;
-        for (ItemStack part : data.listed()) {
-            out.accept(part.getHoverName().copy().withStyle(ChatFormatting.GRAY));
-        }
+        part(stack.get(c.drive()), out);
+        final String upgrades = stack.get(c.upgrades());
         //?} else {
-        /*final net.minecraft.nbt.CompoundTag tag = stack.getTag();
-        if (tag == null || !tag.contains("BlockEntityTag", net.minecraft.nbt.Tag.TAG_COMPOUND)) return;
-        final net.minecraft.nbt.CompoundTag be = tag.getCompound("BlockEntityTag");
-        for (String key : List.of("parts_chassis", "parts_core", "parts_board", "parts_panels", "parts_worktop")) {
-            if (be.contains(key, net.minecraft.nbt.Tag.TAG_COMPOUND)) {
-                final ItemStack part = ItemStack.of(be.getCompound(key));
-                if (!part.isEmpty()) out.accept(part.getHoverName().copy().withStyle(ChatFormatting.GRAY));
-            }
-        }
-        if (be.contains("parts_upgrades", net.minecraft.nbt.Tag.TAG_LIST)) {
-            final net.minecraft.nbt.ListTag list = be.getList("parts_upgrades", net.minecraft.nbt.Tag.TAG_COMPOUND);
-            for (int i = 0; i < list.size(); i++) {
-                final ItemStack part = ItemStack.of(list.getCompound(i));
-                if (!part.isEmpty()) out.accept(part.getHoverName().copy().withStyle(ChatFormatting.GRAY));
-            }
-        }
+        /*final net.minecraft.nbt.CompoundTag tag = stack.getTagElement(c.storageKey());
+        if (tag == null) return;
+        part(tag.getString("drive"), out);
+        final String upgrades = tag.getString("upgrades");
         *///?}
+        if (upgrades != null && !upgrades.isEmpty()) {
+            for (String id : upgrades.split(",")) part(id.trim(), out);
+        }
+    }
+
+    private static void part(@Nullable String id, Consumer<Component> out) {
+        final Identifier key = id == null || id.isEmpty() ? null : Identifier.tryParse(id);
+        if (key == null || !BuiltInRegistries.ITEM.containsKey(key)) return;
+        //? if >=26.1 {
+        final ItemStack part = new ItemStack(BuiltInRegistries.ITEM.getValue(key));
+        //?} else {
+        /*final ItemStack part = new ItemStack(BuiltInRegistries.ITEM.get(key));
+        *///?}
+        out.accept(part.getHoverName().copy().withStyle(ChatFormatting.GRAY));
     }
 
     //? if >=26.1 {

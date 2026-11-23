@@ -3,10 +3,11 @@
   "category": "misc",
   "pattern": [
     "B B",
-    "BBB"
+    "BFB"
   ],
   "key": {
-    "B": "minecraft:brick"
+    "B": "minecraft:brick",
+    "F": "minecraft:furnace"
   },
   "result": {
     "id": "morefood:item_firebox"

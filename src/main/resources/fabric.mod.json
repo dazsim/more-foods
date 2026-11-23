@@ -31,9 +31,12 @@
     "depends": {
         "fabricloader": ">=${loader}",
         "fabric-api": "*",
-        "workshopcore": ">=0.8.0",
+        "workshopcore": ">=1.0.0-alpha.1 <2.0.0",
         "minecraft": "${minecraft}",
         "java": ">=${java}"
+    },
+    "custom": {
+        "workshopcore:features": ["machine_parts"]
     },
     "suggests": {
         "jei": "*"

@@ -18,7 +18,11 @@
               "function": "minecraft:copy_components",
               "source": "block_entity",
               "include": [
-                "morefood:machine_parts"
+                "workshopcore:energy",
+                "workshopcore:worktop",
+                "workshopcore:upgrades",
+                "workshopcore:drive",
+                "workshopcore:board"
               ]
             }
           ]

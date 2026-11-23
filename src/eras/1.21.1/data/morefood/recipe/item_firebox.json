@@ -3,11 +3,14 @@
   "category": "misc",
   "pattern": [
     "B B",
-    "BBB"
+    "BFB"
   ],
   "key": {
     "B": {
       "item": "minecraft:brick"
+    },
+    "F": {
+      "item": "minecraft:furnace"
     }
   },
   "result": {

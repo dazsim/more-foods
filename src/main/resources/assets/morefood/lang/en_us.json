@@ -236,6 +236,7 @@
   "item.morefood.item_kitchen_panel": "Kitchen Panel",
   "item.morefood.item_kitchen_worktop": "Kitchen Worktop",
   "item.morefood.item_firebox": "Firebox",
+  "message.morefood.kitchen_panels_only": "Only kitchen panels fit a kitchen chassis",
   "item.morefood.item_ground_soy": "Ground Soy",
   "item.morefood.item_chickpea_paste": "Hummus Base",
   "item.morefood.item_oat_flour": "Oat Flour",

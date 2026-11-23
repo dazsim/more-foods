@@ -169,13 +169,12 @@ def loot_fix(era, node):
                 node["components"] = comps
         if node.get("function") == "minecraft:copy_components" and ERAS[era].get("plural"):
             includes = node.get("include", [])
-            if f"{MOD}:machine_parts" in includes:
+            if any(i.startswith("workshopcore:") for i in includes):
                 node.clear()
                 node.update({
                     "function": "minecraft:copy_nbt",
                     "source": "block_entity",
-                    "ops": [{"source": k, "target": f"BlockEntityTag.{k}", "op": "replace"}
-                            for k in ("parts_chassis", "parts_core", "parts_board", "parts_panels", "parts_worktop", "parts_upgrades")]
+                    "ops": [{"source": "WorkshopCore", "target": "WorkshopCore", "op": "replace"}]
                 })
         for v in node.values():
             loot_fix(era, v)

@@ -1,5 +1,6 @@
 package com.workshopcraft.morefood;
 
+import com.workshopcraft.morefood.machine.KitchenChassisBlock;
 import com.workshopcraft.morefood.machine.KitchenMachineBlockEntity;
 import com.workshopcraft.morefood.machine.KitchenMachineItem;
 import com.workshopcraft.morefood.machine.KitchenMachineMenu;
@@ -11,10 +12,13 @@ import com.workshopcraft.workshopcore.machine.ChassisBlock;
 import com.workshopcraft.workshopcore.machine.ChassisBlockEntity;
 import com.workshopcraft.workshopcore.machine.ChassisTier;
 import com.workshopcraft.workshopcore.machine.Drives;
+import com.workshopcraft.workshopcore.machine.Finishes;
 import com.workshopcraft.workshopcore.machine.MachineBlock;
 import com.workshopcraft.workshopcore.machine.MachineCore;
-import com.workshopcraft.workshopcore.machine.MachineUpgrade;
 import com.workshopcraft.workshopcore.machine.Machines;
+import com.workshopcraft.workshopcore.machine.PowerPart;
+import com.workshopcraft.workshopcore.machine.PowerParts;
+import com.workshopcraft.workshopcore.machine.Voltage;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -36,7 +40,8 @@ import java.util.function.BiConsumer;
 
 /** The kitchen machines built from Workshop Core parts, the sink, and the vegan foods they make. */
 public final class MoreFoodMachines {
-    public static final ChassisTier KITCHEN = new ChassisTier(MoreFood.id("kitchen"), 100, 100);
+    public static final ChassisTier KITCHEN = new ChassisTier("kitchen", 1.0, 1.0);
+    public static final String FINISH = "kitchen";
     public static final MenuType<KitchenMachineMenu> GRINDER_MENU = new MenuType<>(KitchenMachineMenu::grinder, FeatureFlags.VANILLA_SET);
     public static final MenuType<KitchenMachineMenu> PRESS_MENU = new MenuType<>(KitchenMachineMenu::press, FeatureFlags.VANILLA_SET);
     public static final Map<String, Item> ITEMS = new HashMap<>();
@@ -57,14 +62,16 @@ public final class MoreFoodMachines {
     }
 
     public static void registerBlocks(BiConsumer<Identifier, Block> registry) {
-        chassis = new ChassisBlock(KITCHEN, () -> chassisEntity, props("block_kitchen_chassis")
+        Finishes.register(FINISH, MoreFood.id("item_kitchen_panel"));
+        chassis = ChassisBlock.builder(KITCHEN, () -> chassisEntity).finishes(FINISH).build(KitchenChassisBlock::new, props("block_kitchen_chassis")
                 .mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_kitchen_chassis"), chassis);
-        grinder = new MachineBlock(() -> grinderEntity, props("block_grinder")
+        grinder = MachineBlock.builder(() -> grinderEntity).tiers(KITCHEN).finishes(FINISH).defaultWorktop(MoreFood.id("item_kitchen_worktop")).light(0)
+                .build(props("block_grinder")
                 .mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_grinder"), grinder);
-        press = new MachineBlock(() -> pressEntity, props("block_press")
-                .mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion());
+        press = MachineBlock.builder(() -> pressEntity).tiers(KITCHEN).finishes(FINISH).defaultWorktop(MoreFood.id("item_kitchen_worktop")).light(0)
+                .build(props("block_press").mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_press"), press);
         sink = new KitchenSinkBlock(props("block_kitchen_sink")
                 .mapColor(MapColor.METAL).strength(2.5F).sound(SoundType.METAL).noOcclusion());
@@ -118,10 +125,11 @@ public final class MoreFoodMachines {
         registry.accept(MoreFood.id("kitchen_sink"), sinkEntity);
 
         Assembly.registerCore(MoreFood.id("item_grinder_core"), MachineCore.builder(MoreFood.id("grinder"), () -> grinder)
-                .upgradeSlots(2).drive(Drives.CRANK).build());
+                .upgradeSlots(2).defaultDrive(Drives.CRANK).build());
         Assembly.registerCore(MoreFood.id("item_press_core"), MachineCore.builder(MoreFood.id("press"), () -> press)
-                .upgradeSlots(2).drive(Drives.CRANK).build());
-        Assembly.registerUpgrade(MoreFood.id("item_firebox"), MachineUpgrade.builder(MoreFood.id("firebox")).drive(Drives.FUEL).build());
+                .upgradeSlots(2).defaultDrive(Drives.CRANK).build());
+        PowerParts.register(PowerPart.builder(MoreFood.id("item_kitchen_gearbox")).drive(Drives.CRANK).voltage(Voltage.LV).build());
+        PowerParts.register(PowerPart.builder(MoreFood.id("item_firebox")).drive(Drives.FUEL).voltage(Voltage.LV).build());
         Machines.expose(() -> grinderEntity);
         Machines.expose(() -> pressEntity);
     }

@@ -26,7 +26,7 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "workshopcore"
 mandatory = true
-versionRange = "[0.8,)"
+versionRange = "[1.0.0-alpha.1,2.0)"
 ordering = "AFTER"
 side = "BOTH"
 [[dependencies.${id}]]
@@ -35,3 +35,5 @@ mandatory = false
 versionRange = "*"
 ordering = "NONE"
 side = "CLIENT"
+[modproperties.${id}]
+"workshopcore:features" = ["machine_parts"]
