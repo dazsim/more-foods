@@ -211,12 +211,18 @@ class Page:
             self.tools.add("minecraft:crafting_table")
             tl = [i for i in ins if isinstance(i, str) and i in TOOLS]
             order = tl + [i for i in ins if i not in tl]
-            if width(len(order), 90) > 430:
+            # repeated ingredients show once as a stack
+            seen = {}
+            for i in order:
+                k = json.dumps(i)
+                seen[k] = (i, seen[k][1] + 1 if k in seen else 1)
+            cells = [ref(i, count=n if n > 1 else None) for i, n in seen.values()]
+            if width(len(cells), 90) > 430:
                 self.steps.append({"kind": "sequence", "title": name(item), "text_first": False,
                                    "text": "Crafting Table (shapeless): put these in the grid in any order.",
-                                   "cells": [ref(i) for i in order] + [ref(item, count=cnt if cnt > 1 else None, note="result")]})
+                                   "cells": cells + [ref(item, count=cnt if cnt > 1 else None, note="result")]})
             else:
-                self.steps.append({"kind": "craft_shapeless", "inputs": [ref(i) for i in order], "output": out})
+                self.steps.append({"kind": "craft_shapeless", "inputs": cells, "output": out})
         elif t == "minecraft:crafting_shaped":
             self.tools.add("minecraft:crafting_table")
             self.steps.append({"kind": "craft_shaped", "pattern": r["pattern"],

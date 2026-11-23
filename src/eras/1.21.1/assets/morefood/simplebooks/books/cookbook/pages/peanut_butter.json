@@ -24,8 +24,10 @@
       "kind": "craft_shapeless",
       "inputs": [
         "morefood:item_pestle_mortar",
-        "morefood:item_peanuts",
-        "morefood:item_peanuts"
+        {
+          "item": "morefood:item_peanuts",
+          "count": 2
+        }
       ],
       "output": "morefood:item_peanut_butter"
     }

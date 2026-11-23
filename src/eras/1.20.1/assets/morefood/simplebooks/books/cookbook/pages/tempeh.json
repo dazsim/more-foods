@@ -23,9 +23,10 @@
     {
       "kind": "craft_shapeless",
       "inputs": [
-        "morefood:item_soybeans",
-        "morefood:item_soybeans",
-        "morefood:item_soybeans",
+        {
+          "item": "morefood:item_soybeans",
+          "count": 3
+        },
         "minecraft:brown_mushroom"
       ],
       "output": "morefood:item_tempeh"
