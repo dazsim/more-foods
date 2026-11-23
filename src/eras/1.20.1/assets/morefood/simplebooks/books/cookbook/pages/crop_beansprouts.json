@@ -1,0 +1,33 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 318,
+  "title": "Beansprouts",
+  "icon": "morefood:item_beansprouts",
+  "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/beansprouts"
+  },
+  "unlock_hint": "Break grass to find Beansprout Seeds",
+  "text": "Break grass to find Beansprout Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Beansprouts crafts back into seeds.",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_beansprouts"
+      ],
+      "output": "morefood:item_seed_beansprouts"
+    },
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_beansprouts_fried",
+          "page": "beansprouts_fried"
+        }
+      ]
+    }
+  ]
+}

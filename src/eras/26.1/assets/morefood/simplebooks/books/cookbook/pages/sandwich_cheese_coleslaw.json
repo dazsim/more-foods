@@ -5,6 +5,10 @@
   "title": "Cheese and Coleslaw Sandwich",
   "icon": "morefood:item_sandwich_cheese_coleslaw",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/cabbage"
+  },
+  "unlock_hint": "Find Cabbage or Cabbage Seeds to unlock",
   "ingredients": [
     "minecraft:bread",
     "minecraft:milk_bucket",

@@ -5,6 +5,10 @@
   "title": "Shepherd's Pie",
   "icon": "morefood:item_pie_shepherds",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/onion"
+  },
+  "unlock_hint": "Find Onion or Onion Seed to unlock",
   "ingredients": [
     "minecraft:mutton",
     "morefood:item_onion",

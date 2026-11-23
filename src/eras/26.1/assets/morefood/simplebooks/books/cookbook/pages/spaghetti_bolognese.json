@@ -5,6 +5,10 @@
   "title": "Spaghetti Bolognese",
   "icon": "morefood:item_spaghetti_bolognese",
   "subtitle": "Cooked in the pot on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/tomato"
+  },
+  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:egg",

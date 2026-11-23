@@ -5,6 +5,10 @@
   "title": "Leek and Potato Soup",
   "icon": "morefood:item_soup_leek_potato",
   "subtitle": "Cooked in the pot on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/leek"
+  },
+  "unlock_hint": "Find Leek or Leek Seeds to unlock",
   "ingredients": [
     "morefood:item_leek",
     "minecraft:potato",

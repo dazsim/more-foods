@@ -5,6 +5,10 @@
   "title": "Peas",
   "icon": "morefood:item_peas",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/peas"
+  },
+  "unlock_hint": "Break grass to find Pea Seeds",
   "text": "Break grass to find Pea Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Peas crafts back into seeds.",
   "steps": [
     {

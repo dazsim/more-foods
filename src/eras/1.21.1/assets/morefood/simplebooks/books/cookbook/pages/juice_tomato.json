@@ -5,6 +5,10 @@
   "title": "Tomato Juice",
   "icon": "morefood:item_juice_tomato",
   "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/tomato"
+  },
+  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "ingredients": [
     "morefood:item_fruit_tomato",
     "minecraft:glass_bottle"

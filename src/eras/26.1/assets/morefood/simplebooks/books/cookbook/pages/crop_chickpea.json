@@ -1,0 +1,41 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 315,
+  "title": "Chickpeas",
+  "icon": "morefood:item_chickpeas",
+  "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/chickpea"
+  },
+  "unlock_hint": "Break grass to find Chickpea Seeds",
+  "text": "Break grass to find Chickpea Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Chickpeas crafts back into seeds.",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_chickpeas"
+      ],
+      "output": "morefood:item_seed_chickpea"
+    },
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_falafel",
+          "page": "falafel"
+        },
+        {
+          "item": "morefood:item_hummus",
+          "page": "hummus"
+        },
+        {
+          "item": "morefood:item_chickpeas_roasted",
+          "page": "chickpeas_roasted"
+        }
+      ]
+    }
+  ]
+}

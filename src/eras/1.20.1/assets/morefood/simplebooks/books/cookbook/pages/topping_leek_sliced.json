@@ -5,6 +5,10 @@
   "title": "Sliced Leek",
   "icon": "morefood:item_leek_sliced",
   "subtitle": "A pizza topping. ",
+  "unlock_on": {
+    "tag": "morefood:unlocks/leek"
+  },
+  "unlock_hint": "Find Leek or Leek Seeds to unlock",
   "ingredients": [
     "morefood:item_leek"
   ],

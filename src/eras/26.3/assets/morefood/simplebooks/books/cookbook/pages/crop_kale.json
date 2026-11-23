@@ -5,6 +5,10 @@
   "title": "Kale",
   "icon": "morefood:item_kale",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/kale"
+  },
+  "unlock_hint": "Break grass to find Kale Seeds",
   "text": "Break grass to find Kale Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Kale crafts back into seeds.",
   "steps": [
     {

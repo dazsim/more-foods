@@ -5,6 +5,10 @@
   "title": "Baked Beans on Toast",
   "icon": "morefood:item_beans_toast",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/haricot"
+  },
+  "unlock_hint": "Find Haricot Beans or Haricot Bean Seeds to unlock",
   "ingredients": [
     "minecraft:bread",
     {

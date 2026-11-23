@@ -1,0 +1,34 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 319,
+  "title": "Avocado",
+  "icon": "morefood:item_avocado",
+  "subtitle": "A fruit tree. Grows wild in jungles.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/avocado"
+  },
+  "unlock_hint": "Find Avocado trees in jungles",
+  "text": "Avocado hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop Avocado Saplings; plant one on grass or dirt and Bone Meal helps it grow.",
+  "steps": [
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_guacamole",
+          "page": "guacamole"
+        },
+        {
+          "item": "morefood:item_butter_vegan",
+          "page": "butter_vegan"
+        },
+        {
+          "item": "morefood:item_vegetable_oil",
+          "page": "vegetable_oil"
+        }
+      ]
+    }
+  ]
+}

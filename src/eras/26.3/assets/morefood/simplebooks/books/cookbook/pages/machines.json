@@ -1,0 +1,196 @@
+{
+  "section": "tools",
+  "template": "morefood:info",
+  "sort": 201,
+  "title": "Kitchen Machines",
+  "icon": "morefood:block_grinder",
+  "subtitle": "The grinder, the press and the sink.",
+  "text": "The Grinder and Press work three inputs at a time. A gearbox one is cranked with an empty hand, a firebox one burns fuel. Sneak with an empty hand to open it.",
+  "steps": [
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "PPP",
+        "S S",
+        "PPP"
+      ],
+      "key": {
+        "P": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        },
+        "S": "minecraft:stick"
+      },
+      "output": "morefood:block_kitchen_chassis",
+      "title": "Kitchen Chassis",
+      "note": "Place it first, then build the machine on it.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        " F ",
+        "SMS",
+        " S "
+      ],
+      "key": {
+        "F": "minecraft:flint",
+        "S": "minecraft:cobblestone",
+        "M": "morefood:item_pestle_mortar"
+      },
+      "output": "morefood:item_grinder_core",
+      "title": "Grinder Core",
+      "note": "Makes it a Grinder: flour, pastes, butters.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        " S ",
+        "PJP",
+        "PPP"
+      ],
+      "key": {
+        "S": "minecraft:stick",
+        "P": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        },
+        "J": "morefood:item_juicer"
+      },
+      "output": "morefood:item_press_core",
+      "title": "Press Core",
+      "note": "Makes it a Press: juices, milks, oils, tofu.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "sequence",
+      "title": "Build it on the chassis",
+      "text_first": false,
+      "text": "Use each part on the chassis in this order and turn a Screwdriver after each one.",
+      "cells": [
+        {
+          "items": [
+            "morefood:item_grinder_core",
+            "morefood:item_press_core"
+          ],
+          "name": "A core"
+        },
+        "workshopcore:control_board",
+        {
+          "items": [
+            "morefood:item_kitchen_gearbox",
+            "morefood:item_firebox"
+          ],
+          "name": "Gearbox or Firebox"
+        },
+        {
+          "item": "morefood:item_kitchen_panel",
+          "count": 4
+        },
+        "morefood:item_kitchen_worktop"
+      ]
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        " S ",
+        "SPS",
+        " S "
+      ],
+      "key": {
+        "S": "minecraft:stick",
+        "P": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        }
+      },
+      "output": "morefood:item_kitchen_gearbox",
+      "title": "Kitchen Gearbox",
+      "note": "Crank it with an empty hand.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "B B",
+        "BFB"
+      ],
+      "key": {
+        "B": "minecraft:brick",
+        "F": "minecraft:furnace"
+      },
+      "output": "morefood:item_firebox",
+      "title": "Firebox",
+      "note": "Burns any furnace fuel.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "S",
+        "S"
+      ],
+      "key": {
+        "S": {
+          "item": "#minecraft:wooden_slabs",
+          "name": "Wooden Slabs"
+        }
+      },
+      "output": {
+        "item": "morefood:item_kitchen_panel",
+        "count": 2
+      },
+      "title": "Kitchen Panel",
+      "note": "Four go on each machine.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "CCC"
+      ],
+      "key": {
+        "C": "minecraft:smooth_stone_slab"
+      },
+      "output": "morefood:item_kitchen_worktop",
+      "title": "Kitchen Worktop",
+      "note": "The last part.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "I I",
+        "PIP"
+      ],
+      "key": {
+        "I": "minecraft:iron_ingot",
+        "P": {
+          "item": "#minecraft:planks",
+          "name": "Planks"
+        }
+      },
+      "output": "morefood:block_kitchen_sink",
+      "title": "Kitchen Sink",
+      "note": "Never runs dry. Fills buckets and bottles, washes dough into seitan. Hoppers and pipes work too.",
+      "number": false,
+      "join": false,
+      "label_width": 400
+    }
+  ]
+}

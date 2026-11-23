@@ -1,0 +1,49 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 316,
+  "title": "Peanuts",
+  "icon": "morefood:item_peanuts",
+  "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/peanut"
+  },
+  "unlock_hint": "Break grass to find Peanut Seeds",
+  "text": "Break grass to find Peanut Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Peanuts crafts back into seeds.",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_peanuts"
+      ],
+      "output": "morefood:item_seed_peanut"
+    },
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_peanut_butter",
+          "page": "peanut_butter"
+        },
+        {
+          "item": "morefood:item_peanuts_roasted",
+          "page": "peanuts_roasted"
+        },
+        {
+          "item": "morefood:item_satay",
+          "page": "satay"
+        },
+        {
+          "item": "morefood:item_butter_vegan",
+          "page": "butter_vegan"
+        },
+        {
+          "item": "morefood:item_vegetable_oil",
+          "page": "vegetable_oil"
+        }
+      ]
+    }
+  ]
+}

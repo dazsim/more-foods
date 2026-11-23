@@ -1,0 +1,34 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1232,
+  "title": "Cooked Jackfruit",
+  "icon": "morefood:item_jackfruit_cooked",
+  "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/jackfruit"
+  },
+  "unlock_hint": "Find Jackfruit or a Jackfruit Sapling to unlock",
+  "ingredients": [
+    "morefood:item_jackfruit"
+  ],
+  "tools": [
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "process",
+      "title": "Cooked Jackfruit",
+      "note": "15 seconds\nin the oven",
+      "inputs": [
+        "morefood:item_jackfruit"
+      ],
+      "appliance": {
+        "item": "morefood:block_stove",
+        "name": "Stove oven"
+      },
+      "output": "morefood:item_jackfruit_cooked"
+    }
+  ]
+}

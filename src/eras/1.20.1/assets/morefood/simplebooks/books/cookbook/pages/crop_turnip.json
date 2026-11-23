@@ -5,6 +5,10 @@
   "title": "Turnip",
   "icon": "morefood:item_turnip",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/turnip"
+  },
+  "unlock_hint": "Break grass to find Turnip Seeds",
   "text": "Break grass to find Turnip Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Turnip crafts back into seeds.",
   "steps": [
     {

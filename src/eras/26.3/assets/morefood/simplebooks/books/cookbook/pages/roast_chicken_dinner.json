@@ -5,6 +5,10 @@
   "title": "Roast Chicken Dinner",
   "icon": "morefood:item_roast_chicken_dinner",
   "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/parsnip"
+  },
+  "unlock_hint": "Find Parsnip or Parsnip Seeds to unlock",
   "ingredients": [
     "minecraft:cooked_chicken",
     "minecraft:potato",

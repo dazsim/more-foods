@@ -5,6 +5,10 @@
   "title": "Garlic",
   "icon": "morefood:item_garlic",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/garlic"
+  },
+  "unlock_hint": "Break grass to find Garlic Clove",
   "text": "Break grass to find Garlic Clove. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Garlic crafts back into seeds.",
   "steps": [
     {
@@ -38,6 +42,14 @@
         {
           "item": "morefood:item_spaghetti_tomato",
           "page": "spaghetti_tomato"
+        },
+        {
+          "item": "morefood:item_falafel",
+          "page": "falafel"
+        },
+        {
+          "item": "morefood:item_hummus",
+          "page": "hummus"
         }
       ]
     }

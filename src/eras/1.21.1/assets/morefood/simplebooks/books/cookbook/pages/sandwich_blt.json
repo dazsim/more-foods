@@ -5,6 +5,10 @@
   "title": "BLT Sandwich",
   "icon": "morefood:item_sandwich_blt",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/lettuce"
+  },
+  "unlock_hint": "Find Lettuce or Lettuce Seed to unlock",
   "ingredients": [
     "minecraft:bread",
     "morefood:item_joint_bacon",

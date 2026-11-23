@@ -5,6 +5,10 @@
   "title": "Full English Breakfast",
   "icon": "morefood:item_breakfast_full",
   "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/haricot"
+  },
+  "unlock_hint": "Find Haricot Beans or Haricot Bean Seeds to unlock",
   "ingredients": [
     {
       "items": [

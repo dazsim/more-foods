@@ -5,6 +5,10 @@
   "title": "Cabbage",
   "icon": "morefood:item_cabbage",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/cabbage"
+  },
+  "unlock_hint": "Break grass to find Cabbage Seeds",
   "text": "Break grass to find Cabbage Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Cabbage crafts back into seeds.",
   "steps": [
     {

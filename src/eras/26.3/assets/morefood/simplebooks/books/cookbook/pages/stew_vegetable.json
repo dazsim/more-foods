@@ -5,6 +5,10 @@
   "title": "Vegetable Stew",
   "icon": "morefood:item_stew_vegetable",
   "subtitle": "Cooked in the pot on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/turnip"
+  },
+  "unlock_hint": "Find Turnip or Turnip Seeds to unlock",
   "ingredients": [
     "morefood:item_turnip",
     "minecraft:carrot",

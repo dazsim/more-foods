@@ -1,0 +1,33 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 314,
+  "title": "Lentils",
+  "icon": "morefood:item_lentils",
+  "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/lentil"
+  },
+  "unlock_hint": "Break grass to find Lentil Seeds",
+  "text": "Break grass to find Lentil Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Lentils crafts back into seeds.",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_lentils"
+      ],
+      "output": "morefood:item_seed_lentil"
+    },
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_soup_lentil",
+          "page": "soup_lentil"
+        }
+      ]
+    }
+  ]
+}

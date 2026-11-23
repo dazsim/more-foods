@@ -1,0 +1,44 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1220,
+  "title": "Oatcake",
+  "icon": "morefood:item_oatcake",
+  "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/oats"
+  },
+  "unlock_hint": "Find Oats or Oat Seeds to unlock",
+  "ingredients": [
+    "morefood:item_oats"
+  ],
+  "tools": [
+    "minecraft:crafting_table",
+    "morefood:item_pestle_mortar",
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_pestle_mortar",
+        "morefood:item_oats"
+      ],
+      "output": "morefood:item_oat_flour"
+    },
+    {
+      "kind": "process",
+      "title": "Oatcake",
+      "note": "10 seconds\nin the oven",
+      "inputs": [
+        "morefood:item_oat_flour"
+      ],
+      "appliance": {
+        "item": "morefood:block_stove",
+        "name": "Stove oven"
+      },
+      "output": "morefood:item_oatcake"
+    }
+  ]
+}

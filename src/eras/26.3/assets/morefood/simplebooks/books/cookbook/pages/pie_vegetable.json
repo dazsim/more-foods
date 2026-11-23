@@ -5,6 +5,10 @@
   "title": "Vegetable Pie",
   "icon": "morefood:item_pie_vegetable",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/parsnip"
+  },
+  "unlock_hint": "Find Parsnip or Parsnip Seeds to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:milk_bucket",

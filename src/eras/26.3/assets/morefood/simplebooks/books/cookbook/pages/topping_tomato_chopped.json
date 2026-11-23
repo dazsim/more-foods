@@ -5,6 +5,10 @@
   "title": "Chopped Tomato",
   "icon": "morefood:item_tomato_chopped",
   "subtitle": "A pizza topping. ",
+  "unlock_on": {
+    "tag": "morefood:unlocks/tomato"
+  },
+  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "ingredients": [
     "morefood:item_fruit_tomato"
   ],

@@ -5,6 +5,10 @@
   "title": "Roast Vegetables",
   "icon": "morefood:item_roast_vegetables",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/parsnip"
+  },
+  "unlock_hint": "Find Parsnip or Parsnip Seeds to unlock",
   "ingredients": [
     "morefood:item_parsnip",
     {

@@ -1,0 +1,33 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1224,
+  "title": "Fried Beansprouts",
+  "icon": "morefood:item_beansprouts_fried",
+  "subtitle": "Fried in the pan on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/beansprouts"
+  },
+  "unlock_hint": "Find Beansprouts or Beansprout Seeds to unlock",
+  "ingredients": [
+    "morefood:item_beansprouts"
+  ],
+  "tools": [
+    "morefood:item_frying_pan",
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "process",
+      "title": "Fried Beansprouts",
+      "note": "5 seconds,\nfrom the stove\noutput",
+      "inputs": [
+        "morefood:item_beansprouts"
+      ],
+      "appliance": "morefood:item_frying_pan",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_beansprouts_fried"
+    }
+  ]
+}

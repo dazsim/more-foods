@@ -5,6 +5,10 @@
   "title": "Garlic Bread",
   "icon": "morefood:item_garlic_bread",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/garlic"
+  },
+  "unlock_hint": "Find Garlic or Garlic Clove to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:water_bucket",

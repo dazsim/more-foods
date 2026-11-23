@@ -5,6 +5,10 @@
   "title": "Neeps",
   "icon": "morefood:item_neeps",
   "subtitle": "Cooked in the pot on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/swede"
+  },
+  "unlock_hint": "Find Swede or Swede Seeds to unlock",
   "ingredients": [
     {
       "item": "morefood:item_swede",

@@ -5,6 +5,10 @@
   "title": "Chopped Garlic",
   "icon": "morefood:item_garlic_chopped",
   "subtitle": "A pizza topping. ",
+  "unlock_on": {
+    "tag": "morefood:unlocks/garlic"
+  },
+  "unlock_hint": "Find Garlic or Garlic Clove to unlock",
   "ingredients": [
     "morefood:item_garlic"
   ],

@@ -5,6 +5,10 @@
   "title": "Chicken and Leek Pie",
   "icon": "morefood:item_pie_chicken_leek",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/leek"
+  },
+  "unlock_hint": "Find Leek or Leek Seeds to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:milk_bucket",

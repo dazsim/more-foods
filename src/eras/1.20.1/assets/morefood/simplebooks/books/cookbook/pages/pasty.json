@@ -5,6 +5,10 @@
   "title": "Cornish Pasty",
   "icon": "morefood:item_pasty",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/swede"
+  },
+  "unlock_hint": "Find Swede or Swede Seeds to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:milk_bucket",

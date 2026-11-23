@@ -1,0 +1,34 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 320,
+  "title": "Coconut",
+  "icon": "morefood:item_coconut",
+  "subtitle": "A fruit tree. Grows wild on beaches.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/coconut"
+  },
+  "unlock_hint": "Find Coconut trees on beaches",
+  "text": "Coconut hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop Coconut Saplings; plant one on grass or dirt or sand and Bone Meal helps it grow.",
+  "steps": [
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_coconut_milk",
+          "page": "coconut_milk"
+        },
+        {
+          "item": "morefood:item_satay",
+          "page": "satay"
+        },
+        {
+          "item": "morefood:item_butter_vegan",
+          "page": "butter_vegan"
+        }
+      ]
+    }
+  ]
+}

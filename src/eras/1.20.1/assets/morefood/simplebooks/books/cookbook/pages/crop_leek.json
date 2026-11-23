@@ -5,6 +5,10 @@
   "title": "Leek",
   "icon": "morefood:item_leek",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/leek"
+  },
+  "unlock_hint": "Break grass to find Leek Seeds",
   "text": "Break grass to find Leek Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Leek crafts back into seeds.",
   "steps": [
     {

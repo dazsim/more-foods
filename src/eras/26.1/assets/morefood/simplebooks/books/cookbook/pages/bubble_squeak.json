@@ -5,6 +5,10 @@
   "title": "Bubble and Squeak",
   "icon": "morefood:item_bubble_squeak",
   "subtitle": "Fried in the pan on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/cabbage"
+  },
+  "unlock_hint": "Find Cabbage or Cabbage Seeds to unlock",
   "ingredients": [
     "minecraft:potato",
     "minecraft:water_bucket",

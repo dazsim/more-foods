@@ -1,0 +1,88 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1212,
+  "title": "Falafel",
+  "icon": "morefood:item_falafel",
+  "subtitle": "Fried in the pan on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/chickpea"
+  },
+  "unlock_hint": "Find Chickpeas or Chickpea Seeds to unlock",
+  "ingredients": [
+    "morefood:item_chickpeas",
+    "morefood:item_onion",
+    "morefood:item_garlic"
+  ],
+  "tools": [
+    "minecraft:crafting_table",
+    "morefood:item_pestle_mortar",
+    "morefood:item_knife",
+    "morefood:item_frying_pan",
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_pestle_mortar",
+        "morefood:item_chickpeas"
+      ],
+      "output": "morefood:item_chickpea_paste"
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_onion"
+      },
+      "output": {
+        "item": "morefood:item_onion_chopped",
+        "count": 4
+      }
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_garlic"
+      },
+      "output": {
+        "item": "morefood:item_garlic_chopped",
+        "count": 4
+      }
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_chickpea_paste",
+        "morefood:item_onion_chopped",
+        "morefood:item_garlic_chopped"
+      ],
+      "output": {
+        "item": "morefood:item_falafel_uncooked",
+        "count": 2
+      }
+    },
+    {
+      "kind": "process",
+      "title": "Falafel",
+      "note": "5 seconds,\nfrom the stove\noutput",
+      "inputs": [
+        "morefood:item_falafel_uncooked"
+      ],
+      "appliance": "morefood:item_frying_pan",
+      "on": "morefood:block_stove",
+      "output": "morefood:item_falafel"
+    }
+  ]
+}

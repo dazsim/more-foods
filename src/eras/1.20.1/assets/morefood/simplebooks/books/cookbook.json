@@ -12,5 +12,6 @@
     "crops",
     "recipes"
   ],
-  "flow": true
+  "flow": true,
+  "locked": "show"
 }

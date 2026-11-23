@@ -1,0 +1,34 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1208,
+  "title": "Roasted Chickpeas",
+  "icon": "morefood:item_chickpeas_roasted",
+  "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/chickpea"
+  },
+  "unlock_hint": "Find Chickpeas or Chickpea Seeds to unlock",
+  "ingredients": [
+    "morefood:item_chickpeas"
+  ],
+  "tools": [
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "process",
+      "title": "Roasted Chickpeas",
+      "note": "10 seconds\nin the oven",
+      "inputs": [
+        "morefood:item_chickpeas"
+      ],
+      "appliance": {
+        "item": "morefood:block_stove",
+        "name": "Stove oven"
+      },
+      "output": "morefood:item_chickpeas_roasted"
+    }
+  ]
+}

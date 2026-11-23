@@ -5,6 +5,10 @@
   "title": "Salad Burger",
   "icon": "morefood:item_burger_salad",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/lettuce"
+  },
+  "unlock_hint": "Find Lettuce or Lettuce Seed to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:water_bucket",

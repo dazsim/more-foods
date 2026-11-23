@@ -5,6 +5,10 @@
   "title": "Fried Leeks",
   "icon": "morefood:item_leeks_fried",
   "subtitle": "Fried in the pan on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/leek"
+  },
+  "unlock_hint": "Find Leek or Leek Seeds to unlock",
   "ingredients": [
     "morefood:item_leek"
   ],

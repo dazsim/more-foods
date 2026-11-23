@@ -1,0 +1,30 @@
+{
+  "section": "crops",
+  "template": "morefood:info",
+  "sort": 321,
+  "title": "Jackfruit",
+  "icon": "morefood:item_jackfruit",
+  "subtitle": "A fruit tree. Grows wild in jungles.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/jackfruit"
+  },
+  "unlock_hint": "Find Jackfruit trees in jungles",
+  "text": "Jackfruit hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop Jackfruit Saplings; plant one on grass or dirt and Bone Meal helps it grow.",
+  "steps": [
+    {
+      "kind": "links",
+      "header": "Used in:",
+      "columns": 3,
+      "links": [
+        {
+          "item": "morefood:item_jackfruit_cooked",
+          "page": "jackfruit_cooked"
+        },
+        {
+          "item": "morefood:item_pulled_jackfruit",
+          "page": "pulled_jackfruit"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1216,
+  "title": "Peanut Butter",
+  "icon": "morefood:item_peanut_butter",
+  "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/peanut"
+  },
+  "unlock_hint": "Find Peanuts or Peanut Seeds to unlock",
+  "ingredients": [
+    {
+      "item": "morefood:item_peanuts",
+      "count": 2
+    }
+  ],
+  "tools": [
+    "minecraft:crafting_table",
+    "morefood:item_pestle_mortar"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_pestle_mortar",
+        "morefood:item_peanuts",
+        "morefood:item_peanuts"
+      ],
+      "output": "morefood:item_peanut_butter"
+    }
+  ]
+}

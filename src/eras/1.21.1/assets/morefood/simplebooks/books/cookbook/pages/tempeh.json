@@ -1,0 +1,35 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1202,
+  "title": "Tempeh",
+  "icon": "morefood:item_tempeh",
+  "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/soy"
+  },
+  "unlock_hint": "Find Soybeans or Soybean Seeds to unlock",
+  "ingredients": [
+    {
+      "item": "morefood:item_soybeans",
+      "count": 3
+    },
+    "minecraft:brown_mushroom"
+  ],
+  "tools": [
+    "minecraft:crafting_table"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_soybeans",
+        "morefood:item_soybeans",
+        "morefood:item_soybeans",
+        "minecraft:brown_mushroom"
+      ],
+      "output": "morefood:item_tempeh"
+    }
+  ]
+}

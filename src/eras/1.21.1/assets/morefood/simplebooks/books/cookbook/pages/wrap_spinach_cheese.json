@@ -5,6 +5,10 @@
   "title": "Spinach and Cheese Wrap",
   "icon": "morefood:item_wrap_spinach_cheese",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/spinach"
+  },
+  "unlock_hint": "Find Spinach or Spinach Seeds to unlock",
   "ingredients": [
     "minecraft:wheat",
     "minecraft:water_bucket",

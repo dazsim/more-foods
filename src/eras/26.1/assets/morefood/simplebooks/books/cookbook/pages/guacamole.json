@@ -1,0 +1,72 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1226,
+  "title": "Guacamole",
+  "icon": "morefood:item_guacamole",
+  "subtitle": "Put together at the crafting table.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/avocado"
+  },
+  "unlock_hint": "Find Avocado or an Avocado Sapling to unlock",
+  "ingredients": [
+    "morefood:item_avocado",
+    "morefood:item_fruit_tomato",
+    "morefood:item_onion",
+    "minecraft:bowl"
+  ],
+  "tools": [
+    "minecraft:crafting_table",
+    "morefood:item_knife"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_fruit_tomato"
+      },
+      "output": {
+        "item": "morefood:item_tomato_chopped",
+        "count": 4
+      }
+    },
+    {
+      "kind": "craft_shaped",
+      "pattern": [
+        "A",
+        "B"
+      ],
+      "key": {
+        "A": "morefood:item_knife",
+        "B": "morefood:item_onion"
+      },
+      "output": {
+        "item": "morefood:item_onion_chopped",
+        "count": 4
+      }
+    },
+    {
+      "kind": "sequence",
+      "title": "Guacamole",
+      "text_first": false,
+      "text": "Crafting Table (shapeless): put these in the grid in any order.",
+      "cells": [
+        "morefood:item_knife",
+        "morefood:item_avocado",
+        "morefood:item_tomato_chopped",
+        "morefood:item_onion_chopped",
+        "minecraft:bowl",
+        {
+          "item": "morefood:item_guacamole",
+          "note": "result"
+        }
+      ]
+    }
+  ]
+}

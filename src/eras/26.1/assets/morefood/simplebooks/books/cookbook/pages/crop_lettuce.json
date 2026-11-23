@@ -5,6 +5,10 @@
   "title": "Lettuce",
   "icon": "morefood:item_lettuce",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/lettuce"
+  },
+  "unlock_hint": "Break grass to find Lettuce Seed",
   "text": "Break grass to find Lettuce Seed. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Lettuce crafts back into seeds.",
   "steps": [
     {

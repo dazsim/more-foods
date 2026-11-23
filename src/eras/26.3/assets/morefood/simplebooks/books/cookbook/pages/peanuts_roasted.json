@@ -1,0 +1,34 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1214,
+  "title": "Roasted Peanuts",
+  "icon": "morefood:item_peanuts_roasted",
+  "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/peanut"
+  },
+  "unlock_hint": "Find Peanuts or Peanut Seeds to unlock",
+  "ingredients": [
+    "morefood:item_peanuts"
+  ],
+  "tools": [
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "process",
+      "title": "Roasted Peanuts",
+      "note": "10 seconds\nin the oven",
+      "inputs": [
+        "morefood:item_peanuts"
+      ],
+      "appliance": {
+        "item": "morefood:block_stove",
+        "name": "Stove oven"
+      },
+      "output": "morefood:item_peanuts_roasted"
+    }
+  ]
+}

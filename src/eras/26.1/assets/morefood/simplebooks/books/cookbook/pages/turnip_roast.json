@@ -5,6 +5,10 @@
   "title": "Roast Turnip",
   "icon": "morefood:item_turnip_roast",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/turnip"
+  },
+  "unlock_hint": "Find Turnip or Turnip Seeds to unlock",
   "ingredients": [
     "morefood:item_turnip"
   ],

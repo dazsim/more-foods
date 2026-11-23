@@ -5,6 +5,10 @@
   "title": "Cheese & Tomato Sandwich",
   "icon": "morefood:item_sandwich_cheese_tomato",
   "subtitle": "Built on the assembly board.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/tomato"
+  },
+  "unlock_hint": "Find Tomato or Tomato Seed to unlock",
   "ingredients": [
     "minecraft:bread",
     "minecraft:milk_bucket",

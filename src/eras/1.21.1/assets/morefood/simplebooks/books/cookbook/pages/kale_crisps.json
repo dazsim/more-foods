@@ -5,6 +5,10 @@
   "title": "Kale Crisps",
   "icon": "morefood:item_kale_crisps",
   "subtitle": "Baked in the stove oven.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/kale"
+  },
+  "unlock_hint": "Find Kale or Kale Seeds to unlock",
   "ingredients": [
     "morefood:item_kale"
   ],

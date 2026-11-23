@@ -1,0 +1,39 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1218,
+  "title": "Porridge",
+  "icon": "morefood:item_porridge",
+  "subtitle": "Cooked in the pot on the stove.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/oats"
+  },
+  "unlock_hint": "Find Oats or Oat Seeds to unlock",
+  "ingredients": [
+    "morefood:item_oats",
+    "minecraft:milk_bucket",
+    "minecraft:bowl"
+  ],
+  "tools": [
+    "morefood:item_pot",
+    "morefood:block_stove"
+  ],
+  "need_note": "Tools and Buckets are not consumed",
+  "steps": [
+    {
+      "kind": "process",
+      "title": "Porridge",
+      "note": "15 seconds,\nor over a\ncampfire, slower.\nScoop out with\na Bowl",
+      "inputs": [
+        "morefood:item_oats",
+        "minecraft:milk_bucket"
+      ],
+      "appliance": "morefood:item_pot",
+      "on": "morefood:block_stove",
+      "output": {
+        "item": "morefood:item_porridge",
+        "count": 2
+      }
+    }
+  ]
+}

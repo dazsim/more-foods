@@ -5,6 +5,10 @@
   "title": "Parsnip",
   "icon": "morefood:item_parsnip",
   "subtitle": "A crop. Seeds drop from grass.",
+  "unlock_on": {
+    "tag": "morefood:unlocks/parsnip"
+  },
+  "unlock_hint": "Break grass to find Parsnip Seeds",
   "text": "Break grass to find Parsnip Seeds. Plant them on farmland and harvest when fully grown; Bone Meal speeds it up. One Parsnip crafts back into seeds.",
   "steps": [
     {
