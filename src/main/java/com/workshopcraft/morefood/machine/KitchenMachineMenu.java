@@ -1,8 +1,5 @@
 package com.workshopcraft.morefood.machine;
 
-import com.workshopcraft.workshopcore.machine.FuelDrive;
-import com.workshopcraft.workshopcore.machine.Fuels;
-import com.workshopcraft.workshopcore.machine.MachineBlockEntity;
 import com.workshopcraft.workshopcore.machine.MachineMenuData;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -10,7 +7,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -27,8 +23,6 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final Level level;
     private final Slot fuel;
-    // the client has no drive, so the server says whether the drive burns fuel
-    private final DataSlot burnsFuel;
 
     public static KitchenMachineMenu grinder(int id, Inventory inventory) {
         return new KitchenMachineMenu(Kind.GRINDER, id, inventory, new SimpleContainer(SIZE), new SimpleContainerData(MachineMenuData.COUNT));
@@ -66,21 +60,10 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
                 return false;
             }
         });
-        burnsFuel = container instanceof MachineBlockEntity m ? new DataSlot() {
-            @Override
-            public int get() {
-                return m.drive() instanceof FuelDrive ? 1 : 0;
-            }
-
-            @Override
-            public void set(int value) {
-            }
-        } : DataSlot.standalone();
         fuel = addSlot(new Slot(container, FUEL, 44, 53) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                if (container instanceof MachineBlockEntity m) return m.drive().acceptsFuel(m, stack);
-                return burnsFuel.get() == 1 && Fuels.isFuel(level, stack);
+                return MachineMenuData.acceptsFuel(data, level, stack);
             }
         });
         for (int row = 0; row < 3; row++) {
@@ -88,7 +71,6 @@ public class KitchenMachineMenu extends AbstractContainerMenu {
         }
         for (int col = 0; col < 9; col++) addSlot(new Slot(inventory, col, 8 + col * 18, 142));
         addDataSlots(data);
-        addDataSlot(burnsFuel);
     }
 
     public Kind kind() {
