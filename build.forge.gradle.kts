@@ -32,6 +32,8 @@ repositories {
 
 legacyForge {
     version = sc.properties.get<String>("deps.forge")
+    // SRG names, as Forge reads it in production
+    accessTransformers.from(rootProject.file("src/at/1.20.1.cfg"))
     mods {
         register(modId) {
             sourceSet(sourceSets.main.get())
@@ -95,6 +97,10 @@ tasks {
 
     named("createMinecraftArtifacts") {
         dependsOn("stonecutterGenerate")
+    }
+
+    jar {
+        from(rootProject.file("src/at/1.20.1.cfg")) { into("META-INF"); rename { "accesstransformer.cfg" } }
     }
 
     withType<Jar> {

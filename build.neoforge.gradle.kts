@@ -43,7 +43,7 @@ repositories {
 
 neoForge {
     version = sc.properties.get<String>("deps.neo_loader")
-    if (modern) accessTransformers.from(rootProject.file("src/main/resources/META-INF/accesstransformer.cfg"))
+    accessTransformers.from(rootProject.file(if (modern) "src/main/resources/META-INF/accesstransformer.cfg" else "src/at/1.21.1.cfg"))
     mods {
         register(modId) {
             sourceSet(sourceSets.main.get())
@@ -116,6 +116,10 @@ tasks {
 
     named("createMinecraftArtifacts") {
         dependsOn("stonecutterGenerate")
+    }
+
+    jar {
+        if (!modern) from(rootProject.file("src/at/1.21.1.cfg")) { into("META-INF"); rename { "accesstransformer.cfg" } }
     }
 
     withType<Jar> {

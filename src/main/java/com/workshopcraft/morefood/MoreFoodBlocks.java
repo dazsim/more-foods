@@ -221,25 +221,13 @@ public class MoreFoodBlocks {
         }
     }
 
-    /** Forge / NeoForge have no public fire registry; setFlammable stays private without an AT. */
-    public static void applyForgeFlammability() {
-        try {
-            final net.minecraft.world.level.block.FireBlock fire =
-                    (net.minecraft.world.level.block.FireBlock) net.minecraft.world.level.block.Blocks.FIRE;
-            final java.lang.reflect.Method method = net.minecraft.world.level.block.FireBlock.class
-                    .getDeclaredMethod("setFlammable", Block.class, int.class, int.class);
-            method.setAccessible(true);
-            flammable((block, ignite, burn) -> {
-                try {
-                    method.invoke(fire, block, ignite, burn);
-                } catch (ReflectiveOperationException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Could not register palm wood flammability", e);
-        }
+    // Forge and NeoForge open FireBlock.setFlammable with an access transformer, so no reflection by name
+    //? if !fabric {
+    /*public static void applyForgeFlammability() {
+        final net.minecraft.world.level.block.FireBlock fire = (net.minecraft.world.level.block.FireBlock) net.minecraft.world.level.block.Blocks.FIRE;
+        flammable(fire::setFlammable);
     }
+    *///?}
 
     @FunctionalInterface
     public interface FlammableConsumer {
