@@ -130,6 +130,11 @@ def recipe(era, d):
             d["byproduct"] = result(era, d["byproduct"])
     if "result" in d:
         d["result"] = result(era, d["result"], smelting=t == "minecraft:smelting")
+    if ERAS[era].get("plural") and t == "minecraft:stonecutting":
+        # 1.20.1 stonecutting takes the result id as a string and the count beside it
+        r = d.pop("result")
+        d["result"] = r["item"]
+        d["count"] = r.get("count", 1)
     if ERAS[era].get("plural") and t == "minecraft:crafting_shapeless" and d["result"].get("item") == "simplebooks:guide":
         # vanilla 1.20.1 crafting drops nbt on Fabric, Simple Books has its own type for guides
         d["type"] = "simplebooks:guide"
