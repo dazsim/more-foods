@@ -29,7 +29,8 @@
                 "workshopcore:upgrades",
                 "workshopcore:drive",
                 "workshopcore:board",
-                "workshopcore:panels"
+                "workshopcore:panels",
+                "workshopcore:fluids"
               ]
             }
           ]

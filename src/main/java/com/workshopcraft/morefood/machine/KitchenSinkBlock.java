@@ -2,6 +2,7 @@ package com.workshopcraft.morefood.machine;
 
 import com.mojang.serialization.MapCodec;
 import com.workshopcraft.morefood.MoreFoodMachines;
+import com.workshopcraft.workshopcore.machine.FluidTanks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -89,6 +90,8 @@ public class KitchenSinkBlock extends BaseEntityBlock {
     *///?}
 
     private InteractionResult onItem(ItemStack stack, Level level, BlockPos pos, Player player, InteractionHand hand) {
+        if ((stack.is(Items.BUCKET) || stack.is(Items.GLASS_BOTTLE)) && level.getBlockEntity(pos) instanceof KitchenSinkBlockEntity sink
+                && FluidTanks.useItem(level, pos, player, hand, sink.water)) return InteractionResult.SUCCESS;
         final ProcessRecipe recipe = stack.isEmpty() ? null : MachineRecipes.sinkRecipe(level, stack);
         if (recipe == null) return InteractionResult.PASS;
         if (level.isClientSide()) return InteractionResult.SUCCESS;

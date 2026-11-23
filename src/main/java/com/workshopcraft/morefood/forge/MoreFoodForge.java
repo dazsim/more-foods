@@ -81,7 +81,6 @@ public class MoreFoodForge {
         } else if (e.getObject() instanceof AssemblyBoardBlockEntity board) {
             e.addCapability(CAPS, new Provider<>(ForgeCapabilities.ITEM_HANDLER, side -> BoardItemHandler.of(board, side)));
         } else if (e.getObject() instanceof com.workshopcraft.morefood.machine.KitchenSinkBlockEntity sink) {
-            e.addCapability(CAPS, new Provider<>(ForgeCapabilities.FLUID_HANDLER, side -> SinkFluidHandler.INSTANCE));
             e.addCapability(MoreFood.id("sink_items"), new Provider<>(ForgeCapabilities.ITEM_HANDLER,
                     side -> side == null ? new net.minecraftforge.items.wrapper.InvWrapper(sink) : new net.minecraftforge.items.wrapper.SidedInvWrapper(sink, side)));
         }

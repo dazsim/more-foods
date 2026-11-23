@@ -1,6 +1,8 @@
 package com.workshopcraft.morefood.machine;
 
 import com.workshopcraft.morefood.MoreFoodMachines;
+import com.workshopcraft.workshopcore.machine.FluidSides;
+import com.workshopcraft.workshopcore.machine.MachineTank;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.Nullable;
@@ -21,6 +24,10 @@ public class KitchenSinkBlockEntity extends BlockEntity implements WorldlyContai
     public static final int IN = 0, OUT = 1, SIZE = 2;
     private static final int[] INPUT = {IN};
     private static final int[] OUTPUT = {OUT};
+
+    // pipes drain water on every side, nothing goes in
+    public final MachineTank water = MachineTank.infinite(Fluids.WATER).build();
+    public final FluidSides fluidSides = new FluidSides();
 
     private NonNullList<ItemStack> items = NonNullList.withSize(SIZE, ItemStack.EMPTY);
     private int timer;

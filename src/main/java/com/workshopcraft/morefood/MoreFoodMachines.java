@@ -14,6 +14,7 @@ import com.workshopcraft.workshopcore.machine.Drives;
 import com.workshopcraft.workshopcore.machine.Finishes;
 import com.workshopcraft.workshopcore.machine.MachineBlock;
 import com.workshopcraft.workshopcore.machine.MachineCore;
+import com.workshopcraft.workshopcore.machine.FluidTanks;
 import com.workshopcraft.workshopcore.machine.Machines;
 import com.workshopcraft.workshopcore.machine.PowerPart;
 import com.workshopcraft.workshopcore.machine.PowerParts;
@@ -130,6 +131,7 @@ public final class MoreFoodMachines {
         PowerParts.register(PowerPart.builder(MoreFood.id("item_kitchen_gearbox")).drive(Drives.CRANK).voltage(Voltage.LV).build());
         Machines.expose(() -> grinderEntity);
         Machines.expose(() -> pressEntity);
+        FluidTanks.expose(() -> sinkEntity, (sink, side) -> sink.fluidSides.on(sink.water, side));
     }
 
     public static void registerMenus(BiConsumer<Identifier, MenuType<?>> registry) {
