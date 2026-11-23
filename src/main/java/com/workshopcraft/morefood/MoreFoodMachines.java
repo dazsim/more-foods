@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,14 +69,8 @@ public final class MoreFoodMachines {
                 .build(props("block_grinder")
                 .mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_grinder"), grinder);
-        // the top half has no block entity, so stop pistons splitting the press
-        //? if >=26.3 {
-        /*PushReaction fixed = PushReaction.IMMOVEABLE;
-        *///?} else {
-        PushReaction fixed = PushReaction.BLOCK;
-        //?}
         press = MachineBlock.builder(() -> pressEntity).tiers(KITCHEN).finishes(FINISH).defaultWorktop(MoreFood.id("item_kitchen_worktop")).light(0).height(2)
-                .build(props("block_press").mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion().pushReaction(fixed));
+                .build(props("block_press").mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion());
         registry.accept(MoreFood.id("block_press"), press);
         sink = new KitchenSinkBlock(props("block_kitchen_sink")
                 .mapColor(MapColor.METAL).strength(2.5F).sound(SoundType.METAL).noOcclusion());
