@@ -301,7 +301,7 @@ for r in recipes[f"{MOD}:item_vegetable_oil"]:
         for i in inputs(r):
             vo.need(i)
         vo.step(f"{MOD}:item_vegetable_oil", r)
-ings = [{"items": ["morefood:item_peanuts", "morefood:item_avocado"], "name": "2 Peanuts or an Avocado"}, "minecraft:glass_bottle"]
+ings = [{"items": ["morefood:item_peanuts", "morefood:item_avocado"], "name": "Peanuts or Avocado"}, "minecraft:glass_bottle"]
 tools = vo.need_lists()[1]
 pages["vegetable_oil"] = {"section": "recipes", "template": "morefood:recipe", "sort": 1199, "title": "Vegetable Oil",
                           "icon": f"{MOD}:item_vegetable_oil", "subtitle": "From peanuts or an avocado. The press works too.",
@@ -343,7 +343,7 @@ pages["machines"] = {
         shaped("morefood:block_kitchen_chassis", "Kitchen Chassis", "Place it first, then build the machine on it."),
         shaped("morefood:item_grinder_core", "Grinder Core", "Makes it a Grinder: flour, pastes, butters."),
         shaped("morefood:item_press_core", "Press Core", "Makes it a Press: juices, milks, oils, tofu."),
-        {"kind": "sequence", "title": "Build it on the chassis", "text_first": False,
+        {"kind": "sequence", "title": "Build it on the chassis", "text_first": False, "number": False,
          "text": "Use each part on the chassis in this order and turn a Screwdriver after each one.",
          "cells": [{"items": ["morefood:item_grinder_core", "morefood:item_press_core"], "name": "A core"},
                    "workshopcore:control_board",

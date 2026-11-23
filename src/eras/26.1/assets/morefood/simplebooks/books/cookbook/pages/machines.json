@@ -73,6 +73,7 @@
       "kind": "sequence",
       "title": "Build it on the chassis",
       "text_first": false,
+      "number": false,
       "text": "Use each part on the chassis in this order and turn a Screwdriver after each one.",
       "cells": [
         {
