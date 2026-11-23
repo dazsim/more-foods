@@ -9,6 +9,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 //?}
 
-/** One recipe input: an item or tag, a count, or a water bottle. */
+/** One recipe input: an item or tag, a count, or a water bottle (kept as a potion ingredient, as 26.x refuses empty ones). */
 public record CountedIngredient(Ingredient ingredient, int count, boolean waterBottle) {
     private static final Codec<CountedIngredient> WATER = RecordCodecBuilder.create(i -> i.group(
             Codec.BOOL.fieldOf("water_bottle").forGetter(CountedIngredient::waterBottle),
             ExtraCodecs.POSITIVE_INT.optionalFieldOf("count", 1).forGetter(CountedIngredient::count)
-    ).apply(i, (water, count) -> new CountedIngredient(Ingredient.of(), count, water)));
+    ).apply(i, (water, count) -> new CountedIngredient(Ingredient.of(Items.POTION), count, water)));
 
     private static final Codec<CountedIngredient> COUNTED = RecordCodecBuilder.create(i -> i.group(
             Ingredient.CODEC.fieldOf("ingredient").forGetter(CountedIngredient::ingredient),

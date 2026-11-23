@@ -96,6 +96,21 @@ public class KitchenMachineBlockEntity extends ProcessMachine<ProcessRecipe> {
         return null;
     }
 
+    // Core only searches again when setItem changes the item, but hoppers and the menu grow
+    // stacks in place, so a counted recipe would stay "no recipe" after a second olive arrives
+    private int inputCounts = -1;
+
+    @Override
+    protected boolean work(ServerLevel level) {
+        int counts = 0;
+        for (int s = IN_FIRST; s < IN_FIRST + IN_COUNT; s++) counts = counts * 65 + getItem(s).getCount();
+        if (counts != inputCounts) {
+            inputCounts = counts;
+            invalidateRecipe();
+        }
+        return super.work(level);
+    }
+
     @Override
     protected boolean matches(ProcessRecipe recipe, ServerLevel level) {
         return recipe.match(this, IN_FIRST, IN_COUNT) != null;
