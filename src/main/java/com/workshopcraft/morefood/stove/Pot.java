@@ -96,16 +96,15 @@ public class Pot {
         dirty = true;
     }
 
-    public static boolean isIngredient(ServerLevel level, ItemStack stack) {
-        if (stack.isEmpty()) return false;
+    /** Only takes an item that leaves at least one recipe still possible, so the pot never ends up with a mix nothing can cook. */
+    public boolean accepts(ServerLevel level, ItemStack stack) {
+        if (portions > 0 || stack.isEmpty() || items.size() >= BoilingRecipe.MAX_INGREDIENTS) return false;
+        final List<ItemStack> with = new ArrayList<>(items);
+        with.add(stack);
         for (RecipeHolder<BoilingRecipe> holder : MoreFoodKitchen.boiling(level)) {
-            if (holder.value().uses(stack)) return true;
+            if (holder.value().couldMake(with)) return true;
         }
         return false;
-    }
-
-    public boolean accepts(ServerLevel level, ItemStack stack) {
-        return portions == 0 && items.size() < BoilingRecipe.MAX_INGREDIENTS && isIngredient(level, stack);
     }
 
     public void add(ItemStack stack) {

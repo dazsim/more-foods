@@ -131,6 +131,11 @@ public class BoilingRecipe implements Recipe<PotInput> {
         return assign(input.items(), new boolean[ingredients.size()], 0);
     }
 
+    /** True when these items could all be part of this recipe, with the rest still to come. */
+    public boolean couldMake(List<ItemStack> items) {
+        return items.size() <= ingredients.size() && assign(items, new boolean[ingredients.size()], 0);
+    }
+
     private boolean assign(List<ItemStack> items, boolean[] used, int at) {
         if (at == items.size()) return true;
         for (int i = 0; i < ingredients.size(); i++) {
