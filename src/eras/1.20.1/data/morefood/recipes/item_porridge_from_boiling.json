@@ -4,9 +4,14 @@
     {
       "item": "morefood:item_oats"
     },
-    {
-      "item": "minecraft:milk_bucket"
-    }
+    [
+      {
+        "item": "minecraft:milk_bucket"
+      },
+      {
+        "item": "morefood:item_milk_bottle"
+      }
+    ]
   ],
   "water": 0,
   "result": {

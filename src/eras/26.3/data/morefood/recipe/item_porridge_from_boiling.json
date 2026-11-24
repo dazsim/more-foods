@@ -2,7 +2,10 @@
   "type": "morefood:boiling",
   "ingredients": [
     "morefood:item_oats",
-    "minecraft:milk_bucket"
+    [
+      "minecraft:milk_bucket",
+      "morefood:item_milk_bottle"
+    ]
   ],
   "water": 0,
   "result": {

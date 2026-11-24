@@ -36,7 +36,13 @@
     "morefood:item_suet",
     "minecraft:wheat",
     "minecraft:egg",
-    "minecraft:milk_bucket"
+    {
+      "items": [
+        "minecraft:milk_bucket",
+        "morefood:item_milk_bottle"
+      ],
+      "name": "Milk Bucket or Bottle"
+    }
   ],
   "tools": [
     "minecraft:crafting_table",
@@ -122,7 +128,13 @@
         "morefood:item_pot",
         "morefood:item_flour",
         "minecraft:egg",
-        "minecraft:milk_bucket"
+        {
+          "items": [
+            "minecraft:milk_bucket",
+            "morefood:item_milk_bottle"
+          ],
+          "name": "Milk Bucket or Bottle"
+        }
       ],
       "output": "morefood:item_batter"
     },

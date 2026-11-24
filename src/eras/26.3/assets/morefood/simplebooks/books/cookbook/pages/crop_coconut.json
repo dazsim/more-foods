@@ -9,7 +9,7 @@
     "tag": "morefood:unlocks/coconut"
   },
   "unlock_hint": "Find Coconut trees on beaches",
-  "text": "Coconut hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop Coconut Saplings; plant one on grass or dirt or sand and Bone Meal helps it grow.",
+  "text": "Coconut hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. Left alone, a ripe one drops its two after a few minutes and grows again. The leaves drop Coconut Saplings; plant one on grass or dirt or sand and Bone Meal helps it grow.",
   "steps": [
     {
       "kind": "links",

@@ -597,7 +597,7 @@ w(os.path.join(ERA, "data/morefood/recipe/item_beansprouts_fried_from_frying.jso
 })
 w(os.path.join(ERA, "data/morefood/recipe/item_porridge_from_boiling.json"), {
   "type": "morefood:boiling",
-  "ingredients": ["morefood:item_oats", "minecraft:milk_bucket"],
+  "ingredients": ["morefood:item_oats", ["minecraft:milk_bucket", "morefood:item_milk_bottle"]],
   "water": 0, "result": {"id": "morefood:item_porridge"},
   "portions": 2, "cookingtime": 300, "colour": "#e8d49a", "vessel": "minecraft:bowl"
 })

@@ -3,7 +3,10 @@
   "category": "misc",
   "ingredients": [
     "morefood:item_mixing_bowl",
-    "minecraft:milk_bucket",
+    [
+      "minecraft:milk_bucket",
+      "morefood:item_milk_bottle"
+    ],
     "morefood:item_salt"
   ],
   "result": {

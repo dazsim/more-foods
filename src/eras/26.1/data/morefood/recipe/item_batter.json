@@ -4,7 +4,10 @@
   "ingredients": [
     "morefood:item_flour",
     "minecraft:egg",
-    "minecraft:milk_bucket",
+    [
+      "minecraft:milk_bucket",
+      "morefood:item_milk_bottle"
+    ],
     "morefood:item_pot"
   ],
   "result": {

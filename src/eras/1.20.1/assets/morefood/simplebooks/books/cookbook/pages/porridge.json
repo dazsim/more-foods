@@ -10,7 +10,13 @@
   },
   "ingredients": [
     "morefood:item_oats",
-    "minecraft:milk_bucket",
+    {
+      "items": [
+        "minecraft:milk_bucket",
+        "morefood:item_milk_bottle"
+      ],
+      "name": "Milk Bucket or Milk Bottle"
+    },
     "minecraft:bowl"
   ],
   "tools": [
@@ -25,7 +31,13 @@
       "note": "15 seconds,\nor over a\ncampfire, slower.\nScoop out with\na Bowl",
       "inputs": [
         "morefood:item_oats",
-        "minecraft:milk_bucket"
+        {
+          "items": [
+            "minecraft:milk_bucket",
+            "morefood:item_milk_bottle"
+          ],
+          "name": "Milk Bucket or Milk Bottle"
+        }
       ],
       "appliance": "morefood:item_pot",
       "on": "morefood:block_stove",

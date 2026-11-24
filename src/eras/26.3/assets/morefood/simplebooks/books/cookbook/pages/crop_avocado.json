@@ -9,7 +9,7 @@
     "tag": "morefood:unlocks/avocado"
   },
   "unlock_hint": "Find Avocado trees in jungles",
-  "text": "Avocado hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop Avocado Saplings; plant one on grass or dirt and Bone Meal helps it grow.",
+  "text": "Avocado hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. Left alone, a ripe one drops its two after a few minutes and grows again. The leaves drop Avocado Saplings; plant one on grass or dirt and Bone Meal helps it grow.",
   "steps": [
     {
       "kind": "links",

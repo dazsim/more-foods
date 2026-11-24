@@ -104,15 +104,23 @@ public class FruitPodBlock extends Block implements BonemealableBlock {
     }
     *///?}
 
-    @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(AGE) < MAX_AGE;
-    }
+    /** One in this many random ticks drops a ripe pod's fruit. A block gets a random tick about once a minute, so about 3 minutes. */
+    public static final int DROP_CHANCE = 3;
 
     @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+    /** Grows, and once ripe drops its fruit and starts again, so a tree keeps fruiting with nobody there. */
+    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (level.getRandom().nextInt(5) == 0 && state.getValue(AGE) < MAX_AGE) {
-            level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 2);
+        final int age = state.getValue(AGE);
+        if (age < MAX_AGE) {
+            if (random.nextInt(5) == 0) level.setBlock(pos, state.setValue(AGE, age + 1), 2);
+        } else if (random.nextInt(DROP_CHANCE) == 0) {
+            dropResources(state, level, pos);
+            level.setBlock(pos, state.setValue(AGE, 0), 2);
         }
     }
 

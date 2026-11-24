@@ -314,6 +314,15 @@ pages["vegetable_oil"] = {"section": "recipes", "template": "morefood:recipe", "
                           "ingredients": ings, "tools": tools, "need_note": "Use either recipe",
                           "steps": vo.steps}
 
+# milk by the bottle, both ways
+mb = Page()
+for out in (f"{MOD}:item_milk_bottle", "minecraft:milk_bucket"):
+    mb.step(out, recipes[out][0])
+pages["milk_bottle"] = {"section": "recipes", "template": "morefood:recipe", "sort": 1101, "title": name(f"{MOD}:item_milk_bottle"),
+                        "icon": f"{MOD}:item_milk_bottle", "subtitle": "Drink it like a bucket, or use it where a recipe wants milk.",
+                        "ingredients": ["minecraft:milk_bucket", {"item": "minecraft:glass_bottle", "count": 4}],
+                        "tools": mb.need_lists()[1], "need_note": "Buckets and bottles come back", "steps": mb.steps}
+
 # crop and tree pages for the vegan branch
 NEW_CROPS = ["soy", "lentil", "chickpea", "peanut", "oats", "beansprouts"]
 for n, c in enumerate(NEW_CROPS + list(TREES)):
@@ -330,7 +339,7 @@ for n, c in enumerate(NEW_CROPS + list(TREES)):
         sap = entry[1]
         pages[f"crop_{c}"].update({
             "subtitle": f"A fruit tree. Grows wild {TREES[c]}.",
-            "text": f"{name(produce)} hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. The leaves drop {name(sap)}s; plant one on grass or dirt{' or sand' if c == 'coconut' else ''} and Bone Meal helps it grow."})
+            "text": f"{name(produce)} hangs under the leaves like a cocoa pod. Break it when it is ripe for two, or early for one. Left alone, a ripe one drops its two after a few minutes and grows again. The leaves drop {name(sap)}s; plant one on grass or dirt{' or sand' if c == 'coconut' else ''} and Bone Meal helps it grow."})
     pages[f"crop_{c}"]["steps"] = p.steps
 
 # kitchen machines, needed for tofu and seitan

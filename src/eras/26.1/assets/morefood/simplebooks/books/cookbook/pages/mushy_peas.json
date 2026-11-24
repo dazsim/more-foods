@@ -13,7 +13,13 @@
       "item": "morefood:item_peas",
       "count": 3
     },
-    "minecraft:milk_bucket",
+    {
+      "items": [
+        "minecraft:milk_bucket",
+        "morefood:item_milk_bottle"
+      ],
+      "name": "Milk Bucket or Bottle"
+    },
     "minecraft:water_bucket",
     "minecraft:bowl"
   ],
@@ -43,7 +49,13 @@
       "kind": "craft_shapeless",
       "inputs": [
         "morefood:item_mixing_bowl",
-        "minecraft:milk_bucket",
+        {
+          "items": [
+            "minecraft:milk_bucket",
+            "morefood:item_milk_bottle"
+          ],
+          "name": "Milk Bucket or Bottle"
+        },
         "morefood:item_salt"
       ],
       "output": "morefood:item_butter"

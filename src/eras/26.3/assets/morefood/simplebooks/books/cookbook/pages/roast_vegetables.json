@@ -37,7 +37,13 @@
     },
     "minecraft:carrot",
     "morefood:item_onion",
-    "minecraft:milk_bucket",
+    {
+      "items": [
+        "minecraft:milk_bucket",
+        "morefood:item_milk_bottle"
+      ],
+      "name": "Milk Bucket or Bottle"
+    },
     "minecraft:water_bucket"
   ],
   "tools": [
@@ -82,7 +88,13 @@
       "kind": "craft_shapeless",
       "inputs": [
         "morefood:item_mixing_bowl",
-        "minecraft:milk_bucket",
+        {
+          "items": [
+            "minecraft:milk_bucket",
+            "morefood:item_milk_bottle"
+          ],
+          "name": "Milk Bucket or Bottle"
+        },
         "morefood:item_salt"
       ],
       "output": "morefood:item_butter"

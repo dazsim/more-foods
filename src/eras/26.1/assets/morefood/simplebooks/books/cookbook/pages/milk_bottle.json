@@ -1,0 +1,46 @@
+{
+  "section": "recipes",
+  "template": "morefood:recipe",
+  "sort": 1101,
+  "title": "Milk Bottle",
+  "icon": "morefood:item_milk_bottle",
+  "subtitle": "Drink it like a bucket, or use it where a recipe wants milk.",
+  "ingredients": [
+    "minecraft:milk_bucket",
+    {
+      "item": "minecraft:glass_bottle",
+      "count": 4
+    }
+  ],
+  "tools": [
+    "minecraft:crafting_table"
+  ],
+  "need_note": "Buckets and bottles come back",
+  "steps": [
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "minecraft:milk_bucket",
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 4
+        }
+      ],
+      "output": {
+        "item": "morefood:item_milk_bottle",
+        "count": 4
+      }
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "minecraft:bucket",
+        {
+          "item": "morefood:item_milk_bottle",
+          "count": 4
+        }
+      ],
+      "output": "minecraft:milk_bucket"
+    }
+  ]
+}

@@ -152,6 +152,7 @@ public class MoreFoodItems {
         seedOnion = seed(registry, "item_seed_onion", MoreFoodBlocks.cropOnion);
         item(registry, "item_bucket_cheese", props().craftRemainder(Items.BUCKET));
         food(registry, "item_cheese", 5, 0.4F, props());
+        milkBottle(registry);
         food(registry, "item_cabbage", 2, 0.3F, props());
         food(registry, "item_spinach", 1, 0.4F, props());
         food(registry, "item_kale", 1, 0.4F, props());
@@ -270,6 +271,17 @@ public class MoreFoodItems {
         if (stack.getItem() instanceof ItemStock) return ItemStock.vesselOf(stack).create();
         final ItemStackTemplate left = stack.getItem().getCraftingRemainder();
         return left != null ? left.create() : ItemStack.EMPTY;
+    }
+
+    private static void milkBottle(BiConsumer<Identifier, Item> registry) {
+        //? if >=26.1 {
+        item(registry, "item_milk_bottle", props().craftRemainder(Items.GLASS_BOTTLE)
+                .component(net.minecraft.core.component.DataComponents.CONSUMABLE, net.minecraft.world.item.component.Consumables.MILK_BUCKET)
+                .usingConvertsTo(Items.GLASS_BOTTLE));
+        //?} else {
+        /*final Item milk = add(registry, "item_milk_bottle", new com.workshopcraft.morefood.items.ItemMilkBottle(props().craftRemainder(Items.GLASS_BOTTLE)));
+        Compat.CONVERTS.put(milk, Items.GLASS_BOTTLE);
+        *///?}
     }
 
     static Item bowl(BiConsumer<Identifier, Item> registry, String name, int amount, float saturation) {

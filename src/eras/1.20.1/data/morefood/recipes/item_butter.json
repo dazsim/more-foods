@@ -5,9 +5,14 @@
     {
       "item": "morefood:item_mixing_bowl"
     },
-    {
-      "item": "minecraft:milk_bucket"
-    },
+    [
+      {
+        "item": "minecraft:milk_bucket"
+      },
+      {
+        "item": "morefood:item_milk_bottle"
+      }
+    ],
     {
       "item": "morefood:item_salt"
     }
