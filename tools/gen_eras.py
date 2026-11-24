@@ -181,6 +181,14 @@ def loot_fix(era, node):
                     "source": "block_entity",
                     "ops": [{"source": "WorkshopCore", "target": "WorkshopCore", "op": "replace"}]
                 })
+            elif f"{MOD}:milk" in includes:
+                # the churn's milk rides in BlockEntityTag, which 1.20.1 loads back into the block on placement
+                node.clear()
+                node.update({
+                    "function": "minecraft:copy_nbt",
+                    "source": "block_entity",
+                    "ops": [{"source": "milk", "target": "BlockEntityTag.milk", "op": "replace"}]
+                })
         for v in node.values():
             loot_fix(era, v)
     elif isinstance(node, list):

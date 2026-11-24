@@ -1,10 +1,13 @@
 package com.workshopcraft.morefood.machine;
 
 import com.workshopcraft.morefood.MoreFoodItems;
+import com.workshopcraft.morefood.MoreFoodKitchen;
 import com.workshopcraft.morefood.MoreFoodMachines;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+//? if >=1.20.5
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -60,6 +63,12 @@ public class MilkChurnBlockEntity extends BlockEntity implements WorldlyContaine
     }
 
     /** Takes mb out, or nothing when there is not that much. For whatever uses the milk later, like butter. */
+    /** Puts back the milk a broken churn kept. */
+    public void setMilk(int mb) {
+        milk = Math.max(0, Math.min(CAPACITY, mb));
+        changed();
+    }
+
     public boolean drain(int mb) {
         if (milk < mb) return false;
         milk -= mb;
@@ -149,8 +158,33 @@ public class MilkChurnBlockEntity extends BlockEntity implements WorldlyContaine
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         ContainerHelper.saveAllItems(output, items);
-        output.putInt("milk", milk);
+        // left out when empty, so an emptied churn drops the same as a new one and they stack (1.20.1 copies this tag)
+        if (milk > 0) output.putInt("milk", milk);
     }
+
+    //? if >=1.20.5 {
+    /** Lets the loot table copy the milk onto the dropped churn. */
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder components) {
+        super.collectImplicitComponents(components);
+        if (milk > 0) components.set(MoreFoodKitchen.MILK, milk);
+    }
+    //?}
+
+    // reading the milk here marks it used, so the placed churn does not also keep a stale copy to drop later
+    //? if >=26.1 {
+    @Override
+    protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter components) {
+        super.applyImplicitComponents(components);
+        milk = Math.max(0, Math.min(CAPACITY, components.getOrDefault(MoreFoodKitchen.MILK, 0)));
+    }
+    //?} else if >=1.20.5 {
+    /*@Override
+    protected void applyImplicitComponents(net.minecraft.world.level.block.entity.BlockEntity.DataComponentInput components) {
+        super.applyImplicitComponents(components);
+        milk = Math.max(0, Math.min(CAPACITY, components.getOrDefault(MoreFoodKitchen.MILK, 0)));
+    }
+    *///?}
 
     @Override
     public void preRemoveSideEffects(BlockPos pos, BlockState state) {

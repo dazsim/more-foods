@@ -8,7 +8,20 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "morefood:block_milk_churn"
+          "name": "morefood:block_milk_churn",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "milk",
+                  "target": "BlockEntityTag.milk",
+                  "op": "replace"
+                }
+              ]
+            }
+          ]
         }
       ],
       "conditions": [

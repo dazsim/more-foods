@@ -134,7 +134,9 @@ def assets():
 def data():
     w(f"{ERA}/data/{MOD}/loot_table/blocks/block_milk_churn.json", {
         "type": "minecraft:block", "random_sequence": f"{MOD}:blocks/block_milk_churn",
-        "pools": [{"rolls": 1, "bonus_rolls": 0, "entries": [{"type": "minecraft:item", "name": f"{MOD}:block_milk_churn"}],
+        "pools": [{"rolls": 1, "bonus_rolls": 0, "entries": [{"type": "minecraft:item", "name": f"{MOD}:block_milk_churn",
+                                                              # keeps the milk; gen_eras turns this into copy_nbt for 1.20.1
+                                                              "functions": [{"function": "minecraft:copy_components", "source": "block_entity", "include": [f"{MOD}:milk"]}]}],
                    "conditions": [{"condition": "minecraft:block_state_property", "block": f"{MOD}:block_milk_churn", "properties": {"half": "lower"}},
                                   {"condition": "minecraft:survives_explosion"}]}]})
     w(f"{ERA}/data/{MOD}/recipe/block_milk_churn.json", {

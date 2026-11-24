@@ -7,7 +7,14 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "morefood:block_milk_churn"
+          "name": "morefood:block_milk_churn",
+          "modifier": {
+            "type": "minecraft:copy_components",
+            "source": "block_entity",
+            "include": [
+              "morefood:milk"
+            ]
+          }
         }
       ],
       "condition": {

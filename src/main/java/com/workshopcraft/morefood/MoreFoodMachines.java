@@ -88,7 +88,7 @@ public final class MoreFoodMachines {
     public static void registerItems(BiConsumer<Identifier, Item> registry) {
         block(registry, "block_kitchen_chassis", chassis);
         block(registry, "block_kitchen_sink", sink);
-        block(registry, "block_milk_churn", churn);
+        put("block_milk_churn", MoreFoodItems.add(registry, "block_milk_churn", new com.workshopcraft.morefood.machine.MilkChurnItem(churn, MoreFoodItems.withId("block_milk_churn", MoreFoodItems.props().useBlockDescriptionPrefix()))));
         part(registry, "item_grinder_core");
         part(registry, "item_press_core");
         part(registry, "item_kitchen_gearbox");

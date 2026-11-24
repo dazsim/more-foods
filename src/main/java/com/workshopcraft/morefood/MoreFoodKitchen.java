@@ -94,6 +94,11 @@ public class MoreFoodKitchen {
             .persistent(ItemStackTemplate.CODEC)
             .networkSynchronized(ItemStackTemplate.STREAM_CODEC)
             .build();
+    /** Milk a broken churn still holds, in mB. */
+    public static final DataComponentType<Integer> MILK = DataComponentType.<Integer>builder()
+            .persistent(com.mojang.serialization.Codec.intRange(0, com.workshopcraft.morefood.machine.MilkChurnBlockEntity.CAPACITY))
+            .networkSynchronized(ByteBufCodecs.VAR_INT)
+            .build();
     //?}
     //? if >=1.20.5 && <26.1 {
     /*public static final DataComponentType<Item> VESSEL = DataComponentType.<Item>builder()
@@ -259,11 +264,13 @@ public class MoreFoodKitchen {
     public static void registerComponents(BiConsumer<Identifier, DataComponentType<?>> registry) {
         registry.accept(MoreFood.id("toppings"), TOPPINGS);
         registry.accept(MoreFood.id("peel_contents"), PEEL_CONTENTS);
+        registry.accept(MoreFood.id("milk"), MILK);
     }
     //?} else if >=1.20.5 {
     /*public static void registerComponents(BiConsumer<Identifier, DataComponentType<?>> registry) {
         registry.accept(MoreFood.id("toppings"), TOPPINGS);
         registry.accept(MoreFood.id("peel_contents"), PEEL_CONTENTS);
+        registry.accept(MoreFood.id("milk"), MILK);
         registry.accept(MoreFood.id("vessel"), VESSEL);
     }
     *///?}

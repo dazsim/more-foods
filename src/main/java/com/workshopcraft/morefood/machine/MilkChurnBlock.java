@@ -79,6 +79,8 @@ public class MilkChurnBlock extends BaseEntityBlock {
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity by, ItemStack stack) {
         level.setBlock(pos.above(), state.setValue(HALF, DoubleBlockHalf.UPPER), 3);
+        // milk carried over from a broken churn; set once both halves are there so both windows show it
+        if (!level.isClientSide() && level.getBlockEntity(pos) instanceof MilkChurnBlockEntity churn) churn.setMilk(MilkChurnItem.milk(stack));
     }
 
     private static boolean pairs(BlockState state, Direction towards, BlockState neighbour) {

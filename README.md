@@ -2,7 +2,7 @@
 
 More food types for Minecraft.
 
-Adds tomatoes, lettuce, onions, cabbage, spinach, kale, garlic, leeks, peas, haricot beans, parsnips, turnips and swedes as crops (seeds drop from grass), kitchen tools (knife, pot, mixing bowl, pestle and mortar, frying pan, juicer, mincer) and a long list of foods made with them: breads, sandwiches, burgers, pizza, stews, roast dinners, a cooked breakfast and more. Cows, pigs, chickens and sheep drop extra bits for cooking, however they die, so mob farms work too. Milk comes by the bottle as well, four to a bucket, and a two block tall Milk Churn keeps up to 8 buckets of it; hoppers and pipes fill and empty it with buckets and bottles.
+Adds tomatoes, lettuce, onions, cabbage, spinach, kale, garlic, leeks, peas, haricot beans, parsnips, turnips and swedes as crops (seeds drop from grass), kitchen tools (knife, pot, mixing bowl, pestle and mortar, frying pan, juicer, mincer) and a long list of foods made with them: breads, sandwiches, burgers, pizza, stews, roast dinners, a cooked breakfast and more. Cows, pigs, chickens and sheep drop extra bits for cooking, however they die, so mob farms work too. Milk comes by the bottle as well, four to a bucket, and a two block tall Milk Churn keeps up to 8 buckets of it, and still has it after being broken; hoppers and pipes fill and empty it with buckets and bottles.
 
 Built for Minecraft 26.1, 26.2 and 26.3 on NeoForge and Fabric, 1.21.1 on NeoForge and Fabric, and 1.20.1 on Forge and Fabric. With Much More Storage installed, the assembly board also sits on its cupboards and worktops.
 
