@@ -83,6 +83,9 @@ public class MoreFoodForge {
         } else if (e.getObject() instanceof com.workshopcraft.morefood.machine.KitchenSinkBlockEntity sink) {
             e.addCapability(MoreFood.id("sink_items"), new Provider<>(ForgeCapabilities.ITEM_HANDLER,
                     side -> side == null ? new net.minecraftforge.items.wrapper.InvWrapper(sink) : new net.minecraftforge.items.wrapper.SidedInvWrapper(sink, side)));
+        } else if (e.getObject() instanceof com.workshopcraft.morefood.machine.MilkChurnBlockEntity churn) {
+            e.addCapability(MoreFood.id("churn_items"), new Provider<>(ForgeCapabilities.ITEM_HANDLER,
+                    side -> side == null ? new net.minecraftforge.items.wrapper.InvWrapper(churn) : new net.minecraftforge.items.wrapper.SidedInvWrapper(churn, side)));
         }
     }
 

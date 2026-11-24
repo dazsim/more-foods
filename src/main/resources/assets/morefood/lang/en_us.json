@@ -231,6 +231,8 @@
   "block.morefood.block_grinder": "Grinder",
   "block.morefood.block_press": "Press",
   "block.morefood.block_kitchen_sink": "Kitchen Sink",
+  "block.morefood.block_milk_churn": "Milk Churn",
+  "message.morefood.churn.milk": "Milk: %s / %s mB",
   "item.morefood.item_grinder_core": "Grinder Core",
   "item.morefood.item_press_core": "Press Core",
   "item.morefood.item_kitchen_gearbox": "Kitchen Gearbox",

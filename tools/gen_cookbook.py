@@ -372,6 +372,12 @@ pages["machines"] = {
                "Never runs dry. Fills buckets and bottles, washes dough into seitan. Hoppers and pipes work too."),
     ]}
 
+pages["milk_churn"] = {
+    "section": "tools", "template": "morefood:info", "sort": 202, "title": "Milk Churn", "icon": "morefood:block_milk_churn",
+    "subtitle": "Keeps up to 8 buckets of milk.",
+    "text": "Empty Milk Buckets and Milk Bottles into it, or fill empty ones from it. Four bottles make a bucket. The window on the front shows how full it is; use it with an empty hand for the exact amount. Hoppers and pipes put full or empty buckets and bottles in the top or sides and take what comes back from the bottom.",
+    "steps": [shaped("morefood:block_milk_churn", "Milk Churn", "Two blocks tall. Planks and iron.")]}
+
 for pid, j in pages.items():
     w(f"{PAGES}/{pid}.json", j)
 

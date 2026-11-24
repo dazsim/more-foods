@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "facing=north,half=lower,milk=0": {
+      "model": "morefood:block/milk_churn_lower_0"
+    },
+    "facing=east,half=lower,milk=0": {
+      "model": "morefood:block/milk_churn_lower_0",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=0": {
+      "model": "morefood:block/milk_churn_lower_0",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=0": {
+      "model": "morefood:block/milk_churn_lower_0",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=1": {
+      "model": "morefood:block/milk_churn_lower_1"
+    },
+    "facing=east,half=lower,milk=1": {
+      "model": "morefood:block/milk_churn_lower_1",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=1": {
+      "model": "morefood:block/milk_churn_lower_1",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=1": {
+      "model": "morefood:block/milk_churn_lower_1",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=2": {
+      "model": "morefood:block/milk_churn_lower_2"
+    },
+    "facing=east,half=lower,milk=2": {
+      "model": "morefood:block/milk_churn_lower_2",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=2": {
+      "model": "morefood:block/milk_churn_lower_2",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=2": {
+      "model": "morefood:block/milk_churn_lower_2",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=3": {
+      "model": "morefood:block/milk_churn_lower_3"
+    },
+    "facing=east,half=lower,milk=3": {
+      "model": "morefood:block/milk_churn_lower_3",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=3": {
+      "model": "morefood:block/milk_churn_lower_3",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=3": {
+      "model": "morefood:block/milk_churn_lower_3",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=4": {
+      "model": "morefood:block/milk_churn_lower_4"
+    },
+    "facing=east,half=lower,milk=4": {
+      "model": "morefood:block/milk_churn_lower_4",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=4": {
+      "model": "morefood:block/milk_churn_lower_4",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=4": {
+      "model": "morefood:block/milk_churn_lower_4",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=5": {
+      "model": "morefood:block/milk_churn_lower_5"
+    },
+    "facing=east,half=lower,milk=5": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=5": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=5": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=6": {
+      "model": "morefood:block/milk_churn_lower_5"
+    },
+    "facing=east,half=lower,milk=6": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=6": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=6": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=7": {
+      "model": "morefood:block/milk_churn_lower_5"
+    },
+    "facing=east,half=lower,milk=7": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=7": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=7": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 270
+    },
+    "facing=north,half=lower,milk=8": {
+      "model": "morefood:block/milk_churn_lower_5"
+    },
+    "facing=east,half=lower,milk=8": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 90
+    },
+    "facing=south,half=lower,milk=8": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 180
+    },
+    "facing=west,half=lower,milk=8": {
+      "model": "morefood:block/milk_churn_lower_5",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=0": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=0": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=0": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=0": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=1": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=1": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=1": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=1": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=2": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=2": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=2": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=2": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=3": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=3": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=3": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=3": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=4": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=4": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=4": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=4": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=5": {
+      "model": "morefood:block/milk_churn_upper_0"
+    },
+    "facing=east,half=upper,milk=5": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=5": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=5": {
+      "model": "morefood:block/milk_churn_upper_0",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=6": {
+      "model": "morefood:block/milk_churn_upper_6"
+    },
+    "facing=east,half=upper,milk=6": {
+      "model": "morefood:block/milk_churn_upper_6",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=6": {
+      "model": "morefood:block/milk_churn_upper_6",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=6": {
+      "model": "morefood:block/milk_churn_upper_6",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=7": {
+      "model": "morefood:block/milk_churn_upper_7"
+    },
+    "facing=east,half=upper,milk=7": {
+      "model": "morefood:block/milk_churn_upper_7",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=7": {
+      "model": "morefood:block/milk_churn_upper_7",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=7": {
+      "model": "morefood:block/milk_churn_upper_7",
+      "y": 270
+    },
+    "facing=north,half=upper,milk=8": {
+      "model": "morefood:block/milk_churn_upper_8"
+    },
+    "facing=east,half=upper,milk=8": {
+      "model": "morefood:block/milk_churn_upper_8",
+      "y": 90
+    },
+    "facing=south,half=upper,milk=8": {
+      "model": "morefood:block/milk_churn_upper_8",
+      "y": 180
+    },
+    "facing=west,half=upper,milk=8": {
+      "model": "morefood:block/milk_churn_upper_8",
+      "y": 270
+    }
+  }
+}

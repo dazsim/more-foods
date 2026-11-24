@@ -16,6 +16,7 @@
     "morefood:block_door_palm",
     "morefood:block_trapdoor_palm",
     "morefood:block_button_palm",
-    "morefood:block_pressure_plate_palm"
+    "morefood:block_pressure_plate_palm",
+    "morefood:block_milk_churn"
   ]
 }

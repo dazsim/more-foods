@@ -1,0 +1,133 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "morefood:block/milk_churn_side",
+    "side": "morefood:block/milk_churn_side",
+    "top": "morefood:block/milk_churn_top",
+    "lid": "morefood:block/milk_churn_lid",
+    "handle": "morefood:block/milk_churn_handle",
+    "window": "morefood:block/milk_churn_window",
+    "milk": "morefood:block/milk_churn_milk"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#side"
+        },
+        "south": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#side"
+        },
+        "east": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#side"
+        },
+        "west": {
+          "uv": [
+            3,
+            0,
+            13,
+            16
+          ],
+          "texture": "#side"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ],
+      "faces": {
+        "down": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#top"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        2,
+        2.95
+      ],
+      "to": [
+        9,
+        16,
+        3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            0,
+            9,
+            14
+          ],
+          "texture": "#window"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        2,
+        2.9
+      ],
+      "to": [
+        9,
+        13,
+        2.95
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            3,
+            9,
+            14
+          ],
+          "texture": "#milk"
+        }
+      }
+    }
+  ]
+}

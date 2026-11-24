@@ -5,6 +5,8 @@ import com.workshopcraft.morefood.machine.KitchenMachineItem;
 import com.workshopcraft.morefood.machine.KitchenMachineMenu;
 import com.workshopcraft.morefood.machine.KitchenSinkBlock;
 import com.workshopcraft.morefood.machine.KitchenSinkBlockEntity;
+import com.workshopcraft.morefood.machine.MilkChurnBlock;
+import com.workshopcraft.morefood.machine.MilkChurnBlockEntity;
 import com.workshopcraft.workshopcore.compat.Registration;
 import com.workshopcraft.workshopcore.machine.Assembly;
 import com.workshopcraft.workshopcore.machine.ChassisBlock;
@@ -49,10 +51,12 @@ public final class MoreFoodMachines {
     public static MachineBlock grinder;
     public static MachineBlock press;
     public static Block sink;
+    public static Block churn;
     public static BlockEntityType<ChassisBlockEntity> chassisEntity;
     public static BlockEntityType<KitchenMachineBlockEntity> grinderEntity;
     public static BlockEntityType<KitchenMachineBlockEntity> pressEntity;
     public static BlockEntityType<KitchenSinkBlockEntity> sinkEntity;
+    public static BlockEntityType<MilkChurnBlockEntity> churnEntity;
 
     private MoreFoodMachines() {
     }
@@ -76,11 +80,15 @@ public final class MoreFoodMachines {
         sink = new KitchenSinkBlock(props("block_kitchen_sink")
                 .mapColor(MapColor.METAL).strength(2.5F).sound(SoundType.METAL).noOcclusion());
         registry.accept(MoreFood.id("block_kitchen_sink"), sink);
+        churn = new MilkChurnBlock(props("block_milk_churn")
+                .mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion());
+        registry.accept(MoreFood.id("block_milk_churn"), churn);
     }
 
     public static void registerItems(BiConsumer<Identifier, Item> registry) {
         block(registry, "block_kitchen_chassis", chassis);
         block(registry, "block_kitchen_sink", sink);
+        block(registry, "block_milk_churn", churn);
         part(registry, "item_grinder_core");
         part(registry, "item_press_core");
         part(registry, "item_kitchen_gearbox");
@@ -123,6 +131,8 @@ public final class MoreFoodMachines {
         registry.accept(MoreFood.id("grinder"), grinderEntity);
         registry.accept(MoreFood.id("press"), pressEntity);
         registry.accept(MoreFood.id("kitchen_sink"), sinkEntity);
+        churnEntity = Registration.blockEntity(MilkChurnBlockEntity::new, Set.of(churn));
+        registry.accept(MoreFood.id("milk_churn"), churnEntity);
 
         Assembly.registerCore(MoreFood.id("item_grinder_core"), MachineCore.builder(MoreFood.id("grinder"), () -> grinder)
                 .upgradeSlots(2).defaultDrive(Drives.CRANK).build());

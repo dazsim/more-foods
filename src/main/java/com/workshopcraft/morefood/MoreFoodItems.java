@@ -273,14 +273,16 @@ public class MoreFoodItems {
         return left != null ? left.create() : ItemStack.EMPTY;
     }
 
+    public static Item milkBottle;
+
     private static void milkBottle(BiConsumer<Identifier, Item> registry) {
         //? if >=26.1 {
-        item(registry, "item_milk_bottle", props().craftRemainder(Items.GLASS_BOTTLE)
+        milkBottle = item(registry, "item_milk_bottle", props().craftRemainder(Items.GLASS_BOTTLE)
                 .component(net.minecraft.core.component.DataComponents.CONSUMABLE, net.minecraft.world.item.component.Consumables.MILK_BUCKET)
                 .usingConvertsTo(Items.GLASS_BOTTLE));
         //?} else {
-        /*final Item milk = add(registry, "item_milk_bottle", new com.workshopcraft.morefood.items.ItemMilkBottle(props().craftRemainder(Items.GLASS_BOTTLE)));
-        Compat.CONVERTS.put(milk, Items.GLASS_BOTTLE);
+        /*milkBottle = add(registry, "item_milk_bottle", new com.workshopcraft.morefood.items.ItemMilkBottle(props().craftRemainder(Items.GLASS_BOTTLE)));
+        Compat.CONVERTS.put(milkBottle, Items.GLASS_BOTTLE);
         *///?}
     }
 
