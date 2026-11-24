@@ -3,9 +3,6 @@
   "pools": [
     {
       "rolls": 1,
-      "condition": {
-        "type": "minecraft:killed_by_player"
-      },
       "entries": [
         {
           "type": "minecraft:item",
@@ -15,9 +12,6 @@
     },
     {
       "rolls": 1,
-      "condition": {
-        "type": "minecraft:killed_by_player"
-      },
       "entries": [
         {
           "type": "minecraft:item",

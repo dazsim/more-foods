@@ -28,10 +28,19 @@
     "minecraft:carrot",
     "minecraft:cooked_beef",
     "minecraft:bowl",
-    "morefood:item_dumpling_uncooked"
+    "minecraft:wheat",
+    {
+      "items": [
+        "morefood:item_suet",
+        "morefood:item_butter_vegan"
+      ],
+      "name": "Suet or Vegan Butter"
+    }
   ],
   "tools": [
     "minecraft:crafting_table",
+    "morefood:item_pestle_mortar",
+    "morefood:item_mixing_bowl",
     "morefood:item_knife",
     "morefood:item_pot",
     "morefood:block_stove"
@@ -87,6 +96,33 @@
       "appliance": "morefood:item_pot",
       "on": "morefood:block_stove",
       "output": "morefood:item_potato_boiled"
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_pestle_mortar",
+        "minecraft:wheat"
+      ],
+      "output": "morefood:item_flour"
+    },
+    {
+      "kind": "craft_shapeless",
+      "inputs": [
+        "morefood:item_mixing_bowl",
+        "morefood:item_flour",
+        {
+          "items": [
+            "morefood:item_suet",
+            "morefood:item_butter_vegan"
+          ],
+          "name": "Suet or Vegan Butter"
+        },
+        "minecraft:water_bucket"
+      ],
+      "output": {
+        "item": "morefood:item_dumpling_uncooked",
+        "count": 2
+      }
     },
     {
       "kind": "sequence",
